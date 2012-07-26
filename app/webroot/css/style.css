@@ -1,0 +1,379 @@
+html, body{background:url(../img/pattern.jpg) repeat left top}
+
+#container{background:url(../img/container-bg.png) repeat-x left top; height:auto !important; height:100%; min-height:100%; margin:0 auto; position:relative; width:100%}
+.content{line-height:18px; margin:0 auto; width:990px}
+div.admin-content{width:990px}
+
+div.admin-content .menu-block, .menu-block{margin:10px 0 40px -7px}
+
+form.normal{width:98%; padding:10px; margin:0px}
+form.normal div.input, form.normal div.submit{padding:5px; margin:5px}
+form.normal div.input label, span.label-content{padding:3px 10px 0pt 0pt; width:153px; position:absolute; color:#666; text-align:right; font-size:13px}
+div.end-date-time-block div.datepicker-content{left:50px}
+form.normal div.date-time label{width:159px}
+form.normal div.input-blocks div.input label{width:107px}
+form.normal div.checkbox label, form.normal div.radio label{display:inline; margin:0px 0px 0px 5px; padding-right:10px; position:static; text-align:left}
+form.normal div.checkbox label{width:210px}
+form.normal div.required label{background:transparent url(../img/required-red.png) no-repeat scroll right 5px}
+form.normal div.select div.checkbox label{background:none}
+form.normal div.select select, form.normal div.text input, form.normal div.textarea textarea, form.normal div.password input{width:240px; font-size:12px; padding:5px 2px; margin:0px 5px 0px 180px; border:1px solid #ddd}
+form.normal div.select select{padding:0px; width:246px; font-size:14px; height:27px}
+form.normal div.input textarea{height:125px; width:240px}
+form.normal div.date label+select{margin:0px 0px 0px 180px}
+form.normal div.checkbox input, form.normal div.radio input{width:16px; margin:0px}
+form.normal div.checkbox input, form.normal div.date label+select, form.normal div.time label+select, form.normal div.datetime label+select{margin:0px 0px 0px 180px}
+form.normal div.submit input, .cancel-block a, form.subscription div.submit input{background:url("../img/submit-right.png") no-repeat scroll right top transparent; cursor:pointer; font-size:13px; width:auto; color:#333; border:0px; padding:0 5px 3px 0; font-weight:normal; height:31px; font-weight:bold}
+
+form#UserProfileEditForm div.select span.currency{margin:0 3px 0 1px}
+form#UserProfileEditForm div.date-time label{width:154px}
+form#UserProfileEditForm .time-desc{margin:0 0 0 180px}
+form.normal div.submit, form.normal .cancel-block, form.search-form div.submit, div.cancel-block, form.affliates-form div.submit{background:url("../img/submit-left.png") no-repeat scroll left top transparent; float:left; height:31px; margin:0 5px 0 0; padding:0 0 0 5px}
+form.normal div.submit input:hover, .cancel-block a:hover, form.affliates-form div.submit input:hover{color:#00B5C8}
+ul.coupon-code li input:hover, form.normal div.select select:hover, form.normal div.text input:hover, form.normal div.textarea textarea:hover, form.normal div.password input:hover, form.normal div.select select:active, form.normal div.text input:focus, form.normal div.textarea textarea:focus, form.normal div.password input:focus, form.normal div.select select:focus, form.normal div.text input:active.normal div.textarea textarea:active, form.normal div.password input:active{border:1px solid #A7BDBF}
+form.normal div.error-message{color:#f06; margin:5px 0px 0px 180px; background:url(../img/icon-form-error.png) no-repeat scroll left center; padding:0 0 0 20px; text-align:left; font-size:12px}
+form.normal div.error-message2{color:#f06; margin:5px 0px 0px 10px; background:url(../img/icon-form-error.png) no-repeat scroll left center; padding:0 0 0 20px; text-align:left; font-size:12px}
+form div.error-message{color:#f06; background:url(../img/icon-form-error.png) no-repeat scroll left center; padding:0 0 0 20px; text-align:left; font-size:12px}
+
+form.normal div.error input, form.normal div.error textarea, form.normal div.error select{background-color:#fff; border:1px solid #F06}
+form.normal div.file input{margin:0px 0px 0px 180px}
+form.normal .time-desc{margin:0 0 0 180px}
+form.normal div.submit input.blogs-submit{margin:0px 0px 0px 0px; display:inline}
+form.normal div.input input.bg-openid-input{background:url(../img/icon-open-id.png) no-repeat scroll 1px 5px; padding:6px 0 6px 25px; width:200px}
+span.info, span.help{background:url(../img/icon-info.png) no-repeat scroll left 4px; display:block; margin-left:180px; padding:3px 2px 4px 20px; color:#AFAFAF; font-size:11px}
+
+form.subscription{color:#FFF; padding:10px 0 10px 10px; width:340px}
+.city-block .subscriptions{width:335px; float:right; margin:20px 0 0 0}
+.city-block .subscriptions form.subscription{width:auto}
+form.subscription div.input, form.subscription div.submit{float:left; padding:5px}
+form.subscription div.submit{background:url("../img/subscrib-bg-left.png") no-repeat scroll left 5px transparent; height:31px; padding:5px 0 0 3px; float:left}
+form.subscription div.input label{position:absolute; text-align:right; width:105px; margin:3px 0 0 0; color:#333; display:none}
+form.subscription div.submit input{background:url(../img/subscrib-bg-right.png) no-repeat right top; height:31px; width:auto; float:left}
+form.subscription div.submit input:hover{ color:#fff}
+*+html form.subscription div.submit input{width:84px}
+form.subscription div.input input{border:1px solid #CCC; color:#808080; margin-left:0; padding:5px; width:214px}
+form.subscription div.input input:hover{border:1px solid #A0CA4E}
+form.normal table.list tr td div.checkbox input, form.normal div.admin-checkbox-button div.select select, div.submit-block div.submit input{margin:0}
+form.normal div.admin-select-block div.select select{margin:0px 0px 0px 10px}
+form.normal div.outer-image-settings div.input{width:300px; float:left}
+form.normal div.outer-image-settings div.input label{position:absolute}
+form.normal div.outer-image-settings div.input input{margin:0px 0px 0px 180px; width:100px}
+form.normal div.outer-image-settings div.input input.image-settings-height{margin:0px 0px 0px 0px}
+form.normal div.outer-image-settings div.image-separator{width:10px}
+form.normal div.admin-checkbox-button div.select{padding:5px 0; margin:0}
+form.normal .two-col-form div.input, form.normal .two-col-form div.select, form.normal .calculator-block div.input, form.normal .calculator-block div.select{float:left; width:41%}
+
+form.normal div.textarea textarea.email-content{width:500px; height:300px}
+form#ContactAddForm div.textarea textarea{height:170px; width:400px}
+div#users-my_stuff a.print-icon, div#deal_users-index a.print-icon{float:left; width:16px; padding:0px; text-indent:-3000em}
+div#users-my_stuff td.status-0 a{margin:0px 3px}
+.mceEditor{display:block; margin:40px 0 0 0}
+.fromleft, .or{margin-left:190px; padding:5px 0}
+.cancel-block{float:left; margin:5px; padding:5px}
+.cancel-block a{float:left; height:18px; margin:0; padding:7px 10px 6px 5px}
+.cancel-block a:hover{text-decoration:none}
+
+form.normal div.captcha-block{margin:0px 10px 0px 185px}
+div.captcha-block img{border:1px solid #ddd}
+div.captcha-right, div.captcha-left{border:1px solid #ddd}
+div.captcha-left{float:left; background:#fff; padding:5px; border-right:none}
+*+html div.captcha-left{padding:4px}
+div.captcha-right{width:25px; float:left; background:#EFEFEF; padding:6px 6px 9px 6px; border-left:none}
+a.captcha-audio{display:block; width:22px; height:20px; background:url(../img/icon-audio.png) no-repeat left top; text-indent:-2000em; margin:2px 0 1px 2px}
+a.captcha-reload{width:22px; height:20px; display:block; background:url(../img/icon-refresh.png) no-repeat left top; text-indent:-2000em; margin:2px 0 1px 2px}
+
+.message{position:fixed; left:0; top:0; z-index:10000; width:100%; font-weight:bold; text-align:center}
+div.flash-message-inner{padding:20px 50px 20px 70px}
+div.flash-message-inner{position:relative}
+span.flash-close{background:url("../img/close-icon.png") no-repeat scroll left top transparent; display:block; position:absolute; right:3px; text-indent:-3000em; top:3px; width:16px}
+#errorMessage{background:#ffebf3; border:1px solid #FF1F1F; padding:13px 0 14px 63px}
+#successMessage, .success{background:#eff; border:1px solid #6f0}
+#flashMessage{background:#ffe; border:1px solid #f60}
+#errorMessage, #authMessage{background:#ffebf3 url(../img/icon-error.png) no-repeat 10px center; padding:13px 0 14px 63px}
+#successMessage{background:#eff url(../img/icon-success.png) no-repeat 10px center; padding:13px 0 14px 63px}
+#flashMessage{background:#ffe url(../img/icon-warning.png) no-repeat 10px center; padding:13px 0 14px 63px}
+.success-msg{padding:30px 0 30px 70px; margin:0 30px; font-weight:bold; background:url(../img/icon-success.png) no-repeat 10px center}
+.notice{color:#F00; background:url(../img/icon-list-warning.png) no-repeat 5px center; padding:2px 2px 2px 25px}
+table.list tr td.notice{text-align:left; padding-left:25px}
+
+table.list, table.list td, table.list th{border:1px solid #F660AB}
+table.topic-list td, table.topic-list th{border:none; border-bottom:1px solid #F660AB}
+table.list{border-spacing:0; border-collapse:collapse; margin:5px auto; width:98%}
+table.list td, table.list th{margin:0; padding:4px; border-width:1px; background-color:#fff; vertical-align:middle; text-align:center; font-size:12px}
+table.list th{color:#fff; background:#DE006D}
+table.list th a{color:#fff}
+table.list tr.altrow td{background-color:#FFF0FF}
+table.list tr:hover td{background-color:#EFFDFF}
+table.list tr th.dl, table.list tr td.dl{text-align:left}
+table.list tr th.dc, table.list tr td.dc{text-align:center}
+table.list tr th.dr, table.list tr td.dr{text-align:right}
+
+div.admin-content .actions-block .actions{text-align:left; top:-5px}
+div#languages-admin_index div.actions{text-align:center}
+table.list tr:hover td .actions{display:block}
+.actions-block{float:left; position:relative}
+.actions-block .actions{position:absolute; right:3px; padding:2px 5px 3px 5px; display:none; border:1px solid #DE006D; background:#F7FBFE; border-right:0; top:-5px}
+div.address-block-info p{white-space:nowrap}
+div.add-block1{text-align:right}
+div.add-block1 a{padding:1px 2px 1px 20px}
+
+.admin-bar{background:#00B5C8; color:#FFF; left:500px; opacity:0.8; filter:alpha(opacity=80); padding:10px; position:absolute; width:170px}
+.admin-content .admin-bar{top:0px; left:40%; width:auto}
+.admin-bar a{color:#fff; text-decoration:underline}
+.admin-bar a:hover{text-decoration:none}
+.admin-bar h3{display:inline; color:#fff; font-size:12px}
+.admin-sideone{float:left; width:17%; border:2px solid #DE006D; padding:10px; margin:10px 0 0 0; background:#fff}
+.admin-sidetwo{float:left; width:77%; border:2px solid #DE006D; padding:10px; background:#fff; margin:10px 0 0 10px}
+div.admin-content form.normal{width:100%; margin:0px; padding:0px}
+div.admin-content table.list{width:100%; font-size:11px; margin:10px auto}
+ul.admin-links li.active>a, ul.admin-links li>a:hover{color:#000}
+ul.admin-links li.active>a{font-weight:bold}
+ul.admin-links li ul{background:#FBFDFE none repeat scroll 0 0; margin-left:0; padding:5px 0 5px 10px; margin:0px 0px 5px 0px}
+ul.admin-links>li{border-bottom:1px dashed #999; margin:0px 0px 10px 0px; padding:3px 0px 3px 10px}
+ul.admin-links>li.no-bor{background:none; border:none; padding:0px; margin:0px}
+ul.admin-links li h4{padding:3px 5px; font-size:13px}
+
+div.submit-update-block{margin:5px 0 5px 315px}
+div.clearAll{margin:10px 0 0 0}
+
+a.add, a.delete, a.edit, a.export, a.update, a.pending, a.approve, a.view, a.update-status{background:url(../img/icon-add.gif) 0 0 no-repeat; padding:0px 2px 3px 20px; margin-right:16px; color:#000}
+
+div.export-block{text-align:right}
+a.delete{background:url(../img/icon-delete.png) no-repeat left top}
+a.edit{background:url(../img/icon-edit.png) no-repeat left top; padding:0 2px 3px 20px}
+a.export{background:url(../img/icon-export.png) no-repeat left top}
+
+a.asc{background:transparent url(../img/icon-sort-down.gif) no-repeat scroll right center}
+a.desc{background:transparent url(../img/icon-sort-up.gif) no-repeat scroll right center}
+a.asc, a.desc{padding-right:10px; margin-right:10px}
+a.print-icon{background:url(../img/print.png) no-repeat; width:auto; height:16px; padding:0px 0px 0px 20px}
+
+.throbber{background:url(../img/throbber.gif) no-repeat center top; padding-top:20px; width:130px; font-size:11px; text-align:center}
+
+a.password{text-indent:1px; width:auto; padding:1px 0px 1px 20px; float:none}
+.forgot-info, .info-details{background:#f9f9f9 url(../img/icon-info-details.png) no-repeat 10px center; border:1px dashed #DDD; margin:6px 10px; padding:15px 15px 15px 50px}
+.forgot-info:hover, .info-details:hover{background:#fff url(../img/icon-info-details.png) no-repeat 10px center}
+
+div.datepicker-content{position:absolute; left:5px; top:25px; border:1px solid #ddd; z-index:99999; width:185px}
+.picker-img{float:left; margin:3px 3px 0 0; cursor:pointer}
+div.datepicker-content a.close{width:28px; height:28px; margin:0 5px 5px 0; right:-15px; position:absolute; bottom:-15px; background:url(../img/icon-close.png) 0 0 no-repeat; text-indent:-9999em}
+form.normal .ui-datepicker select.ui-datepicker-month, form.normal .ui-datepicker select.ui-datepicker-year, form.normal div.thick-box .ui-datepicker select.ui-datepicker-month, form.normal div.thick-box .ui-datepicker select.ui-datepicker-year{width:49%; margin:0px}
+div.timepicker, div.datepicker-container, .date-time{position:relative}
+div.timepicker{float:left; position:relative}
+ul.global-links-right li{float:left; margin:3px; padding:0 2px}
+.date-time label{left:0}
+.displaydate{padding:1px 5px; border:1px solid #DE006D; float:left; margin:0 2px; font-size:11px}
+div.displaydate a{margin-left:3px}
+.timepickr{background:#FFF none repeat scroll 0 0; border:1px solid #DE006D; font-size:11px; margin:0 0; padding:3px 5px}
+.paging-count{color:#7F7F7F; font-size:11px; padding:5px 0px}
+.slider-content{width:955px; margin:0px auto}
+ul.sort-list{margin:5px; border-bottom:1px solid #b90c65}
+ul.sort-list li{float:left; margin-right:5px}
+ul.sort-list li a{color:#DE006D; padding:5px; float:left; border:1px solid #FFF; border-bottom:none; font-weight:bold}
+ul.sort-list li:hover a, ul.sort-list li.active a{color:#B81C6C; border:1px solid #b90c65; border-bottom:none; text-decoration:none; background:#FFF; margin-bottom:-1px}
+a.approve{background:url(../img/icon-approve.png) no-repeat left top; padding:0 2px 5px 20px}
+a.pending{background:url(../img/icon-pending.png) no-repeat left top}
+.add-block{text-align:right; margin:5px}
+
+div.paging{text-align:right; padding:10px}
+div.admin-content div.paging{text-align:right; padding:10px 0px}
+div.paging a, div.paging span{background-color:#fefefe; color:#2e6ab1; text-decoration:none}
+div.paging a, div.paging span.prev, div.paging span.next, div.paging span.current{border:1px solid #00B5C8; margin:2px; padding:1px 3px}
+div.paging span.prev, div.paging span.next{display:none}
+div.paging span.skip{border:none}
+div.paging a:hover, div.paging span.current{border:1px solid #63a4e8; background:#00B5C8; color:#fff}
+
+div.admin-select-block div{display:inline}
+div.admin-select-block div.hide{display:none}
+div.admin-select-block div.select select{width:180px; margin:0px 0px 0px 0px}
+div.admin-select-block{padding:10px 0px 10px 0px}
+p.admin-welcome-info{font-weight:bold}
+span.welcome-info a.login-link{margin:0px 3px 0px 3px}
+span.welcome-info span.active a.login-link{color:#000}
+div.admin-sub-header{color:#000; float:right; text-align:right; width:auto; font-size:14px; margin:14px 0px 0 0}
+ul.admin-links li{margin:6px 0px 6px 0px}
+ul.admin-links li a{background:url(../img/arrow1.png) no-repeat left top; background:transparent url(../img/arrow1.png) no-repeat scroll left 8px; padding:2px 0 2px 10px; font-size:12px}
+
+label.overlabel-apply, form.normal div.overlabel-wrapper label.overlabel-apply{position:absolute; left:3px; z-index:1; color:#999; text-align:left; width:79px; font-size:11px}
+form.normal div.overlabel-wrapper label.overlabel-apply{font-size:10px; background:none}
+
+.round-5{-moz-border-radius:5px}
+.round-3{-moz-border-radius:3px; -khtml-border-radius:3px; -o-border-radius:3px; border-radius:3px}
+.round-10{-moz-border-radius:10px; -khtml-border-radius:10px; -o-border-radius:10px; border-radius:10px}
+.round-15, .twtr-widget{-moz-border-radius:15px; -khtml-border-radius:15px; -o-border-radius:15px; border-radius:15px}
+.round-15-top{-moz-border-radius:15px; border-radius:15px; -moz-border-radius-bottomleft:0px; -moz-border-radius-bottomright:0px; -webkit-border-radius-bottomleft:0px; -webkit-border-radius-bottomright:0px}
+.round-5-left{-moz-border-radius-bottomleft:5px; -moz-border-radius-topleft:5px; -webkit-border-radius-bottomleft:5px; -webkit-border-radius-topleft:5px}
+form.normal div.required label{background:transparent url(../img/required-red.png) no-repeat scroll right top; padding:0 10px 0 0px}
+
+div.admin-content table.list tr td.notice{background:transparent url(../img/icon-list-warning.png) no-repeat scroll 6px center}
+div.submit-block{margin:5px 0px 5px 190px}
+form.search-form div.submit-block{margin:0px 0px 5px 0px}
+form.normal div.submit-block div.submit input{margin:0px}
+form.normal .cancel-block{float:left; margin:0px}
+table.list td img{float:left; margin:0 7px 0 0; vertical-align:bottom}
+
+form.search-form{padding:10px 0px}
+form.search-form div.input, form.search-form div.select{float:left; min-height:35px; margin:0px; padding:0px; width:225px}
+form.search-form div.date{width:250px}
+form.search-form div.submit{float:left; width:100px}
+form.search-form div.submit input{margin:0px}
+form.search-form div.select select, form.search-form div.text input{width:227px; margin:0px 0px 0px 57px; height:20px}
+form.search-form div.date label+select{width:100px}
+form.search-form div.select select, form.search-form div.date label+select{margin:0px}
+form.search-form div.input label{width:auto; position:absolute; margin:4px 0px 0px 0px}
+form.search-form div.date select#Transaction_fromDay, form.search-form div.date select#Transaction_toDay{width:40px}
+form.search-form div.date select#Transaction_fromYear, form.search-form div.date select#Transaction_toYear{width:55px}
+form.search-form div.text{width:auto; margin:0px 8px}
+div.admin-content h2{padding:10px 0px 15px 0px; font-size:18px}
+div.maintance{margin:44px auto 0}
+
+a.view-icon{background:url(../img/view.png) no-repeat left top; width:16px; height:16px; display:block; text-indent:-9999px; float:left}
+div.admin-content a.view-icon{text-indent:1px; width:auto; height:auto; padding:0px 0px 0px 20px}
+
+ul.admin-menu{float:left; width:auto}
+
+.clearfix:after{clear:both; content:'.'; display:block; visibility:hidden; height:0}
+.clearfix{display:block}
+.js .hide{display:none}
+* html .clearfix{height:1%}
+*+html .clearfix{display:inline-block}
+form.subscription{    color:#FFF;     padding:10px 0 10px 10px;     width:340px}
+form.subscription div.input input{    border:1px solid #CCC;     color:gray;     margin-left:0;     padding:5px;     width:214px}
+.subscription{    color:#FFF;     margin:0 auto}
+
+#error{margin-left:10px}
+
+*{margin:0; padding:0; font-family:Arial,Helvetica,sans-serif}
+ul{margin:0; padding:0; list-style:none}
+a img{border:0px; outline:none}
+a{color:#de006d; text-decoration:none}
+a:hover{text-decoration:underline}
+body{background:url("../img/pattern.jpg") repeat}
+.top_line{height:13px; background-color:#e6dcd3}
+.mbg{background:url("../img/shadow.png") repeat-y center top; width:100%}
+.mcont{width:1063px; margin:auto}
+.warper{width:1003px; padding:0 30px; overflow:hidden}
+h1{color:#e2277c; font:bold 36px Arial,Helvetica,sans-serif; line-height:43px}
+h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
+.f-right{float:right}
+.f-left{float:left}
+
+.header{padding:0 33px 0 33px; overflow:hidden}
+.logo{background:url("../img/logo.jpg") no-repeat; width:153px; text-indent:-999px; float:left}
+.logo a{display:block; height:181px}
+.login_sec{width:336px; float:right; margin-top:30px; overflow:hidden}
+.login_sec span{float:right; padding-left:2px;    line-height:31px; padding-right:4px}
+.number{text-align:right; color:#db006c; font:normal 12px Arial,Helvetica,sans-serif; line-height:20px; width:100%; float:right}
+.but1{background:url("../img/but1.jpg") no-repeat left top; color:#FFF; display:block; font-family:Arial,Helvetica,sans-serif; font-size:12px; height:27px;   line-height:25px; width:135px; text-decoration:none; text-align:center}
+.but1:hover{background:url("../img/but1.jpg") no-repeat left -27px; height:27px; text-decoration:none; color:#000; width:135px}
+.but2{background:url("../img/but2.jpg") no-repeat left top; color:#FFF; display:block; font-family:Arial,Helvetica,sans-serif; font-size:12px; height:27px;   line-height:25px; width:65px; text-decoration:none; text-align:center}
+.but2:hover{background:url("../img/but2.jpg") no-repeat left -27px; height:27px; text-decoration:none; color:#000; width:65px}
+.but3{background:url("../img/but3.jpg") no-repeat left top; color:#FFF; display:block; font-family:Arial,Helvetica,sans-serif; font-size:14px; height:34px;   line-height:30px; width:106px; text-decoration:none; text-align:center; font-weight:bold}
+.but3:hover{background:url("../img/but3.jpg") no-repeat left -34px; height:34px; text-decoration:none; color:#000; width:106px}
+.but4{background:url("../img/but4.png") no-repeat left top; color:#FFF; display:block; font-family:Arial,Helvetica,sans-serif; font-size:24px; height:47px;   line-height:45px; width:189px; text-decoration:none; text-align:center; font-weight:bold}
+.but4:hover{background:url("../img/but4.png") no-repeat left -47px; height:47px; text-decoration:none; color:#000; width:189px}
+
+.menu{background-color:#e6dcd3; height:42px}
+.menu ul{margin:auto; text-align:center}
+.menu li{display:inline-block; color:#e23a85; font:normal Arial,Helvetica,sans-serif; line-height:45px; padding:0 30px; font-size:15px!important}
+.menu li a{color:#e23a85; text-decoration:none; text-shadow:2px 0 0 #FFF}
+.menu li a:hover{color:#000}
+.menu li a.act{color:#000}
+
+.banner{width:100%; border-bottom:1px solid #e8e3e3; overflow:hidden; margin-top:20px; padding-bottom:10px}
+.bannerslide{width:517px; float:left}
+.banner_text{width:473px; float:right; margin-top:20px}
+.banner_text h1{color:#e2277c; font:bold 56px Arial,Helvetica,sans-serif; line-height:43px}
+.banner_text h3{font:normal 13px Helvetica,Arial,sans-serif; padding:25px 6px; line-height:20px}
+
+.hiw{text-align:center; margin-top:20px; width:617px; margin:auto; font:normal 14px Arial,Helvetica,sans-serif; color:#5d6163}
+.hiw h1{color:#e2277c; font:bold 36px Arial,Helvetica,sans-serif; line-height:43px; padding:20px 6px 0px 5px}
+.hiw h3{font:normal 13px Arial,Helvetica,sans-serif; padding:5px 6px; line-height:20px}
+.howitbg{background:url(../img/howitbg.jpg) no-repeat center top; height:580px; position:relative; overflow:hidden; margin-top:20px; margin-bottom:30px}
+.howitbg h2{font:bold 18px Arial,Helvetica,sans-serif; line-height:20px; color:#c36}
+.getstartbut{position:absolute; width:190px; left:703px; top:94px}
+.how1{position:absolute; font:normal 14px Arial,Helvetica,sans-serif; color:#666; line-height:20px; width:296px; left:177px; top:54px; height:112px; text-align:left}
+.how2{position:absolute; font:normal 14px Arial,Helvetica,sans-serif; color:#666; line-height:20px; width:273px; left:143px; top:215px}
+.how3{position:absolute; font:normal 14px Arial,Helvetica,sans-serif; color:#666; line-height:20px; width:273px; top:401px; left:203px}
+.how4{position:absolute; font:normal 14px Arial,Helvetica,sans-serif; color:#666; line-height:20px; width:286px; left:611px; top:404px; height:150px}
+
+.thanks{margin:auto; margin-top:25px; padding-bottom:60px; margin-bottom:35px}
+.thanks h3{font:bold 27px Arial,Helvetica,sans-serif; color:#de006d; padding-left:50px; padding-right:50px}
+.thanks p{font:normal 14px Arial,Helvetica,sans-serif; color:#5d6163; padding-left:50px; padding-right:50px; line-height:20px}
+
+.reg{width:100%; overflow:hidden; margin-top:25px; padding-bottom:60px; margin-bottom:35px}
+.reg h3{font:bold 27px  Arial,Helvetica,sans-serif; color:#de006d; padding-left:50px; padding-right:50px}
+.reg p{font:normal 14px  Arial,Helvetica,sans-serif; color:#5d6163; padding-left:50px; padding-right:50px; line-height:20px}
+.reg-left{float:left; width:608px}
+.reg-left ul{background:url(../img/fimg.jpg) no-repeat right top; margin-top:50px; padding-left:50px}
+.reg-left li{overflow:hidden; padding-bottom:0px}
+.reg-left label{color:#de006d; font:bold 13px Arial,Helvetica,sans-serif; width:182px; float:left; line-height:33px}
+.reg-left input[type="text"]{background:url(../img/form-bg.jpg) repeat; height:29px; border:1px solid #dadada; width:240px; padding-left:5px}
+.reg-left input[type="password"]{background:url(../img/form-bg.jpg) repeat; height:29px; border:1px solid #dadada; width:240px; padding-left:5px}
+.regbut{background:url("../img/register.jpg") no-repeat left top; color:#FFF; display:block; font-family:Arial,Helvetica,sans-serif; font-size:24px; height:38px;   line-height:40px; width:124px; text-decoration:none; text-align:center; font-weight:bold; font-size:18px}
+.regbut:hover{background:url("../img/register.jpg") no-repeat left -37px; height:38px; text-decoration:none; color:#000; width:124px}
+.reggender label{color:#de006d; font:bold 13px Arial,Helvetica,sans-serif; width:204px; float:left}
+.reggender input[type="radio"]{float:left; width:20px}
+
+.reg .term{font:normal 12px Arial,Helvetica,sans-serif; color:#241f20}
+.reg .term a{font:normal 12px Arial,Helvetica,sans-serif; color:#296ac9; text-decoration:none}
+.reg .term a:hover{font:normal 12px Arial,Helvetica,sans-serif; color:#296ac9; text-decoration:underline}
+
+.regbutarea{width:500px; overflow:hidden}
+.regbutarea span{float:right}
+.regbutarea .can{width:80px}
+.regbutarea .can a{color:#5d6163; font-size:12px; font-family:Arial,Helvetica,sans-serif; line-height:35px}
+
+.reg-login{width:303px; float:left; padding-left:50px; text-align:center; color:#5d6163; font-size:14px; margin-top:350px}
+.reg-login .sign, .user-login .sign{color:#241f20; font-size:12px; padding-top:10px; display:block}
+.reg-login .sign a, user-login .sign a{color:#1361d5; font-size:12px; text-decoration:none}
+.reg-login .sign a:hover, user-login .sign a:hover{color:#1361d5; font-size:12px; text-decoration:underline}
+
+.reg-login .signf{color:#5d6163; font-size:14px; padding-bottom:10px; display:block}
+.reg-login .signf a{color:#1361d5; font-size:14px; text-decoration:none}
+.reg-login .signf a:hover{color:#1361d5; font-size:14px; text-decoration:underline}
+
+.brand{width:100%; overflow:hidden}
+.brand li{float:left; padding-right:16px}
+
+.bot_sec{   border-top:1px solid #E8E3E3; width:100%; overflow:hidden; margin-top:20px; padding-top:20px}
+.featured{width:324px; float:left; font:normal 12px Helvetica,Arial,sans-serif; line-height:16px; padding-bottom:10px; margin-right:40px; padding-right:20px}
+.featured h2{    color:#000;     font:bold 18px/30px Arial,Helvetica,sans-serif}
+.borderimg{ border:1px solid #F9D1E3;  height:258px;  margin-bottom:10px;  margin-right:5px !important; ;  width:321px !important;  padding:10px 4px 19px 12px !important}
+
+.borderimg2{ border:1px solid #F9D1E3;  margin-bottom:2px;  margin-right:7px;  padding:5px;  width:301px}
+.borderimg3{ border:1px solid #F9D1E3;  margin-bottom:10px;  margin-right:7px;  width:300px;  height:252px;  padding:15px 7px 19px 10px !important;  margin-left:4px}
+.borderimg4{ border:1px solid #F9D1E3;  margin-bottom:10px;  margin-right:0px;  padding:5px;  width:301px;  height:258px; padding:10px 4px 19px 12px !important}
+.about{width:309px; float:right; font:normal 12px Arial,Helvetica,sans-serif; color:#241f20; line-height:18px}
+.nadrs{width:100px; float:left; height:36px; width:64px}
+.adrs{display:block; width:300px}
+.about p{margin-bottom:15px}
+.cont{display:block; margin-top:10px}
+
+#footer{border-top:1px solid #e8e3e3; color:#9fa3a4; font:normal 11px Arial,Helvetica,sans-serif; line-height:20px; margin:10px 0px}
+#footer a{color:#9fa3a4; text-decoration:underline}
+#footer a:hover{color:#de006d; text-decoration:underline}
+
+.clear{clear:both}
+
+.user-login{width:303px; float:left; padding-left:50px; text-align:center; color:#5d6163; font-size:14px; margin-top:150px}
+
+#UserRegisterForm div.required label{    color:#DE006D;     float:left;     font:bold 13px/13px Arial,Helvetica,sans-serif;     width:204px;     text-align:left}
+#UserRegisterForm label, #UserLoginForm label{color:#DE006D; font:bold 13px/13px Arial,Helvetica,sans-serif;     padding:0 0px 0 0;     text-align:left; background:none}
+
+#UserRegisterForm input[type="text"], #UserLoginForm input[type="text"]{    border:1px solid #DDD;     font-size:12px;     margin:0 5px 0 180px;     padding:0px;     width:240px}
+#UserRegisterForm input[type="password"], #UserLoginForm input[type="password"]{    border:1px solid #DDD;     font-size:12px;     margin:0 5px 0 180px;     padding:0px;     width:240px}
+
+#UserLoginForm  div.select select, #UserLoginForm  div.text input, #UserLoginForm  div.textarea textarea, #UserLoginForm  div.password input{    border:1px solid #DDD;     font-size:12px;     margin:0 5px 0 181px}
+#UserLoginForm  div.checkbox input, #UserLoginForm  div.radio input{    float:left;     margin:0;     width:16px}
+
+#UserRegisterForm  div.select select, #UserRegisterForm  div.text input, #UserRegisterForm  div.textarea textarea, #UserRegisterForm  div.password input{    border:1px solid #DDD;     font-size:12px;     margin:0 5px 0 181px}
+#UserRegisterForm  div.checkbox input, #UserRegisterForm  div.radio input{    float:left;     margin:0;     width:16px}
+
+ input label{   margin-top:-10px}
+
+#UserRegisterForm input[type="submit"], #UserLoginForm input[type="submit"]{   background:url("../img/register.jpg") no-repeat scroll left top transparent;     color:#FFF;     display:block;     font-family:Arial,Helvetica,sans-serif;     font-size:18px;     font-weight:bold;     height:38px;     line-height:40px;     text-align:center;     text-decoration:none;     width:124px; border:0px}
+#UserRegisterForm input[type="submit"]:hover, #UserLoginForm input[type="submit"]:hover{    background:url("../img/register.jpg") no-repeat scroll left -37px transparent;  color:#000;  height:38px;  text-decoration:none;  width:124px}
+#UserRegisterForm div.submit, #UserLoginForm div.submit{background:none;  float:left;  height:31px;  margin:0 5px 0 0;  padding:0 0 0 5px}
+#UserRegisterForm .term div.error-message {
+    margin: 21px 0 5px;
+}
