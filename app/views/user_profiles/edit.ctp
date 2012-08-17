@@ -1,37 +1,53 @@
-<div class="userProfiles form js-responses">
-		 <div id='my-profile'>
-			<h2><?php echo __l('Account Information'); ?></h2>
-			<div class="form-blocks  js-corner round-5">
-				<?php echo $this->Form->create('UserProfile', array('action' => 'edit', 'class' => 'normal js-ajax-form', 'enctype' => 'multipart/form-data'));?>
+		<?php if(empty($this->request->params['isAjax']) ): ?>	<div class="my-account">
+				<?php echo $this->element('user-sidebar'); ?>
+            	<div class="my-account-right">
+				<?php endif; ?> <div class="js-responses">
+                	<h1><?php echo __l('Account Information'); ?></h1>
+					<?php echo $this->Form->create('UserProfile', array('action' => 'edit', 'class' => 'normal-form js-ajax-form', 'enctype' => 'multipart/form-data'));?>
+                        <ul>
+                        	<li>
+							<?php
+								if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):
+									echo $this->Form->input('User.id',array('label' => __l('User')));
+								endif;
+								?>
+	                           	<?php echo $this->Form->input('User.email',array('label' => __l('Email*'),'readonly'=>'readonly')); ?>
+	                         </li>
+							<li>
+                            	<?php echo $this->Form->input('mobile_number',array('label' => __l('Mobile Number*'),'info'=>__l('Primary Contact Number'))); ?>
+	                         </li>
+							<li>
+                            	<?php echo $this->Form->input('phone_number',array('label' => __l('Home Number*'),'info'=>__l('Secondary Contact Number'))); ?>
+	                         </li>
+							<li>
+                            	<?php echo $this->Form->input('first_name',array('label' => __l('First Name*'))); ?>
+	                         </li>							
+							<li>
+                            	<?php echo $this->Form->input('last_name',array('label' => __l('Last Name*'))); ?>
+	                         </li>
+							<li>
+                            	<label>Gender* </label><?php echo $this->Form->input('UserProfile.gender_id', array('type'=>'radio','label'=>false,'legend'=>false,'options'=>  array(2=>__('Female')))); ?>
+	                         </li>
+							 <li>
+                            	<?php   echo $this->Form->input('UserProfile.dob', array('label' => __l('Date of Birth*'),'empty' => __l('Select'), 'minYear' => date('Y') - 100, 'maxYear' => date('Y'), 'orderYear' => 'asc')); ?>
+	                         </li>
+							<li>
+                            	<?php echo $this->Form->input('country_id',array('options'=>$countries,'selected'=>143,'label'=>__l('Country*')));?>
 
-						<?php
-							if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):
-								echo $this->Form->input('User.id',array('label' => __l('User')));
-							endif;
-						//	echo  "<label> Email ".$this->data['User']['email']."</label>";
-							echo $this->Form->input('phone_number',array('label' => __l('Contact No')));
-							echo $this->Form->input('first_name',array('label' => __l('First Name')));
-							echo $this->Form->input('last_name',array('label' => __l('Last Name')));
 
-							//echo $this->Form->input('gender_id', array('empty' => __l('Please Select'),'label' => __l('Gender')));
-
-
-						?>
-						<div class="date-time-block clearfix">
-						<div class="input date-time clearfix required">
-							<div class="js-datetime">
-								<?php echo $this->Form->input('dob', array('label' => __l('Date of Birth'),'empty' => __l('Please Select'), 'div' => false, 'minYear' => date('Y') - 100, 'maxYear' => date('Y'), 'orderYear' => 'asc')); ?>
-							</div>
-						</div>
-                        </div>
-				  <div class="submit-block clearfix">
-                    <?php
-                    	echo $this->Form->submit(__l('Update Account Info'));
-                    ?>
-                    </div>
+	                         </li>
+							<li>
+                            	<?php  echo $this->Form->input('UserProfile.state_id',array('label'=>'State*')); ?>
+	                         </li>
+							 	<li><span><label>&nbsp;</label></span>
+                            	<?php  echo $this->Form->submit(__l('Update Account Info'),array('class'=>'btn5')); ?>
+	                         </li>
+					   </ul>
                 <?php
                 	echo $this->Form->end();
                 ?>
-		</div>
-	</div>
-</div>
+                </div>
+		<?php if(empty($this->request->params['isAjax']) ): ?>	
+                </div>    
+            </div>	
+		<?php endif; ?>

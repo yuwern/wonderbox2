@@ -16,6 +16,14 @@
             <li <?php echo $class;?>><?php echo $this->Html->link(__l('Home Page Banner'), array('controller' => 'home_page_banners', 'action' => 'index'),array('title' => __l('Home Page Banner')));?></li>
 			<?php $class = ($this->request->params['controller'] == 'home_page_organizers') ? ' class="active"' : null; ?>
             <li <?php echo $class;?>><?php echo $this->Html->link(__l('Home Page Organizers'), array('controller' => 'home_page_organizers', 'action' => 'index'),array('title' => __l('Home Page Organizers')));?></li>
+			<?php $class = ($this->request->params['controller'] == 'payment_gateways') ? ' class="active"' : null; ?>
+            <li <?php echo $class;?>><?php echo $this->Html->link(__l('Payment Gateways'), array('controller' => 'payment_gateways', 'action' => 'index'),array('title' => __l('Payment Gateways')));?></li>
+			<?php $class = ($this->request->params['controller'] == 'packages') ? ' class="active"' : null; ?>
+            <li <?php echo $class;?>><?php echo $this->Html->link(__l('Subscription packages'), array('controller' => 'packages', 'action' => 'index'),array('title' => __l('Subscription packages')));?></li>
+				<?php $class = ($this->request->params['controller'] == 'transactions') ? ' class="active"' : null; ?>
+            <li <?php echo $class;?>><?php echo $this->Html->link(__l('Transactions'), array('controller' => 'transactions', 'action' => 'index'),array('title' => __l('Transactions')));?></li>
+			<?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'update_cron') ? ' class="active"' : null; ?>
+            <li <?php echo $class;?>><?php echo $this->Html->link(__l('Run Cron manually'), array('controller' => 'users', 'action' => 'update_cron'),array('title' => __l('Run Cron manually')));?></li>
 			<?php $class = ($this->request->params['controller'] == 'languages') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Languages'), array('controller' => 'languages', 'action' => 'index'),array('title' => __l('Languages'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'cities') ? ' class="active"' : null; ?>

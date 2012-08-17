@@ -183,7 +183,21 @@ class SettingsController extends AppController
                     $timezoneOptions[$timezone['Timezone']['code']] = $timezone['Timezone']['name'];
                 }
             }
-            $this->set(compact('timezoneOptions', 'timezoneOptions'));
+			$months = array(
+				1=>__l('January'),
+				2 =>__l('February'),
+				3 =>__l('March'),
+				4 =>__l('April'),
+				5 =>__l('May'),
+				6 =>__l('June'),
+				7 =>__l('July'),
+				8 =>__l('August'),
+				9 =>__l('September'),
+				10 =>__l('October'),
+				11 =>__l('November'),
+				12 =>__l('December')
+			);
+            $this->set(compact('timezoneOptions', 'timezoneOptions','months'));
         /*    $cities = $this->City->find('all', array(
                 'conditions' => array(
                     'City.is_approved' => 1

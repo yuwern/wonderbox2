@@ -199,8 +199,9 @@ class UserProfilesController extends AppController
                             'UserProfile.zip_code',
                             'UserProfile.dob',
                             'UserProfile.language_id',
-                             'UserProfile.user_id',
-                             'UserProfile.phone_number',
+                            'UserProfile.user_id',
+                            'UserProfile.phone_number',
+                            'UserProfile.mobile_number',
                        
                         ) ,
                         'City' => array(
@@ -236,9 +237,57 @@ class UserProfilesController extends AppController
                 'Country.name' => 'ASC'
             )
         ));
-
-        $this->set(compact('genders', 'countries', 'languages'));
+		 $states = $this->UserProfile->State->find('list', array(
+            'order' => array(
+                'State.name' => 'ASC'
+            )
+        ));
+        $this->set(compact('genders', 'countries', 'states','languages'));
     }
+	public function shipping($id = null){
+	 
+		if(!empty($this->request->data)){
+		  if ($this->UserProfile->save($this->request->data)) {
+                $this->Session->setFlash(__l('Shipping info has been updated') , 'default', null, 'success');
+                $this->redirect(array(
+                    'action' => 'shipping',
+
+                ));
+            } else {
+                $this->Session->setFlash(__l('Shipping info could not be updated. Please, try again.') , 'default', null, 'error');
+            }
+		
+		} else {
+			$this->request->data = $this->UserProfile->find('first',array(
+								'conditions'=> array(
+								'UserProfile.user_id'=> $this->Auth->user('id')
+								)
+				));
+		
+		}
+		  
+        $countries = $this->UserProfile->Country->find('list', array(
+            'order' => array(
+                'Country.name' => 'ASC'
+            )
+        ));
+		$states = $this->UserProfile->State->find('list', array(
+            'order' => array(
+                'State.name' => 'ASC'
+            )
+        ));
+
+        $this->set(compact('states', 'countries'));
+
+	}
+	public function shipping_info(){
+	 	  $user = $this->UserProfile->find('first',array(
+								'conditions'=> array(
+								'UserProfile.user_id'=> $this->Auth->user('id')
+								)
+				));
+	$this->set('user',$user);
+	}
     public function admin_edit($id = null)
     {
         if (is_null($id) && empty($this->request->data)) {

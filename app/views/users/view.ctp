@@ -32,9 +32,31 @@
 			<dt><?php echo __l('Member Since');?></dt>
 			<dd><?php echo $this->Html->cDate($user['User']['created']);?></dd>
 		<?php } ?>
+	      <?php if(!empty($user['UserProfile']['first_name'])){ ?>
+			<dt><?php echo __l('First name');?></dt>
+			<dd><?php echo $this->Html->cText($user['UserProfile']['first_name']);?></dd>
+		<?php } ?>
+      
     
+	      <?php if(!empty($user['UserProfile']['last_name'])){ ?>
+			<dt><?php echo __l('Last name');?></dt>
+			<dd><?php echo $this->Html->cText($user['UserProfile']['last_name']);?></dd>
+		<?php } ?>
+		
+	      <?php if(!empty($user['UserProfile']['address'])){ ?>
+			<dt><?php echo __l('Address');?></dt>
+			<dd><?php echo $this->Html->cText($user['UserProfile']['address']);?></dd>
+		<?php } ?>
+		 <?php if(!empty($user['UserProfile']['zip_code'])){ ?>
+			<dt><?php echo __l('Postal Code');?></dt>
+			<dd><?php echo $this->Html->cText($user['UserProfile']['zip_code']);?></dd>
+		<?php } ?>
+		<?php if(!empty($user['UserProfile']['phone_number'])){ ?>
+			<dt><?php echo __l('Contact No.');?></dt>
+			<dd><?php echo $this->Html->cText($user['UserProfile']['phone_number']);?></dd>
+		<?php } ?>
 	
-		<?php
+			<?php
 			if (!empty($user['UserProfile']['language_id'])):
 		?>
 				<dt><?php echo __l('Language');?></dt>

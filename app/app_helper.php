@@ -55,8 +55,29 @@ class AppHelper extends Helper
         ));
         return $user['UserAvatar'];
     }
-
-    function getLanguage()
+	function getWonderPointAvialable($user_id)
+    {
+        App::import('Model', 'User');
+        $this->User = new User();
+        $user = $this->User->find('first', array(
+            'conditions' => array(
+                'User.id' => $user_id,
+            ) ,
+            'fields' => array(
+                'User.id',
+                'User.available_wonder_points',
+            ) ,
+            'recursive' => 0
+        ));
+		return number_format($user['User']['available_wonder_points'],0);
+    }
+	function dateDiff($start , $end ) {
+		$start_ts = strtotime($start);
+		$end_ts = strtotime($end);
+		$diff = $end_ts - $start_ts;
+		return round($diff / 86400);
+	}
+	function getLanguage()
     {
         $languages = Cache::read('site_languages');
         if(empty($languages)) {

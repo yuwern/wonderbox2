@@ -129,6 +129,7 @@ endif;
     						echo $this->Html->getUserAvatarLink($current_user_details, 'small_thumb'); ?></span>
     					
     					 <span> Hi, </span>
+						 <span> <?php echo __l('WonderPoints'); ?> : <?php echo $this->Html->getWonderPointAvialable($current_user_details['id']);?></span>
                              </p>
                             <?php
 						
@@ -136,6 +137,24 @@ endif;
                     ?>
 			<!--	<p class="number">Sales + 603 456 1234</p> -->
 			</div>
+		  <div class="head-subs">
+		  		<?php $date_left = $this->Html->dateDiff(date('y-m-d',strtotime('now')),date('y-m-d',mktime(0, 0, 0, date("m") +1, 15, date("Y")))); ?>
+
+           	<p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16"> <?php  
+				$current_month = date('m',strtotime('now'));
+				$current_date = date('d',strtotime('now'));
+				$current_year = date('Y',strtotime('now'));
+				$total_days_month = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year );
+
+				if($current_date>=15)
+					$duration_month = 2;
+				else
+					$duration_month = 1;
+
+				echo date('F',strtotime('+'.$duration_month.' month'));
+				?>'s</span> month Wonder Edition <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
+                <p>Get Your <span class="f16"><?php echo date('F'); ?>'s</span>  month Wonder today as there is only <span class="f16"><?php echo ($total_days_month - $current_date); ?> left </span> <?php echo $this->Html->link(__l('Buy Now'), array('controller' => 'packages', 'action' => 'index', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Buy Now')));?></p>
+            </div>
 		</div>
 		<!--menu-->
 		<div class="menu">
@@ -148,13 +167,13 @@ endif;
 				</li>
 				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('How it Works?')), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => sprintf(__l('How it Works?')),'class'=> $active_class));?></li>
-				<?php $active_class = ($this->request->params['controller'] == 'subscriptions' && $this->request->params['action'] == 'add' ) ?  'act': null; ?>
-				<li><?php echo $this->Html->link(sprintf(__l('Subscribe')), array('controller' => 'subscriptions', 'action' => 'add', 'admin' => false), array('title' => sprintf(__l('Subscribe')),'class'=> $active_class));?></li>
+				<?php $active_class = ($this->request->params['controller'] == 'packages' && $this->request->params['action'] == 'index' ) ?  'act': null; ?>
+				<li><?php echo $this->Html->link(sprintf(__l('Subscribe')), array('controller' => 'packages', 'action' => 'index', 'admin' => false), array('title' => sprintf(__l('Subscribe')),'class'=> $active_class));?></li>
 				<?php $active_class = ($this->request->params['controller'] == 'contacts' && $this->request->params['action'] == 'add' ) ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('Contact Us')), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => sprintf(__l('Contact Us')),'class'=> $active_class));?></li>				
 				<?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'my_stuff' ) ?  'act': null; ?>
 				  <?php if ($this->Auth->sessionValid()): ?>
-				<li><?php echo $this->Html->link(sprintf(__l('My Account')), array('controller' => 'users', 'action' => 'my_stuff', 'admin' => false), array('title' => sprintf(__l('My Account')),'class'=> $active_class));?></li>
+				<li><?php echo $this->Html->link(sprintf(__l('My Account')), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => sprintf(__l('My Account')),'class'=> $active_class));?></li>
 				<?php endif; ?>
 			</ul>
 		</div>
@@ -192,15 +211,15 @@ endif;
 					<span class="nadrs"><b>Address:</b></span> 
 					<span><?php echo Configure::read('site.address'); ?></span>
 					<span class="cont">
-						<!--<b>Telephone:</b> +603 232 2323<br/>-->
-						<!--<b>Fax:</b> +603 232 2323<br/>-->
-						<b>Email:</b> <a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a>
+						<b>Telephone:</b> +603 232 2323<br/>
+						<b>Fax:</b> +603 232 2323<br/>
+						<b>Email:</b> <a href="mailto: info@wonderbox.com" title="info@wonderbox.com">info@wonderbox.com</a>
 					</span>
 				</div>
 			</div>
 			<div id="footer">
 				&copy; 2012 <?php echo Configure::read('site.name'); ?> | All Rights Reserved | <?php $class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'term-and-conditions') ? ' class="active"' : null; ?>
-				<?php echo $this->Html->link(__l('Terms of use'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms of use')));?> |               <?php $class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'privacy_policy') ? ' class="active"' : null; ?> <?php echo $this->Html->link(__l('Privacy Policies'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policies')));?>
+				<?php echo $this->Html->link(__l('Terms of use'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms of use')));?> |               <?php $class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'privacy_policy') ? ' class="active"' : null; ?> <?php echo $this->Html->link(__l('Privacy Policies'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policies')));?>  <?php if ($this->Auth->sessionValid()): ?> |               <?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? ' class="active"' : null; ?> <?php echo $this->Html->link(__l('Refer Friends'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('title' => __l('Refer Friends')));?><?php endif; ?>
 			</div>
 		</div>		
 	</div>

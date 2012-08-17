@@ -107,14 +107,43 @@ class UserProfile extends AppModel
                     'message' => __l('Required')
                 )
             ) ,
+			'mobile_number' => array(
+			    'rule3' => array(
+                    'rule' => array(
+                        'between',
+                        1,
+                        10
+                    ) ,
+                    'message' => __l('Contact Number should not greater than 10 number')
+                ) ,
+                'rule2' => array(
+                    'rule' => 'numeric',
+                    'message' => __l('Must be a valid number')
+                ) ,
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ) ,
             'last_name' => array(
                 'rule1' => array(
                     'rule' => 'notempty',
                     'message' => __l('Required')
                 )
             ) ,
-
-            
+			'address' => array(
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ) ,
+			'zip_code' => array(
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ) ,
+           
         );
     }
     function _checkCurrentDate()

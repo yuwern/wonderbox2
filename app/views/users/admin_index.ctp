@@ -53,6 +53,10 @@
                     ?>
                   
 	            <?php endif; ?>
+				
+                    <?php
+                        echo $this->Html->link(__l('PDF'), array('controller' => 'users', 'action' => 'member_index', 'ext' => 'pdf', 'admin' => true), array('title' => __l('PDF'), 'class' => 'pdf'));
+                    ?>
 	              </div>
             <?php endif; ?>
                 <?php echo $this->Form->create('User' , array('class' => 'normal js-ajax-form {"container" : "js-moreaction-responses"}','action' => 'update'));  ?>

@@ -221,5 +221,76 @@ class GatewayHelper extends AppHelper
         echo "<div class='submit-block clearfix'>" . $this->Form->submit(__l('Pay via Paypal')) ."</div>";
         echo $this->Form->end();
     }
+	function molpay($settings = array()) 
+    {
+		$merchantID = Configure::read('molpay.merchant_id');
+        $__default_settings = array(
+            // Common fixed settings
+            'action_url' => array(
+                'livemode' => "https://www.onlinepayment.com.my/NBepay/pay/$merchantID/?",
+                'testmode' => "https://www.onlinepayment.com.my/NBepay/pay/$merchantID/?"
+            ) , // MolPay URL to which the form to be posted
+           
+        );
+	   $settings = array_merge($__default_settings, $settings);
+	    $settings['action_url'] = (!empty($settings['is_testmode'])) ? $settings['action_url']['testmode'] : $settings['action_url']['livemode'];
+        echo $this->Form->create(null, array(
+            'class' => 'normal1 js-auto-submit',
+            'id' => 'selPaymentForm',
+            'url' => $settings['action_url']
+        ));
+        echo $this->Form->input('cmd', array(
+            'type' => 'hidden',
+            'name' => 'amount',
+            'value' => $settings['amount']
+        ));
+        echo $this->Form->input('orderid', array(
+            'type' => 'hidden',
+            'name' => 'orderid',
+            'value' => $settings['orderID']
+        ));
+       /* echo $this->Form->input('bill_name', array(
+            'type' => 'hidden',
+            'name' => 'bill_name',
+            'value' => $settings['name']
+        ));
+	    echo $this->Form->input('bill_email', array(
+            'type' => 'hidden',
+            'name' => 'bill_email',
+            'value' => $settings['email']
+        ));
+	    echo $this->Form->input('bill_mobile', array(
+            'type' => 'hidden',
+            'name' => 'bill_mobile',
+            'value' => $settings['mobile']
+        ));
+	   */ echo $this->Form->input('bill_desc', array(
+            'type' => 'hidden',
+            'name' => 'bill_desc',
+            'value' => $settings['description']
+        ));
+		echo $this->Form->input('cur', array(
+            'type' => 'hidden',
+            'name' => 'cur',
+            'value' => $settings['cur']
+        ));
+		echo $this->Form->input('returnurl', array(
+            'type' => 'hidden',
+            'name' => 'returnurl',
+            'value' => $settings['returnUrl']
+        ));
+		echo $this->Form->input('vcode', array(
+            'type' => 'hidden',
+            'name' => 'vcode',
+            'value' => $settings['vcode']
+        ));
+		echo $this->Form->input('country', array(
+            'type' => 'hidden',
+            'name' => 'country',
+            'value' => $settings['country']
+        ));
+        echo "<div class='clearfix'>" . $this->Form->submit(__l('Pay via MOLPay'),array('class'=>'but7')) ."</div>";
+        echo $this->Form->end();
+    }
 }
 ?>

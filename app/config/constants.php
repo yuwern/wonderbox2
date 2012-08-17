@@ -115,102 +115,24 @@ class ConstWithdrawalStatus
     const Failed = 4;
     const Success = 5;
 }
-class ConstAffiliateCashWithdrawalStatus
-{
-    const Pending = 1;
-    const Approved = 2;
-    const Rejected = 3;
-    const Failed = 4;
-    const Success = 5;
-}
-class ConstCommsisionType
-{
-   const Amount = 'amount';
-   const Percentage = 'percentage';
-}
 
-class ConstAffiliateStatus
-{
-   const Pending = 1;
-   const Canceled = 2;
-   const PipeLine = 3;
-   const Completed = 4;
-}
-class ConstAffiliateCommissionType
-{
-   const Percentage = 1;
-   const Amount = 2;
-}
-class ConstAffiliateRequests
-{
-   const Pending = 0;
-   const Accepted = 1;
-   const Rejected = 2;
-}
-class ConstMyGiftStatus
-{
-    const Pending = 'Pending';
-    const Success = 'Not Yet Redeemed';
-    const ToCredit = 'Redeemed By Recipient';
-}
-class ConstReferralOption
-{
-    const GrouponLikeRefer = "Refer and Get Amount";
-    const XRefer = "Refer and Get Refund/Get Amount";
-    const Disabled = "Disable Referral";
-}
-class ConstReferralRefundType
-{
-    const RefundDealAmount = "Refund Deal Amount";
-    const RefundParticularAmount = "Refund Particular Amount";
-}
 class ConstTransactionTypes
 {
     const AddedToWallet = 1;
-    const BuyDeal = 2;
-    const DealGift = 3;
-    const GiftSent = 4;
-    const GiftReceived = 5;
     const ReferralAmount = 6;
-    const PaidDealAmountToCompany = 7;
-    const UserCashWithdrawalAmount = 8;
-    const DealBoughtRefund = 9;
-    const DealGiftRefund = 10;
     const ReferralAmountPaid = 11;
-    const ReceivedDealPurchasedAmount = 12;
     const AcceptCashWithdrawRequest = 13;
     const DeductedAmountForOfflineCompany = 14;
-    const DealBoughtCancel = 15;
-    const DealGiftCancel = 16;
-    const UserWithdrawalRequest = 17;
+     const UserWithdrawalRequest = 17;
     const AdminApprovedWithdrawalRequest = 18;
     const AdminRejecetedWithdrawalRequest = 19;
-    const FailedWithdrawalRequest = 20;
-    const AmountRefundedForRejectedWithdrawalRequest = 21;
-    const AmountApprovedForUserCashWithdrawalRequest = 22;
-    const FailedWithdrawalRequestRefundToUser = 24;
 	const AddFundToWallet = 25;
 	const DeductFundFromWallet = 26;
-	const PartallyAmountTakenForDealPurchase = 28;
-	const PartallyAmountTakenForGiftPurchase = 29;
-	const AffliateUserWithdrawalRequest = 30;
-    const AffliateAdminApprovedWithdrawalRequest = 31;
-    const AffliateAdminRejecetedWithdrawalRequest = 32;
-    const AffliateFailedWithdrawalRequest = 33;
-	const AffliateAmountRefundedForRejectedWithdrawalRequest = 34;
-    const AffliateAmountApprovedForUserCashWithdrawalRequest = 35;
-    const AffliateFailedWithdrawalRequestRefundToUser = 36;
-	const AffliateAddFundToAffiliate = 37;
-    const AffliateAcceptCashWithdrawRequest = 38;
-	const CharityFailedWithdrawalRequest = 40;
-	const CharityFailedWithdrawalRequestRefundToUser = 41;
-	const CharityAcceptCashWithdrawRequest = 42;
-	const CharityAdminApprovedWithdrawalRequest = 43;
-    const CharityAdminRejecetedWithdrawalRequest = 44;
-    const AmountTakenForCharity = 45;
-	const CharityAddFundToCharity = 47;
-	const AddFundForSignup = 48;
-	const AddFundForFeacbookShare = 49;		
+	const PaidlAmountToCompany = 35;
+	const ReferralWonderPoint = 36;
+    const ReferralWonderPointAdd = 37;
+    
+
 }
 // Setting for privacy setting
 class ConstPrivacySetting
@@ -223,7 +145,7 @@ class ConstPrivacySetting
 class ConstPaymentGateways
 {
     const Wallet = 1;
-    const CreditCard = 2;
+    const MOLPay = 2;
     const PayPalAuth = 3;	
     const AuthorizeNet = 4;
 	const PagSeguro = 5;
@@ -245,26 +167,7 @@ class ConstPaymentGatewayMoreActions
     const MakeLiveMode = 4;
     const Delete = 5;
 }
-class ConstCharityWhoWillPay
-{
-    const Admin = 'Admin';
-    const CompanyUser = 'Company User';
-    const AdminCompanyUser  = 'Admin and Company User';    
-}
-class ConstCharityWhoWillChoose
-{
-    const CompanyUser = 'Company User';
-    const Buyer = 'Buyer';   
-}
-class ConstCharityCashWithdrawalStatus
-{
-    const Pending = 1;
-    const Failed = 2;
-    const Success = 3;
-	const Approved = 4;
-	const Rejected = 5;
-	
-}
+
 class ConstProfileImage
 {
     const Twitter = 1;
@@ -289,35 +192,5 @@ setlocale (LC_TIME, 'es');
 /*
 ** to do move to settings table
 */
-$config['sitemap']['models'] = array(
-    'Deal',
-	'Topic'
-);
-$config['sitemap']['models'] = array(
-    'Deal' => array(
-        'conditions' => array(
-            'deal_status_id' => array(
-				ConstDealStatus::Open,
-				ConstDealStatus::Tipped
-			),
-        ),
-		'contain' => array(
-			'Deal',
-			'CitiesDeal' => array(
-				'City' => array(
-					'fields' => array(
-						'City.id',
-						'City.name',
-						'City.slug',
-					)
-				)
-			)
-		),
-		'fields'=>array(
-			'slug',
-			'id',
-		)
-    ),
-	'Topic'
-);
+
 ?>

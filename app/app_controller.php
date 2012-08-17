@@ -83,12 +83,6 @@ class AppController extends Controller
     function __construct($request = null)
     {
         parent::__construct($request);
-        include_once (APP . DS . 'vendors' . DS . 'mobileDeviceDetect.php');
-        // <-- For iPhone App code
-		if(empty($_GET['key'])) {
-			_mobile_device_detect();
-		}
-		// For iPhone App code -->
 		//Setting cache related code
          App::import('Model', 'Setting');
         $setting_model_obj = new Setting();
@@ -489,8 +483,15 @@ class AppController extends Controller
             'devs/sitemap',
             'devs/robotos',
             'users/validate_user',
+            'users/refer',
             'home_page_banners/index',
             'home_page_organizers/index',
+			'crons/update_package',
+			'packages/payment_success',
+			'packages/payment_cancel',
+			'packages/express_checkout',
+			'packages/index',
+			'packages/subscribe',
         );
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];
         if (!in_array($cur_page, $exception_array) && $this->request->params['action'] != 'flashupload') {

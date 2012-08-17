@@ -40,10 +40,6 @@ class UsersController extends AppController
         ) ,
     );
 
-    /* 
-     * BEGIN Fix for Issue 3
-     * by Suthen Thomas suthen@gmail.com
-     */
     public $disabledFields = array(
         'City.id',
         'City.name',
@@ -71,9 +67,6 @@ class UsersController extends AppController
     public function beforeFilter()
     {
         $this->Security->disabledFields = $this->disabledFields;
-        /*
-         * END Fix for Issue 3
-         */
         parent::beforeFilter();
         $this->disableCache();
     }
@@ -96,6 +89,7 @@ class UsersController extends AppController
                         'UserProfile.dob',
                         'UserProfile.address',
                         'UserProfile.zip_code',
+                        'UserProfile.phone_number',
                       
                     ) ,
                     'Gender' => array(
@@ -513,13 +507,13 @@ class UsersController extends AppController
                 'action' => 'home'
             ));
         }
+
         //for user referral system
-        if (empty($this->request->data) && (Configure::read('referral.referral_enabled_option') == ConstReferralOption::GrouponLikeRefer)) {
+        if (empty($this->request->data)) {
             //user id will be set in cookie
             $cookie_value = $this->Cookie->read('referrer');
             if (!empty($cookie_value)) {
-                $this->request->data['User']['referred_by_user_id'] = $cookie_value['refer_id']; // Affiliate Changes //
-                
+                $this->request->data['User']['referred_by_user_id'] = $cookie_value['refer_id'];                 
             }
         }
         //end
@@ -591,8 +585,8 @@ class UsersController extends AppController
 				}
 				
                     $this->redirect(array(
-                        'controller' => 'users',
-                        'action' => 'my_stuff',
+                        'controller' => 'user_profiles',
+                        'action' => 'edit',$this->Auth->user('id'),
                         'admin' => false,
                     ));
           
@@ -1775,6 +1769,39 @@ class UsersController extends AppController
         }
         return $created_user_name;
     }
+	public function refer()
+    {
+        $cookie_value = $this->Cookie->read('referrer');
+        $user_refername = '';
+        if (!empty($this->request->params['named']['r'])) {
+            $user_refername = $this->User->find('first', array(
+                'conditions' => array(
+                    'User.email' => $this->request->params['named']['r']
+                ) ,
+                'recursive' => - 1
+            ));
+            if (empty($user_refername)) {
+                $this->Session->setFlash(__l('Referrer username does not exist.') , 'default', null, 'error');
+                $this->redirect(array(
+                    'controller' => 'users',
+                    'action' => 'register'
+                ));
+            }
+        }
+        //cookie value should be empty or same user id should not be over written
+        if (!empty($user_refername) && (empty($cookie_value) || (!empty($cookie_value) && (!empty($user_refername)) && ($cookie_value['refer_id'] != $user_refername['User']['id'])))) {
+		   $this->Cookie->delete('referrer');
+            $referrer['refer_id'] = $user_refername['User']['id'];
+             if (Configure::read('referral.is_referral_system_enabled')) {
+                $this->Cookie->write('referrer', $referrer, false, sprintf('+%s hours', Configure::read('referral.referral_cookie_expire_time')));
+            }
+            $cookie_value = $this->Cookie->read('referrer');
+        }
+        $this->redirect(array(
+            'controller' => 'users',
+            'action' => 'register'
+        ));
+    }
     public function logout()
     {
         if ($this->Auth->user('fb_user_id')) {
@@ -1798,6 +1825,27 @@ class UsersController extends AppController
         }
         $this->redirect($redirect_url);
     }
+	public function admin_member_index(){
+		$users = $this->User->find('all',array(
+			'conditions'=> array(
+				'User.is_verified_user'=> 1,
+				//'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) 
+			),
+			'contain'=> array(
+				'UserProfile'=> array(
+					'fields'=> array(
+						'UserProfile.first_name',
+					)
+				)
+			),
+			'fields'=> array(
+				'User.email',
+				'User.is_verified_user',
+				'User.subscription_expire_date',
+			)
+		));
+		$this->set('users',$users);
+	}
     public function forgot_password()
     {
         $this->pageTitle = __l('Forgot Password');
@@ -2567,6 +2615,20 @@ class UsersController extends AppController
     {
         $this->setAction('logout');
     }
+	    //run cron manually from admin side
+    public function admin_update_cron()
+    {
+        App::import('Core', 'ComponentCollection');
+        $collection = new ComponentCollection();
+        App::import('Component', 'cron');
+        $this->Cron = new CronComponent($collection);
+        $this->Cron->update_package();
+	    $this->Session->setFlash(__l('Cron is run successfully..') , 'default', null, 'success');
+        $this->redirect(array(
+            'controller' => 'users',
+            'action' => 'index'
+        ));
+    }
     public function resend_activemail($username = NUll, $status = NULL)
     {
         if (!empty($username) && !empty($status)) {
@@ -2706,5 +2768,71 @@ class UsersController extends AppController
         $this->set('tmpCacheFileSize', bytes_to_higher(dskspace(TMP . 'cache')));
         $this->set('tmpLogsFileSize', bytes_to_higher(dskspace(TMP . 'logs')));
     }
+	public function share_friend()
+    {
+	   $this->pageTitle = __l('Refer a Friend');
+        if (!empty($this->request->data)) {
+
+            $this->User->set($this->request->data);
+            if ($this->User->validates()) {
+				$friend_email = explode(',', $this->request->data['User']['friends_email']);
+                foreach($friend_email as $to_email) {
+                    $this->_sendShareFriendMail($to_email);
+                }
+                $this->Session->setFlash(__l('Your friend has been invited.') , 'default', null, 'success');
+                $this->request->data = array();
+            } else {
+                $this->Session->setFlash(__l('Problem in inviting.') , 'default', null, 'error');
+            }
+        }
+    }
+	public function _sendShareFriendMail($contact_email)
+    {
+        $this->pageTitle = __l('Share Friend');
+        $this->loadModel('EmailTemplate');
+        $email_message = $this->EmailTemplate->selectTemplate('Share Friend User');
+        $email_replace = array(
+            '##FROM_EMAIL##' => ($email_message['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email_message['from'],
+            '##USERNAME##' => $this->Auth->user('username') ,
+            '##SITE_NAME##' => Configure::read('site.name') ,
+            '##MESSAGE##' => !empty($this->request->data['User']['message'])?$this->request->data['User']['message']:'' ,
+            '##SITE_LINK##' => Router::url(array(
+                'controller' => 'users',
+                'action' => 'register',
+                'admin' => false
+            ) , true) ,
+			'##GET_START_URL##' => Router::url(array(
+                'controller' => 'users',
+                'action' => 'refer',
+				'r'=>$this->Auth->user('email'),
+                'admin' => false
+            ) , true) ,
+            '##SUPPORT_EMAIL##' => Router::url(array(
+                'controller' => 'contacts',
+                'action' => 'add',
+                'city' => $this->request->params['named']['city'],
+                'admin' => false
+            ) , true) ,
+            '##CONTACT_URL##' => Router::url(array(
+                'controller' => 'contacts',
+                'action' => 'add',
+                'city' => $this->request->params['named']['city'],
+                'admin' => false
+            ) , true) ,
+            '##SITE_LOGO##' => Router::url(array(
+                'controller' => 'img',
+                'action' => 'blue-theme',
+                'logo-email.png',
+                'admin' => false
+            ) , true) ,
+        );
+        $this->Email->from = ($email_message['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email_message['from'];
+        $this->Email->replyTo = ($email_message['reply_to'] == '##REPLY_TO_EMAIL##') ? Configure::read('EmailTemplate.reply_to_email') : $email_message['reply_to'];
+        $this->Email->to = $contact_email;
+        $this->Email->subject = strtr($email_message['subject'], $email_replace);
+        $this->Email->sendAs = ($email_message['is_html']) ? 'html' : 'text';
+        $this->Email->send(strtr($email_message['email_content'], $email_replace));
+    }
+
 }
 ?>

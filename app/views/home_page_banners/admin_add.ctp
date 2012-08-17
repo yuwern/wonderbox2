@@ -9,5 +9,8 @@
 		echo $this->Form->input('is_active',array('type'=>'checkbox'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__l('Update'));?>
+<div class="submit-block clearfix">
+    <?php echo $this->Form->submit(__l('Add'));?>
+    </div>
+    <?php echo $this->Form->end();?>
 </div>

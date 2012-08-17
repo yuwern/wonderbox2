@@ -61,7 +61,20 @@ class User extends AppModel
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => '',
-        ),       
+        ), 
+       'PackageUser' => array(
+            'className' => 'PackageUser',
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
 	
     );
     public $hasOne = array(
@@ -241,7 +254,17 @@ class User extends AppModel
                 'rule' => 'notempty',
                 'message' => __l('Required') ,
                 'allowEmpty' => false
-            ) ,
+            ) ,    
+			'friends_email' => array(
+                'rule2' => array(
+                    'rule' => '_checkMultipleEmail',
+                    'message' => __l('Must be a valid email')
+                ) ,
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            )
         );
         $this->validateCreditCard = array(
             'firstName' => array(
@@ -333,6 +356,16 @@ class User extends AppModel
             3 => __l('Active Users')
         );
     }
+	function _checkMultipleEmail()
+    {
+        $multipleEmails = explode(',', $this->data['User']['friends_email']);
+        foreach($multipleEmails as $key => $singleEmail) {
+            if (!Validation::email(trim($singleEmail))) {
+                return false;
+            }
+        }
+        return true;
+    }
     // check the new and confirm password
     function _checkPassword($field1 = array() , $field2 = null, $field3 = null)
     {
@@ -390,6 +423,60 @@ class User extends AppModel
         }
         return false;
     }
+	function _sendReminderMail(){
+		App::import('Model', 'EmailTemplate');
+		$this->EmailTemplate = new EmailTemplate();
+		App::import('Core', 'ComponentCollection');
+		$collection = new ComponentCollection();
+		App::import('Component', 'Email');
+		$this->Email = new EmailComponent($collection);	
+		$users = $this->find('all', array(
+				'conditions'=> array(
+					'User.is_verified_user'=> 0 ,
+				  //	'User.subscription_expire_date < ' => _formatDate('Y-m-d', date('Y-m-d') , true) 
+				),
+				'contain'=> array(
+					'UserProfile' => array(
+						'fields'=> array(
+							'UserProfile.first_name'
+						)
+					)
+				),
+				'fields' => array(
+					'User.id',
+					'User.email',
+				),
+				'recursive'=> 1
+				)
+			);
+		if(!empty($users)){
+			$template = $this->EmailTemplate->selectTemplate('Subscription reminder');
+			foreach($users as $user){
+				 $emailFindReplace = array(
+					'##SITE_LINK##' => Cache::read('site_url_for_shell', 'long') ,
+					'##USERNAME##' => $user['UserProfile']['first_name'],
+					'##SITE_NAME##' => Configure::read('site.name'),
+					'##FROM_EMAIL##' => $this->changeFromEmail(($template['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $template['from']) ,
+					'##SITE_LOGO##' => Cache::read('site_url_for_shell', 'long') . preg_replace('/\//', '', Router::url(array(
+						'controller' => 'img',
+						'action' => 'blue-theme',
+						'logo-black.png',
+						'admin' => false
+					) , false) , 1) ,
+					'##SUPPORT_EMAIL##' => Configure::read('site.contact_email') ,
+					'##CONTACT_URL##' => Cache::read('site_url_for_shell', 'long') . preg_replace('/\//', '', 'contactus', 1) ,
+					'##CONTACT_LINK##' => "<a href='mailto:" . Configure::read('site.contact_email') . "'>" . Configure::read('site.contact_email') . "</a>",
+				);
+				$this->Email->from = ($template['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $template['from'];
+				$this->Email->replyTo = ($template['reply_to'] == '##REPLY_TO_EMAIL##') ? Configure::read('EmailTemplate.reply_to_email') : $template['reply_to'];
+				$this->Email->to = $user['User']['email'];
+				$this->Email->subject = strtr($template['subject'], $emailFindReplace);
+				$this->Email->content = strtr($template['email_content'], $emailFindReplace);
+				$this->Email->sendAs = ($template['is_html']) ? 'html' : 'text';
+				$this->Email->send($this->Email->content);
+			}
+		}
+	}
     function checkUserBalance($user_id = null)
     {
         $user = $this->find('first', array(

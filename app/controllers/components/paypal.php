@@ -34,6 +34,21 @@ class PaypalComponent extends Component
         ) ,
         'version' => 62.0
     );
+    private $do_recurring_pay_constants = array(
+        'subject' => '',
+        'use_proxy' => false,
+        'proxy_host' => '127.0.0.1',
+        'proxy_port' => 808,
+        'sandbox_url' => array(
+            'nvp_url' => 'https://api-3t.sandbox.paypal.com/nvp',
+            'express_url' => 'https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&token='
+        ) ,
+		'live_url' => array(
+            'nvp_url' => 'https://api-3t.paypal.com/nvp',
+            'express_url' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token='
+        ) ,
+        'version' => 57.0
+    );
     public function initialize($controller, $settings = array())
     {
         $this->_set($settings);
@@ -329,6 +344,286 @@ class PaypalComponent extends Component
         $httpParsedResponseAr['TIMESTAMP'] = urldecode($httpParsedResponseAr['TIMESTAMP']);
         return $httpParsedResponseAr;
     }
+	 public function doSetExpressCheckout($post_info,$sender_info=array()){
+	 
+	    $API_Endpoint = ($sender_info['is_testmode']) ? $this->masspay_url['testmode'] : $this->masspay_url['livemode'];
+     	// Set up your API credentials, PayPal end point, and API version.
+        $API_UserName = urlencode($sender_info['API_UserName']);
+        $API_Password = urlencode($sender_info['API_Password']);
+        $API_Signature = urlencode($sender_info['API_Signature']);
+
+        $amount = urlencode($post_info['amount']);
+        //$paymentType=urlencode('Sale');
+		$paymentType=urlencode('Authorization');
+        $currencyCode=urlencode('USD');
+        
+        $returnURL =urlencode($post_info['returnUrl']);
+        $cancelURL =urlencode($post_info['cancelUrl']);
+		$billagreementdesc = 'Wonderbox Recurring Subscription Billing Agreement';
+		$name = urlencode($post_info['name']);
+		$description = urlencode($post_info['description']);
+		$invnum = urlencode($post_info['invnum']);
+		$l_custom0 = ' ';
+		$version = $this->do_recurring_pay_constants['version'];
+        $nvpStr='&AMT='.$amount.'&PAYMENTACTION='.$paymentType.'&CURRENCYCODE='.$currencyCode.'&RETURNURL='.$returnURL.'&L_BILLINGTYPE0=RecurringPayments&ITEMAMT='.$amount .'&L_NAME0='.$name.'&L_DESC0='.$description.'&L_BILLINGAGREEMENTDESCRIPTION0='.$billagreementdesc.'&L_PAYMENTTYPE0=Any&L_CUSTOM0='.$l_custom0 .'&L_AMT0='.$amount .'&NOSHIPPING=1&L_TAXAMT0=0&CUSTOM=customvariable&INVNUM='.$invnum.'&CANCELURL='.$cancelURL;
+        //setting the curl parameters.
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+    
+        //turning off the server and peer verification(TrustManager Concept).
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //if USE_PROXY constant set to TRUE in Constants.php, then only proxy will be enabled.
+        //Set proxy name to PROXY_HOST and port number to PROXY_PORT in constants.php 
+
+        if($this->do_recurring_pay_constants['use_proxy'])
+            curl_setopt ($ch, CURLOPT_PROXY, $this->do_recurring_pay_constants['proxy_host'].":".$this->do_recurring_pay_constants['proxy_port']); 
+			
+		$methodName = 'SetExpressCheckout';
+		//NVPRequest for submitting to server
+        $nvpreq="METHOD=".urlencode($methodName)."&VERSION=".urlencode($version)."&PWD=".urlencode($API_Password)."&USER=".urlencode($API_UserName)."&SIGNATURE=".urlencode($API_Signature).$nvpStr;
+
+    
+        //setting the nvpreq as POST FIELD to curl
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$nvpreq);
+    
+        //getting response from server
+        $response = curl_exec($ch);
+
+        //convrting NVPResponse to an Associative Array
+        $nvpResArray=$this->deformatNVP($response);
+        $nvpReqArray=$this->deformatNVP($nvpreq);
+      if (curl_errno($ch))
+            $nvpResArray = $this->APIError(curl_errno($ch),curl_error($ch),$nvpResArray);
+        else 
+            curl_close($ch);
+	    return $nvpResArray;
+    }
+    public function RedirectToPayPal ( $token ,$test_mode = false )
+	{
+		$PAYPAL_URL = ($test_mode) ? $this->do_recurring_pay_constants['sandbox_url']['express_url'] : $this->do_recurring_pay_constants['live_url']['express_url'];
+		$payPalURL = $PAYPAL_URL . $token;
+		header("Location: ".$payPalURL);
+	}
+    public function doGetExpressCheckoutDetails($token,$sender_info){
+        $nvpStr='&TOKEN='.$token;
+	   $API_Endpoint = ($sender_info['is_testmode']) ? $this->masspay_url['testmode'] : $this->masspay_url['livemode'];
+     	// Set up your API credentials, PayPal end point, and API version.
+        $API_UserName = urlencode($sender_info['API_UserName']);
+        $API_Password = urlencode($sender_info['API_Password']);
+        $API_Signature = urlencode($sender_info['API_Signature']);
+		$version = $this->do_recurring_pay_constants['version'];
+       // $nvpStr='&AMT='.$amount.'&PAYMENTACTION='.$paymentType.'&CURRENCYCODE='.$currencyCode.'&RETURNURL='.$returnURL.'&CANCELURL='.$cancelURL;
+        //setting the curl parameters.
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+    
+        //turning off the server and peer verification(TrustManager Concept).
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //if USE_PROXY constant set to TRUE in Constants.php, then only proxy will be enabled.
+        //Set proxy name to PROXY_HOST and port number to PROXY_PORT in constants.php 
+
+        if($this->do_recurring_pay_constants['use_proxy'])
+            curl_setopt ($ch, CURLOPT_PROXY, $this->do_recurring_pay_constants['proxy_host'].":".$this->do_recurring_pay_constants['proxy_port']); 
+			
+		$methodName = 'GetExpressCheckoutDetails';
+		//NVPRequest for submitting to server
+        $nvpreq="METHOD=".urlencode($methodName)."&VERSION=".urlencode($version)."&PWD=".urlencode($API_Password)."&USER=".urlencode($API_UserName)."&SIGNATURE=".urlencode($API_Signature).$nvpStr;
+
+    
+        //setting the nvpreq as POST FIELD to curl
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$nvpreq);
+    
+        //getting response from server
+        $response = curl_exec($ch);
+
+        //convrting NVPResponse to an Associative Array
+        $nvpResArray=$this->deformatNVP($response);
+        $nvpReqArray=$this->deformatNVP($nvpreq);
+      if (curl_errno($ch))
+            $nvpResArray = $this->APIError(curl_errno($ch),curl_error($ch),$nvpResArray);
+        else 
+            curl_close($ch);
+	  return $nvpReqArray;
+    }
+    
+    public function doExpressCheckoutPayment($post_data,$sender_info=array()){
+	   $API_Endpoint = ($sender_info['is_testmode']) ? $this->masspay_url['testmode'] : $this->masspay_url['livemode'];
+     	// Set up your API credentials, PayPal end point, and API version.
+        $API_UserName = urlencode($sender_info['API_UserName']);
+        $API_Password = urlencode($sender_info['API_Password']);
+        $API_Signature = urlencode($sender_info['API_Signature']);
+		$version = $this->do_recurring_pay_constants['version'];
+		$paymentType='Sale';
+        $currencyCode='USD';
+        $serverName = $_SERVER['SERVER_NAME'];
+        $nvpStr='&TOKEN='.urlencode($post_data['TOKEN']).'&PAYERID='.urlencode($post_data['PAYERID']).'&PAYMENTACTION='.urlencode($paymentType).'&AMT='.urlencode($post_data['Amount']).'&CURRENCYCODE='.urlencode($currencyCode).'&IPADDRESS='.urlencode($serverName); 
+		$methodName = 'DoExpressCheckoutPayment';
+		 $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+    
+        //turning off the server and peer verification(TrustManager Concept).
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //if USE_PROXY constant set to TRUE in Constants.php, then only proxy will be enabled.
+        //Set proxy name to PROXY_HOST and port number to PROXY_PORT in constants.php 
+
+        if($this->do_recurring_pay_constants['use_proxy'])
+            curl_setopt ($ch, CURLOPT_PROXY, $this->do_recurring_pay_constants['proxy_host'].":".$this->do_recurring_pay_constants['proxy_port']); 
+		
+		$methodName = 'DoExpressCheckoutPayment';
+		//NVPRequest for submitting to server
+        $nvpreq="METHOD=".urlencode($methodName)."&VERSION=".urlencode($version)."&PWD=".urlencode($API_Password)."&USER=".urlencode($API_UserName)."&SIGNATURE=".urlencode($API_Signature).$nvpStr;
+
+    
+        //setting the nvpreq as POST FIELD to curl
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$nvpreq);
+    
+        //getting response from server
+        $response = curl_exec($ch);
+
+        //convrting NVPResponse to an Associative Array
+        $nvpResArray=$this->deformatNVP($response);
+        $nvpReqArray=$this->deformatNVP($nvpreq);
+      if (curl_errno($ch))
+            $nvpResArray = $this->APIError(curl_errno($ch),curl_error($ch),$nvpResArray);
+        else 
+            curl_close($ch);
+		
+		return $nvpResArray;
+    }	    
+    public function CreateRecurringPaymentsProfile($post_data,$sender_info=array()){
+	   $API_Endpoint = ($sender_info['is_testmode']) ? $this->masspay_url['testmode'] : $this->masspay_url['livemode'];
+     	// Set up your API credentials, PayPal end point, and API version.
+        $API_UserName = urlencode($sender_info['API_UserName']);
+        $API_Password = urlencode($sender_info['API_Password']);
+        $API_Signature = urlencode($sender_info['API_Signature']);
+ 		$desc = 'Wonderbox Recurring Subscription Billing Agreement';
+	    $currencyCode='USD';
+		$version = $this->do_recurring_pay_constants['version'];
+		$nvpStr='&TOKEN='.urlencode($post_data['TOKEN']).'&PROFILESTARTDATE='.urlencode($post_data['TIMESTAMP']).'&DESC='.urlencode($desc).'&AMT='.urlencode($post_data['AMT']).'&BILLINGPERIOD=Month&BILLINGFREQUENCY=12&CURRENCYCODE='.urlencode($currencyCode); 
+	
+	 
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+    
+        //turning off the server and peer verification(TrustManager Concept).
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        //if USE_PROXY constant set to TRUE in Constants.php, then only proxy will be enabled.
+        //Set proxy name to PROXY_HOST and port number to PROXY_PORT in constants.php 
+
+        if($this->do_recurring_pay_constants['use_proxy'])
+            curl_setopt ($ch, CURLOPT_PROXY, $this->do_recurring_pay_constants['proxy_host'].":".$this->do_recurring_pay_constants['proxy_port']); 
+		
+		$methodName = 'CreateRecurringPaymentsProfile';
+		//NVPRequest for submitting to server
+        $nvpreq="METHOD=".urlencode($methodName)."&VERSION=".urlencode($version)."&PWD=".urlencode($API_Password)."&USER=".urlencode($API_UserName)."&SIGNATURE=".urlencode($API_Signature).$nvpStr;
+
+    	echo $nvpreq;
+
+        //setting the nvpreq as POST FIELD to curl
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$nvpreq);
+    
+        //getting response from server
+        $response = curl_exec($ch);
+
+        //convrting NVPResponse to an Associative Array
+        $nvpResArray=$this->deformatNVP($response);
+        $nvpReqArray=$this->deformatNVP($nvpreq);
+      if (curl_errno($ch))
+            $nvpResArray = $this->APIError(curl_errno($ch),curl_error($ch),$nvpResArray);
+        else 
+            curl_close($ch);
+		
+		return $nvpResArray;
+    }
+    	/**
+	  '-------------------------------------------------------------------------------------------------------------------------------------------
+	  * do_hash_call: Function to perform the API call to PayPal using API signature
+	  * @methodName is name of API  method.
+	  * @nvpStr is nvp string.
+	  * returns an associtive array containing the response from the server.
+	  '-------------------------------------------------------------------------------------------------------------------------------------------
+	*/
+	function do_hash_call($methodName,$nvpStr,$sender_info)
+	{
+		//declaring of global variables
+		global $API_Endpoint, $version, $API_UserName, $API_Password, $API_Signature;
+		global $USE_PROXY, $PROXY_HOST, $PROXY_PORT;
+		global $gv_ApiErrorURL;
+		global $sBNCode;
+
+		//setting the curl parameters.
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
+		curl_setopt($ch, CURLOPT_VERBOSE, 1);
+
+		//turning off the server and peer verification(TrustManager Concept).
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		
+	    //if USE_PROXY constant set to TRUE in Constants.php, then only proxy will be enabled.
+	   //Set proxy name to PROXY_HOST and port number to PROXY_PORT in constants.php 
+		if($USE_PROXY)
+			curl_setopt ($ch, CURLOPT_PROXY, $PROXY_HOST. ":" . $PROXY_PORT); 
+
+		//NVPRequest for submitting to server
+		$nvpreq="METHOD=" . urlencode($methodName) . "&VERSION=" . urlencode($version) . "&PWD=" . urlencode($API_Password) . "&USER=" . urlencode($API_UserName) . "&SIGNATURE=" . urlencode($API_Signature) . $nvpStr . "&BUTTONSOURCE=" . urlencode($sBNCode);
+
+		var_dump($nvpreq);
+		//setting the nvpreq as POST FIELD to curl
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $nvpreq);
+
+		//getting response from server
+		$response = curl_exec($ch);
+
+		//convrting NVPResponse to an Associative Array
+		$nvpResArray=deformatNVP($response);
+		$nvpReqArray=deformatNVP($nvpreq);
+		$_SESSION['nvpReqArray']=$nvpReqArray;
+
+		if (curl_errno($ch)) 
+		{
+			// moving to display page to display curl errors
+			  $_SESSION['curl_error_no']=curl_errno($ch) ;
+			  $_SESSION['curl_error_msg']=curl_error($ch);
+
+			  //Execute the Error handling module to display errors. 
+		} 
+		else 
+		{
+			 //closing the curl
+		  	curl_close($ch);
+		}
+
+		return $nvpResArray;
+	}
+    public function APIError($errorNo,$errorMsg,$resArray){
+        $resArray['Error']['Number']=$errorNo;
+        $resArray['Error']['Number']=$errorMsg;
+        return $resArray;
+    } 
     public function nvpHeader($sender_info)
     {
         $API_Endpoint = ($sender_info['is_testmode']) ? $this->do_direct_pay_constants['paypal_url']['test_mode'] : $this->do_direct_pay_constants['paypal_url']['live_mode'];
@@ -465,7 +760,7 @@ class PaypalComponent extends Component
      */
     public function hash_call($methodName, $nvpStr, $sender_info)
     {
-        // Set request-specific fields.
+	        // Set request-specific fields.
         $API_Endpoint = ($sender_info['is_testmode']) ? $this->do_direct_pay_constants['paypal_url']['test_mode'] : $this->do_direct_pay_constants['paypal_url']['live_mode'];
         // Set up your API credentials, PayPal end point, and API version.
         $API_UserName = urlencode($sender_info['API_UserName']);
@@ -506,8 +801,9 @@ class PaypalComponent extends Component
             //closing the curl
             curl_close($ch);
         }
-        return $nvpResArray;
+	        return $nvpResArray;
     }
+
     /** This function will take NVPString and convert it to an Associative Array and it will decode the response.
      * It is usefull to search for a particular key and displaying arrays.
      * @nvpstr is NVPString.
