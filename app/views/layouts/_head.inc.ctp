@@ -37,4 +37,4 @@
 	//	$this->Javascript->link('libs/widgets.js', false);
     	$this->Javascript->link('common', false);
     
-?>
+?> <LINK href="<?php echo Router::url('/', true);?>css/style.css" rel="stylesheet" type="text/css">
