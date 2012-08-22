@@ -22,23 +22,30 @@
                    	<?php echo $this->Form->create('Package', array('action'=>'purchase','class' => 'normal-form'));?>
 				    <ul>
                    						
-                        	<li><?php	echo $this->Form->input('User.email',array('readonly'=>'readonly'));?><?php	echo $this->Form->input('slug',array('type'=>'hidden','value'=>$package['Package']['slug']));echo $this->Form->input('UserProfile.id');?>
+                        	<li><?php echo $this->Form->input('User.email',array('value'=>$this->Auth->user('email'),'readonly'=>'readonly'));?><?php	echo $this->Form->input('slug',array('type'=>'hidden','value'=>$package['Package']['slug']));echo $this->Form->input('UserShipping.id');?>
+                            </li>
+						    <li>
+                            <?php
+							echo $this->Form->input('UserShipping.contact_no',array('label' => __l('Mobile Number'))); ?>
                             </li>
                             <li>
-                            <?php echo $this->Form->input('UserProfile.mobile_number',array('label' => __l('Mobile Number*'))); ?>
-                            </li>
-                            <li>
-							<?php echo $this->Form->input('UserProfile.phone_number',array('label' => __l('Home Number*'))); ?>
+							<?php echo $this->Form->input('UserShipping.contact_no1',array('label' => __l('Home Number'))); ?>
                             </li>
                             
                         </ul>
                         <h2>Shipping Information</h2>
                         <ul>
                         	<li>
-                            	<?php	echo $this->Form->input('UserProfile.address',array('type'=>'textarea'));?>
+                            	<?php	echo $this->Form->input('UserShipping.address',array('type'=>'textarea'));?>
                             </li>
                             <li>
-                            	<?php	echo $this->Form->input('UserProfile.zip_code');?>
+                            	<?php	echo $this->Form->input('UserShipping.zip_code');?>
+                            </li>
+							<li>
+                            	<?php	echo $this->Form->input('UserShipping.state_id');?>
+                            </li>
+							 <li>
+                            	<?php	echo $this->Form->input('UserShipping.country_id');?>
                             </li>
 							
                             <li id="paypalid">

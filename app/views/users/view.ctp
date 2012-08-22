@@ -43,27 +43,18 @@
 			<dd><?php echo $this->Html->cText($user['UserProfile']['last_name']);?></dd>
 		<?php } ?>
 		
-	      <?php if(!empty($user['UserProfile']['address'])){ ?>
+	      <?php if(!empty($user['UserShipping'][0]['address'])){ ?>
 			<dt><?php echo __l('Address');?></dt>
-			<dd><?php echo $this->Html->cText($user['UserProfile']['address']);?></dd>
+			<dd><?php echo $this->Html->cText($user['UserShipping'][0]['address']);?></dd>
 		<?php } ?>
-		 <?php if(!empty($user['UserProfile']['zip_code'])){ ?>
+		 <?php if(!empty($user['UserShipping'][0]['zip_code'])){ ?>
 			<dt><?php echo __l('Postal Code');?></dt>
-			<dd><?php echo $this->Html->cText($user['UserProfile']['zip_code']);?></dd>
+			<dd><?php echo $this->Html->cText($user['UserShipping'][0]['zip_code']);?></dd>
 		<?php } ?>
-		<?php if(!empty($user['UserProfile']['phone_number'])){ ?>
+		<?php if(!empty($user['UserShipping'][0]['phone_number'])){ ?>
 			<dt><?php echo __l('Contact No.');?></dt>
-			<dd><?php echo $this->Html->cText($user['UserProfile']['phone_number']);?></dd>
+			<dd><?php echo $this->Html->cText($user['UserShipping'][0]['contact_no']);?></dd>
 		<?php } ?>
-	
-			<?php
-			if (!empty($user['UserProfile']['language_id'])):
-		?>
-				<dt><?php echo __l('Language');?></dt>
-					<dd><?php echo $this->Html->cText($user['UserProfile']['Language']['name']);?></dd>
-		<?php
-			endif;
-		?>
 	</dl>
 
 

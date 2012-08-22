@@ -18,6 +18,7 @@ class PackagesController extends AppController
         'UserProfile.address',
         'UserProfile.zipcode',
         'UserProfile.id',
+        'UserShipping',
     );
     public function beforeFilter()
     {
@@ -89,7 +90,46 @@ class PackagesController extends AppController
 					)
 		));
 		$this->set('paymentgateways',$paymentgateways);
-		 $user_id = $this->Auth->user('id');
+		$user_id = $this->Auth->user('id');
+		$this->loadModel('UserShipping');
+		$usershipping = $this->UserShipping->find('first',array(
+					'conditions'=> array(
+						'UserShipping.user_id'=> $user_id
+					),
+					'contain'=> array(
+						'User'=> array(
+							'UserProfile'=> array(
+								'fields'=> array(
+									'UserProfile.first_name',
+									'UserProfile.last_name',
+								)
+							),
+							'fields'=> array(
+									'User.email',
+									'User.id'
+								)
+						),
+						'Country'=> array(
+								'fields'=> array(
+									'Country.name',
+									'Country.id'
+								)
+						),
+						'State'=> array(
+								'fields'=> array(
+									'State.id',
+									'State.name'
+								)
+						)
+					)
+			 )
+		 );
+		$states = $this->Package->PackageUser->User->UserShipping->State->find('list');	
+		$countries = $this->Package->PackageUser->User->UserShipping->Country->find('list');	
+		 $this->set(compact('countries', 'states'));
+		/* echo "<pre>";
+		 print_r($usershipping);
+		 exit;
 		 $user = $this->Package->PackageUser->User->find('first', array(
 							'conditions'=> array(
 								'User.id'=> $user_id
@@ -100,14 +140,16 @@ class PackagesController extends AppController
 							'recursive'=> 1
 							)
 						);
-		$this->request->data = $user;
+		*/
+		
+		$this->request->data = $usershipping;
         $this->pageTitle.= ' - ' . $package['Package']['name'];
         $this->set('package', $package);
     }
 	public function purchase(){
 	if(!empty($this->request->data)){
-		$this->Package->PackageUser->User->UserProfile->set($this->request->data['UserProfile']);
-		if($this->Package->PackageUser->User->UserProfile->validates()){
+		$this->Package->PackageUser->User->UserShipping->set($this->request->data['UserShipping']);
+		if($this->Package->PackageUser->User->UserShipping->validates()){
 			$package = $this->Package->find('first', array(
             'conditions' => array(
                 'Package.slug = ' => $this->request->data['Package']['slug']
@@ -126,8 +168,11 @@ class PackagesController extends AppController
             ) ,
             'recursive' => 0,
 			));
-			if(!empty($this->request->data['UserProfile']))
-			$this->Package->PackageUser->User->UserProfile->save($this->request->data['UserProfile'],false);
+			$this->request->data['UserShipping']['user_id']= $this->Auth->user('id');
+			if(empty($this->request->data['UserShipping']['id']))
+			$this->Package->PackageUser->User->UserShipping->create();
+
+			$this->Package->PackageUser->User->UserShipping->save($this->request->data['UserShipping'],false);
 			if (empty($package)) {
 				 throw new NotFoundException(__l('Invalid request'));
 			}

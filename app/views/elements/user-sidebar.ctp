@@ -2,8 +2,8 @@
                 	<ul class="my-account-Rnav">
 						<?php $class = ($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'edit') ? ' class="active"' : null; ?>
 						<li <?php echo $class;?>><?php echo $this->Html->link(__l('Account Info'), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id')),array('title' => __l('Account Info'))); ?></li>
-						<?php $class = ($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'shipping_info' ||  $this->request->params['action'] == 'shipping') ? ' class="active"' : null; ?>
-						<li <?php echo $class;?>><?php echo $this->Html->link(__l('Shipping Info'), array('controller' => 'user_profiles', 'action' => 'shipping_info'),array('title' => __l('Shipping Info'))); ?></li>
+						<?php $class = ($this->request->params['controller'] == 'user_shippings') ? ' class="active"' : null; ?>
+						<li <?php echo $class;?>><?php echo $this->Html->link(__l('Shipping Info'), array('controller' => 'user_shippings', 'action' => 'index'),array('title' => __l('Shipping Info'))); ?></li>
 						<?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'profile_image') ? ' class="active"' : null; ?>
 						 <li  <?php echo $class;?>><?php echo $this->Html->link(__l('My Profile Image'), array('controller' => 'users', 'action' => 'profile_image', $this->Auth->user('id')), array('title' => 'My Profile Image')); ?></li>
 		 				<?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'change_password') ? ' class="active"' : null; ?>

@@ -486,7 +486,7 @@ a.pdf {
 .my-account-right{ width:70%; margin-top:25px; padding-left:3%; float:left; font-size:12px; color:#241F20;}
 .my-account-right ul{ background:none;margin-top:20px; padding-left:20px;}
 .my-account-right li{ overflow:hidden;padding-bottom:15px;}
-.my-account-right label{ font:normal 13px Arial, Helvetica, sans-serif; width:204px;float:left;line-height:33px; }
+.my-account-right label{ font:normal 13px Arial, Helvetica, sans-serif; width:204px;float:left;line-height:33px;   padding-left: 10px;}
 .my-account-right input[type="text"]{ background:url(../img/form-bg.jpg) repeat; height:29px;border:1px solid #dadada; width:300px;padding-left:5px;}
 .my-account-right textarea{ background:url(../img/form-bg.jpg) repeat-x; height:140px;border:1px solid #dadada; width:300px;padding-left:5px;}
 .my-account-right input[type="password"]{ background:url(../img/form-bg.jpg) repeat; height:29px;border:1px solid #dadada; width:300px;padding-left:5px;}
@@ -628,10 +628,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ede8', end
 .subs-checkout-right ul li{ margin:0; padding:5px 0; list-style:none; overflow:hidden;}
 .subs-checkout input[type="text"]:focus, .subs-checkout input[type="password"]:focus, .subs-checkout input[type="file"]:focus, .subs-checkout textarea:focus, .subs-checkout select:focus{background: #fff3f9; border:1px solid #f9c8df;}
 .subs-checkout input[type="text"]:hover, .subs-checkout input[type="password"]:hover, .subs-checkout input[type="file"]:hover, .subs-checkout textarea:hover, .subs-checkout select:hover{background: #fff3f9;border:1px solid #f9c8df;}
-.subs-checkout label{ font:normal 13px Arial, Helvetica, sans-serif; width:150px;float:left;line-height:33px; }
+.subs-checkout label{ font:normal 13px Arial, Helvetica, sans-serif; width:150px;float:left;line-height:33px;padding-left: 10px;}
 .subs-checkout input[type="text"]{ background:url(../img/form-bg.jpg) repeat; height:29px;border:1px solid #dadada; width:300px;padding-left:5px;}
 .subs-checkout input[type="password"]{ background:url(../img/form-bg.jpg) repeat; height:29px;border:1px solid #dadada; width:240px;padding-left:5px;}
-.subs-checkout select{ background:url(../img/form-bg.jpg) repeat; border:1px solid #dadada; width:306px;padding:5px 2px 5px 5px;}
+.subs-checkout select{ background:url(../img/form-bg.jpg) repeat; border:1px solid #dadada; width:306px;padding:5px 2px 5px 5px;height: 31px;}
 .subs-checkout textarea{ background:url(../img/form-bg.jpg) repeat-x; height:120px;border:1px solid #dadada; width:300px;padding-left:5px;}
 
 /* developer css style */
@@ -661,21 +661,21 @@ form.normal-form select#UserProfileDobDay,form.normal-form select#UserProfileDob
     width: 100px;
 }
  form.normal-form span.info, span.help {
-    background: url("../img/icon-info.png") no-repeat scroll left 4px transparent;
+    background: url("../img/icon-info.png") no-repeat scroll 8px 4px transparent;
     color: #AFAFAF;
     display: block;
     font-size: 11px;
     margin-left: 205px;
-    padding: 3px 2px 4px 20px;
+	padding: 3px 3px 4px 25px;
 }
 
 
 form.normal-form div.error-message {
-    background: url("../img/icon-form-error.png") no-repeat scroll left center transparent;
+  background: url("../img/icon-form-error.png") no-repeat scroll 10px center transparent;
     color: #FF0066;
     font-size: 12px;
     margin: 5px 0 0 200px;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 25px;
     text-align: left;
 }
  span .btn3{
@@ -757,6 +757,7 @@ border-top-right-radius: 5px;
     margin: 0;
     padding: 8px 15px;
 	text-align: center;
+	background-color:#e2277c;
 }
 .my-account-right span a:hover{
 text-decoration:none !important;
@@ -790,7 +791,7 @@ margin-left:10px;
 /* developer css style ends */
 
 
-.purchase-conf{ padding:25px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border:1px solid #ccc; margin:20px auto; width:60%;}
+.purchase-conf{ padding:25px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border:1px solid #ccc; margin:20px auto; }
 .purchase-conf h1{ font-size:26px; border-bottom:1px solid #ccc; margin-bottom:15px;}
 .purchase-conf p{padding:8px 0; font-size:13px;}
 .but7{background:url("../img/but1.jpg") no-repeat left top; cursor: pointer;color:#FFF; border:none;display:block; font-family:Arial,Helvetica,sans-serif; font-size:12px; height:27px;   line-height:25px; width:135px; text-decoration:none; text-align:center}
@@ -801,3 +802,14 @@ margin-left:10px;
 .pay-logo{-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border:1px solid #ccc; padding:10px; margin-top:20px;}
 .pay-logo img{padding:3px;}
 .pay-logo div{padding-bottom:0px;}
+
+form.normal-form div.required label {
+    background: url("../img/required-red.png") no-repeat scroll 1px 7px transparent;
+ }
+ form.normal-form .required-field {
+    background: url("../img/required-red.png") no-repeat scroll 1px 7px transparent;
+}
+form.normal-form .paypal div.required label{
+	background:none;
+}
+

@@ -81,6 +81,7 @@ class UsersController extends AppController
                 'User.username = ' => $username
             ) ,
             'contain' => array(
+				'UserShipping',
                 'UserProfile' => array(
                     'fields' => array(
                         'UserProfile.created',
@@ -97,28 +98,7 @@ class UsersController extends AppController
                             'Gender.name'
                         )
                     ) ,
-                    'City' => array(
-                        'fields' => array(
-                            'City.name'
-                        )
-                    ) ,
-                    'Language' => array(
-                        'fields' => array(
-                            'Language.id',
-                            'Language.name'
-                        )
-                    ) ,
-                    'State' => array(
-                        'fields' => array(
-                            'State.name'
-                        )
-                    ) ,
-                    'Country' => array(
-                        'fields' => array(
-                            'Country.name'
-                        )
-                    )
-                ) ,
+                  ) ,
                 'UserAvatar' => array(
                     'fields' => array(
                         'UserAvatar.id',
@@ -139,7 +119,7 @@ class UsersController extends AppController
             ) ,
             'recursive' => 2
         ));
-        if (empty($user)) {
+	     if (empty($user)) {
             throw new NotFoundException(__l('Invalid request'));
         }
   
@@ -1829,7 +1809,8 @@ class UsersController extends AppController
 		$users = $this->User->find('all',array(
 			'conditions'=> array(
 				'User.is_verified_user'=> 1,
-				//'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) 
+				'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
+				'User.user_type_id <>' =>ConstUserTypes::Admin
 			),
 			'contain'=> array(
 				'UserProfile'=> array(
@@ -2147,7 +2128,13 @@ class UsersController extends AppController
             } else	 if ($this->request->params['named']['main_filter_id'] ==  ConstUserTypes::User) {
                $conditions['User.user_type_id'] = ConstUserTypes::User;
                 $this->pageTitle.= __l(' - User');
-            }		
+            }	
+			else if ($this->request->params['named']['main_filter_id'] == ConstMoreAction::VerifiedUser) {
+                $conditions['User.is_verified_user'] = 1;
+				$conditions['User.user_type_id !='] = ConstUserTypes::Admin;
+				$conditions['User.subscription_expire_date >'] = _formatDate('Y-m-d', date('Y-m-d') , true) ;
+                $this->pageTitle.= __l(' - Paid User ');
+            }
 			else if ($this->request->params['named']['main_filter_id'] == ConstUserTypes::Admin) {
                 $conditions['User.user_type_id'] = ConstUserTypes::Admin;
                 $this->pageTitle.= __l(' - Admin ');
@@ -2793,7 +2780,7 @@ class UsersController extends AppController
         $email_message = $this->EmailTemplate->selectTemplate('Share Friend User');
         $email_replace = array(
             '##FROM_EMAIL##' => ($email_message['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email_message['from'],
-            '##USERNAME##' => $this->Auth->user('username') ,
+            '##USERNAME##' => $contact_email ,
             '##SITE_NAME##' => Configure::read('site.name') ,
             '##MESSAGE##' => !empty($this->request->data['User']['message'])?$this->request->data['User']['message']:'' ,
             '##SITE_LINK##' => Router::url(array(

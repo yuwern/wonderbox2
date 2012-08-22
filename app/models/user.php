@@ -35,7 +35,19 @@ class User extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
-
+      'UserShipping' => array(
+            'className' => 'UserShipping',
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
         'UserLogin' => array(
             'className' => 'UserLogin',
             'foreignKey' => 'user_id',
@@ -433,7 +445,10 @@ class User extends AppModel
 		$users = $this->find('all', array(
 				'conditions'=> array(
 					'User.is_verified_user'=> 0 ,
-				  //	'User.subscription_expire_date < ' => _formatDate('Y-m-d', date('Y-m-d') , true) 
+					'User.subscription_expire_date != ' => '0000-00-00' ,
+					'User.subscription_expire_date < ' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
+					'User.is_email_confirmed'=> 1 ,
+					'User.is_active' => 1
 				),
 				'contain'=> array(
 					'UserProfile' => array(
@@ -448,7 +463,7 @@ class User extends AppModel
 				),
 				'recursive'=> 1
 				)
-			);
+		);
 		if(!empty($users)){
 			$template = $this->EmailTemplate->selectTemplate('Subscription reminder');
 			foreach($users as $user){

@@ -11,33 +11,32 @@
 									echo $this->Form->input('User.id',array('label' => __l('User')));
 								endif;
 								?>
-	                           	<?php echo $this->Form->input('User.email',array('label' => __l('Email*'),'readonly'=>'readonly')); ?>
+	                           	<?php echo $this->Form->input('User.email',array('label' => __l('Email'),'readonly'=>'readonly')); ?>
+	                         </li>
+							<!--<li>
+                            	<?php //echo $this->Form->input('mobile_number',array('label' => __l('Mobile Number'),'info'=>__l('Primary Contact Number'))); ?>
 	                         </li>
 							<li>
-                            	<?php echo $this->Form->input('mobile_number',array('label' => __l('Mobile Number*'),'info'=>__l('Primary Contact Number'))); ?>
-	                         </li>
+                            	<?php //echo $this->Form->input('phone_number',array('label' => __l('Home Number'),'info'=>__l('Secondary Contact Number'))); ?>
+	                         </li>-->
 							<li>
-                            	<?php echo $this->Form->input('phone_number',array('label' => __l('Home Number*'),'info'=>__l('Secondary Contact Number'))); ?>
-	                         </li>
-							<li>
-                            	<?php echo $this->Form->input('first_name',array('label' => __l('First Name*'))); ?>
+                            	<?php echo $this->Form->input('first_name',array('label' => __l('First Name'))); ?>
 	                         </li>							
 							<li>
-                            	<?php echo $this->Form->input('last_name',array('label' => __l('Last Name*'))); ?>
+                            	<?php echo $this->Form->input('last_name',array('label' => __l('Last Name'))); ?>
 	                         </li>
-							<li>
-                            	<label>Gender* </label><?php echo $this->Form->input('UserProfile.gender_id', array('type'=>'radio','label'=>false,'legend'=>false,'options'=>  array(2=>__('Female')))); ?>
+							<li>     	<label class="required-field">Gender </label><?php echo $this->Form->input('UserProfile.gender_id', array('type'=>'radio','label'=>false,'legend'=>false,'options'=>  array(2=>__('Female')))); ?>
 	                         </li>
 							 <li>
-                            	<?php   echo $this->Form->input('UserProfile.dob', array('label' => __l('Date of Birth*'),'empty' => __l('Select'), 'minYear' => date('Y') - 100, 'maxYear' => date('Y'), 'orderYear' => 'asc')); ?>
+                            	<?php   echo $this->Form->input('UserProfile.dob', array('label' => __l('Date of Birth'),'empty' => __l('Select'), 'minYear' => date('Y') - 100, 'maxYear' => date('Y'), 'orderYear' => 'asc')); ?>
 	                         </li>
 							<li>
-                            	<?php echo $this->Form->input('country_id',array('options'=>$countries,'selected'=>143,'label'=>__l('Country*')));?>
+                            	<?php echo $this->Form->input('country_id',array('options'=>$countries,'default'=>143,'label'=>__l('Country')));?>
 
 
 	                         </li>
 							<li>
-                            	<?php  echo $this->Form->input('UserProfile.state_id',array('label'=>'State*')); ?>
+                            	<?php  echo $this->Form->input('UserProfile.state_id',array('label'=>'State','div'=>'required')); ?>
 	                         </li>
 							 	<li><span><label>&nbsp;</label></span>
                             	<?php  echo $this->Form->submit(__l('Update Account Info'),array('class'=>'btn5')); ?>

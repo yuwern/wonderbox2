@@ -6,7 +6,7 @@
 	// $this->Html->css('ui.timepickr', null, array('inline' => false));
 	$this->Html->css('colorbox', null, array('inline' => false));
 	//$this->Html->css('colorpicker', null, array('inline' => false));
-	$this->Html->css('style', null, array('inline' => false));
+//	$this->Html->css('style');
 	//$this->Html->css('widget', null, array('inline' => false));
 	$this->Html->css('ie7', null, array('inline' => false));
 	//$this->Html->css('easySlider', null, array('inline' => false));
@@ -37,4 +37,5 @@
 	//	$this->Javascript->link('libs/widgets.js', false);
     	$this->Javascript->link('common', false);
     
-?> <LINK href="<?php echo Router::url('/', true);?>css/style.css" rel="stylesheet" type="text/css">
+?>
+ <LINK href="<?php echo Router::url('/', true);?>css/style.css" rel="stylesheet" type="text/css">

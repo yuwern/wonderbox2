@@ -11,7 +11,8 @@
 			<?php if(Configure::read('facebook.is_enabled_facebook_connect')): ?>
                 <li><?php echo $this->Html->link(__l('Facebook Users'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => ConstMoreAction::FaceBook),array('title' => __l('FaceBook Users')));?></li>
 			<?php endif; ?>
-              <li><?php echo $this->Html->link(__l('Admin'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => ConstUserTypes::Admin),array('title' => __l('Admin')));?></li>
+              <li><?php echo $this->Html->link(__l('Paid Users'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => ConstMoreAction::VerifiedUser),array('title' => __l('Paid Users')));?></li>
+			   <li><?php echo $this->Html->link(__l('Admin'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => ConstUserTypes::Admin),array('title' => __l('Admin')));?></li>
             <li><?php echo $this->Html->link(__l('All'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => 'all'),array('title' => __l('All')));?></li>
        </ul>       
     </div>
@@ -22,7 +23,9 @@
              <div class="js-tabs">      
                 <ul class="clearfix">    
                     <li><?php echo $this->Html->link(sprintf(__l('Active Users(%s)'),$active), array('controller' => 'users', 'action' => 'index', 'filter_id' => ConstMoreAction::Active,'main_filter_id' => $this->request->params['named']['main_filter_id'],'stat' => (!empty($this->request->params['named']['stat']) ? $this->request->params['named']['stat'] : '')),array('title' => sprintf(__l('Active Users(%s)'),$active)));?></li>
+						<?php 	if(!empty($this->request->params['named']['main_filter_id']) && $this->request->params['named']['main_filter_id'] != ConstMoreAction::VerifiedUser): ?> 
                     <li><?php echo $this->Html->link(sprintf(__l('Inactive Users(%s)'),$inactive), array('controller' => 'users', 'action' => 'index', 'filter_id' => ConstMoreAction::Inactive, 'main_filter_id' => $this->request->params['named']['main_filter_id'],'stat' => (!empty($this->request->params['named']['stat']) ? $this->request->params['named']['stat'] : '')),array('title' => sprintf(__l('Inactive Users(%s)'),$inactive))); ?></li>
+					<?php endif; ?>
                     <li><?php echo $this->Html->link(sprintf(__l('All(%s)'),$active + $inactive),array('controller'=> 'users', 'action'=>'index', 'filter_id' => 'all','main_filter_id' => $this->request->params['named']['main_filter_id'],'stat' => (!empty($this->request->params['named']['stat']) ? $this->request->params['named']['stat'] : '')),array('title' => sprintf(__l('All(%s)'),$active + $inactive))); ?></li>
                 </ul>
              </div>
@@ -41,21 +44,24 @@
                   
                 <?php echo $this->Form->end(); ?>
                    <div class="clearfix add-block1">
-	        	<?php if(empty($this->request->params['named']['from_more_actions'])): ?>
+	        	<?php if(empty($this->request->params['named']['from_more_actions'])&&  $this->request->params['named']['main_filter_id'] != ConstMoreAction::VerifiedUser): ?>
              
                     <?php echo $this->Html->link(__l('Add'), array('controller' => 'users', 'action' => 'add'), array('class' => 'add','title'=>__l('Add'))); ?>
                
               <?php endif; ?>
-              	<?php if(empty($this->request->params['named']['from_more_actions'])): ?>
+              	<?php if(empty($this->request->params['named']['from_more_actions']) ): 
+				
+				?>
                 
                     <?php
                         echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'index','city' => $city_slug, 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export'));
                     ?>
                   
 	            <?php endif; ?>
-				
-                    <?php
-                        echo $this->Html->link(__l('PDF'), array('controller' => 'users', 'action' => 'member_index', 'ext' => 'pdf', 'admin' => true), array('title' => __l('PDF'), 'class' => 'pdf'));
+				    <?php
+				    	if(!empty($this->request->params['named']['main_filter_id']) && $this->request->params['named']['main_filter_id'] == ConstMoreAction::VerifiedUser):
+                               echo $this->Html->link(__l('PDF'), array('controller' => 'users', 'action' => 'member_index', 'ext' => 'pdf', 'admin' => true), array('title' => __l('PDF'), 'class' => 'pdf','target'=>'__blank'));
+						endif;
                     ?>
 	              </div>
             <?php endif; ?>
@@ -102,7 +108,9 @@
                         <td>
                             <div class="actions-block">
                                 <div class="actions round-5-left cities-action-block">
+								<?php 	if(!empty($this->request->params['named']['main_filter_id']) && $this->request->params['named']['main_filter_id'] != ConstMoreAction::VerifiedUser): ?>                   
                                 <span><?php echo $this->Html->link(__l('Edit'), array('controller' => 'user_profiles', 'action'=>'edit', $user['User']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span>
+								<?php endif; ?>
                             <?php if($user['User']['user_type_id'] != ConstUserTypes::Admin){ ?>
                                 <span><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $user['User']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></span>
                             <?php } ?>

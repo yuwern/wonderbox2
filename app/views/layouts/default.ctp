@@ -163,18 +163,24 @@ endif;
 			<li> <?php echo $this->Html->link(__l('Home'), array('controller' => 'pages', 'action' => 'home', 'admin' => false), array('title' => __l('Home'),'class'=> $active_class)); ?></li>
 		      <?php $class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'about') ? ' class="active"' : null; ?>
 	  			<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'about') ?  'act': null; ?>
-               	<li class="act"><?php echo $this->Html->link(__l('About').' '.Configure::read('site.name'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' =>__l('About').' '.Configure::read('site.name'),'class'=> $active_class));?> </li>
+               	<li><?php echo $this->Html->link(__l('About').' '.Configure::read('site.name'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' =>__l('About').' '.Configure::read('site.name'),'class'=> $active_class));?> </li>
 				</li>
 				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('How it Works?')), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => sprintf(__l('How it Works?')),'class'=> $active_class));?></li>
-				<?php $active_class = ($this->request->params['controller'] == 'packages' && $this->request->params['action'] == 'index' ) ?  'act': null; ?>
-				<li><?php echo $this->Html->link(sprintf(__l('Subscribe')), array('controller' => 'packages', 'action' => 'index', 'admin' => false), array('title' => sprintf(__l('Subscribe')),'class'=> $active_class));?></li>
+				<?php  $active_class = ($this->request->params['controller'] == 'packages' && $this->request->params['action'] == 'subscribe' ) ?  'act': null; ?>
+				<li><?php echo $this->Html->link(sprintf(__l('Subscribe')), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('title' => __l('Subscribe'),'class'=> $active_class));?></li>
+				<?php if ($this->Auth->sessionValid()): ?>
+				  <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'act' : null; ?> 
+				<li><?php echo $this->Html->link(__l('Refer a Friends'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('title' => __l('Refer a Friends'),'class'=> $active_class));?></li>
+				<?php endif; ?>
 				<?php $active_class = ($this->request->params['controller'] == 'contacts' && $this->request->params['action'] == 'add' ) ?  'act': null; ?>
-				<li><?php echo $this->Html->link(sprintf(__l('Contact Us')), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => sprintf(__l('Contact Us')),'class'=> $active_class));?></li>				
-				<?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'my_stuff' ) ?  'act': null; ?>
+				<li><?php echo $this->Html->link(sprintf(__l('Contact Us')), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => sprintf(__l('Contact Us')),'class'=> $active_class));?></li>	
+	
+				<?php $active_class = (($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'edit' || $this->request->params['action'] == 'profile_image'  )|| ($this->request->params['controller'] == 'user_shippings') ||($this->request->params['controller'] == 'package_users') ||($this->request->params['controller'] == 'transactions') || ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'change_password') ) ?  'act': null; ?>
 				  <?php if ($this->Auth->sessionValid()): ?>
 				<li><?php echo $this->Html->link(sprintf(__l('My Account')), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => sprintf(__l('My Account')),'class'=> $active_class));?></li>
 				<?php endif; ?>
+	
 			</ul>
 		</div>
 		<div class="warper" id="<?php echo $this->Html->getUniquePageId();?>">
@@ -219,7 +225,7 @@ endif;
 			</div>
 			<div id="footer">
 				&copy; 2012 <?php echo Configure::read('site.name'); ?> | All Rights Reserved | <?php $class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'term-and-conditions') ? ' class="active"' : null; ?>
-				<?php echo $this->Html->link(__l('Terms of use'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms of use')));?> |               <?php $class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'privacy_policy') ? ' class="active"' : null; ?> <?php echo $this->Html->link(__l('Privacy Policies'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policies')));?>  <?php if ($this->Auth->sessionValid()): ?> |               <?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? ' class="active"' : null; ?> <?php echo $this->Html->link(__l('Refer Friends'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('title' => __l('Refer Friends')));?><?php endif; ?>
+				<?php echo $this->Html->link(__l('Terms of use'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms of use')));?> |               <?php $class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view' && $this->request->params['pass'][0] == 'privacy_policy') ? ' class="active"' : null; ?> <?php echo $this->Html->link(__l('Privacy Policies'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policies')));?>  
 			</div>
 		</div>		
 	</div>

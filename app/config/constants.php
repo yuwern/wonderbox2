@@ -74,6 +74,8 @@ class ConstMoreAction
     const Gmail = 20;
     const Twitter = 21;
     const Foursquare = 22;
+	const VerifiedUser = 23;
+	
 }
 class ConstUserFriendStatus
 {

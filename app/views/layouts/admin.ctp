@@ -58,7 +58,7 @@
     				  <li><?php echo $this->Html->link(__l('Home'), array('controller' => 'pages', 'action' => 'home','admin' => false), array('escape' => false, 'title' => __l('Home')));?></li>
     				   <?php $class = (($this->request->params['controller'] == 'user_profiles') && ($this->request->params['action'] == 'my_account')) ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Account'), array('controller' => 'user_profiles', 'action' => 'user_account', $this->Auth->user('id')), array('title' => __l('My Account')));?></li>
-    					<li><?php echo $this->Html->link(__l('Logout'), array('controller' => 'users', 'action' => 'logout'), array('title' => __l('Logout'),'admin'=>false));?></li>
+    					<li><?php echo $this->Html->link(__l('Logout'), array('controller' => 'users', 'action' => 'logout','admin'=>false), array('title' => __l('Logout'),'admin'=>false));?></li>
     				</ul>
 				
             	<div class="admin-sub-header">
