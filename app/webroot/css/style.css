@@ -444,7 +444,7 @@ a.pdf {
 .btn3 span{ display:inline-block; padding:4px 10px 4px 5px; background:url(../img/btn3_right.jpg) right no-repeat}
 .btn3:hover{color:#ff9dca;}
 
-.subscribe{margin:auto;margin-top:25px;border-bottom:1px solid #e8e3e3;padding-bottom:60px;margin-bottom:35px; overflow:hidden; color:#241F20}
+.subscribe{margin:auto;margin-top:25px;padding-bottom:60px;margin-bottom:35px; overflow:hidden; color:#241F20}
 .subscribe h1{ font-size:27px; text-transform:uppercase; text-align:center; width:43%; margin:0 auto; padding:0}
 .subscribe h2{ text-align:center; border-bottom:1px dashed #ccc; padding-bottom:10px; margin:0;}
 .subs-left{ width:45%; padding-right:5%; margin-top:25px; float:left; font-size:12px; color:#241F20; border-right:1px dashed #ccc;}
