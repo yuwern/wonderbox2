@@ -18,9 +18,13 @@
 							<?php foreach($packages as $package):
 						//	echo "<pre>";
 							//	print_r($package);
+								if($count == 1){
+								$default_value = $package['Package']['id'];
+								$count++;
+							}
 							?>
                         	<li>
-							<?php	echo $this->Form->input('id',array('options'=>array($package['Package']['id']=>'<strong>'.$package['PackageType']['name'].'</strong>'),'type'=>'radio','default'=>1,'legend' => false)); ?>				    
+							<?php	echo $this->Form->input('id',array('options'=>array($package['Package']['id']=>'<strong>'.$package['PackageType']['name'].'</strong>'),'type'=>'radio','default'=>$default_value,'legend' => false)); ?>				    
 							<label for="month"><?php echo Configure::read('site.currency').'  '.$package['Package']['cost']; ?> WonderPoint for <?php echo $package['Package']['no_of_wonderpoints']; ?></label></li>
 							<?php endforeach; ?>
                              </ul>
