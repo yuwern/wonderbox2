@@ -1,0 +1,56 @@
+.pdf-main {
+    background: #CCCCCC;
+}
+.pdf-map-img {
+    float: left;
+    width: 325px;
+    padding: 3px 0 10px 10px;
+}
+
+.pdf-map-img img {
+    width: 325px;
+    height: 295px;
+}
+
+.pdf-map-img-enlarge {
+    float: left;
+    width: 640px;
+    padding: 3px 0 10px 10px;
+}
+
+.pdf-map-img-enlarge img {
+    width: 640px;
+    height: 490px;
+}
+.clear {
+    clear: both;
+}
+
+.pdf-pointer {
+    width: 100%; 
+    margin: 20px 0 0 10px;
+}
+.pdf-pointer .pdf-pointer-list{
+    width: 220px;
+    float: left;
+    list-style-type: none;
+    height: 78px;     
+}
+.pdf-pointer-img {
+    width: 42px;    
+    float: left;
+}
+.pdf-pointer-title {
+    font-size: 11px;
+    float: left;
+    font-family: sans-serif;
+}
+.pdf-pointer-title span {
+    font-weight: bold;    
+}
+.pdf-point-title {
+    margin: -15px 0 0 40px;
+    font-size: 14px;
+    color: #008000;
+    text-transform: uppercase;
+}
