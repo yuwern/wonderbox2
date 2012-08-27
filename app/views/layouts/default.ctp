@@ -150,10 +150,11 @@ endif;
 					$duration_month = 2;
 				else
 					$duration_month = 1;
-
-				echo date('F',strtotime('+'.$duration_month.' month'));
+				$months = $this->Html->getMonthLists();
+				echo $months[Configure::read('header.month')]; 
 				?>'s</span> month Wonder Edition <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
-                <p>Get Your <span class="f16"><?php echo date('F'); ?>'s</span>  month Wonder today as there is only <span class="f16"><?php echo ($total_days_month - $current_date); ?> left </span> <?php echo $this->Html->link(__l('Buy Now'), array('controller' => 'packages', 'action' => 'index', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Buy Now')));?></p>
+                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  month Wonder today as there is only <span class="f16"><?php echo 
+				$this->Html->checkPackageAvialable();?> left </span></p>
             </div>
 		</div>
 		<!--menu-->

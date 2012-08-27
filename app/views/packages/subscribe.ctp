@@ -15,26 +15,49 @@
        	    <div class="subs-box">
 				<?php echo $this->Form->create('Package', array('action'=>'paypal','class' => 'normal-form'));?>				    
                     	<ul>
-							<?php foreach($packages as $package):
+							<?php $count = 1;
+							foreach($packages as $package):
 						//	echo "<pre>";
 							//	print_r($package);
-								if($count == 1){
+							?>
+                        	<li>
+							<?php
+							if($count == 1){
 								$default_value = $package['Package']['id'];
 								$count++;
 							}
-							?>
-                        	<li>
-							<?php	echo $this->Form->input('id',array('options'=>array($package['Package']['id']=>'<strong>'.$package['PackageType']['name'].'</strong>'),'type'=>'radio','default'=>$default_value,'legend' => false)); ?>				    
+							echo $this->Form->input('id',array('options'=>array($package['Package']['id']=>'<strong>'.$package['PackageType']['name'].'</strong>'),'type'=>'radio','default'=>$default_value,'class'=>'js-payment-type','legend' => false));
+							echo $this->Form->input('cost',array('type'=>'hidden','value'=>$package['Package']['cost'],'id'=>'js-payment-cost'.$package['Package']['id'],'legend' => false));
+							echo $this->Form->input('month',array('type'=>'hidden','value'=>$package['PackageType']['no_of_months'],'id'=>'js-payment-month'.$package['Package']['id'],'legend' => false));
+							
+							?>	
+							
 							<label for="month"><?php echo Configure::read('site.currency').'  '.$package['Package']['cost']; ?> WonderPoint for <?php echo $package['Package']['no_of_wonderpoints']; ?></label></li>
 							<?php endforeach; ?>
                              </ul>
                         <div class="clear"></div>
                         <h3><?php echo __l('Payment Method'); ?></h3>
                       <div class="paypal">  	<?php	
-					$paymentOptions = array(ConstPaymentGateways::PayPal=>__l('Paypal'));
-					echo $this->Form->input('package_type_id',array('options'=>$paymentOptions,'type'=>'radio','default'=>3,'legend' => false)); ?></div>
-				           <div class="subs-btn a-right"><?php echo 
-						   $this->Html->image('pay-logo.jpg',array('class'=>'f-left')); ?><?php echo $this->Form->submit(__l('Next'),array('class'=>'but6 f-right','div'=>'next-btn'));?></div>
+					//$paymentOptions = array(ConstPaymentGateways::PayPal=>__l('Paypal'));
+					echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>3,'class'=>'js-payment-options','legend' => false)); 
+					?></div>
+							<div class="js-paypal payment-details ">
+									<?php echo $this->Html->image('pay-logo.jpg',array('class'=>'f-left')); ?>
+									<div class="payment-content">
+									You will be billed <?php echo Configure::read('site.currency'); ?> <span class="js-payment-amount"><?php echo($packages[0]['Package']['cost']); ?></span> every <span class="js-payment-month-display"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> month
+								</div>
+
+							</div>
+							<div class="js-molpay payment-details hide">
+								<?php echo $this->Html->image('logo_visa.gif',array('width'=>65,'height'=>21)); ?><?php echo $this->Html->image('logo_mastercard.gif',array('width'=>51,'height'=>30)); ?><?php echo $this->Html->image('logo_7eleven.gif',array('width'=>42,'height'=>38)); ?><?php echo $this->Html->image('logo_myclear.gif',array('width'=>100,'height'=>38)); ?><?php echo $this->Html->image('logo_maybank2u.gif',array('width'=>130,'height'=>20)); ?><?php echo $this->Html->image('logo_pbebank.gif',array('width'=>84,'height'=>22)); ?><?php echo $this->Html->image('logo_cimbclick.gif',array('width'=>88,'height'=>15)); ?><?php echo $this->Html->image('logo_bankislam.gif',array('width'=>123,'height'=>24)); ?>
+							<?php echo $this->Html->image('logo_hongleongonline.gif',array('width'=>123,'height'=>24)); ?><?php echo $this->Html->image('logo_allianceonline.gif',array('width'=>108,'height'=>20)); ?><?php echo $this->Html->image('logo_amonline.gif',array('width'=>68,'height'=>13)); ?><?php echo $this->Html->image('logo_eonbank.gif',array('width'=>90,'height'=>13)); ?>
+								<div class="payment-content">
+									You will be billed <?php echo Configure::read('site.currency'); ?> <span class="js-payment-amount"> <?php echo($packages[0]['Package']['cost']); ?></span>  for <span class="js-payment-month-display"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span>  months subscription. If you would like to not have the hassle for renewal, kindly select Paypal as your payment option
+								</div>
+							</div>
+					
+				        <div class="a-right subs-btn">
+						<?php echo $this->Form->submit(__l('Next'),array('class'=>'but6 f-right','div'=>'next-btn'));?></div>
 					  <?php echo $this->Form->end();?>
                   </div>
                 </div>

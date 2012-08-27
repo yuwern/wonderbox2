@@ -679,7 +679,7 @@ form.normal-form div.error-message {
     text-align: left;
 }
  span .btn3{
-   background: -moz-linear-gradient(center top , #F7398F 2%, #E2277C 100%) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(center top , #F7398F 2%, #E2277C 100%) repeat scroll 0 0 transparent;
     border: 1px solid #D5126B;
     border-radius: 5px 5px 5px 5px;
     color: #FFFFFF;
@@ -687,6 +687,7 @@ form.normal-form div.error-message {
     font-size: 13px;
     margin: 0;
     padding: 8px 15px;
+	background:#F7398F;
 }
 
 .my-account-right table.list {
@@ -811,5 +812,22 @@ form.normal-form div.required label {
 }
 form.normal-form .paypal div.required label{
 	background:none;
+	padding-right: 10px;
 }
 
+.payment-details {
+    border-top: 1px solid #E8E3E3;
+    margin: 5% 7% 0;
+    padding-top: 15px;
+	float:left;
+}
+.payment-content {
+	float:left;
+	 padding: 9px;
+}
+
+.js-molpay img{ padding:0 8px 10px 8px;}
+.w-point{-webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px; border:1px solid #ccc; padding:15px 10px 10px 10px; background:#f2f2f2 !important;}
+
+#inner-static{font-family:inherit}
+#inner-static h2, #inner-static h1{ font-family:inherit; color:inherit}

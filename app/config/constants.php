@@ -146,7 +146,7 @@ class ConstPrivacySetting
 }
 class ConstPaymentGateways
 {
-    const Wallet = 1;
+    const WonderPoint = 1;
     const MOLPay = 2;
     const PayPalAuth = 3;	
     const AuthorizeNet = 4;

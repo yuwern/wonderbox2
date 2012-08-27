@@ -1806,6 +1806,8 @@ class UsersController extends AppController
         $this->redirect($redirect_url);
     }
 	public function admin_member_index(){
+
+        if ($this->RequestHandler->prefers('pdf')) {
 		$users = $this->User->find('all',array(
 			'conditions'=> array(
 				'User.is_verified_user'=> 1,
@@ -1817,7 +1819,19 @@ class UsersController extends AppController
 					'fields'=> array(
 						'UserProfile.first_name',
 					)
-				)
+				),
+			   'UserShipping'=> array(
+					'State'=> array(
+						'fields'=> array(
+							'State.name'
+						)
+					),
+					'Country'=> array(
+						'fields'=> array(
+							'Country.name'
+						)
+					)
+				),
 			),
 			'fields'=> array(
 				'User.email',
@@ -1825,7 +1839,41 @@ class UsersController extends AppController
 				'User.subscription_expire_date',
 			)
 		));
-		$this->set('users',$users);
+		} else {
+	      $this->paginate = array(
+			'conditions'=> array(
+				'User.is_verified_user'=> 1,
+				'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
+				'User.user_type_id <>' =>ConstUserTypes::Admin
+			),
+			'contain'=> array(
+				'UserProfile'=> array(
+					'fields'=> array(
+						'UserProfile.first_name',
+					)
+				),
+			   'UserShipping'=> array(
+					'State'=> array(
+						'fields'=> array(
+							'State.name'
+						)
+					),
+					'Country'=> array(
+						'fields'=> array(
+							'Country.name'
+						)
+					)
+				),
+			),
+			'fields'=> array(
+				'User.email',
+				'User.is_verified_user',
+				'User.subscription_expire_date',
+			)
+        );
+	 $users = $this->paginate();
+	}
+	 $this->set('users',$users);
 	}
     public function forgot_password()
     {
@@ -1962,6 +2010,123 @@ class UsersController extends AppController
             $this->request->data['User']['user_id'] = $user_id;
             $this->request->data['User']['hash'] = $hash;
         }
+    }
+	public function redemption(){
+			 if (!Configure::read('wonderpoint.is_system_enabled')) {
+				throw new NotFoundException(__l('Invalid request'));
+			 }
+			$user = $this->User->find('first',array(
+								'conditions'=> array(
+									'User.id'=>$this->Auth->user('id')
+								),
+								'recursive'=> -1	
+					)
+				);
+			$available_amount = ( $user['User']['available_wonder_points'] /  Configure::read('wonderpoint.no_of_wonderpoints'));
+		 	$this->loadModel('Package');
+			 if (!empty($this->request->data)) {
+					$package = $this->Package->find('first',array(
+									'conditions'=> array(
+										'Package.id'=> $this->request->data['User']['package_type_id'],
+
+									),
+									'contain'=> array(
+										'PackageType' => array(
+											'fields'=> array(
+												'PackageType.no_of_months'
+											)
+										)
+									),									
+									'recursive'=> 1
+						));
+					
+					$wonderpoint = $package['Package']['cost']*Configure::read('wonderpoint.no_of_wonderpoints'); 
+					$this->loadModel('Transaction');
+					$amount = $package['Package']['cost'];
+					$user_id = $this->Auth->user('id');
+					$data['Transaction']['user_id'] = $user_id;
+					$data['Transaction']['foreign_id'] = $package['Package']['id'];
+					$data['Transaction']['class'] = 'Package';
+					$data['Transaction']['amount'] = $package['Package']['cost'];
+					$data['Transaction']['payment_gateway_id'] = ConstPaymentGateways::WonderPoint;
+					$data['Transaction']['description'] = 'Payment Success';
+					$data['Transaction']['gateway_fees'] = 0;
+					$data['Transaction']['transaction_type_id'] = ConstTransactionTypes::PaidlAmountToCompany;
+					$transaction_id = $this->Transaction->log($data);
+					$duration = $this->getDurationPeriod($package['PackageType']['no_of_months']);
+					$this->Package->PackageUser->create();
+					$packageUser['PackageUser']['package_id'] = $package['Package']['id'];
+					$packageUser['PackageUser']['user_id'] = $user_id;
+					$packageUser['PackageUser']['start_date'] = $duration['start_date'];
+					$packageUser['PackageUser']['end_date'] = $duration['end_date'];
+					$packageUser['PackageUser']['is_paid'] = 1;
+					$this->Package->PackageUser->save($packageUser);
+			        $this->User->updateAll(array(
+										'User.is_verified_user' => 1,
+										'User.available_wonder_points' => 'User.available_wonder_points - '. $wonderpoint,
+										'User.subscription_expire_date' => $duration['end_date'],
+									) , array(
+										'User.id' => $user_id
+					));
+					$this->loadModel('EmailTemplate');
+					$email_message = $this->EmailTemplate->selectTemplate('Subscription Package');
+					$emailFindReplace = array(
+										'##FROM_EMAIL##' => ($email_message['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email_message['from'] ,
+										'##SITE_NAME##' => Configure::read('site.name') ,
+										'##USERNAME##' => $user['User']['username'],
+										'##PACKAGE_NAME##' => $package['Package']['name']  ,
+										'##PACKAGE_AMOUNT##' => Configure::read('site.currency') . $amount ,
+										'##SITE_LINK##' => Router::url('/', true) ,
+										'##PURCHASE_ON##' => strftime(Configure::read('site.datetime.format')) ,
+										'##PURCHASE_EXPIRY##' => $duration['end_date'] ,
+										'##WONDER_POINT##' => 0 ,
+										'##CONTACT_URL##' => Router::url(array(
+											'controller' => 'contacts',
+											'action' => 'add',
+											'city' => $this->request->params['named']['city'],
+											'admin' => false
+										) , true) ,
+										'##SITE_LOGO##' => Router::url(array(
+											'controller' => 'img',
+											'action' => 'blue-theme',
+											'logo-email.png',
+											'admin' => false
+										) , true) ,
+									);
+					$this->_sendMail($emailFindReplace, $email_message, $user['User']['email']);
+					$this->redirect(array(
+										'controller' => 'transactions',
+										'action' => 'index',
+										'admin' => false
+					));
+				
+			 } 
+			$packages = array();
+			if(!empty($available_amount) && $available_amount >= 1)
+			{
+				      
+						$packages = $this->Package->find('list',array(
+									'conditions'=> array(
+										'Package.is_active'=> 1,
+										'Package.cost <= '=> $available_amount
+									),
+									'recursive'=> -1
+						));
+						
+			
+			}
+			$this->set('packages',$packages);
+	}
+	public function _sendMail($email_content_array, $template, $to, $sendAs = 'text')
+    {
+        $this->loadModel('EmailTemplate');
+        $this->Email->from = ($template['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $template['from'];
+        $this->Email->replyTo = ($template['reply_to'] == '##REPLY_TO_EMAIL##') ? Configure::read('EmailTemplate.reply_to_email') : $template['reply_to'];
+        $this->Email->to = $to;
+        $this->Email->subject = strtr($template['subject'], $email_content_array);
+        $this->Email->content = strtr($template['email_content'], $email_content_array);
+        $this->Email->sendAs = ($template['is_html']) ? 'html' : 'text';
+	    $this->Email->send($this->Email->content);
     }
     public function change_password($user_id = null)
     {

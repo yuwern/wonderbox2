@@ -31,7 +31,7 @@ foreach ($paymentGateways as $paymentGateway):
 		<td><?php echo $this->Html->cText($paymentGateway['PaymentGateway']['description']);?></td>
 		<td>
 			<?php 
-				if($paymentGateway['PaymentGateway']['id'] != ConstPaymentGateways::Wallet):
+				if($paymentGateway['PaymentGateway']['id'] != ConstPaymentGateways::WonderPoint):
 					echo $this->Html->cBool($paymentGateway['PaymentGateway']['is_test_mode']);
 				else:
 					echo '-';

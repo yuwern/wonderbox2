@@ -726,6 +726,20 @@ jQuery(document).ready(function($) {
 			$('.js-show-branch-addresses').show();
 		}
 	});
+	$('.js-payment-options').livequery('click', function() {
+		if($(this).val() == 2){
+			$('.js-paypal').hide();
+			$('.js-molpay').show();
+		 } else{
+			$('.js-paypal').show();
+			$('.js-molpay').hide();
+		 	 
+		 }
+	});
+	$('.js-payment-type').livequery('click', function() {
+		$('.js-payment-amount').html($('#js-payment-cost'+$(this).val()).val());		
+		$('.js-payment-month-display').html($('#js-payment-month'+$(this).val()).val());		
+	});
 	$('.js-image-timer').hover(function(){
 		$(this).parent().find('.dtime-box').show();
 	}, function() {

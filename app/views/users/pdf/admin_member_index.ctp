@@ -16,10 +16,13 @@ $html = '
 <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse;" cellpadding="8">
 <thead>
 <tr>
-<td width="35%" align="center">S. NO.</td>
+<td width="10%" align="center">S. NO.</td>
 <td width="10%" align="center">Name</td>
-<td width="45%">Email</td>
-<td width="45%">Active</td>
+<td width="20%">Email</td>
+<td width="25%">Address</td>
+<td width="20%">Mobile No</td>
+<td width="20%">Phone No</td>
+<td width="15%">Active</td>
 </tr>
 </thead>
 <tbody>';
@@ -34,6 +37,9 @@ $html .='<!-- ITEMS HERE -->
 <td align="center">'.$i.'</td>
 <td align="center">'.$this->Html->cText($user['UserProfile']['first_name']).'</td>
 <td align="left">'.$user['User']['email'].'</td>
+<td align="left">'.$user['UserShipping'][0]['address'].','.$user['UserShipping'][0]['State']['name'].','.$user['UserShipping'][0]['Country']['name'].','.$user['UserShipping'][0]['zip_code'].'</td>
+<td align="left">'.$this->Html->cText($user['UserShipping'][0]['contact_no']).'</td>
+<td align="left">'.$this->Html->cText($user['UserShipping'][0]['contact_no1']).'</td>
 <td align="left">'.$this->Html->cBool($user['User']['is_verified_user']).'</td>
 </tr>';
 $i++;

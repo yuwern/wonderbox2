@@ -11,7 +11,7 @@
 	  <th><?php echo __l('Amount'); ?></th>
 	  <th><?php echo __l('Duration'); ?></th>
       <th><?php echo __l('Start date'); ?></th>
-      <th class="right-cur"><?php echo __l('Paid'); ?></th>
+      <th class="right-cur"><?php echo __l('Status'); ?></th>
     </tr>
 <?php
 if (!empty($packageUsers)):
@@ -28,7 +28,7 @@ foreach ($packageUsers as $packageUser):
       <td><?php echo Configure::read('site.currency'). ' '. $this->Html->cText($packageUser['Package']['cost']);?></td>
   	  <td><?php echo $this->Html->cText($packageUser['Package']['PackageType']['name']); ?></td>
       <td><?php echo $this->Html->cDate($packageUser['PackageUser']['start_date']);?></td>
-     <td><?php echo $this->Html->cBool($packageUser['PackageUser']['is_paid']);?></td>
+     <td><?php echo ((!empty($packageUser['PackageUser']['is_paid']))?  $this->Html->cText(__l('Active')):  $this->Html->cText(__l('Cancel')));?></td>
     </tr>
 <?php
     endforeach;

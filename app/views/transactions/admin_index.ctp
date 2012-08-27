@@ -36,7 +36,11 @@
 					</td>
 	            <?php endif; ?>
 				<td class="dl">
-				<?php echo $this->Html->cText($transaction['Package']['name']);?>
+
+				<?php  if($transaction['Transaction']['transaction_type_id'] != ConstTransactionTypes::ReferralWonderPoint  ):
+				echo $this->Html->cText($transaction['Package']['name']);
+				endif;
+				?>
             </td>
 			   <td class="dl">
 				<?php 	 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd ):

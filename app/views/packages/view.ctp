@@ -45,22 +45,14 @@
                             	<?php	echo $this->Form->input('UserShipping.state_id');?>
                             </li>
 							 <li>
-                            	<?php	echo $this->Form->input('UserShipping.country_id');?>
+                            	<?php	echo $this->Form->input('UserShipping.country_id',array('default'=>143));?>
                             </li>
 							
                             <li id="paypalid">
                             	<?php
-/*	$count = 1;
-	foreach($paymentgateways as $key =>$paymentgateway):
-		if($count == 1)
-			$default = $key;
-		$count ++;
-	endforeach;
-	echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>$default,'legend' => false));
-	*/ echo $this->Form->input('package_type_id',array('type'=>'hidden','value'=> ConstPaymentGateways::MOLPay));
-	?>
-
-                            </li>
+								 echo $this->Form->input('package_type_id',array('type'=>'hidden','value'=>$package_type));
+								?>
+							</li>
                       		 <li>
                             	<span><label for="ReTypePassword">&nbsp;</label></span>
                                 <span><?php echo $this->Form->submit(__l('Subscribe'),array('class'=>'btn3'));?></span>

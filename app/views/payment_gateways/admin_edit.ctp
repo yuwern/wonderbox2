@@ -35,11 +35,11 @@
 				else:
 					$options['help'] = '';
 				endif;
-				if(($paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_for_buy_a_deal' || $paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_for_gift_card' || ($paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_for_add_to_wallet' && $paymentGatewaySetting['PaymentGatewaySetting']['payment_gateway_id'] != ConstPaymentGateways::Wallet) || $paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_wallet')):
+				if(($paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_for_buy_a_deal' || $paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_for_gift_card' || ($paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_for_add_to_wallet' && $paymentGatewaySetting['PaymentGatewaySetting']['payment_gateway_id'] != ConstPaymentGateways::WonderPoint) || $paymentGatewaySetting['PaymentGatewaySetting']['key'] == 'is_enable_wallet')):
 					echo $this->Form->input("PaymentGatewaySetting.{$paymentGatewaySetting['PaymentGatewaySetting']['id']}.test_mode_value", $options);
 				endif;
 			}
-			if($paymentGatewaySettings && $this->request->data['PaymentGateway']['id'] != ConstPaymentGateways::Wallet) {
+			if($paymentGatewaySettings && $this->request->data['PaymentGateway']['id'] != ConstPaymentGateways::WonderPoint) {
 		?>
 				<div class="clearfix">
 					<div class="test-mode-left">

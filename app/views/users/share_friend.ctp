@@ -1,4 +1,19 @@
-			<div class="refer-sys">
+<script type="text/javascript" src="<?php echo  Router::url('/', true); ?>/js/libs/jquery.zclip.min.js"></script>	
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('a#copy-description').zclip({
+        path:'<?php echo  Router::url('/', true); ?>js/ZeroClipboard.swf',
+        copy:$('#js-share-url-link').val(),
+		afterCopy:function(){
+			$('#js-share-url-link').select();
+            $('a#copy-description').text('Copied');
+        }
+    });
+});
+	</script>
+	<div class="refer-sys">
 				<div class="refer-sys-pad">
                     <h1><?php echo __l('Refer Friends, Earn WonderBox Points!'); ?></h1>
                     <p><?php echo __l('Quisque facilisis nisi et dolor ultricies rhoncus. Morbi nisi sem, tincidunt at gravida ac, eleifend quis tellus. Pellentesque vel sodales mauris. Maecenas in enim risus. Mauris condimentum dolor in ante pulvinar quis tristique leo dictum. Ut hendrerit ipsum in ante facilisis euismod. Mauris in est elit.'); ?> </p>
@@ -11,8 +26,9 @@
 							<?php echo $this->Html->link(__l('Share it on Facebook'), 'http://www.facebook.com/share.php?u='.Router::url(array('controller' => 'users', 'action' => 'refer', 'r' =>$this->Auth->user('email')), true), array('class' => 'face','target' => 'blank'));?>
                         </div>
                         <div class="share-box-right">
-                        	<h2><?php echo __l('Share this link anywhere'); ?></h2>
-							<input type='text' value='<?php echo $share_url; ?>' readonly="true" class="refer-url-code" />
+                        	<h2><?php echo __l('Share this link anywhere'); ?> <a id="copy-description">Copy below URL</a></h2>
+							<input type='text' value='<?php echo $share_url; ?>' readonly="true" class="refer-url-code" id="js-share-url-link"/>
+							
                         </div>
                     </div>
                     <h2><?php echo __l('Or Invite by Email'); ?></h2>

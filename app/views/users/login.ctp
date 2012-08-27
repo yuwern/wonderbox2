@@ -30,6 +30,11 @@
 	<?php
 		@$_GET['f'] = (!empty($this->request->data['User']['is_requested']) ? $_GET['url'] : $_GET['f']);  // Fix for gift card redeem redirect
 		$f = (!empty($_GET['f'])) ? $_GET['f'] : ((!empty($this->request->data['User']['f'])) ? $this->request->data['User']['f'] : (($this->request->params['controller'] != 'users' && ($this->request->params['action'] != 'login' && $this->request->params['action'] != 'admin_login')) ? $this->request->url : ''));
+			if(!empty($f)){
+			$new_f = explode('/',$f);
+			if(!empty($new_f) && $new_f[1]=='packages' && $new_f[2]=='paypal' )
+				$f='packages/subscribe';
+			}
 			if (!empty($f)):
 				echo $this->Form->input('f', array('type' => 'hidden', 'value' => $f));
 			endif;

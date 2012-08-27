@@ -134,6 +134,9 @@ if(!empty($settings_category['SettingCategory']['description'])):
 				if($setting['Setting']['name'] == 'site.paypal_currency_converted_id'):
 					$options['options'] = $this->Html->getSupportedCurrencies();	
 				endif;*/
+				if($setting['Setting']['name'] == 'header.month'):
+					$options['options'] =  $this->Html->getMonthLists();
+				endif;
 				$options['label'] = $setting['Setting']['label'];
 				if ($setting['SettingCategory']['name'] == 'Images' && $inputDisplay == 0):
 					$options['class'] = 'image-settings';

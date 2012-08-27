@@ -19,6 +19,7 @@ class PackagesController extends AppController
         'UserProfile.zipcode',
         'UserProfile.id',
         'UserShipping',
+		'User.f'
     );
     public function beforeFilter()
     {
@@ -34,7 +35,6 @@ class PackagesController extends AppController
 			'Package.is_active'=> 1
 		  )
 		);
-
 	    $this->set('packages', $this->paginate());
     }
 	public function subscribe(){
@@ -48,7 +48,8 @@ class PackagesController extends AppController
 		$this->loadModel('PaymentGateway');
 		$paymentgateways = $this->PaymentGateway->find('list',array(
 					'conditions'=> array(
-						'PaymentGateway.is_active'=> 1
+						'PaymentGateway.is_active'=> 1,
+						'PaymentGateway.id <> '=>ConstPaymentGateways::WonderPoint 
 					)
 		));
 		$this->set('paymentgateways',$paymentgateways);
@@ -126,24 +127,10 @@ class PackagesController extends AppController
 		 );
 		$states = $this->Package->PackageUser->User->UserShipping->State->find('list');	
 		$countries = $this->Package->PackageUser->User->UserShipping->Country->find('list');	
-		 $this->set(compact('countries', 'states'));
-		/* echo "<pre>";
-		 print_r($usershipping);
-		 exit;
-		 $user = $this->Package->PackageUser->User->find('first', array(
-							'conditions'=> array(
-								'User.id'=> $user_id
-							),
-							'contain'=> array(
-								'UserProfile'
-							),
-							'recursive'=> 1
-							)
-						);
-		*/
-		
+		$this->set(compact('countries', 'states'));
 		$this->request->data = $usershipping;
         $this->pageTitle.= ' - ' . $package['Package']['name'];
+		$this->set('package_type', $this->Session->read('Payment_type'));
         $this->set('package', $package);
     }
 	public function purchase(){
@@ -282,7 +269,8 @@ class PackagesController extends AppController
 				 $this->redirect(array(
 							'controller' => 'packages',
 							'action' => 'view',
-							$this->request->data['Package']['slug']
+							$this->request->data['Package']['slug'],
+
 					));	
 			}
 		 }
@@ -298,66 +286,35 @@ class PackagesController extends AppController
 						'PaymentGateway.id'=> $this->request->data['Package']['package_type_id']
 					)
 			));
-		 $package = $this->Package->find('first', array(
-            'conditions' => array(
-                'Package.id = ' => $this->request->data['Package']['id']
-            ) ,
-            'fields' => array(
-                'Package.id',
-                'Package.name',
-                'Package.slug',
-                'Package.description',
-                'Package.package_type_id',
-                'Package.cost',
-                'Package.no_of_wonderpoints',
-                'Package.is_active',
-                'PackageType.id',
-                'PackageType.name',
-            ) ,
-            'recursive' => 0,
-			));
-			if (empty($package)) {
+			if(!empty($this->request->data['Package']['package_type_id']))
+			$this->Session->write('Payment_type',$this->request->data['Package']['package_type_id'] );
+			 $package = $this->Package->find('first', array(
+				'conditions' => array(
+					'Package.id = ' => $this->request->data['Package']['id']
+				) ,
+				'fields' => array(
+					'Package.id',
+					'Package.name',
+					'Package.slug',
+					'Package.description',
+					'Package.package_type_id',
+					'Package.cost',
+					'Package.no_of_wonderpoints',
+					'Package.is_active',
+					'PackageType.id',
+					'PackageType.name',
+				) ,
+				'recursive' => 0,
+				));
+			 if (empty($package)) {
 				 throw new NotFoundException(__l('Invalid request'));
 			}
-			 $this->pageTitle.= sprintf(__l('Buy %s Subcribed') , $package['Package']['name']);
-			$action = strtolower(str_replace(' ', '', $paymentGateway['PaymentGateway']['name']));
-            if ($paymentGateway['PaymentGateway']['name'] == 'PayPal') {
-				  $this->Paypal->initialize($this);
-				  $sender_info['is_testmode'] = $paymentGateway['PaymentGateway']['is_test_mode'];
-		          if (!empty($paymentGateway['PaymentGatewaySetting'])) {
-                            foreach($paymentGateway['PaymentGatewaySetting'] as $paymentGatewaySetting) {
-                                if ($paymentGatewaySetting['key'] == 'API_UserName') {
-                                     $sender_info['API_UserName']  = $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value'];
-                                }
-                                if ($paymentGatewaySetting['key'] == 'API_Password') {
-                                    $sender_info['API_Password']  = $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value'];
-                                }								
-                                if ($paymentGatewaySetting['key'] == 'API_Signature') {
-                                     $sender_info['API_Signature']  =  $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value'];
-                                }
-                            }
-                  }
-				  $gateway_options = array(
-						 'name'=>   Configure::read('site.name').' '.__l('Subscription'),
-						 'description'=> $package['Package']['name'],	
-					     'cancelUrl' => Router::url('/', true) . 'packages/payment_cancel',
-                         'returnUrl' => Router::url('/', true) . 'packages/express_checkout/'. $package['Package']['slug'],
-						 'invnum'=> $package['Package']['id'],	
-					     'amount'=> number_format($package['Package']['cost'],2),
-                    );
-				 $payment_response = $this->Paypal->doSetExpressCheckout($gateway_options, $sender_info);
-				 if (!empty($payment_response) && strtoupper($payment_response['ACK']) != 'SUCCESS') {
-                    $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', null, 'error');
-                    return;
-                 }
-				  else {
-					// send user to paypal
-					$token = urldecode($payment_response["TOKEN"]);
-					$this->Paypal->RedirectToPayPal($token, $sender_info['is_testmode']);
-				 } 
-				 exit;
-				 
-			}
+			 $this->redirect(array(
+						'controller'=>'packages',
+						'action'=>'view',
+						$package['Package']['slug'],
+					)
+				 );
 		}
 	}
 	public function express_checkout($slug = null){
@@ -478,7 +435,7 @@ class PackagesController extends AppController
 								),
 								'recursive' => 1
 							));
-						$start_date = date('Y-m-d');
+						//$start_date = date('Y-m-d');
 						$user = $this->Package->PackageUser->User->find('first', array(
 							'conditions'=> array(
 								'User.id'=> $user_id
@@ -510,8 +467,11 @@ class PackagesController extends AppController
 							}
 						}
 						// end Referral friend code 
-						$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+".$package['PackageType']['no_of_months']." month");
-						$end_date = date('Y-m-d', $dateMonthAdded);
+						//$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+".$package['PackageType']['no_of_months']." month");
+						//$end_date = date('Y-m-d', $dateMonthAdded);
+						$duration = $this->getDurationPeriod($package['PackageType']['no_of_months']);
+						$start_date = $duration['start_date'];	
+						$end_date =  $duration['end_date'];	
 						$this->Package->PackageUser->create();
 						$packageUser['PackageUser']['package_id'] = $package['Package']['id'];
 						$packageUser['PackageUser']['user_id'] = $user_id;
@@ -692,7 +652,7 @@ class PackagesController extends AppController
 											),
 											'recursive' => 1
 										));
-									$start_date = date('Y-m-d');
+									//$start_date = date('Y-m-d');
 									// Referral friend code 
 					                if (!empty($tempPaymentLog['TempPaymentLog']['referred_by_user_id'])) { 
 										$packageUser['PackageUser']['referred_by_user_id'] = $tempPaymentLog['TempPaymentLog']['referred_by_user_id'];
@@ -704,8 +664,11 @@ class PackagesController extends AppController
 										}
 									}
 									// end Referral friend code 
-									$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+".$package['PackageType']['no_of_months']." month");
-									$end_date = date('Y-m-d', $dateMonthAdded);
+									//$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+".$package['PackageType']['no_of_months']." month");
+									//$end_date = date('Y-m-d', $dateMonthAdded);
+									$duration = $this->getDurationPeriod($package['PackageType']['no_of_months']);
+									$start_date = $duration['start_date'];	
+									$end_date =  $duration['end_date'];	
 									$this->Package->PackageUser->create();
 									$packageUser['PackageUser']['package_id'] = $package['Package']['id'];
 									$packageUser['PackageUser']['user_id'] = $user_id;
