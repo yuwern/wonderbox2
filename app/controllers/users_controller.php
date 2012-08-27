@@ -565,8 +565,8 @@ class UsersController extends AppController
 				}
 				
                     $this->redirect(array(
-                        'controller' => 'user_profiles',
-                        'action' => 'edit',$this->Auth->user('id'),
+                        'controller' => 'users',
+                        'action' => 'profile_image',$this->Auth->user('id'),
                         'admin' => false,
                     ));
           
@@ -2105,12 +2105,13 @@ class UsersController extends AppController
 			if(!empty($available_amount) && $available_amount >= 1)
 			{
 				      
-						$packages = $this->Package->find('list',array(
+						$packages = $this->Package->find('all',array(
 									'conditions'=> array(
 										'Package.is_active'=> 1,
 										'Package.cost <= '=> $available_amount
 									),
-									'recursive'=> -1
+									
+									'recursive'=> 0
 						));
 						
 			

@@ -276,7 +276,7 @@ h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
 .menu{background-color:#e6dcd3; height:42px}
 .menu ul{margin:auto; text-align:center}
 .menu li{display:inline-block; color:#e23a85; font:normal Arial,Helvetica,sans-serif; line-height:45px; padding:0 30px; font-size:15px!important}
-.menu li a{color:#e23a85; text-decoration:none; text-shadow:2px 0 0 #FFF}
+.menu li a{color:#e23a85; text-decoration:none; text-shadow:1px 0 0 #FFF}
 .menu li a:hover{color:#000}
 .menu li a.act{color:#000}
 
@@ -506,7 +506,7 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="file"]:hover
 .my-account-left ul.my-account-Rnav li a{ margin:0; padding:8px 15px; display:block; font-size:13px; color:#000; text-decoration:none; border:1px solid #fff; }
 .my-account-left ul.my-account-Rnav li a:hover{ margin:0; padding:8px 15px; display:block; font-size:13px; color:#000; text-decoration:none; border:1px solid #ccc;-webkit-border-radius: 5px;
 -moz-border-radius: 5px;
-border-radius: 5px;background: rgb(255,255,255); /* Old browsers */
+border-radius: 5px;background: #ededed; /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
 background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
@@ -831,3 +831,12 @@ form.normal-form .paypal div.required label{
 
 #inner-static{font-family:inherit}
 #inner-static h2, #inner-static h1{ font-family:inherit; color:inherit}
+
+.subs-box2 ul{ margin:0; padding:15px 0 0px 0;}
+.subs-box2 ul li{ margin:5px 0; padding:10px; background:#f9f6f3;list-style:none; overflow:hidden; border:1px solid #e6dcd3;-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.subs-box2 ul li:hover{ margin:5px 0; padding:10px; background:#fff; list-style:none; overflow:hidden; border:1px solid #e6dcd3;-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.subs-box2 ul li span{float:left;}
+
+.subs-box2 ul li label{ padding-left:10px; float:left; width:92%;line-height:18px;}
+.subs-box2 ul li input[type="radio"]{ vertical-align:top; float:left;}
+.subs-box2 h3{ padding:5px 25px 5px 0px;}

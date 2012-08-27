@@ -2,7 +2,7 @@
 <div class="pages index">
 <h2><?php echo __l('Pages');?></h2>
 <div class="clearfix add-block1">
-	<?php echo $this->Html->link(__l('Add'), array('controller' => 'pages', 'action' => 'add'), array('class' => 'add','title' => __l('Add'))); ?>
+	<?php //echo $this->Html->link(__l('Add'), array('controller' => 'pages', 'action' => 'add'), array('class' => 'add','title' => __l('Add'))); ?>
 </div>
 <div class="staticpage index">
 <?php echo $this->element('paging_counter');?>
@@ -30,7 +30,7 @@ foreach ($pages as $page):
 				<span><?php echo $this->Html->link(__l('View'), array('controller' => 'pages', 'action' => 'view', $page['Page']['slug']), array('class' => 'view', 'title' => __l('View')));?></span>
 				<?php endif; ?>
                 <span><?php echo $this->Html->link(__l('Edit'), array('action' => 'edit', $page['Page']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span>
-                <span><?php echo $this->Html->link(__l('Delete'), array('action' => 'delete', $page['Page']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></span>
+                <span><?php // echo $this->Html->link(__l('Delete'), array('action' => 'delete', $page['Page']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></span>
             </div>
         </div>
 		<?php echo $this->Html->cText($page['Page']['title']);?></td>
