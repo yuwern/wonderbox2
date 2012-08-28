@@ -55,6 +55,23 @@ class AppHelper extends Helper
         ));
         return $user['UserAvatar'];
     }
+	function getMonthLists()
+    {
+       return  array(
+				1=>__l('January'),
+				2 =>__l('February'),
+				3 =>__l('March'),
+				4 =>__l('April'),
+				5=>__l('May'),
+				6 =>__l('June'),
+				7=>__l('July'),
+				8=>__l('August'),
+				9 =>__l('September'),
+				10 =>__l('October'),
+				11 =>__l('November'),
+				12 =>__l('December')
+			);
+    }
 	function getWonderPointAvialable($user_id)
     {
         App::import('Model', 'User');
@@ -71,6 +88,19 @@ class AppHelper extends Helper
         ));
 		return number_format($user['User']['available_wonder_points'],0);
     }
+	function checkPackageAvialable(){
+		App::import('Model', 'PackageUser');
+        $this->PackageUser = new PackageUser();
+		$package_available = $this->PackageUser->find('count',array(
+				'conditions'=> array(
+					    'date_format(PackageUser.created, "%Y-%m") <= ' => date('Y-m'),
+					)
+		));
+		if((Configure::read('header.number_of_paid_subscriber') - $package_available)>= 1)
+		return (Configure::read('header.number_of_paid_subscriber') - $package_available);
+		else 
+		return 0;
+	}
 	function dateDiff($start , $end ) {
 		$start_ts = strtotime($start);
 		$end_ts = strtotime($end);
