@@ -615,6 +615,17 @@ class AppController extends Controller
     {
         return sprintf('%07x%1x', mt_rand(0, 0xffff) , mt_rand(0, 0x000f));
     }
+	function getDurationPeriod($no_of_month){
+		$current_date = date('d',strtotime('now'));
+		if($current_date>=15)
+			$current_duration_month = 1;
+		else
+			$current_duration_month = 0;
+		$result_details['start_date'] = date('Y-m-d',mktime(0, 0, 0, date("m") + $current_duration_month, 15, date("Y")));
+		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($result_details['start_date'])) . "+".$no_of_month." month");
+		$result_details['end_date'] = date('Y-m-d', $dateMonthAdded);
+		return $result_details;
+	}
     function _unum()
     {
         $acceptedChars = '0123456789';
