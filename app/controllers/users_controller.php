@@ -1812,7 +1812,7 @@ class UsersController extends AppController
 			'conditions'=> array(
 				'User.is_verified_user'=> 1,
 				'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
-				'User.user_type_id <>' =>ConstUserTypes::Admin
+				//'User.user_type_id <>' =>ConstUserTypes::Admin
 			),
 			'contain'=> array(
 				'UserProfile'=> array(
@@ -1844,7 +1844,7 @@ class UsersController extends AppController
 			'conditions'=> array(
 				'User.is_verified_user'=> 1,
 				'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
-				'User.user_type_id <>' =>ConstUserTypes::Admin
+				//'User.user_type_id <>' =>ConstUserTypes::Admin
 			),
 			'contain'=> array(
 				'UserProfile'=> array(
