@@ -2022,7 +2022,7 @@ class UsersController extends AppController
 								'recursive'=> -1	
 					)
 				);
-			$available_amount = ( $user['User']['available_wonder_points'] /  Configure::read('wonderpoint.no_of_wonderpoints'));
+			$available_wonderpoint =  $user['User']['available_wonder_points'];
 		 	$this->loadModel('Package');
 			 if (!empty($this->request->data)) {
 					$package = $this->Package->find('first',array(
@@ -2040,7 +2040,7 @@ class UsersController extends AppController
 									'recursive'=> 1
 						));
 					
-					$wonderpoint = $package['Package']['cost']*Configure::read('wonderpoint.no_of_wonderpoints'); 
+					$wonderpoint = Configure::read('wonderpoint.no_of_wonderpoints')* $package['PackageType']['no_of_months']; 
 					$this->loadModel('Transaction');
 					$amount = $package['Package']['cost'];
 					$user_id = $this->Auth->user('id');
@@ -2102,19 +2102,16 @@ class UsersController extends AppController
 				
 			 } 
 			$packages = array();
-			if(!empty($available_amount) && $available_amount >= 1)
+			if(!empty($available_wonderpoint) && $available_wonderpoint >= Configure::read('wonderpoint.no_of_wonderpoints'))
 			{
-				      
-						$packages = $this->Package->find('all',array(
+					$package_months  = $user['User']['available_wonder_points']/Configure::read('wonderpoint.no_of_wonderpoints');
+					$packages = $this->Package->find('all',array(
 									'conditions'=> array(
 										'Package.is_active'=> 1,
-										'Package.cost <= '=> $available_amount
+										'PackageType.no_of_months <='=> $package_months
 									),
-									
 									'recursive'=> 0
 						));
-						
-			
 			}
 			$this->set('packages',$packages);
 	}
