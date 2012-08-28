@@ -4,6 +4,9 @@
 		<?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'admin_stats') ? ' class="active"' : null; ?>
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Site Stats'), array('controller' => 'users', 'action' => 'stats'),array('title' => __l('Site Stats'))); ?></li>			<?php $class = ($this->request->params['controller'] == 'user_profiles' ||  ($this->request->params['controller'] == 'users'  && ($this->request->params['action'] == 'admin_index' || $this->request->params['action'] == 'change_password' || $this->request->params['action'] == 'admin_add' )) ) ? ' class="active"' : null; ?>            
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Users'), array('controller' => 'users', 'action' => 'index'),array('title' => __l('Users'))); ?></li>
+		  <?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'admin_member_index') ? ' class="active"' : null; 
+		  ?>
+		<li <?php echo $class;?>><?php echo $this->Html->link(__l('List of active users'), array('controller' => 'users', 'action' => 'member_index'),array('title' => __l('List of active users'))); ?></li>
 		  <?php $class = ($this->request->params['controller'] == 'subscriptions' && $this->request->params['action'] == 'index') ? ' class="active"' : null; ?>
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Subscriptions'), array('controller' => 'subscriptions', 'action' => 'index'),array('title' => __l('Subscriptions'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'settings') ? ' class="active"' : null; ?>
