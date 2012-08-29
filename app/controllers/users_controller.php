@@ -1844,7 +1844,7 @@ class UsersController extends AppController
 			'conditions'=> array(
 				'User.is_verified_user'=> 1,
 				'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
-				//'User.user_type_id <>' =>ConstUserTypes::Admin
+			//	'User.user_type_id <>' =>ConstUserTypes::Admin
 			),
 			'contain'=> array(
 				'UserProfile'=> array(
@@ -2079,7 +2079,7 @@ class UsersController extends AppController
 										'##SITE_LINK##' => Router::url('/', true) ,
 										'##PURCHASE_ON##' => strftime(Configure::read('site.datetime.format')) ,
 										'##PURCHASE_EXPIRY##' => $duration['end_date'] ,
-										'##WONDER_POINT##' => 0 ,
+										'##WONDER_POINT##' => 'None' ,
 										'##CONTACT_URL##' => Router::url(array(
 											'controller' => 'contacts',
 											'action' => 'add',
