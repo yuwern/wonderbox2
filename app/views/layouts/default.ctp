@@ -214,13 +214,13 @@ endif;
 				<div class="borderimg3 f-left"  align="center">	<?php echo Configure::read('facebook.like_box'); ?></div>
 				<div class="about borderimg4">
 					<h2><?php echo __l('About').' '.Configure::read('site.name'); ?></h2>
-					<p>WonderBox is all about discovery, it is about discovering your true beauty and about discovery of products that will help bring out the best in you. Each monthly WonderBox is filled with up to 5 samples of premium cosmetics and beauty products .<?php echo $this->Html->link(__l('read more'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' =>__l('read more')));?></p>
+					<p>WonderBox is all about discovery, it is about discovering your true beauty and about discovery of products that will help bring out the best in you. Each monthly WonderBox is filled with up to 5 samples of premium cosmetics and beauty products. <?php echo $this->Html->link(__l('Read More'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' =>__l('Read More')));?></p>
 					<span class="nadrs"><b>Address:</b></span> 
 					<span><?php echo Configure::read('site.address'); ?></span>
 					<span class="cont">
-						<b>Telephone:</b> +603 232 2323<br/>
-						<b>Fax:</b> +603 232 2323<br/>
-						<b>Email:</b> <a href="mailto: info@wonderbox.com" title="info@wonderbox.com">info@wonderbox.com</a>
+						<!-- <b>Telephone:</b> +603 232 2323<br/> -->
+						<!-- <b>Fax:</b> +603 232 2323<br/> -->
+						<b>Email:</b> <a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a>
 					</span>
 				</div>
 			</div>
