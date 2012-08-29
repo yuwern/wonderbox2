@@ -285,6 +285,10 @@ h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
 .banner_text{width:473px; float:right; margin-top:20px}
 .banner_text h1{color:#e2277c; font:bold 56px Arial,Helvetica,sans-serif; line-height:43px}
 .banner_text h3{font:normal 13px Helvetica,Arial,sans-serif; padding:25px 6px; line-height:20px}
+.banner_text .subs-left h2{ text-align:left; color:#E2277C; border-bottom:0px;}
+.banner_text .subs-left h3{ text-align:left; }
+.banner_text ul{ margin:0; padding:10px 0 0 15px}
+.banner_text ul li{ margin:0; padding:3px 0 3px 15px; list-style:none; background:url(../img/arrow.jpg) left 7px no-repeat}
 
 .hiw{text-align:center; margin-top:20px; width:617px; margin:auto; font:normal 14px Arial,Helvetica,sans-serif; color:#5d6163}
 .hiw h1{color:#e2277c; font:bold 36px Arial,Helvetica,sans-serif; line-height:43px; padding:20px 6px 0px 5px}
