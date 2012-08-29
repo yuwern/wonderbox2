@@ -6,7 +6,7 @@
                    <p> <?php echo __l('Aenean dapibus mauris id est faucibus congue. Mauris arcu libero, fringilla egestas commodo quis, porta nec urna. Donec consequat imperdiet mi id dapibus. Nulla aliquam iaculis euismod. Cras ut enim eu lorem molestie aliquam. Suspendisse eu luctus nisi.'); ?></p> <p> <?php echo __l('Vestibulum non nunc quis magna adipiscing feugiat at commodo mauris. Curabitur eget felis lorem, consectetur fringilla dui. Morbi vestibulum ipsum a nulla pulvinar ac consequat nisi vestibulum. Sed non ante quis nibh ultrices commodo. Donec in arcu eget velit porta ultrices vitae varius nunc.'); ?></p> <p> <?php echo __l('Sed scelerisque purus et mi eleifend nec sagittis nunc eleifend. Suspendisse dictum placerat volutpat. Vivamus porttitor cursus arcu, at faucibus lacus posuere quis.'); ?></p> 
                    <h3> <?php echo __l('Earn Wonderbox Points:'); ?></h3>
                    <ul>
-                   		<li> <?php echo __l('Curabitur non dolor enim. Nulla eu sem ipsum, id mattis eros.'); ?></li>
+                   		<li> <?php echo __l('Don't miss out! Only limited boxes available every month.'); ?></li>
                         <li> <?php echo __l('Aenean laoreet blandit ipsum, eu euismod elit vehicula ut.'); ?> </li>
                         <li> <?php echo __l('Duis pellentesque ornare nisi non pellentesque. Vivamus sit amet justo libero. Duis eget mi quis sapien semper eleifend. Proin bibendum tortor in magna pretium commodo.'); ?></li>
                    </ul>
