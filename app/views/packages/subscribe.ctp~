@@ -1,17 +1,14 @@
 <div class="subscribe">
-				<h1><?php echo __l('Subscribe Now'); ?></h1>
+				<h1><?php echo __l('subscribe'); ?></h1>
                 <h2><?php echo __l('And Treat Yourself to Wonderbox Box Each Month'); ?></h2>
                 <div class="subs-left">
-                <h2><?php echo __l('Do not miss out! Only limited boxes available every month.'); ?></h2>
-                   <p> <?php echo __l('Every subscription entitles you to receive your very own WonderBox that will be delivered to you via courier every month. '); ?></p> 
-                   <p> <?php echo __l('As only a limited number of WonderBoxes will be produced every month, WonderBoxes will be allocated on a first come first serve basis. Members who have pre-booked their monthly WonderBoxes with quarterly, bi-annual or annual subscriptions will be the first in line to receive these limited edition WonderBoxes.'); ?></p> 
-                   
-                   <h3> <?php echo __l('Earn more WonderPoints with longer subscriptions:'); ?></h3>
+                	<h2><?php echo __l('Don't miss out! Only limited boxes available every month.'); ?></h2>
+                   <p> <?php echo __l('Aenean dapibus mauris id est faucibus congue. Mauris arcu libero, fringilla egestas commodo quis, porta nec urna. Donec consequat imperdiet mi id dapibus. Nulla aliquam iaculis euismod. Cras ut enim eu lorem molestie aliquam. Suspendisse eu luctus nisi.'); ?></p> <p> <?php echo __l('Vestibulum non nunc quis magna adipiscing feugiat at commodo mauris. Curabitur eget felis lorem, consectetur fringilla dui. Morbi vestibulum ipsum a nulla pulvinar ac consequat nisi vestibulum. Sed non ante quis nibh ultrices commodo. Donec in arcu eget velit porta ultrices vitae varius nunc.'); ?></p> <p> <?php echo __l('Sed scelerisque purus et mi eleifend nec sagittis nunc eleifend. Suspendisse dictum placerat volutpat. Vivamus porttitor cursus arcu, at faucibus lacus posuere quis.'); ?></p> 
+                   <h3> <?php echo __l('Earn Wonderbox Points:'); ?></h3>
                    <ul>
-                   	<li> <?php echo __l('Be rewarded with WonderPoints with quarterly, bi-annual or annual subscriptions.'); ?></li>
-                        <li> <?php echo __l('Receive your WonderPoints immediately upon completing your subsciription.'); ?> </li>
-                        <li> <?php echo __l('Use WonderPoints to extend your WonderBox subscription by 1 month for 800 WonderPoints.'); ?></li>
-                        <li> <?php echo __l('Redeem a WonderBox as a giftbox to your friend by using WonderPoints.'); ?></li>
+                   		<li> <?php echo __l('Don't miss out! Only limited boxes available every month.'); ?></li>
+                        <li> <?php echo __l('Aenean laoreet blandit ipsum, eu euismod elit vehicula ut.'); ?> </li>
+                        <li> <?php echo __l('Duis pellentesque ornare nisi non pellentesque. Vivamus sit amet justo libero. Duis eget mi quis sapien semper eleifend. Proin bibendum tortor in magna pretium commodo.'); ?></li>
                    </ul>
                 </div>
                 <div class="subs-right">
