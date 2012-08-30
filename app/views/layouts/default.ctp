@@ -138,9 +138,13 @@ endif;
 			<!--	<p class="number">Sales + 603 456 1234</p> -->
 			</div>
 		  <div class="head-subs">
-		  		<?php $date_left = $this->Html->dateDiff(date('y-m-d',strtotime('now')),date('y-m-d',mktime(0, 0, 0, date("m") +1, 15, date("Y")))); ?>
-
-           	<p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16"> <?php  
+		  		<?php 
+				if(date('n',strtotime('now')) <= Configure::read('header.month'))
+				$year = 0;
+				else
+				$year = 1;
+				$date_left = $this->Html->dateDiff(date('y-m-d',strtotime('now')),date('y-m-d',mktime(0, 0, 0,Configure::read('header.month') +1, 15, date("Y")+$year))); ?>
+	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16">  <?php  
 				$current_month = date('m',strtotime('now'));
 				$current_date = date('d',strtotime('now'));
 				$current_year = date('Y',strtotime('now'));
@@ -152,8 +156,8 @@ endif;
 					$duration_month = 1;
 				$months = $this->Html->getMonthLists();
 				echo $months[Configure::read('header.month')]; 
-				?>'s</span> Wonders Edition <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
-                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  Wonderbox today as there is only <span class="f16"><?php echo
+				?>'s</span>  Wonders Edition <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
+                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  Wonderbox today as there is only <span class="f16"><?php echo 
 				$this->Html->checkPackageAvialable();?> left </span></p>
             </div>
 		</div>

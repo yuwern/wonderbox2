@@ -197,6 +197,7 @@ class PackagesController extends AppController
                          'returnUrl' => Router::url('/', true) . 'packages/express_checkout/'. $package['Package']['slug'],
 						 'invnum'=> $package['Package']['id'],	
 					     'amount'=> number_format($package['Package']['cost'],2),
+					     'curreny_code'=> Configure::read('site.currency_code')
                     );
 				 $payment_response = $this->Paypal->doSetExpressCheckout($gateway_options, $sender_info);
 				 if (!empty($payment_response) && strtoupper($payment_response['ACK']) != 'SUCCESS') {
@@ -233,7 +234,7 @@ class PackagesController extends AppController
 				'orderID'=> $orderID,
 				'description'=> $package['Package']['name'] ,
 				'amount'=> $amount,
-				'cur'=>'USD',
+				'cur'=>'RM',
 				'returnUrl'=>  Router::url(array(
                                     'controller' => 'packages',
                                     'action' => 'processpayment','molpay',
@@ -390,6 +391,7 @@ class PackagesController extends AppController
 			$post_data['TOKEN'] = $this->request->data['Package']['token'];
 			$post_data['PAYERID'] = $this->request->data['Package']['payid'];
 			$post_data['Amount'] = $package['Package']['cost'];
+			$post_data['currency_code'] = Configure::read('site.currency_code');
 			$payment_response = $this->Paypal->doExpressCheckoutPayment($post_data,$sender_info);
 			$paypal_transaction_logs['PaypalTransactionLog']['doexpresscheckout_token'] = $payment_response['TOKEN'];
 			$paypal_transaction_logs['PaypalTransactionLog']['doexpresscheckout_timestamp'] = $payment_response['TIMESTAMP'];
@@ -506,7 +508,7 @@ class PackagesController extends AppController
 							'##SITE_LINK##' => Router::url('/', true) ,
 							'##PURCHASE_ON##' => strftime(Configure::read('site.datetime.format')) ,
 							'##PURCHASE_EXPIRY##' => $end_date ,
-							'##WONDER_POINT##' => $package['Package']['no_of_wonderpoints'] ,
+							'##WONDER_POINT##' =>  !empty($package['Package']['no_of_wonderpoints'])? $package['Package']['no_of_wonderpoints']: 'None'  ,
 							'##CONTACT_URL##' => Router::url(array(
 								'controller' => 'contacts',
 								'action' => 'add',
@@ -526,7 +528,7 @@ class PackagesController extends AppController
 				$paypal_transaction_logs['PaypalTransactionLog']['transaction_id'] = $transaction_id;
 				$paypal_transaction_logs['PaypalTransactionLog']['user_id'] = $user_id;
 				$paypal_transaction_logs['PaypalTransactionLog']['package_user_id'] =  $package['Package']['id'];
-				$payment_response = array_merge($payment_response,array('no_of_months'=> $package['PackageType']['no_of_months']));
+				$payment_response = array_merge($payment_response,array('billingFrequency'=> $package['PackageType']['no_of_months'],'currency_code'=>Configure::read('site.currency_code')));
 				$profile_response = $this->Paypal->CreateRecurringPaymentsProfile($payment_response,$sender_info);
 				if(!empty($profile_response['ACK']) && strtoupper($profile_response['ACK']) == 'SUCCESS'){
 					$paypal_transaction_logs['PaypalTransactionLog']['docreaterecurringpaymentsprofile_profileid'] = $profile_response['PROFILEID'];
@@ -722,7 +724,7 @@ class PackagesController extends AppController
 										'##SITE_LINK##' => Router::url('/', true) ,
 										'##PURCHASE_ON##' => strftime(Configure::read('site.datetime.format')) ,
 										'##PURCHASE_EXPIRY##' => $end_date ,
-										'##WONDER_POINT##' => $package['Package']['no_of_wonderpoints'] ,
+										'##WONDER_POINT##' => !empty($package['Package']['no_of_wonderpoints'])? $package['Package']['no_of_wonderpoints']: 'None' ,
 										'##CONTACT_URL##' => Router::url(array(
 											'controller' => 'contacts',
 											'action' => 'add',

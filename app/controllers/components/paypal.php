@@ -351,11 +351,10 @@ class PaypalComponent extends Component
         $API_UserName = urlencode($sender_info['API_UserName']);
         $API_Password = urlencode($sender_info['API_Password']);
         $API_Signature = urlencode($sender_info['API_Signature']);
-
-        $amount = urlencode($post_info['amount']);
+	     $amount = urlencode($post_info['amount']);
         //$paymentType=urlencode('Sale');
 		$paymentType=urlencode('Authorization');
-        $currencyCode=urlencode('USD');
+        $currencyCode=urlencode($post_info['curreny_code']);
         
         $returnURL =urlencode($post_info['returnUrl']);
         $cancelURL =urlencode($post_info['cancelUrl']);
@@ -464,7 +463,7 @@ class PaypalComponent extends Component
         $API_Signature = urlencode($sender_info['API_Signature']);
 		$version = $this->do_recurring_pay_constants['version'];
 		$paymentType='Sale';
-        $currencyCode='USD';
+        $currencyCode = $post_data['currency_code'];
         $serverName = $_SERVER['SERVER_NAME'];
         $nvpStr='&TOKEN='.urlencode($post_data['TOKEN']).'&PAYERID='.urlencode($post_data['PAYERID']).'&PAYMENTACTION='.urlencode($paymentType).'&AMT='.urlencode($post_data['Amount']).'&CURRENCYCODE='.urlencode($currencyCode).'&IPADDRESS='.urlencode($serverName); 
 		$methodName = 'DoExpressCheckoutPayment';
@@ -506,17 +505,17 @@ class PaypalComponent extends Component
 		return $nvpResArray;
     }	    
     public function CreateRecurringPaymentsProfile($post_data,$sender_info=array()){
-	   $API_Endpoint = ($sender_info['is_testmode']) ? $this->masspay_url['testmode'] : $this->masspay_url['livemode'];
+	    $API_Endpoint = ($sender_info['is_testmode']) ? $this->masspay_url['testmode'] : $this->masspay_url['livemode'];
      	// Set up your API credentials, PayPal end point, and API version.
         $API_UserName = urlencode($sender_info['API_UserName']);
         $API_Password = urlencode($sender_info['API_Password']);
         $API_Signature = urlencode($sender_info['API_Signature']);
  		$desc = 'Wonderbox Recurring Subscription Billing Agreement';
-	    $currencyCode='USD';
+	    $currencyCode= $post_data['currency_code'];
+		$billingFrequency = $post_data['billingFrequency'];
 		$version = $this->do_recurring_pay_constants['version'];
-		$nvpStr='&TOKEN='.urlencode($post_data['TOKEN']).'&PROFILESTARTDATE='.urlencode($post_data['TIMESTAMP']).'&DESC='.urlencode($desc).'&AMT='.urlencode($post_data['AMT']).'&BILLINGPERIOD=Month&BILLINGFREQUENCY=12&CURRENCYCODE='.urlencode($currencyCode); 
+		$nvpStr='&TOKEN='.urlencode($post_data['TOKEN']).'&PROFILESTARTDATE='.urlencode($post_data['TIMESTAMP']).'&DESC='.urlencode($desc).'&AMT='.urlencode($post_data['AMT']).'&BILLINGPERIOD=Month&BILLINGFREQUENCY='.$billingFrequency.'&CURRENCYCODE='.urlencode($currencyCode); 
 	
-	 
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
@@ -536,9 +535,6 @@ class PaypalComponent extends Component
 		$methodName = 'CreateRecurringPaymentsProfile';
 		//NVPRequest for submitting to server
         $nvpreq="METHOD=".urlencode($methodName)."&VERSION=".urlencode($version)."&PWD=".urlencode($API_Password)."&USER=".urlencode($API_UserName)."&SIGNATURE=".urlencode($API_Signature).$nvpStr;
-
-    	echo $nvpreq;
-
         //setting the nvpreq as POST FIELD to curl
         curl_setopt($ch,CURLOPT_POSTFIELDS,$nvpreq);
     
