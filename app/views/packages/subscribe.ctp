@@ -47,7 +47,9 @@
 							<div class="js-paypal payment-details ">
 									<?php echo $this->Html->image('pay-logo.jpg',array('class'=>'f-left')); ?>
 									<div class="payment-content">
-									You will be billed <?php echo Configure::read('site.currency'); ?> <span class="js-payment-amount"><?php echo($packages[0]['Package']['cost']); ?></span> every <span class="js-payment-month-display"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> month
+									You will be billed <?php echo Configure::read('site.currency'); ?> <span class="js-payment-amount"><?php echo($packages[0]['Package']['cost']); ?></span> every <span class="js-payment-month-display"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> month(s)
+
+
 								</div>
 
 							</div>
@@ -55,7 +57,7 @@
 								<?php echo $this->Html->image('logo_visa.gif',array('width'=>65,'height'=>21)); ?><?php echo $this->Html->image('logo_mastercard.gif',array('width'=>51,'height'=>30)); ?><?php echo $this->Html->image('logo_7eleven.gif',array('width'=>42,'height'=>38)); ?><?php echo $this->Html->image('logo_myclear.gif',array('width'=>100,'height'=>38)); ?><?php echo $this->Html->image('logo_maybank2u.gif',array('width'=>130,'height'=>20)); ?><?php echo $this->Html->image('logo_pbebank.gif',array('width'=>84,'height'=>22)); ?><?php echo $this->Html->image('logo_cimbclick.gif',array('width'=>88,'height'=>15)); ?><?php echo $this->Html->image('logo_bankislam.gif',array('width'=>123,'height'=>24)); ?>
 							<?php echo $this->Html->image('logo_hongleongonline.gif',array('width'=>123,'height'=>24)); ?><?php echo $this->Html->image('logo_allianceonline.gif',array('width'=>108,'height'=>20)); ?><?php echo $this->Html->image('logo_amonline.gif',array('width'=>68,'height'=>13)); ?><?php echo $this->Html->image('logo_eonbank.gif',array('width'=>90,'height'=>13)); ?>
 								<div class="payment-content">
-									You will be billed <?php echo Configure::read('site.currency'); ?> <span class="js-payment-amount"> <?php echo($packages[0]['Package']['cost']); ?></span>  for <span class="js-payment-month-display"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span>  months subscription. If you would like to not have the hassle for renewal, kindly select Paypal as your payment option
+									You will be billed <?php echo Configure::read('site.currency'); ?> <span class="js-payment-amount"> <?php echo($packages[0]['Package']['cost']); ?></span>  for <span class="js-payment-month-display"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span>  month(s) subscription. If you would like to not have the hassle for renewal, kindly select Paypal as your payment option
 								</div>
 							</div>
 					
