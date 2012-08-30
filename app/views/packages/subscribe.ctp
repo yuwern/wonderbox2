@@ -2,7 +2,7 @@
 				<h1><?php echo __l('Subscribe Now'); ?></h1>
                 <h2><?php echo __l('And Treat Yourself to Wonderbox Box Each Month'); ?></h2>
                 <div class="subs-left">
-                <h2><?php echo __l('Do not miss out! Only limited boxes available every month.'); ?></h2>
+                <h2><?php echo __l("Don't miss out! Only limited boxes available every month."); ?></h2>
                    <p> <?php echo __l('Every subscription entitles you to receive your very own WonderBox that will be delivered to you via courier every month. '); ?></p> 
                    <p> <?php echo __l('As only a limited number of WonderBoxes will be produced every month, WonderBoxes will be allocated on a first come first serve basis. Members who have pre-booked their monthly WonderBoxes with quarterly, bi-annual or annual subscriptions will be the first in line to receive these limited edition WonderBoxes.'); ?></p> 
                    
@@ -35,7 +35,7 @@
 							
 							?>	
 							
-							<label for="month"><?php echo Configure::read('site.currency').'  '.$package['Package']['cost']; ?> WonderPoint for <?php echo $package['Package']['no_of_wonderpoints']; ?></label></li>
+							<label for="month"><?php echo Configure::read('site.currency').'  '.$package['Package']['cost']; ?> to earn <?php echo $package['Package']['no_of_wonderpoints']; ?> WonderPoints </label></li>
 							<?php endforeach; ?>
                              </ul>
                         <div class="clear"></div>
