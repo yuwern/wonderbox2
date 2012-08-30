@@ -46,7 +46,7 @@
 				<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd ):
 					echo ' -- ';
 				else:
-					echo Configure::read('site.currency'). ' '. $this->Html->cInt($transaction['Package']['cost']);
+					echo Configure::read('site.currency'). ' '. $this->Html->cFloat($transaction['Package']['cost']);
 				endif;
 				?>
             </td>
