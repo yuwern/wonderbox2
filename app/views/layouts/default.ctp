@@ -153,7 +153,7 @@ endif;
 				$months = $this->Html->getMonthLists();
 				echo $months[Configure::read('header.month')]; 
 				?>'s</span> Wonders Edition <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
-                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  month Wonder today as there is only <span class="f16"><?php echo 
+                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  Wonderbox today as there is only <span class="f16"><?php echo 
 				$this->Html->checkPackageAvialable();?> left </span></p>
             </div>
 		</div>
