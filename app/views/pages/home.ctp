@@ -9,7 +9,7 @@
 					<li>Share your discoveries with all your friends and get rewarded
                                         </ul></h3>
 					 <?php if (!$this->Auth->sessionValid()): ?>
-					<span class="f-right"><?php echo $this->Html->link(sprintf(__l('Subscribe NOW')), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('class'=>'but3','title' => sprintf(__l('Subscribe NOW'))));?></span>
+					<span class="f-right"><?php echo $this->Html->link(sprintf(__l('Join Now')), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('class'=>'but3','title' => sprintf(__l('Join Now'))));?></span>
 					<?php endif; ?>
 				</div>
 			</div>
