@@ -153,7 +153,7 @@ endif;
 				$months = $this->Html->getMonthLists();
 				echo $months[Configure::read('header.month')]; 
 				?>'s</span> Wonders Edition <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
-                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  Wonderbox today as there is only <span class="f16"><?php echo 
+                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  Wonderbox today as there is only <span class="f16"><?php echo
 				$this->Html->checkPackageAvialable();?> left </span></p>
             </div>
 		</div>
@@ -172,7 +172,7 @@ endif;
 				<li><?php echo $this->Html->link(sprintf(__l('Subscribe')), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('title' => __l('Subscribe'),'class'=> $active_class));?></li>
 				<?php if ($this->Auth->sessionValid()): ?>
 				  <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'act' : null; ?> 
-				<li><?php echo $this->Html->link(__l('Refer a Friends'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('title' => __l('Refer a Friends'),'class'=> $active_class));?></li>
+				<li><?php echo $this->Html->link(__l('Refer a Friend'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('title' => __l('Refer a Friend'),'class'=> $active_class));?></li>
 				<?php endif; ?>
 				<?php $active_class = ($this->request->params['controller'] == 'contacts' && $this->request->params['action'] == 'add' ) ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('Contact Us')), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => sprintf(__l('Contact Us')),'class'=> $active_class));?></li>	
