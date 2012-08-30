@@ -17,7 +17,7 @@ $(document).ready(function(){
 				<div class="refer-sys-pad">
                     <h1><?php echo __l('Refer a Friend, Earn WonderBox Points!'); ?></h1>
                     <p><?php echo __l("All the best things in life are meant to be shared. Tell all your friends about WonderBox that you can all disover beauty's secrets together!"); ?> </p>
-                    <p></p>
+                    <br></br>
                     <p><?php echo __l('Because members who share WonderBox are awesome, we will be rewarding you for every one of your friends who subscribes to WonderBox. You will be rewarded with 200 WonderPoints for every friend that subscribes to WonderBox'); ?> </p>
                     <div class="share-box">
                     	<div class="share-box-left">
