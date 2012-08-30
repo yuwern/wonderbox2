@@ -1,16 +1,15 @@
 <?php echo $this->element('home-page-banners-index',array('cache' => array('config' => 'site_element_cache', 'key' => 'banner-slider')));?>
 
 				<div class="banner_text">
-					<h1>Discover Your Beauty Potential</h1>
+					<h1>Discover Beauty's Secrets At Your Doorstep</h1>
 					<h3>	<ul>
 					<li>Try out new products every month
 					<li>Let our experts guide and inspire you
 					<li>Learn and explore with your WonderBox community
 					<li>Share your discoveries with all your friends and get rewarded
-					<li>All this for just RM39.90 per month
-					</ul></h3>
+                                        </ul></h3>
 					 <?php if (!$this->Auth->sessionValid()): ?>
-					<span class="f-right"><?php echo $this->Html->link(sprintf(__l('Join Us NOW')), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('class'=>'but3','title' => sprintf(__l('Join Us NOW'))));?></span>
+					<span class="f-right"><?php echo $this->Html->link(sprintf(__l('Subscribe NOW')), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('class'=>'but3','title' => sprintf(__l('Subscribe NOW'))));?></span>
 					<?php endif; ?>
 				</div>
 			</div>
