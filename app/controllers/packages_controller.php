@@ -28,16 +28,18 @@ class PackagesController extends AppController
     }
     public function index()
     {
-       $this->pageTitle = __l('packages');
+	   $this->pageTitle = __l('packages');
         $this->Package->recursive = 0;
 		$this->paginate = array(
 			'conditions'=> array(
 			'Package.is_active'=> 1
 		  )
 		);
-	    $this->set('packages', $this->paginate());
+	   $this->set('packages', $this->paginate());
     }
 	public function subscribe(){
+
+	   $this->Package->PackageUser->User->lockuser_status();
        $this->pageTitle = __l('packages');
         $this->Package->recursive = 0;
 		$this->paginate = array(
@@ -459,28 +461,26 @@ class PackagesController extends AppController
 							)
 						);
 						// Referral friend code 
+						$referred_by_user_id = 0;
 						if (!empty($user['User']['referred_by_user_id'])) { 
 							$packageUser['PackageUser']['referred_by_user_id'] = $user['User']['referred_by_user_id'];
+							$referred_by_user_id = $user['User']['referred_by_user_id'];
 						} else {
 							$cookie_value = $this->Cookie->read('referrer');
 							$refer_id = (!empty($cookie_value)) ? $cookie_value['refer_id'] : null;
 							if (!empty($refer_id)) {
 								$packageUser['PackageUser']['referred_by_user_id']  = $refer_id;
-							}
+							
+							}	
+							$referred_by_user_id = $refer_id;
 						}
 						// end Referral friend code 
 						//$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+".$package['PackageType']['no_of_months']." month");
 						//$end_date = date('Y-m-d', $dateMonthAdded);
-						$duration = $this->getDurationPeriod($package['PackageType']['no_of_months']);
+						$duration = $this->getDurationPeriod($package['PackageType']['no_of_months'],$user_id);
 						$start_date = $duration['start_date'];	
 						$end_date =  $duration['end_date'];	
-						$this->Package->PackageUser->create();
-						$packageUser['PackageUser']['package_id'] = $package['Package']['id'];
-						$packageUser['PackageUser']['user_id'] = $user_id;
-						$packageUser['PackageUser']['start_date'] = $start_date;
-						$packageUser['PackageUser']['end_date'] = $end_date;
-						$packageUser['PackageUser']['is_paid'] = 1;
-						$this->Package->PackageUser->save($packageUser);
+						$this->Package->PackageUser->savePackageUser($package['PackageType']['no_of_months'],$user_id,$package['Package']['id'],$referred_by_user_id);
 						$this->Package->PackageUser->User->updateAll(array(
 							'User.is_verified_user' => 1,
 							'User.available_wonder_points' => 'User.available_wonder_points + '. $package['Package']['no_of_wonderpoints'],
@@ -528,7 +528,7 @@ class PackagesController extends AppController
 				$paypal_transaction_logs['PaypalTransactionLog']['transaction_id'] = $transaction_id;
 				$paypal_transaction_logs['PaypalTransactionLog']['user_id'] = $user_id;
 				$paypal_transaction_logs['PaypalTransactionLog']['package_user_id'] =  $package['Package']['id'];
-				$payment_response = array_merge($payment_response,array('billingFrequency'=> $package['PackageType']['no_of_months'],'currency_code'=>Configure::read('site.currency_code')));
+				$payment_response = array_merge($payment_response,array('billingFrequency'=> $package['PackageType']['no_of_months'],'currency_code'=>Configure::read('site.currency_code'),'end_date'=>date("Y-m-d\TH:i:s\Z",strtotime($end_date))));
 				$profile_response = $this->Paypal->CreateRecurringPaymentsProfile($payment_response,$sender_info);
 				if(!empty($profile_response['ACK']) && strtoupper($profile_response['ACK']) == 'SUCCESS'){
 					$paypal_transaction_logs['PaypalTransactionLog']['docreaterecurringpaymentsprofile_profileid'] = $profile_response['PROFILEID'];
@@ -656,28 +656,22 @@ class PackagesController extends AppController
 										));
 									//$start_date = date('Y-m-d');
 									// Referral friend code 
+									$referred_by_user_id = 0;
 					                if (!empty($tempPaymentLog['TempPaymentLog']['referred_by_user_id'])) { 
-										$packageUser['PackageUser']['referred_by_user_id'] = $tempPaymentLog['TempPaymentLog']['referred_by_user_id'];
+										$referred_by_user_id = $tempPaymentLog['TempPaymentLog']['referred_by_user_id'];
 									} else {
 										$cookie_value = $this->Cookie->read('referrer');
 										$refer_id = (!empty($cookie_value)) ? $cookie_value['refer_id'] : null;
 										if (!empty($refer_id)) {
-											$packageUser['PackageUser']['referred_by_user_id']  = $refer_id;
+											$referred_by_user_id  = $refer_id;
 										}
 									}
 									// end Referral friend code 
-									//$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+".$package['PackageType']['no_of_months']." month");
-									//$end_date = date('Y-m-d', $dateMonthAdded);
-									$duration = $this->getDurationPeriod($package['PackageType']['no_of_months']);
+									$duration = $this->getDurationPeriod($package['PackageType']['no_of_months'],$user_id);
+									$this->Package->PackageUser->savePackageUser($package['PackageType']['no_of_months'],$user_id,$package['Package']['id'],	$referred_by_user_id);
+									
 									$start_date = $duration['start_date'];	
 									$end_date =  $duration['end_date'];	
-									$this->Package->PackageUser->create();
-									$packageUser['PackageUser']['package_id'] = $package['Package']['id'];
-									$packageUser['PackageUser']['user_id'] = $user_id;
-									$packageUser['PackageUser']['start_date'] = $start_date;
-									$packageUser['PackageUser']['end_date'] = $end_date;
-									$packageUser['PackageUser']['is_paid'] = 1;
-									$this->Package->PackageUser->save($packageUser);
 							        $this->Package->PackageUser->User->updateAll(array(
 										'User.is_verified_user' => 1,
 										'User.available_wonder_points' => 'User.available_wonder_points + '. $package['Package']['no_of_wonderpoints'],

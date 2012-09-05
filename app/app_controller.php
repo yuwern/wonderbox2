@@ -615,13 +615,29 @@ class AppController extends Controller
     {
         return sprintf('%07x%1x', mt_rand(0, 0xffff) , mt_rand(0, 0x000f));
     }
-	function getDurationPeriod($no_of_month){
-		$current_date = date('d',strtotime('now'));
-		if($current_date>=15)
-			$current_duration_month = 1;
-		else
-			$current_duration_month = 0;
-		$result_details['start_date'] = date('Y-m-d',mktime(0, 0, 0, date("m") + $current_duration_month, 15, date("Y")));
+	function getDurationPeriod($no_of_month,$user_id){
+		$this->loadModel('User');	
+		$user =  $this->User->find('first', array( 
+				   'conditions' => array(
+						'User.id' => $user_id,
+						'User.is_verified_user' => 1,
+						
+					),
+				   'fields' => array(
+						'User.subscription_expire_date'
+					),
+					'recursive' => -1
+		));
+		if(!empty($user['User']['subscription_expire_date'])){
+			$date_array = explode('-',$user['User']['subscription_expire_date']);
+			$year = $date_array[0];
+			$month = $date_array[1];
+		} else {
+			$month = Configure::read('header.month');
+			$year = date("Y");
+		}
+		date_default_timezone_set('UTC');
+		$result_details['start_date'] = date('Y-m-d',mktime(0, 0, 0, $month , 15, $year));
 		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($result_details['start_date'])) . "+".$no_of_month." month");
 		$result_details['end_date'] = date('Y-m-d', $dateMonthAdded);
 		return $result_details;

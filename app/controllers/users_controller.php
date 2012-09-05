@@ -2053,14 +2053,9 @@ class UsersController extends AppController
 					$data['Transaction']['gateway_fees'] = 0;
 					$data['Transaction']['transaction_type_id'] = ConstTransactionTypes::PaidlAmountToCompany;
 					$transaction_id = $this->Transaction->log($data);
-					$duration = $this->getDurationPeriod($package['PackageType']['no_of_months']);
-					$this->Package->PackageUser->create();
-					$packageUser['PackageUser']['package_id'] = $package['Package']['id'];
-					$packageUser['PackageUser']['user_id'] = $user_id;
-					$packageUser['PackageUser']['start_date'] = $duration['start_date'];
-					$packageUser['PackageUser']['end_date'] = $duration['end_date'];
-					$packageUser['PackageUser']['is_paid'] = 1;
-					$this->Package->PackageUser->save($packageUser);
+					$duration = $this->getDurationPeriod($package['PackageType']['no_of_months'],$user_id);
+					$this->Package->PackageUser->savePackageUser($package['PackageType']['no_of_months'],$user_id,$package['Package']['id'],0);
+						
 			        $this->User->updateAll(array(
 										'User.is_verified_user' => 1,
 										'User.available_wonder_points' => 'User.available_wonder_points - '. $wonderpoint,

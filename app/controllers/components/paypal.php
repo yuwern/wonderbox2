@@ -514,7 +514,7 @@ class PaypalComponent extends Component
 	    $currencyCode= $post_data['currency_code'];
 		$billingFrequency = $post_data['billingFrequency'];
 		$version = $this->do_recurring_pay_constants['version'];
-		$nvpStr='&TOKEN='.urlencode($post_data['TOKEN']).'&PROFILESTARTDATE='.urlencode($post_data['TIMESTAMP']).'&DESC='.urlencode($desc).'&AMT='.urlencode($post_data['AMT']).'&BILLINGPERIOD=Month&BILLINGFREQUENCY='.$billingFrequency.'&CURRENCYCODE='.urlencode($currencyCode); 
+		$nvpStr='&TOKEN='.urlencode($post_data['TOKEN']).'&PROFILESTARTDATE='.urlencode($post_data['end_date']).'&DESC='.urlencode($desc).'&AMT='.urlencode($post_data['AMT']).'&BILLINGPERIOD=Month&BILLINGFREQUENCY='.$billingFrequency.'&CURRENCYCODE='.urlencode($currencyCode); 
 	
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,$API_Endpoint);

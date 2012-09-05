@@ -717,5 +717,14 @@ class User extends AppModel
         }
         return false;
     }
+	function lockuser_status() {
+		/* Lock the user status */
+       	$this->updateAll(array(
+            'User.is_verified_user' => 0
+        ) , array(
+            'User.is_verified_user'=> 1,
+			'User.subscription_expire_date <' => _formatDate('Y-m-d', date('Y-m-d') , true) 
+        ));
+	}
 }
 ?>

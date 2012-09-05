@@ -13,10 +13,11 @@
 							<?php  $count =1 ;	foreach($packages as $package): 
 						?>    	<li>
 					
-								<?php 	if($count == 1){
+								<?php 	
+									if($count == 1){
 								$default_value = $package['Package']['id'];
 								$count++;
-							} 	
+							} 
 							$wonder_points = Configure::read('wonderpoint.no_of_wonderpoints') * $package['PackageType']['no_of_months'];
 							echo $this->Form->input('User.package_type_id',array('options'=>array($package['Package']['id']=>'<strong>'.$package['PackageType']['name'].' - '. $wonder_points.'</strong>'),'type'=>'radio','default'=>!empty($default_value)?$default_value:'','legend' => false)); ?>
 						<?php endforeach; 	?>

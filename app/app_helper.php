@@ -90,12 +90,13 @@ class AppHelper extends Helper
     }
 	function checkPackageAvialable(){
 		App::import('Model', 'PackageUser');
+		date_default_timezone_set('UTC');
         $this->PackageUser = new PackageUser();
-		$package_available = $this->PackageUser->find('count',array(
-				'conditions'=> array(
-					    'date_format(PackageUser.created, "%Y-%m") <= ' => date('Y-m'),
-					)
-		));
+		$start_date = date('Y-'.Configure::read('header.month').'-15');
+		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+1 month");
+		$end_date= date('Y-m-d', $dateMonthAdded);
+		$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date >= '=>$start_date,
+				'PackageUser.end_date <= '=>$end_date)));
 		if((Configure::read('header.number_of_paid_subscriber') - $package_available)>= 1)
 		return (Configure::read('header.number_of_paid_subscriber') - $package_available);
 		else 
