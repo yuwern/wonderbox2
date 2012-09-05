@@ -16,7 +16,9 @@
 								<?php 	if($count == 1){
 								$default_value = $package['Package']['id'];
 								$count++;
-							} echo $this->Form->input('User.package_type_id',array('options'=>array($package['Package']['id']=>'<strong>'.$package['PackageType']['name'].'</strong>'),'type'=>'radio','default'=>!empty($default_value)?$default_value:'','legend' => false)); ?>
+							} 	
+							$wonder_points = Configure::read('wonderpoint.no_of_wonderpoints') * $package['PackageType']['no_of_months'];
+							echo $this->Form->input('User.package_type_id',array('options'=>array($package['Package']['id']=>'<strong>'.$package['PackageType']['name'].' - '. $wonder_points.'</strong>'),'type'=>'radio','default'=>!empty($default_value)?$default_value:'','legend' => false)); ?>
 						<?php endforeach; 	?>
 							 
 						</ul>
