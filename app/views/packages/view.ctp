@@ -5,7 +5,12 @@
                     <ul>
                     	<li><label><?php echo __l('Package Name:'); ?></label><span> <?php echo $package['Package']['name'];?></span></li>
                         <li><label><?php echo __l('Plan:'); ?></label><span> <?php echo $package['PackageType']['name'];?></span></li>
-                        <li><label><?php echo __l('Billing Cycle:'); ?></label><span><?php echo $package['Package']['name'];?></span></li>
+                        <li><label><?php echo __l('Billing Cycle:'); ?></label><span><?php
+						if(!empty($package_type) && $package_type == ConstPaymentGateways::MOLPay):
+						 echo __l('Not Applicable');
+						else:
+						echo __l('Every Billing Cycle');
+						 endif;	?></span></li>
 						<?php if(!empty($package['Package']['no_of_wonderpoints'])): ?>
                         <li><label><?php echo __l('Billing Amount:'); ?></label><span><?php echo __l('Earn').' '.$package['Package']['no_of_wonderpoints'].' '. __l('Wonder Points Every Billing Cycle');?></span></li>
 						<?php endif; ?>	

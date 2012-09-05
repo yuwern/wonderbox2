@@ -195,7 +195,7 @@ class PackagesController extends AppController
 						 'description'=> $package['Package']['name'],	
 					     'cancelUrl' => Router::url('/', true) . 'packages/payment_cancel',
                          'returnUrl' => Router::url('/', true) . 'packages/express_checkout/'. $package['Package']['slug'],
-						 'invnum'=> $package['Package']['id'],	
+						 'invnum'=> time(),	
 					     'amount'=> number_format($package['Package']['cost'],2),
 					     'curreny_code'=> Configure::read('site.currency_code')
                     );
