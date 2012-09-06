@@ -844,3 +844,36 @@ form.normal-form .paypal div.required label{
 .subs-box2 ul li label{ padding-left:10px; float:left; width:92%;line-height:18px;}
 .subs-box2 ul li input[type="radio"]{ vertical-align:top; float:left;}
 .subs-box2 h3{ padding:5px 25px 5px 0px;}
+
+form.search-form1 div.input, form.search-form1 div.select {
+    float: left;
+    margin: 0;
+    min-height: 35px;
+    padding: 0;
+}
+form.search-form1 div.submit input{
+    background: url("../img/submit-right.png") no-repeat scroll right top transparent;
+    border: 0 none;
+    color: #333333;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    height: 31px;
+    padding: 0 5px 3px 0;
+    width: auto;
+}
+form.search-form1 div.submit {
+    background: url("../img/submit-left.png") no-repeat scroll left top transparent;
+    float: left;
+    height: 31px;
+    margin: 0 5px 0 0;
+    padding: 0 0 0 5px;
+}
+form.search-form1 div.input label{padding:3px 10px 0pt 0pt;  color:#666; font-size:13px}
+form.search-form1 div.select select, form.search-form1 div.text input {
+    border: 1px solid #DDDDDD;
+    font-size: 12px;
+ margin: 0 5px 0 6px;
+    padding: 5px 2px;
+      width: 131px;
+}

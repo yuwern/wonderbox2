@@ -1,10 +1,34 @@
-<?php /* SVN: $Id: index_list.ctp 99 2008-07-09 09:33:42Z rajesh_04ag02 $ */ ?>
-<div class="packageUsers index">
-<h2><?php echo __l('Package Users');?></h2>
+<?php 
+	if(!empty($this->request->params['isAjax'])):
+		echo $this->element('flash_message');
+	endif;
+?>
+<div class="packageusers index js-response">
+<h2><?php echo __l('List of active users');?></h2>
+            <?php echo $this->Form->create('PackageUser', array('type' => 'get', 'class' => 'normal1 search-form1 clearfix', 'action'=>'index')); ?>
+			<?php $months = $this->Html->getMonthLists();
+			$years = $this->Html->getYearLists();
+			echo $this->Form->input('month', array('options'=>$months,'empty'=>__l('Please select'),'label'=> __l('Month'))); ?>
+			<?php echo $this->Form->input('year', array('label'=> __l('Year'),'empty'=>__l('Please select'),'options'=> $years)); ?>
+			<?php echo $this->Form->input('email', array('label'=> __l('Email'))); ?>
+            <?php echo $this->Form->submit(__l('Search'));?>
+            <?php echo $this->Form->end(); ?>
+
+     <div class="clearfix add-block1"><?php 
+	if (!empty($packageUsers)):
+	  echo $this->Html->link(__l('PDF'), array_merge(array('controller' => 'package_users', 'action' => 'index', 'ext' => 'pdf', 'admin' => true), $this->request->params['named']), array('title' => __l('PDF'), 'class' => 'pdf','target'=>'__blank'));
+	 endif; 
+	 ?></div>
 <?php echo $this->element('paging_counter');?>
-<ol class="list" start="<?php echo $paginator->counter(array(
-    'format' => '%start%'
-));?>">
+<table class="list">
+    <tr> 
+        <th><div class="js-pagination"><?php echo __l('Name');?></div></th>
+        <th><div class="js-pagination"><?php echo __l('Email');?></div></th>
+        <th><div class="js-pagination"><?php echo __l('Address');?></div></th>
+        <th><div class="js-pagination"><?php echo __l('Mobile No');?></div></th>
+        <th><div class="js-pagination"><?php echo __l('phone No');?></div></th>
+        <th><div class="js-pagination"><?php echo __l('Status');?></div></th>
+     </tr>
 <?php
 if (!empty($packageUsers)):
 
@@ -14,33 +38,32 @@ foreach ($packageUsers as $packageUser):
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
 	}
+	$address = $packageUser['User']['UserShipping'][0]['address'].','.$packageUser['User']['UserShipping'][0]['State']['name'].','.$packageUser['User']['UserShipping'][0]['Country']['name'].','.$packageUser['User']['UserShipping'][0]['zip_code'];
 ?>
-	<li<?php echo $class;?>>
-		<p><?php echo $this->Html->cInt($packageUser['PackageUser']['id']);?></p>
-		<p><?php echo $this->Html->cDateTime($packageUser['PackageUser']['created']);?></p>
-		<p><?php echo $this->Html->cDateTime($packageUser['PackageUser']['modified']);?></p>
-		<p><?php echo $this->Html->link($this->Html->cText($packageUser['User']['username']), array('controller'=> 'users', 'action' => 'view', $packageUser['User']['username']), array('escape' => false));?></p>
-		<p><?php echo $this->Html->link($this->Html->cText($packageUser['Package']['name']), array('controller'=> 'packages', 'action' => 'view', $packageUser['Package']['slug']), array('escape' => false));?></p>
-		<p><?php echo $this->Html->cDate($packageUser['PackageUser']['start_date']);?></p>
-		<p><?php echo $this->Html->cDate($packageUser['PackageUser']['end_date']);?></p>
-		<p><?php echo $this->Html->cBool($packageUser['PackageUser']['is_paid']);?></p>
-		<div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $packageUser['PackageUser']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $packageUser['PackageUser']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div>
-	</li>
+	<tr<?php echo $class;?>>
+	      <td>  <?php echo $this->Html->cText($packageUser['User']['UserProfile']['first_name']);?></td>
+          <td>  <?php echo $this->Html->cText($packageUser['User']['email']);?></td>
+          <td>  <?php echo $this->Html->cText($address);?></td>
+          <td>  <?php echo $this->Html->cText($packageUser['User']['UserShipping'][0]['contact_no']);?></td>
+          <td>  <?php echo $this->Html->cText($packageUser['User']['UserShipping'][0]['contact_no1']);?></td>
+          <td>  <?php echo date("F Y",strtotime($packageUser['PackageUser']['start_date']));?></td>
+	</tr>
 <?php
     endforeach;
 else:
 ?>
-	<li>
-		<p class="notice"><?php echo __l('No Package Users available');?></p>
-	</li>
+	<tr>
+		<td colspan="7" class="notice"><?php echo __l('No active users list available');?></td>
+	</tr>
 <?php
 endif;
 ?>
-</ol>
+</table>
 
 <?php
-if (!empty($packageUsers)) {
-    echo $this->element('paging_links');
-}
-?>
+if (!empty($packageUsers)) { ?>
+     <div class="js-pagination">
+                        <?php echo $this->element('paging_links'); ?>
+                    </div>
+<?php } ?>
 </div>

@@ -2,6 +2,17 @@
 class PackageUsersController extends AppController
 {
     public $name = 'PackageUsers';
+	
+    public $disabledFields = array(
+		'PackageUser.q',
+		'PackageUser.month',
+		'PackageUser.year',
+    );
+    public function beforeFilter()
+    {
+        $this->Security->disabledFields = $this->disabledFields;
+        parent::beforeFilter();   
+    }
     public function index()
     {
         $this->pageTitle = __l('packageUsers');
@@ -170,9 +181,92 @@ class PackageUsersController extends AppController
     }
     public function admin_index()
     {
-        $this->pageTitle = __l('packageUsers');
-        $this->PackageUser->recursive = 0;
-        $this->set('packageUsers', $this->paginate());
+        $this->pageTitle = __l('List of active Users');
+	    $this->_redirectGET2Named(array(
+            'q',
+			'month',
+			'year',
+			'email',
+        ));
+		$conditions = array(
+				'User.is_verified_user'=> 1,
+				'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
+			);
+		if(!empty($this->request->params['named']['month']) &&!empty($this->request->params['named']['year']))
+		{
+			$start_date =$this->request->params['named']['year'].'-'.$this->request->params['named']['month'].'-15';
+			$conditions['PackageUser.start_date'] = $start_date;
+			$this->request->data['PackageUser']['year'] = $this->request->params['named']['year'];
+			$this->request->data['PackageUser']['month'] = $this->request->params['named']['month'];
+
+		}
+		if(!empty($this->request->params['named']['email']))
+		{
+			$start_date =$this->request->params['named']['year'].'-'.$this->request->params['named']['month'].'-15';
+			$conditions['User.email'] = 'devuser@gmail.com';
+			$this->request->data['PackageUser']['email'] = $this->request->params['named']['email'];
+		}
+		
+        if ($this->RequestHandler->prefers('pdf')) {
+			$packageUsers = $this->PackageUser->find('all',array(
+				'conditions'=> $conditions,
+				'contain'=> array(
+					'User' => array(
+						'UserProfile'=> array(
+							'fields'=> array(
+								'UserProfile.first_name',
+							)	
+						 ),
+						'UserShipping'=> array(
+							'State'=> array(
+								'fields'=> array(
+									'State.name'
+								)
+							),
+							'Country'=> array(
+								'fields'=> array(
+									'Country.name'
+								)
+							)
+						),
+					)
+				),
+				'order'=> array(
+					'PackageUser.id'=> 'desc'
+				)
+			));
+		} else {
+			$this->PackageUser->recursive = 2;
+			  $this->paginate = array(
+				'conditions'=> $conditions,
+				'contain'=> array(
+					'User' => array(
+						'UserProfile'=> array(
+							'fields'=> array(
+								'UserProfile.first_name',
+							)	
+						 ),
+						'UserShipping'=> array(
+							'State'=> array(
+								'fields'=> array(
+									'State.name'
+								)
+							),
+							'Country'=> array(
+								'fields'=> array(
+									'Country.name'
+								)
+							)
+						),
+					)
+				),
+				'order'=> array(
+					'PackageUser.id'=> 'desc'
+				)
+			);
+			$packageUsers = $this->paginate();
+		}
+		$this->set('packageUsers', $packageUsers);
     }
     public function admin_view($id = null)
     {

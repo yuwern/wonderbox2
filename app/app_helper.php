@@ -72,6 +72,14 @@ class AppHelper extends Helper
 				12 =>__l('December')
 			);
     }
+	function getYearLists(){
+               $array = range(2012, 2025) ;
+			   $years = array();
+			   foreach($array as $val){
+				$years[$val] = $val;
+			   }
+			 return $years;
+	}
 	function getWonderPointAvialable($user_id)
     {
         App::import('Model', 'User');
