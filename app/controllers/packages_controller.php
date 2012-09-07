@@ -204,6 +204,11 @@ class PackagesController extends AppController
 				 $payment_response = $this->Paypal->doSetExpressCheckout($gateway_options, $sender_info);
 				 if (!empty($payment_response) && strtoupper($payment_response['ACK']) != 'SUCCESS') {
                     $this->Session->setFlash(sprintf(__l('%s') , $payment_response['L_LONGMESSAGE0']) , 'default', null, 'error');
+					 $this->redirect(array(
+						'controller'=>'pages',
+						'action'=>'home',
+						)
+					);
                     return;
                  }
 				  else {
@@ -539,8 +544,9 @@ class PackagesController extends AppController
 					$paypal_transaction_logs['PaypalTransactionLog']['docreaterecurringpaymentsprofile_version'] = $profile_response['VERSION'];
 					$paypal_transaction_logs['PaypalTransactionLog']['docreaterecurringpaymentsprofile_build'] = $profile_response['BUILD'];
 				}
-				$this->Package->PackageUser->PaypalTransactionLog->create();
-				$this->Package->PackageUser->PaypalTransactionLog->save($paypal_transaction_logs,false);
+				$this->loadModel('PaypalTransactionLog');
+				$this->PaypalTransactionLog->create();
+				$this->PaypalTransactionLog->save($paypal_transaction_logs,false);
 				$this->Session->setFlash(__l('Payment is done successfully..') , 'default', null, 'success');
 				$this->redirect(array(
 					'controller' => 'transactions',
@@ -555,7 +561,6 @@ class PackagesController extends AppController
 				));
 			}
 		}
-
  	}
 	public function payment_cancel()
     {

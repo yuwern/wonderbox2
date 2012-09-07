@@ -23,7 +23,7 @@ class PackageUser extends AppModel
         ),
 
     );
-	public $hasOne = array(
+	/*public $hasOne = array(
         'PaypalTransactionLog' => array(
             'className' => 'PaypalTransactionLog',
             'foreignKey' => 'package_user_id',
@@ -32,7 +32,7 @@ class PackageUser extends AppModel
             'fields' => '',
             'order' => ''
         ) ,
-     );
+     );*/
     function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
