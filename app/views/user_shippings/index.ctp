@@ -33,7 +33,7 @@
 								else:
 								?>
 							    <li class="t-data">
-                                	<div class="t-c1"><span><?php echo __l('No Shipping information avialable'); ?></span></div>
+                                	<div class="t-c1"><span><?php echo __l('No Shipping information available'); ?></span></div>
 									<div class="t-c2">&nbsp;</div>
 									<div class="t-c3"><span><?php echo $this->Html->link(__l('Add'), array('controller' => 'user_shippings', 'action' => 'add'),array('title' => __l('Add'),'class'=>'btn3')); ?></span></div>
                                   <div class="clear"></div>
