@@ -144,7 +144,7 @@ endif;
 				else
 				$year = 1;
 				$date_left = $this->Html->dateDiff(date('y-m-d',strtotime('now')),date('y-m-d',mktime(0, 0, 0,Configure::read('header.month'), 15, date("Y")+$year))); ?>
-	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo__1('15'); ?> days</span> left for <span class="f16">  <?php
+	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> 15 days</span> left for <span class="f16">  <?php
 				$current_month = date('m',strtotime('now'));
 				$current_date = date('d',strtotime('now'));
 				$current_year = date('Y',strtotime('now'));
