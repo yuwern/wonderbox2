@@ -139,7 +139,7 @@ endif;
 			</div>
 		  <div class="head-subs">
 		  		<?php 
-				if(date('n',strtotime('now')) < Configure::read('header.month'))
+				if(date('n',strtotime('now')) <= Configure::read('header.month'))
 				$year = 0;
 				else
 				$year = 1;
