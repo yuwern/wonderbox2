@@ -492,6 +492,10 @@ class AppController extends Controller
 			'packages/express_checkout',
 			'packages/index',
 			'packages/subscribe',
+			'brands/index',
+			'brands/view',
+			'products/index',
+			'products/view',
         );
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];
         if (!in_array($cur_page, $exception_array) && $this->request->params['action'] != 'flashupload') {
@@ -733,6 +737,47 @@ class AppController extends Controller
         @closedir($handle);
         @rmdir($dir);
         return true;
+    }
+	public function admin_update()
+    {
+        $this->autoRender = false;
+        if (!empty($this->request->data[$this->modelClass])) {
+            $r = $this->request->data[$this->modelClass]['r'];
+            $actionid = $this->request->data[$this->modelClass]['more_action_id'];
+            unset($this->request->data[$this->modelClass]['r']);
+            unset($this->request->data[$this->modelClass]['more_action_id']);
+            $selectedIds = array();
+            foreach($this->data[$this->modelClass] as $primary_key_id => $is_checked) {
+                if ($is_checked['id']) {
+                    $selectedIds[] = $primary_key_id;
+                }
+            }
+            if ($actionid && !empty($selectedIds)) {
+                if ($actionid == ConstMoreAction::Inactive) {
+                    $this->{$this->modelClass}->updateAll(array(
+                        $this->modelClass.'.is_active' => 0,
+                    ) , array(
+                        $this->modelClass.'.id' => $selectedIds
+                    ));
+                    $this->Session->setFlash(__l('Checked '.Inflector::pluralize(strtolower(strtolower($this->modelClass))).' has been inactivated') , 'default', null, 'success');
+                } else if ($actionid == ConstMoreAction::Active) {
+                    $this->{$this->modelClass}->updateAll(array(
+                        $this->modelClass.'.is_active' => 1
+                    ) , array(
+                        $this->modelClass.'.id' => $selectedIds
+                    ));
+                     $this->Session->setFlash(__l('Checked '.Inflector::pluralize(strtolower(strtolower($this->modelClass))).'  has been activated') , 'default', null, 'success');
+                } else if ($actionid == ConstMoreAction::Delete) {
+                        $this->{$this->modelClass}->deleteAll(array(
+                        $this->modelClass.'.id' => $selectedIds
+                    ));
+                    $this->Session->setFlash(__l('Checked '.Inflector::pluralize(strtolower(strtolower($this->modelClass))).'  has been deleted') , 'default', null, 'success');
+                } 
+            }
+        }
+        $this->redirect(array(
+                'action' => 'index'
+         ));
     }
 		
 }
