@@ -1,2 +1,25 @@
-.menu li{ display:inline;color:#e23a85;font:normal 13px arial;line-height:45px;padding:0 30px;}
+.menu li{ display:inline !important;color:#e23a85;font:normal 13px arial;line-height:45px;padding:0 24px;}
 .borderimg{ border:1px solid #f9d1e3;padding:5px;width:297px;;margin-bottom:10px;}
+
+.brand-right{ position:relative; z-index:12000; }
+.brand-right #slider2 .panel ul li{ margin-bottom:20px;}
+
+.get-slide2-right .choose-box ul.checkbox{ padding:0; margin:0 110px 0 0; overflow:hidden;}
+
+.slide4 ul{ overflow:hidden; padding-bottom:5px; margin-bottom:5px !important;}
+.slide8 ul{ margin-right:100px !important; width:350px;}
+.slide13 ul{margin-right:0px !important; margin-bottom:5px; overflow:hidden;}
+.checkbox{width:60%;}
+
+.slide13 ul{ margin-bottom:5px !important;}
+
+.left-arrow {
+    background: url("../img/getstarted_left_arrow.png") repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 56px;
+    left: 7px !important;
+    position: absolute;
+    top: 248px;
+    width: 51px;
+    z-index: 10000;
+}

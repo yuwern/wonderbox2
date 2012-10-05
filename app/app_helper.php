@@ -110,6 +110,34 @@ class AppHelper extends Helper
 		else 
 		return 0;
 	}
+	function beautyProfileDetails($question_id){
+		App::import('Model', 'BeautyProfile');
+		$this->BeautyProfile = new BeautyProfile();
+		$beautyprofies = $this->BeautyProfile->find('all',array(
+			'conditions'=> array(
+				'BeautyProfile.beauty_question_id'=> $question_id
+			),
+			'fields'=> array(
+				'SUM(BeautyProfile.answer1) as Answer1',
+				'SUM(BeautyProfile.answer2) as Answer2',
+				'SUM(BeautyProfile.answer3) as Answer3',
+				'SUM(BeautyProfile.answer4) as Answer4',
+				'SUM(BeautyProfile.answer5) as Answer5',
+				'SUM(BeautyProfile.answer6) as Answer6',
+				'SUM(BeautyProfile.answer7) as Answer7',
+				'SUM(BeautyProfile.answer8) as Answer8',
+				'SUM(BeautyProfile.answer9) as Answer9',
+				'SUM(BeautyProfile.answer10) as Answer10',
+				'SUM(BeautyProfile.answer11) as Answer11',
+				'SUM(BeautyProfile.answer12) as Answer12',
+				'BeautyProfile.beauty_question_id',
+				'BeautyQuestion.name',
+				'BeautyQuestion.beauty_answer_count',
+
+			),
+		));
+		return $beautyprofies[0];
+	}
 	function dateDiff($start , $end ) {
 		$start_ts = strtotime($start);
 		$end_ts = strtotime($end);

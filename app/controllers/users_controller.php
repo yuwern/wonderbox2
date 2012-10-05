@@ -412,7 +412,7 @@ class UsersController extends AppController
                         }
                     //    if (!Configure::read('user.is_email_verification_for_register') and Configure::read('user.is_auto_login_after_register')) {
 						    if (Configure::read('user.is_auto_login_after_register')) {
-						      $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', null, 'success');
+						   //   $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', null, 'success');
                             if ($this->Auth->login($this->request->data)) {
 
                                  $this->User->UserLogin->insertUserLogin($this->Auth->user('id'));
@@ -432,9 +432,9 @@ class UsersController extends AppController
                                     $this->redirect(Router::url('/', true) . $this->request->data['User']['f']);
                                 }
                                  $this->redirect(array(
-                                        'controller' => 'pages',
-                                        'action' => 'home'
-                                    ));
+									 'controller' => 'beauty_profiles',
+									 'action' => 'quiz'
+								 ));
                                 }
                           
                         }
@@ -454,8 +454,8 @@ class UsersController extends AppController
 							}	
                         }
                         $this->redirect(array(
-                            'controller' => 'users',
-                            'action' => 'thanks'
+                            'controller' => 'beauty_profiles',
+                            'action' => 'quiz'
                         ));
                     }
                 } else {

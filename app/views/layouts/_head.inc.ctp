@@ -8,7 +8,8 @@
 	//$this->Html->css('colorpicker', null, array('inline' => false));
 //	$this->Html->css('style');
 	//$this->Html->css('widget', null, array('inline' => false));
-	$this->Html->css('ie7', null, array('inline' => false));
+	//$this->Html->css('ie7', null, array('inline' => false));
+	$this->Html->css('anythingslider', null, array('inline' => false));
 	//$this->Html->css('easySlider', null, array('inline' => false));
 	
 		$this->Javascript->codeBlock('var cfg = ' . $this->Javascript->object($js_vars_for_layout) , array('inline' => false));
@@ -33,6 +34,7 @@
 	//	$this->Javascript->link('libs/jquery.address-1.2.1', false);
 		$this->Javascript->link('libs/jquery.flash', false);
 		$this->Javascript->link('libs/jquery.showcase', false);
+		$this->Javascript->link('libs/jquery.anythingslider', false);
 		//$this->Javascript->link('libs/jcarousellite_1.0.1', false);
 	//	$this->Javascript->link('libs/widgets.js', false);
     	$this->Javascript->link('common', false);

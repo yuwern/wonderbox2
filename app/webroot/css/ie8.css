@@ -1,0 +1,10 @@
+.left-arrow {
+    background: url("../img/getstarted_left_arrow.png") repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 56px;
+    left: 7px !important;
+    position: absolute;
+    top: 248px;
+    width: 51px;
+    z-index: 10000;
+}

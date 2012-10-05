@@ -9,6 +9,14 @@
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('List of active users'), array('controller' => 'package_users', 'action' => 'admin_index'),array('title' => __l('List of active users'))); ?></li>
 		  <?php $class = ($this->request->params['controller'] == 'subscriptions' && $this->request->params['action'] == 'index') ? ' class="active"' : null; ?>
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Subscriptions'), array('controller' => 'subscriptions', 'action' => 'index'),array('title' => __l('Subscriptions'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'categories') ? ' class="active"' : null; ?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Categories'), array('controller' => 'categories', 'action' => 'index'),array('title' => __l('Categories'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'brands') ? ' class="active"' : null; ?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Brands'), array('controller' => 'brands', 'action' => 'index'),array('title' => __l('Brands'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'products') ? ' class="active"' : null; ?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Products'), array('controller' => 'products', 'action' => 'index'),array('title' => __l('Products'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'beauty_questions' && $this->request->params['action'] == 'chart') ? ' class="active"' : null; ?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Beauty Profile Reports'), array('controller' => 'beauty_questions', 'action' => 'chart'),array('title' => __l('Beauty Profile Reports'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'settings') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Settings'), array('controller' => 'settings', 'action' => 'index'),array('title' => __l('Settings'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'email_templates') ? ' class="active"' : null; ?>

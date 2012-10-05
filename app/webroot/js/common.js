@@ -1077,7 +1077,6 @@ jQuery(document).ready(function($) {
 	    $('.' + $(this).metadata().container).slideToggle('slow');
 	       if ($('.' + $(this).metadata().hide_container)) {
             $('.' + $(this).metadata().hide_container).hide('slow');
-            $('.js-add-friend').show();
         }
         return false;
     });

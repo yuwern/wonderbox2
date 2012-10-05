@@ -26,7 +26,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <!--[if IE 7]>
-	<link rel="stylesheet" media="screen,projection" type="text/css" href="css/ie7.css" />
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo Router::url('/', true);?>css/ie7.css" />
+<![endif]-->
+<!--[if IE 8]>
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="<?php echo Router::url('/', true);?>css/ie8.css" />
 <![endif]-->
 </head>
 <head>
@@ -144,7 +147,7 @@ endif;
 				else
 				$year = 1;
 				$date_left = $this->Html->dateDiff(date('y-m-d',strtotime('now')),date('y-m-d',mktime(0, 0, 0,Configure::read('header.month'), 15, date("Y")+$year))); ?>
-	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16">  <?php
+	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16">  <?php  
 				$current_month = date('m',strtotime('now'));
 				$current_date = date('d',strtotime('now'));
 				$current_year = date('Y',strtotime('now'));
@@ -157,7 +160,7 @@ endif;
 				$months = $this->Html->getMonthLists();
 				echo $months[Configure::read('header.month')]; 
 				?>'s</span>  Wonders Edition <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
-                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  Wonderbox today as there is only <span class="f16"><?php echo
+                <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?>'s</span>  Wonderbox today as there is only <span class="f16"><?php echo 
 				$this->Html->checkPackageAvialable();?> left </span></p>
             </div>
 		</div>
@@ -180,7 +183,8 @@ endif;
 				<?php endif; ?>
 				<?php $active_class = ($this->request->params['controller'] == 'contacts' && $this->request->params['action'] == 'add' ) ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('Contact Us')), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => sprintf(__l('Contact Us')),'class'=> $active_class));?></li>	
-	
+				<?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'index' ) ?  'act': null; ?>
+				<li><?php echo $this->Html->link(sprintf(__l('Brands')), array('controller' => 'brands', 'action' => 'index', 'admin' => false), array('title' => sprintf(__l('Brands')),'class'=> $active_class));?></li>
 				<?php $active_class = (($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'edit' || $this->request->params['action'] == 'profile_image'  )|| ($this->request->params['controller'] == 'user_shippings') ||($this->request->params['controller'] == 'package_users') ||($this->request->params['controller'] == 'transactions') || ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'change_password') ) ?  'act': null; ?>
 				  <?php if ($this->Auth->sessionValid()): ?>
 				<li><?php echo $this->Html->link(sprintf(__l('My Account')), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => sprintf(__l('My Account')),'class'=> $active_class));?></li>
