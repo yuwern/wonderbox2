@@ -13,7 +13,7 @@
 
       function drawChart() {
 	  <?php 
-		for($i=1 ; $i<=14 ; $i++ ){
+		for($i=1 ; $i<=15 ; $i++ ){
 		$beautyProfile =  $this->Html->beautyProfileDetails($i);
 		//print_r($beautyProfile);
 	  ?>
@@ -166,6 +166,17 @@
           ['Company-owned Store', <?php echo $beautyProfile[0]['Answer5']; ?>],
            ]);
 		<?php endif; ?>
+
+		<?php if($i == 15): ?>
+        data.addRows([
+          ['Below RM3,000 per month', <?php echo $beautyProfile[0]['Answer1']; ?>],
+          ['RM3,000 - RM 5,000 per month', <?php echo $beautyProfile[0]['Answer2']; ?>],
+          ['RM5,000 - RM 10,000 per month', <?php echo $beautyProfile[0]['Answer3']; ?>],
+          ['RM10,000 - RM 20,000 per month', <?php echo $beautyProfile[0]['Answer4']; ?>],
+          ['Above RM20,000 per month', <?php echo $beautyProfile[0]['Answer5']; ?>],
+           ]);
+		<?php endif; ?>
+      
         // Set chart options
         var options = {'title':"<?php echo $i .') '.$beautyProfile['BeautyQuestion']['name']; ?>",
                        'width':750,
@@ -179,6 +190,6 @@
 	
       }
     </script>
-	  <?php for($i=1 ; $i<=14; $i++ ){ 	  ?>
+	  <?php for($i=1 ; $i<=15; $i++ ){ 	  ?>
     	<div id="chart_div<?php echo $i; ?>"></div>
 	<?php } ?>

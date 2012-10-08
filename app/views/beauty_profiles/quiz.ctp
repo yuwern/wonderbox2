@@ -55,15 +55,19 @@
 						break;
 						case 13:
 						var noofItemSelect = parseInt($('#js-slide13_1').val()) + parseInt($('#js-slide13_2').val()) + parseInt($('#js-slide13_3').val())+ parseInt($('#js-slide13_4').val())+ parseInt($('#js-slide13_5').val());
-						var kstart = 15;
+						var kstart = 14;
 						break;
 						case 14:
 						var noofItemSelect = parseInt($('#js-slide14_1').val()) + parseInt($('#js-slide14_2').val()) + parseInt($('#js-slide14_3').val())+ parseInt($('#js-slide14_4').val())+ parseInt($('#js-slide14_5').val());
+						var kstart = 15;
+						break;
+						case 15:
+						var noofItemSelect = parseInt($('#js-slide15_1').val()) + parseInt($('#js-slide15_2').val()) + parseInt($('#js-slide15_3').val())+ parseInt($('#js-slide15_4').val())+ parseInt($('#js-slide15_5').val());
 						var kstart = 16;
 						break;
 					}
 					if(noofItemSelect == 0){
-						for(var k=kstart ; k<=14; k++)
+						for(var k=kstart ; k<=16; k++)
 						$('#menu-link'+k).removeClass('js-visited'+k);
 					}
 					if(noofItemSelect != 0)
@@ -173,7 +177,12 @@
 					$(this).addClass('cur');
 					$.fn.showbutton(14);
 				});
-				
+				$('.js-visited15').livequery('click',function() {
+					$('#slider2').anythingSlider(16);	
+					$(".banner-nav .cur").removeClass("cur");
+					$(this).addClass('cur');
+					$.fn.showbutton(15);
+				});
 				$('#js-goforward').livequery('click',function() {
 					var current = $('#slider2').data('AnythingSlider').currentPage; 
 					$(".banner-nav .cur").removeClass("cur");
@@ -202,9 +211,9 @@
 					var noofSelectItem4 = parseInt($('#js-slide6_1').val()) + parseInt($('#js-slide6_2').val()) + parseInt($('#js-slide6_3').val())+ parseInt($('#js-slide6_4').val())+ parseInt($('#js-slide6_5').val())+ parseInt($('#js-slide6_6').val())+ parseInt($('#js-slide6_7').val());
 					if(nextCurrent == 7 && noofSelectItem4 >= 1)
 						$(this).show();
-					if(nextCurrent == 8 || nextCurrent == 9 || nextCurrent == 10 || nextCurrent == 11 || nextCurrent == 12 || nextCurrent == 13 || nextCurrent == 14 || nextCurrent == 15)
+					if(nextCurrent == 8 || nextCurrent == 9 || nextCurrent == 10 || nextCurrent == 11 || nextCurrent == 12 || nextCurrent == 13 || nextCurrent == 14 || nextCurrent == 15|| nextCurrent == 16)
 						$.fn.showbutton((nextCurrent- 1));
-					if(nextCurrent == 16){
+					if(nextCurrent == 17){
 					$("#js-gobackward").hide();
 						$(this).hide();
 						$.ajax({
@@ -1523,7 +1532,77 @@
 			$('#js-beauty-product7val').keyup(function(event) {
 					$("#js-slide14_7").val($(this).val());
 			});
+			
+			$("#js-income-level1").click(
+				function(){		
+					$('#js-income-level2,#js-income-level3, #js-income-level4,#js-income-level5').removeClass('active');
+					$('#js-slide15_2,#js-slide15_3,#js-slide15_4,#js-slide15_5').val(0) ;
+					if($('#js-slide15_1').val()  == 0){
+						$('#js-slide15_1').val(1) ;
+						$(this).addClass('active');
 
+					} else {
+						$(this).removeClass('active');
+						$('#js-slide15_1').val(0) ;
+					}
+					$.fn.showbutton(15);
+			});
+			$("#js-income-level2").click(
+				function(){		
+					$('#js-income-level1,#js-income-level3, #js-income-level4, #js-income-level5').removeClass('active');
+					$('#js-slide15_1,#js-slide15_3,#js-slide15_4,#js-slide15_5').val(0) ;
+					if($('#js-slide15_2').val()  == 0){
+						$('#js-slide15_2').val(1) ;
+						$(this).addClass('active');
+
+					} else {
+						$(this).removeClass('active');
+						$('#js-slide15_2').val(0) ;
+					}
+				$.fn.showbutton(15);
+			});	
+			$("#js-income-level3").click(
+				function(){		
+					$('#js-income-level1,#js-income-level2, #js-income-level4, #js-income-level5').removeClass('active');
+					$('#js-slide15_1,#js-slide15_2,#js-slide15_4,#js-slide15_5').val(0) ;
+					if($('#js-slide15_3').val()  == 0){
+						$('#js-slide15_3').val(1) ;
+						$(this).addClass('active');
+
+					} else {
+						$(this).removeClass('active');
+						$('#js-slide15_3').val(0) ;
+					}
+				$.fn.showbutton(15);
+			});
+			$("#js-income-level4").click(
+				function(){		
+					$('#js-income-level1,#js-income-level2, #js-income-level3, #js-income-level5').removeClass('active');
+					$('#js-slide15_1,#js-slide15_3,#js-slide15_2,#js-slide15_5').val(0) ;
+					if($('#js-slide15_4').val()  == 0){
+						$('#js-slide15_4').val(1) ;
+						$(this).addClass('active');
+
+					} else {
+						$(this).removeClass('active');
+						$('#js-slide15_4').val(0) ;
+					}
+				$.fn.showbutton(15);
+			});
+			$("#js-income-level5").click(
+				function(){		
+					$('#js-income-level1,#js-income-level2, #js-income-level3, #js-income-level4').removeClass('active');
+					$('#js-slide15_1,#js-slide15_3,#js-slide15_2,#js-slide15_4').val(0) ;
+					if($('#js-slide15_5').val()  == 0){
+						$('#js-slide15_5').val(1) ;
+						$(this).addClass('active');
+
+					} else {
+						$(this).removeClass('active');
+						$('#js-slide15_5').val(0) ;
+					}
+				$.fn.showbutton(15);
+			});
 		});
 	</script>
             <!--Getstarted Banner -->
@@ -1532,13 +1611,12 @@
 
 				<li class="panel1"><!-- Slide 0 -->
 					<div class="textSlide slide_1">
-					<?php 
-					if(!empty($mybeautyprofile)):
-						echo $this->Html->image('acc-banner_welcome.png',array('class'=> 'in-wel-pad'));
-					else:
-						echo $this->Html->image('getstarted_welcome_text.png',array('width'=> 620,'height'=>134));
-					endif;
-					?>
+						<div class="<?php echo (!empty($mybeautyprofile)? 'in-wel-pad':  'welcome-slide');?>">
+                           	<?php 
+									echo $this->Html->image('getstarted_welcome_text.png');
+							?>
+                            <p><?php echo __l('Your complete beauty profile helps us to find the best products for you, for your next monthly WonderBox'); ?></p>
+                        </div>
                     </div>
 				</li>
 
@@ -1868,7 +1946,29 @@
                            		</div>
                     </div>
 				</li>
-                <li class="panel5"><!-- Slide 14 -->
+				 <li class="panel5"><!-- Slide 15 -->
+					<div class="get-slide2-left">
+                    					<?php	if(!empty($mybeautyprofile)):
+															echo $this->Html->image('getstarted_describ2.png');
+											else:
+															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
+											endif; ?>
+                        <p><?php echo __l('Please choose one!'); ?></p>
+                    </div>
+                            <div class="get-slide2-right">
+                            	<div class="slide12">
+                                	<h1><?php echo __l('What is your income level?');?></h1>
+                                    <ul>
+                                    	<li id="js-income-level1"><a  title="Below RM3,000 per month"><?php echo __l('Below RM3,000 per month');?></a></li>
+                                        <li id="js-income-level2"><a  title="RM3,000 - RM 5,000 per month"><?php echo __l('RM3,000 - RM 5,000 per month');?></a></li>
+                                        <li id="js-income-level3"><a  title="RM5,000 - RM 10,000 per month"><?php echo __l('RM5,000 - RM 10,000 per month');?></a></li>
+                                        <li id="js-income-level4"><a  title="RM10,000 - RM 20,000 per month"><?php echo __l('RM10,000 - RM 20,000 per month');?></a></li>
+                                        <li id="js-income-level5"><a  title="Above RM20,000 per month"><?php echo __l('Above RM20,000 per month');?></a></li>
+                                       </ul>
+                             </div>
+                    </div>
+				</li>
+                <li class="panel5"><!-- Slide 16 -->
 					<div class="banner-thank">
                     	<h1><?php echo __l('Thank you for completing your WonderBox beauty profile.'); ?></h1>
                         <p><?php echo __l('This information will go a long way towards making your experience with WonderBox an even better one!'); ?></p>
@@ -1895,6 +1995,7 @@
                     <li><a id="menu-link12" >12</a></li>
                     <li><a id="menu-link13" >13</a></li>
                     <li><a id="menu-link14" >14</a></li>
+					 <li><a id="menu-link15" >15</a></li>
                 </ul> 
                 <span class="finish">Finish!</span>
             </div>
@@ -2032,6 +2133,15 @@
 <?php echo $this->Form->input('BeautyProfile.14.answer5',array('value'=> 0,'id'=>'js-slide14_5','type'=>'hidden')); ?>
 <?php echo $this->Form->input('BeautyProfile.14.answer6',array('value'=> 0,'id'=>'js-slide14_6','type'=>'hidden')); ?>
 <?php echo $this->Form->input('BeautyProfile.14.other_answer',array('value'=> 0,'id'=>'js-slide14_7','type'=>'hidden')); ?>
+
+
+<!-- slide 15  -->
+<?php echo $this->Form->input('BeautyProfile.15.beauty_question_id',array('value'=>15,'type'=>'hidden')); ?>
+<?php echo $this->Form->input('BeautyProfile.15.answer1',array('value'=> 0,'id'=>'js-slide15_1','type'=>'hidden')); ?>
+<?php echo $this->Form->input('BeautyProfile.15.answer2',array('value'=> 0,'id'=>'js-slide15_2','type'=>'hidden')); ?>
+<?php echo $this->Form->input('BeautyProfile.15.answer3',array('value'=> 0,'id'=>'js-slide15_3','type'=>'hidden')); ?>
+<?php echo $this->Form->input('BeautyProfile.15.answer4',array('value'=> 0,'id'=>'js-slide15_4','type'=>'hidden')); ?>
+<?php echo $this->Form->input('BeautyProfile.15.answer5',array('value'=> 0,'id'=>'js-slide15_5','type'=>'hidden')); ?>
 
 <!-- Other variable -->
 <?php echo $this->Form->input('OtherVariable.currentSlide',array('value'=> 1,'id'=>'js-currentSlideNo','type'=>'hidden')); ?>
