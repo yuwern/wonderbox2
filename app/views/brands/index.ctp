@@ -24,7 +24,7 @@
 	<div class="brand">
             	<div class="brand-left">
                 	<h1><?php echo __l('Brands'); ?></h1>
-                    <p>Quisque et sem vel massa tempor placerat et ut ligula. Fusce at felis id diam fringilla vulputate. Integer auctor augue vitae neque accumsan a imperdiet tellus congue. Sed eu ipsum sit amet nisl adipiscing gravida ut ut massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum vitae elementum dui. In porttitor, eros eu scelerisque vestibulum, lacus ante sollicitudin augue, id convallis nisl lacus ut sapien. Quisque viverra est commodo lorem lobortis accumsan. Curabitur a dolor ut orci laoreet placerat ut vitae massa. </p>
+                    <p>Look no further to find all the information about our brand partners. Get to know their products and the philosophy they aspire in bringing you the best beauty and cosmetic product that best suits your beauty style . You will find this list continually expanding as we add new brands and products. Here is a list of brands we are working with:</p>
                 </div>
             		<div class="brand-right">
             <ul id="slider2">
