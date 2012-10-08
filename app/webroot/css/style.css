@@ -895,7 +895,7 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .brand-right{ width:68%; margin-top:25px; padding-left:3%; float:left; font-size:12px; color:#241F20;}
 .brand-right ul{ background:none;margin-top:0px; padding-left:0px;}
 .brand-right ul li{ margin:0; padding:0;}
-.brand-right li a{ overflow:hidden;padding:5px 25px; margin:0 20px 20px 0; float:left; border:1px solid #CCC; width:160px; height:200px;opacity: 0.2;filter: alpha(opacity=20);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";}
+.brand-right li a{ border: 1px solid #CCCCCC; float: left; height: 200px; margin: 0 5px 5px 0; opacity: 0.2; overflow: hidden; padding: 5px 15px; width: 200px;}
 .brand-right li a:hover{ opacity: 1;filter: alpha(opacity=100);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";}
 
 .brand-detail{margin:auto;margin-top:25px;margin-bottom:35px; overflow:hidden; color:#241F20}
