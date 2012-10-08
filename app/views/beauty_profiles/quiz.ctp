@@ -1550,7 +1550,7 @@
 						echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132)); 
 					endif;
 					?>
-					<p><?php echo __l('More than 1 but minimum 1 Max 3!'); ?></p></div>
+					<p><?php echo __l('Choose up to 3 styles!'); ?></p></div>
                             <div class="get-slide2-right">
                             	<div class="choose-box">
                                 	<h1><?php echo __l('Which beauty style describes you?'); ?> </h1>
@@ -1639,7 +1639,7 @@
 														else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 														endif; ?>
-					   <p><?php echo __l('More than 1 but minimum 1!'); ?></p></div>
+					   <p><?php echo __l('Choose 1 or more!'); ?></p></div>
                             <div class="get-slide2-right">
                             	<div class="slide4">
                                 	<h1><?php echo __l('Which of these skin concerns apply to you?'); ?></h1>
@@ -1663,7 +1663,7 @@
 														else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 														endif; ?>
-					   <p><?php echo __l('More than 1 but minimum 1!'); ?></p></div>
+					   <p><?php echo __l('Choose 1 or more!'); ?></p></div>
                             <div class="get-slide2-right">
                             	<div class="slide4 slide6">
                                 	<h1><?php echo __l('What skin type best describes you?'); ?></h1>
@@ -1677,9 +1677,9 @@
                                         <li><a id="js-skin-type-sensitive" title="Sensitive"><?php echo __l('Sensitive'); ?> </a></li>
                                         <li><a id="js-skin-type-dry" title="Dry"><?php echo __l('Dry'); ?> </a></li>
                                      </ul>
-                                    <ul>
-                                        <li  id="js-skin-type-other-value"><input type="text" id="js-skin-text-other-value" class="input_slide6" /></li>
-                                     </ul>
+                                    <!-- <ul>
+                                        <li  id="js-skin-type-other-value"><input type="text" id="js-skin-text-other-value" class="input_slide6" value="(Specify other skin type here)" /></li>
+                                     </ul>  -->
                                  </div>
                     </div>
 				</li>
@@ -1689,7 +1689,7 @@
 														else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 														endif; ?>  
-					<p><?php echo __l('More than 1 but minimum 1 Max 3!'); ?></p></div>
+					<p><?php echo __l('Choose up to 3 products!'); ?></p></div>
                             <div class="get-slide2-right">
                             	<div class="slide7">
                                 	<h1><?php echo __l('If you\'re going to splurge on beauty product, it\'s going to be on:'); ?></h1>
@@ -1716,10 +1716,10 @@
 														else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 														endif; ?>
-					   <p><?php echo __l('More than 1 but minimum 1 Max 3!'); ?></p></div>
+					   <p><?php echo __l('Choose up to 3!'); ?></p></div>
                             <div class="get-slide2-right">
                             	<div class="slide7 slide8">
-                                	<h1><?php echo __l('Which of the following best describe your hair?'); ?></h1>
+                                	<h1><?php echo __l('Which of the following best describes your hair?'); ?></h1>
                                     <ul>
                                     	<li class="s8-img1" id="js-hair-frizzy"><a  title="Frizzy"><?php echo __l('Frizzy'); ?></a></li>
                                         <li class="s8-img2" id="js-hair-dry"><a  title="Dry"><?php echo __l('Dry'); ?></a></li>
@@ -1741,7 +1741,7 @@
 														else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 														endif;?>
-                        <p><?php echo __l('More than 1 but minimum 1 Max 3!'); ?></p>
+                        <p><?php echo __l('Choose up to 3!'); ?></p>
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide9">
@@ -1783,7 +1783,7 @@
 											else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 											endif; ?>
-                        <p><?php echo __l('More than 1 but minimum 1!'); ?></p>
+                        <p><?php echo __l('Choose 1 or more!'); ?></p>
                     </div>
                     <div class="get-slide2-right">
                         <div class="slide4 slide11">
@@ -1811,7 +1811,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide12">
-                                	<h1><?php echo __l('How much do you usually spend on beauty and cosmetic products a month ?');?></h1>
+                                	<h1><?php echo __l('How much do you usually spend on beauty and cosmetic products in a month ?');?></h1>
                                     <ul>
                                     	<li id="js-cosmetic-product1"><a  title="Less then RM200"><?php echo __l('Less then RM200');?></a></li>
                                         <li id="js-cosmetic-product2"><a  title="Between RM200 - RM499"><?php echo __l('Between RM200 - RM499');?></a></li>
@@ -1837,10 +1837,10 @@
 								    <ul>
                                     	<li id="js-employment-status1"><a  title="Employed"><?php echo __l('Employed'); ?></a></li>
                                         <li id="js-employment-status2"><a  title="Self-employed"><?php echo __l('Self-employed'); ?></a></li>
-                                        <li id="js-employment-status3"><a  title="A homemaker"><?php echo __l('A homemaker'); ?></a></li>
+                                        <li id="js-employment-status3"><a  title="A homemaker"><?php echo __l('Homemaker'); ?></a></li>
                                     </ul>
                                     <ul class="listrow_2">
-                                        <li id="js-employment-status4"> <a  title="A student"><?php echo __l('A student'); ?></a></li>
+                                        <li id="js-employment-status4"> <a  title="A student"><?php echo __l('Student'); ?></a></li>
                                         <li id="js-employment-status5"><a  title="Retired"><?php echo __l('Retired'); ?></a></li>
                                     </ul>  
                              </div>
@@ -1853,7 +1853,7 @@
 											else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 											endif; ?>
-                        <p><?php echo __l('More than 1 but minimum 1!'); ?></p>
+                        <p><?php echo __l('Choose 1 or more!'); ?></p>
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide14">
