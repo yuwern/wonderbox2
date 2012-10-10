@@ -905,6 +905,31 @@ jQuery(document).ready(function($) {
 			}
 		}
     });
+	$('.js-add-more-brand').livequery('click', function() {
+		$this = $(this);
+		var brand_count = parseInt($('.js-brand-count').val());
+		$.get(__cfg('path_absolute') + 'brands/addbrandaddress_more/' +brand_count, function(data) {
+			alert
+			$('.js-brand-content').append(data);
+			$('.js-brand-count').val(brand_count + 1);
+			return false;
+		});		
+		return false;
+	});
+	$('.js-brand-delete').livequery('click', function() {
+		var brand_count = parseInt($('.js-brand-count').val());
+		$this = $(this);
+		if (window.confirm('Are you sure you want to delete brand #' + brand_count+ '?')) {
+			if(brand_count > 1){
+				$('#js-brand-'+brand_count).remove();
+				$('.js-brand-count').val(brand_count - 1);
+				$.fn.setflashMsg('Brand deleted', 'success');
+			}else {
+				$.fn.setflashMsg('One Brand Should be Must', 'error');
+			}
+		}
+		return false;
+	});
     $('form select.js-autosubmit').livequery('change', function() {
         $(this).parents('form').submit();
     });

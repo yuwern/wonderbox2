@@ -25,6 +25,19 @@ class Brand extends AppModel
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
+        ),
+       'BrandAddress' => array(
+            'className' => 'BrandAddress',
+            'foreignKey' => 'brand_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
         )
     );
 	public $hasOne = array(

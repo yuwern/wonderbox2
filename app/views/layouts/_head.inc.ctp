@@ -1,5 +1,8 @@
 <?php
+$disable_reset = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'view' || $this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view')? 1:0 ;
+if (!$disable_reset ):
 	$this->Html->css('reset', null, array('inline' => false));
+endif;
 	$this->Html->css('jquery.uploader', null, array('inline' => false));
 	$this->Html->css('jquery.autocomplete', null, array('inline' => false));
 	$this->Html->css('jquery-ui-1.7.1.custom', null, array('inline' => false));

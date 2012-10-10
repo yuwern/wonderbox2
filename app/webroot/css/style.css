@@ -242,8 +242,8 @@ form.subscription div.input input{    border:1px solid #CCC;     color:gray;    
 
 #error{margin-left:10px}
 
-*{margin:0; padding:0; font-family:Arial,Helvetica,sans-serif}
-ul{margin:0; padding:0; list-style:none}
+*{margin:0; padding:0;}
+ul{margin:0; padding:0;}
 a img{border:0px; outline:none}
 a{color:#de006d; text-decoration:none}
 a:hover{text-decoration:underline}
@@ -257,7 +257,7 @@ h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
 .f-right{float:right}
 .f-left{float:left}
 
-.header{padding:0 33px 0 33px; overflow:hidden}
+.header{padding:0 33px 0 33px; overflow:hidden; font-family:Arial,Helvetica,sans-serif}
 .logo{background:url("../img/logo.jpg") no-repeat; width:153px; text-indent:-999px; float:left}
 .logo a{display:block; height:181px}
 .login_sec{width:365px; float:right; margin-top:30px; overflow:hidden}
@@ -276,7 +276,7 @@ h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
 .menu{background-color:#e6dcd3; height:42px}
 .menu ul{margin:auto; text-align:center}
 .menu li{display:inline-block; color:#e23a85; font:normal Arial,Helvetica,sans-serif; line-height:45px; padding:0 24px; font-size:15px!important}
-.menu li a{color:#e23a85; text-decoration:none; text-shadow:1px 0 0 #FFF}
+.menu li a{color:#e23a85; text-decoration:none; text-shadow:1px 0 0 #FFF;font-family:Arial,Helvetica,sans-serif}
 .menu li a:hover{color:#000}
 .menu li a.act{color:#000}
 
@@ -339,7 +339,7 @@ h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
 
 
 #pages-home .brand{width:100%; overflow:hidden; padding:0px;margin:0px;}
-.brand li{float:left; padding-right:16px}
+.brand li{float:left; padding-right:16px;list-style:none;}
 
 .bot_sec{   border-top:1px solid #E8E3E3; width:100%; overflow:hidden; margin-top:20px; padding-top:20px}
 .featured{width:324px; float:left; font:normal 12px Helvetica,Arial,sans-serif; line-height:16px; padding-bottom:10px; margin-right:40px; padding-right:20px}
@@ -449,7 +449,7 @@ a.pdf {
 .btn3 span{ display:inline-block; padding:4px 10px 4px 5px; background:url(../img/btn3_right.jpg) right no-repeat}
 .btn3:hover{color:#ff9dca;}
 
-.subscribe{margin:auto;margin-top:25px;padding-bottom:60px;margin-bottom:35px; overflow:hidden; color:#241F20}
+.subscribe{margin:auto;margin-top:25px;padding-bottom:60px;margin-bottom:35px; overflow:hidden; color:#241F20;font-family: Arial,Helvetica,sans-serif;}
 .subscribe h1{ font-size:27px; text-transform:uppercase; text-align:center; width:43%; margin:0 auto; padding:0}
 .subscribe h2{ text-align:center; border-bottom:1px dashed #ccc; padding-bottom:10px; margin:0;}
 .subs-left{ width:45%; padding-right:5%; margin-top:25px; float:left; font-size:12px; color:#241F20; border-right:1px dashed #ccc;}
@@ -489,7 +489,7 @@ a.pdf {
 .my-account{margin:auto;margin-top:25px;margin-bottom:35px; overflow:hidden; color:#241F20}
  
 .my-account h1{ font-size:27px;}
-.my-account-right{ width:80%; margin-top:25px; padding-left:2%; float:left; font-size:12px; color:#241F20;}
+.my-account-right{ width:80%; margin-top:25px; padding-left:2%; float:left; font-size:12px; color:#241F20;border-left:1px dashed #ccc;}
 .my-account-right ul{ background:none;margin-top:20px; padding-left:20px;}
 .my-account-right li{ overflow:hidden;padding-bottom:15px;}
 .my-account-right label{ font:normal 13px Arial, Helvetica, sans-serif; width:204px;float:left;line-height:33px;   padding-left: 10px;}
@@ -506,7 +506,7 @@ a.pdf {
 /*input[type="text"]:focus, input[type="password"]:focus, input[type="file"]:focus, textarea:focus, select:focus{background: #fff3f9; border:1px solid #f9c8df;}
 input[type="text"]:hover, input[type="password"]:hover, input[type="file"]:hover, textarea:hover, select:hover{background: #fff3f9;border:1px solid #f9c8df;}
 */
-.my-account-left{ width:15%; padding-right:2%; float:left; margin-top:25px; border-right:1px dashed #ccc;}
+.my-account-left{ width:15%; padding-right:2%; float:left; margin-top:25px; }
 .my-account-left ul.my-account-Rnav{ margin:0; padding:0; overflow:hidden;}
 .my-account-left ul.my-account-Rnav li{ margin:0; padding:0px 0; list-style:none;}
 .my-account-left ul.my-account-Rnav li.bor{ height:1px; border-bottom:1px solid #f09ec4; margin:0px 0 1px 0; padding:0;}
@@ -697,7 +697,7 @@ form.normal-form div.error-message {
     padding: 8px 15px;
 	background:#F7398F;
 	text-decoration:none;
-	cursor: pointer;
+	cursor: pointer;font-family:Arial,Helvetica,sans-serif
 }
 
 .my-account-right table.list {
@@ -905,6 +905,7 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .brand-detail-center h3{ color:#DE006D; font-size:14px; text-transform:uppercase; margin:15px 0;}
 .brand-detail-center p{ font-size:12px; padding-bottom:8px;}
 .brand-detail-right{ width:25%; float:right;}
+.brand-detail-right a{ font-family: Arial,Helvetica,sans-serif;}
 .brand-detail-right h2{ border-bottom:1px solid #CCC;} 
 .brand-detail-right ul{ margin:0; padding:0;}
 .brand-detail-right ul li{ margin:0; padding:10px 0 15px 0; list-style:none; text-align:center; border-bottom:1px dashed #ccc;}
@@ -913,7 +914,7 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .web-url-box{ padding:15px 0; overflow:hidden;}
 .web-url-box ul{ margin:0; padding:0; }
 .web-url-box ul li{ margin:0; padding:0; list-style:none; display:inline;} 
-.web-url-box ul li a{ margin:0; padding:0; list-style:none;  width:42%; height:48px; padding-left:60px; margin:0 10px 10px 0; line-height:48px;}
+.web-url-box ul li a{ margin:0; padding:0; list-style:none;  width:42%; height:48px; padding-left:60px; margin:0 10px 10px 0; line-height:48px;font-family: Arial,Helvetica,sans-serif;}
 
 .fecebook-url a{ background:url(../img/icon_f.jpg) left no-repeat #f1f1f1 !important;float:left;}
 .web-url a{ background:url(../img/icon_web.jpg) left no-repeat #f1f1f1; float:right; margin-right:0 !important}
@@ -1230,7 +1231,7 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .brand-location{overflow:hidden; padding:10px 0 0 0;}
 .brand-location p{font-size: 12px; padding-bottom:8px;}
 .p-right3{padding-right: 3%;}
-.b-loc-left, .b-loc-right{ width:25%;}
+.b-loc-left, .b-loc-right{  min-height: 160px; width: 47%; font-family:Arial,Helvetica,sans-serif}
 
 /*My Account Banner Slide*/
 .acc-banner{}
