@@ -1287,3 +1287,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ede8', end
 .acc-banner .get-slide2-left p {
     padding: 0 0 0 0;
 }
+#inner-static ul,#inner-static ol{
+	padding-left:30px;
+}
