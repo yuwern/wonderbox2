@@ -10,8 +10,9 @@
 						<?php if(!empty($brand['BrandAddress'])): ?>
 						<p class="a-right">
 						 <span><a  class="btn3 f-right f12 js-toggle-show {'container':'js-learn-more'}" title="Retail Outlet">Retail Outlet</a></span></p>
+						 	<div class="clear"></div>
 						 <div class="brand-location js-learn-more hide">
-						 <?php foreach($brand['BrandAddress'] as $brandAddress):?>
+						 <?php  $i = 1;  foreach($brand['BrandAddress'] as $brandAddress):?>
                         <div class="f-left p-right3 b-loc-left">
 						<h2>Retail Outlet  </h2>
                       	 <p><b><?php echo __l('Address:'); ?></b></p> 
@@ -28,6 +29,10 @@
 						<?php endif; ?>
 					</p>
                    </div>
+				 <?php if ($i++ % 2 == 0) {		 
+					 ?>
+					<div class="clear"></div>
+						<?php }?>
 					<?php endforeach; ?>
 					</div>
 					<?php endif; ?>

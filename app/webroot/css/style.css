@@ -510,7 +510,7 @@ input[type="text"]:hover, input[type="password"]:hover, input[type="file"]:hover
 .my-account-left ul.my-account-Rnav{ margin:0; padding:0; overflow:hidden;}
 .my-account-left ul.my-account-Rnav li{ margin:0; padding:0px 0; list-style:none;}
 .my-account-left ul.my-account-Rnav li.bor{ height:1px; border-bottom:1px solid #f09ec4; margin:0px 0 1px 0; padding:0;}
-.my-account-left ul.my-account-Rnav li a{ margin:0; padding:8px 15px; display:block; font-size:13px; color:#000; text-decoration:none; border:1px solid #fff; }
+.my-account-left ul.my-account-Rnav li a{ margin:0; padding:8px 15px; display:block; font-size:13px; color:#000; text-decoration:none; border:1px solid #fff; font-family: arial; }
 .my-account-left ul.my-account-Rnav li a:hover{ margin:0; padding:8px 15px; display:block; font-size:13px; color:#000; text-decoration:none; border:1px solid #ccc;-webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 border-radius: 5px;background: #ededed; /* Old browsers */
@@ -1231,7 +1231,7 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .brand-location{overflow:hidden; padding:10px 0 0 0;}
 .brand-location p{font-size: 12px; padding-bottom:8px;}
 .p-right3{padding-right: 3%;}
-.b-loc-left, .b-loc-right{  min-height: 160px; width: 47%; font-family:Arial,Helvetica,sans-serif}
+.b-loc-left, .b-loc-right{  min-height: 160px; width: 47%;}
 
 /*My Account Banner Slide*/
 .acc-banner{}
@@ -1255,12 +1255,14 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .f12{ font-size:12px !important;}
 
 .comp-survey{ overflow:hidden; border-top:0px solid #CCC; margin-bottom:15px;}
-.comp-survey-img{ width:30%; float:left; border:1px solid #CCC; }
+.comp-survey-img{ float:left; border:2px solid #CCC; }
 .comp-survey-name{ width:60%; float:left;padding-left:20px;}
+.comp-survey-name p{ padding-bottom:8px;}
 .comp-survey h1{ border-bottom:1px solid #CCC;}
 
 
 /* my product survey Table Data */
+.my-pro-survey h2 { color: #000000; font: bold 18px/40px Arial,Helvetica,sans-serif }
 .my-pro-survey .table-data{  background:url(../img/subscribe_table-bg.jpg) bottom center no-repeat; padding-bottom:27px; color:#000; margin:25px 0 0px 0;}
 .my-pro-survey .table-data ul{border:0px solid #e2e2e2; border-radius:0; border-bottom:0px; background:#f9f6f3; padding-bottom:20px; }
 .my-pro-survey .t-head{ background: url(../img/t-bg.jpg) #e6dcd3; padding:12px 30px; overflow:visible; font-weight:bold;background: #e6dcd3; /* Old browsers */
@@ -1284,6 +1286,35 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ede8', end
 .my-pro-survey .t-c5 .but6 { display:inline-block;}
 
 .my-pro-survey .t-data .t-c1, .subscribe2 .t-data .t-c2, .subscribe2 .t-data .t-c3, .subscribe2 .t-data .t-c4{ padding-top:7px;}
+
+/* complete survey Table Data */
+.comp-survey-td{padding:90px 0 0 17px;}
+.comp-survey-td .table-data{ width:93%;color:#000; margin:25px 0 0px 0;}
+.comp-survey-td .table-data ul{border:0px solid #e2e2e2; border-radius:0; border-bottom:0px; background:#f9f6f3; padding-bottom:20px; }
+.comp-survey-td .t-head{ background: url(../images/t-bg.jpg) #e6dcd3; padding:12px 0px 12px 5px; overflow:visible; color:#fff; font-weight:bold;background: #c00256; /* Old browsers */
+background: -moz-linear-gradient(top,  #c00256 0%, #a5024a 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c00256), color-stop(100%,#a5024a)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #c00256 0%,#a5024a 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #c00256 0%,#a5024a 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #c00256 0%,#a5024a 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #c00256 0%,#a5024a 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c00256', endColorstr='#a5024a',GradientType=0 ); /* IE6-9 */
+
+}
+.comp-survey-td .t-date{ padding:12px 0px !important; margin:0 5px; float:none !important; border-bottom:1px solid #e6dcd3; background:#f9f6f3;overflow:visible; display:block; text-align:center; }
+.comp-survey-td .t-date:hover{ background:#f3ede8;}
+
+.comp-survey-td .t-c1{ width:30%; float:left; text-align:left; }
+.comp-survey-td .t-c2{ width:17%; float:left; text-align:center;}
+.comp-survey-td .t-c3{ width:17%; float:left;text-align:center;}
+.comp-survey-td .t-c4{ width:17%; float:left;text-align:center;}
+.comp-survey-td .t-c5{ width:17%; float:left; text-align:center;}
+.comp-survey-td .t-c5 .but6 { display:inline-block;}
+
+.comp-survey-td .t-data .t-c1, .comp-survey-td .t-data .t-c2, .comp-survey-td .t-data .t-c3, .comp-survey-td .t-data .t-c4{ padding-top:7px;}
+.com-slide8{ padding:200px 40px 0 0  ;}
+.com-slide8 input{ padding:5px 10px;}
+
 .acc-banner .get-slide2-left p {
     padding: 0 0 0 0;
 }

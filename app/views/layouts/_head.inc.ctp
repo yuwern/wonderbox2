@@ -1,5 +1,5 @@
 <?php
-$disable_reset = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'view' || $this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view')? 1:0 ;
+$disable_reset = ($this->request->params['controller'] == 'products' && ($this->request->params['action'] == 'view'||$this->request->params['action'] == 'quiz' ) ||$this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'view' || $this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view')? 1:0 ;
 if (!$disable_reset ):
 	$this->Html->css('reset', null, array('inline' => false));
 endif;
