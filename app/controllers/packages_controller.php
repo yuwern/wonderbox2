@@ -273,7 +273,41 @@ class PackagesController extends AppController
             $this->set('gateway_options', $gateway_options);
 		 }
 		 else {
-				 $this->Session->setFlash(__l('Please enter shipping information before purchase.') , 'default', null, 'error');
+		  
+				$err_message  = ' ';
+				if(!empty($this->Package->PackageUser->User->UserShipping->validationErrors)){
+					$err_message  .= "<div  style='text-align:left;padding-left:300px;'>";
+						foreach($this->Package->PackageUser->User->UserShipping->validationErrors as $key => $uservalidation){
+							if($key == 'contact_no'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Mobile number';
+								else
+								$err_message .= '<br/>Mobile Number - '.$uservalidation;
+							}
+							if($key == 'contact_no1'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Home number';
+								else
+								$err_message .= '<br/>Home Number - '.$uservalidation;
+							}
+							if($key == 'address'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the address';
+								else
+								$err_message .= '<br/>Address - '.$uservalidation;
+							}
+							if($key == 'zip_code'){
+								if($uservalidation == 'Required')
+									$err_message .= '<br/>Please enter the zipcode';
+								else
+								$err_message .= '<br/>Zipcode - '.$uservalidation;
+						
+							}
+					
+						}
+						$err_message  .=  "</div>";
+				}
+				 $this->Session->setFlash( $err_message, 'default', null, 'error');
 				 $this->redirect(array(
 							'controller' => 'packages',
 							'action' => 'view',

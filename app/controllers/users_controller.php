@@ -1001,8 +1001,8 @@ class UsersController extends AppController
 						$this->redirect(Router::url('/', true) . $redirectUrl);
 					} else {
 						$this->redirect(array(
-						    'controller' => 'users',
-                            'action' => 'thanks'
+						   'controller' => 'beauty_profiles',
+						   'action' => 'quiz'
 						));
 					}
 				}
@@ -1036,7 +1036,7 @@ class UsersController extends AppController
             $this->request->data['UserProfile']['user_id'] = $this->User->id;
             $this->User->UserProfile->save($this->request->data);
             if ($this->Auth->login($this->request->data)) {
-                  $this->Session->setFlash(__l('You have successfully registered with our site. test messsge') , 'default', null, 'success');
+                  $this->Session->setFlash(__l('You have successfully registered with our site.') , 'default', null, 'success');
 			      $this->_sendWelcomeMail($this->User->id, $this->request->data['User']['email'], $this->request->data['User']['username']);
                 // send to admin mail if is_admin_mail_after_register is true
                 if (Configure::read('user.is_admin_mail_after_register')) {
@@ -1074,8 +1074,8 @@ class UsersController extends AppController
                     $this->redirect(Router::url('/', true) . $redirectUrl);
                 } else {
                     $this->redirect(array(
-                          'controller' => 'users',
-                            'action' => 'thanks'
+                          'controller' => 'beauty_profiles',
+						 'action' => 'quiz'
                     ));
                 }
             }
@@ -1107,8 +1107,8 @@ class UsersController extends AppController
                         ));
                     } else {
                         $this->redirect(array(
-                            'controller' => 'users',
-                            'action' => 'thanks'
+                            'controller' => 'beauty_profiles',
+						    'action' => 'quiz'
                         ));
                     }
                 }

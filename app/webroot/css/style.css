@@ -247,7 +247,6 @@ ul{margin:0; padding:0;}
 a img{border:0px; outline:none}
 a{color:#de006d; text-decoration:none}
 a:hover{text-decoration:underline}
-body{background:url("../img/pattern.jpg") repeat}
 .top_line{height:13px; background-color:#e6dcd3}
 .mbg{background:url("../img/shadow.png") repeat-y center top; width:100%}
 .mcont{width:1063px; margin:auto}
@@ -838,10 +837,10 @@ form.normal-form .paypal div.required label{
 
 .js-molpay img{ padding:0 8px 10px 8px;}
 .w-point{-webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px; border:1px solid #ccc; padding:15px 10px 10px 10px; background:#f2f2f2 !important;}
-
+/*
 #inner-static{font-family:inherit}
 #inner-static h2, #inner-static h1{ font-family:inherit; color:inherit}
-
+*/
 .subs-box2 ul{ margin:0; padding:15px 0 0px 0;}
 .subs-box2 ul li{ margin:5px 0; padding:10px; background:#f9f6f3;list-style:none; overflow:hidden; border:1px solid #e6dcd3;-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
 .subs-box2 ul li:hover{ margin:5px 0; padding:10px; background:#fff; list-style:none; overflow:hidden; border:1px solid #e6dcd3;-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
@@ -1240,6 +1239,8 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .acc-banner .banner{ border-bottom:0px;}
 .acc-banner .banner-thank { padding: 200px 146px 0 280px; width:auto !important; height:auto !important;}
 
+.acc-banner .pro-survey .get-slide2-left p{ padding:0 0px 0 0 ; color:#c21b22;}
+
 .acc-banner .get-slide2-left{ float:left; width:240px; text-align:right;font-size:14px; color:#fe79b6;}
 .acc-banner .get-slide2-right{ float:left; width:540px;}
 .slide_1 .in-wel-pad{padding: 200px 0 0 250px !important; }
@@ -1314,6 +1315,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c00256', end
 .comp-survey-td .t-data .t-c1, .comp-survey-td .t-data .t-c2, .comp-survey-td .t-data .t-c3, .comp-survey-td .t-data .t-c4{ padding-top:7px;}
 .com-slide8{ padding:200px 40px 0 0  ;}
 .com-slide8 input{ padding:5px 10px;}
+
+
+.pro-survey .in-wel-pad p{ color:#000; padding: 15px 320px 0 10px;}
+.pro-survey .slide_1 .in-wel-pad {
+    padding: 200px 0 0 200px !important;
+}
+
+.pro-survey .slide4 ul li a, .pro-survey .slide3 ul li a {background: none repeat scroll 0 0 #c21b22;}
+.pro-survey .slide4 ul li a:hover, .pro-survey .slide3 ul li a:hover,.pro-survey .slide3 ul li a.active,.pro-survey .slide4 ul li a.active{ background:#7b0c0d}
+.pro-survey .comp-survey-td .t-head {
+	background: #c21b22;
+   background: -moz-linear-gradient(top,  #c21b22 0%, #94151c 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c21b22), color-stop(100%,#94151c)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #c21b22 0%,#94151c 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #c21b22 0%,#94151c 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #c21b22 0%,#94151c 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #c21b22 0%,#94151c 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c21b22', endColorstr='#94151c',GradientType=0 ); /* IE6-9 */
+   }
+   
+.pro-survey .get-slide2-right h1 { color:#000;}
+.pro-survey .start, .pro-survey .banner-nav ul li a.cur, .pro-survey .banner-nav ul li a:hover, .pro-survey .finish:hover{background: #c21b22;border:1px solid #961519; color:#fff; cursor:pointer; }
+
+.pro-survey .left-arrow{background: url("../img/pro_servey_left_arrow.png") repeat scroll 0 0 transparent;}
+.pro-survey .left-arrow:hover{background: url("../img/pro_servey_left_arrow2.png") repeat scroll 0 0 transparent;}
+.pro-survey .right-arrow { background: url("../img/pro_servey_right_arrow.png") repeat scroll 0 0 transparent; }
+.pro-survey .right-arrow:hover { background: url("../img/pro_servey_right_arrow2.png") repeat scroll 0 0 transparent; }
+
+.pro-survey .banner-thank h1, .pro-survey .banner-thank p{ color:#000;}
+.pro-survey .banner-thank h1 span { color:#666;}
 
 .acc-banner .get-slide2-left p {
     padding: 0 0 0 0;

@@ -80,7 +80,7 @@ class PagesController extends AppController
         } else {
             $this->request->data = $this->Page->read(null, $id);
         }
-        Cache::clear();
+      // Cache::clear();
     }
     public function admin_index()
     {
@@ -114,7 +114,7 @@ class PagesController extends AppController
     }
     public function view($slug = null)
     {
-        $this->cacheAction = Configure::read('action.cache_duration');
+    //   $this->cacheAction = Configure::read('action.cache_duration');
         $this->Page->recursive = - 1;
         if (!empty($slug)) {
             $page = $this->Page->findBySlug($slug);
@@ -213,5 +213,12 @@ class PagesController extends AppController
 	{
 		$this->pageTitle = __l('Home');
 	}
- 
+    public function static_page($id){
+		    $page = $this->Page->find('first', array(
+                'conditions' => array(
+                    'Page.id' => $id
+                )
+            ));
+		$this->set('page',$page);
+   }
 }

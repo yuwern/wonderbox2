@@ -188,10 +188,7 @@ class PackageUsersController extends AppController
 			'year',
 			'email',
         ));
-		$conditions = array(
-				'User.is_verified_user'=> 1,
-				'User.subscription_expire_date >' => _formatDate('Y-m-d', date('Y-m-d') , true) ,
-			);
+		$conditions = array();
 		if(!empty($this->request->params['named']['month']) &&!empty($this->request->params['named']['year']))
 		{
 			$start_date =$this->request->params['named']['year'].'-'.$this->request->params['named']['month'].'-15';
@@ -202,12 +199,11 @@ class PackageUsersController extends AppController
 		}
 		if(!empty($this->request->params['named']['email']))
 		{
-			$start_date =$this->request->params['named']['year'].'-'.$this->request->params['named']['month'].'-15';
-			$conditions['User.email'] = 'devuser@gmail.com';
 			$this->request->data['PackageUser']['email'] = $this->request->params['named']['email'];
+			$conditions['User.email'] = $this->request->params['named']['email'];
+
 		}
-		
-        if ($this->RequestHandler->prefers('pdf')) {
+	    if ($this->RequestHandler->prefers('pdf')) {
 			$packageUsers = $this->PackageUser->find('all',array(
 				'conditions'=> $conditions,
 				'contain'=> array(
