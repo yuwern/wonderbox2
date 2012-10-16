@@ -1826,7 +1826,7 @@
                                 	<h1><?php echo __l('What do you usually do with your hair ?'); ?></h1>
                                     <ul>
                                     	<li class="s9-img1" id="js-your-hair-colouring"><a  title="Hair Colouring"><?php echo __l('Hair Colouring'); ?></a></li>
-                                        <li class="s9-img2" id="js-your-hair-perming"><a  title="Hai Perming"><?php echo __l('Hai Perming'); ?></a></li>
+                                        <li class="s9-img2" id="js-your-hair-perming"><a  title="Hai Perming"><?php echo __l('Hair Perming'); ?></a></li>
                                         <li class="s9-img3"  id="js-your-hair-straightening"><a  title="Hair Straightening"><?php echo __l('Hair Straightening'); ?></a></li>
                                         <li class="s9-img4" id="js-your-hair-treatment"><a title="Hair Treatment"><?php echo __l('Hair Treatment'); ?></a></li>
                                     </ul>
@@ -1937,7 +1937,7 @@
                             	<div class="slide14">
                                 	<h1><?php echo __l('Where do you usually shop for beauty products?'); ?> </h1>
                                     <ul>
-                                    	<li class="s14-img1" id="js-beauty-product1"><a  title="Departmetal Store"><?php echo __l('Departmetal Store'); ?></a></li>
+                                    	<li class="s14-img1" id="js-beauty-product1"><a  title="Departmetal Store"><?php echo __l('Department Store'); ?></a></li>
                                         <li class="s14-img2" id="js-beauty-product2"><a  title="Mass Retailers"><?php echo __l('Mass Retailers'); ?></a></li>
                                         <li class="s14-img3" id="js-beauty-product3"><a  title="Online Store"><?php echo __l('Online Store'); ?></a></li>
                                         <li class="s14-img4" id="js-beauty-product4"><a  title="Specialty Retailers"><?php echo __l('Specialty Retailers'); ?></a></li>
