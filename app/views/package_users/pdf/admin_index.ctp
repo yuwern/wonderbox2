@@ -3,16 +3,15 @@ App::import('Vendor','mpdf/mpdf');
 $mpdf=new mPDF('c','A4');
 //$mpdf=new mPDF('win-1252','A4','','',20,15,48,25,10,10);
 $mpdf->useOnlyCoreFonts = true;    // false is default
-$mpdf->SetProtection(array('print'));
-$mpdf->SetTitle("Acme Trading Co. - Invoice");
-$mpdf->SetAuthor("Acme Trading Co.");
+$mpdf->SetProtection(array('copy','print','modify','annot-forms','fill-forms','extract','assemble','print-highres'), 'wonderbox', 'wonderbox');
+$mpdf->SetTitle("Wonderbox - Report");
+$mpdf->SetAuthor("Wonder Box");
 $mpdf->SetWatermarkText("WonderBox");
 $mpdf->showWatermarkText = true;
 $mpdf->watermarkTextAlpha = 0.1;
 $mpdf->SetDisplayMode('fullpage');
 
 $html = '
-
 <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse;" cellpadding="8">
 <thead>
 <tr>
