@@ -135,11 +135,12 @@ ul.admin-links li h4{padding:3px 5px; font-size:13px}
 div.submit-update-block{margin:5px 0 5px 315px}
 div.clearAll{margin:10px 0 0 0}
 
-a.add, a.delete, a.edit, a.export, a.update, a.pending, a.approve, a.view, a.update-status{background:url(../img/icon-add.gif) 0 0 no-repeat; padding:0px 2px 3px 20px; margin-right:16px; color:#000}
+a.add, a.delete, a.edit, a.export, a.update, a.pending, a.approve, a.view, a.update-status,a.chart{background:url(../img/icon-add.gif) 0 0 no-repeat; padding:0px 2px 3px 20px; margin-right:16px; color:#000}
 
 div.export-block{text-align:right}
 a.delete{background:url(../img/icon-delete.png) no-repeat left top}
 a.edit{background:url(../img/icon-edit.png) no-repeat left top; padding:0 2px 3px 20px}
+a.chart{background:url(../img/icon-chart.png) no-repeat left top;}
 a.export{background:url(../img/icon-export.png) no-repeat left top}
 
 a.asc{background:transparent url(../img/icon-sort-down.gif) no-repeat scroll right center}
@@ -205,7 +206,7 @@ form.normal div.overlabel-wrapper label.overlabel-apply{font-size:10px; backgrou
 form.normal div.required label{background:transparent url(../img/required-red.png) no-repeat scroll right top; padding:0 10px 0 0px}
 
 div.admin-content table.list tr td.notice{background:transparent url(../img/icon-list-warning.png) no-repeat scroll 6px center}
-div.submit-block{margin:5px 0px 5px 190px}
+div.submit-block{margin:5px 0px 5px 190px;overflow:hidden;}
 form.search-form div.submit-block{margin:0px 0px 5px 0px}
 form.normal div.submit-block div.submit input{margin:0px}
 form.normal .cancel-block{float:left; margin:0px}
@@ -274,7 +275,7 @@ h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
 
 .menu{background-color:#e6dcd3; height:42px}
 .menu ul{margin:auto; text-align:center}
-.menu li{display:inline-block; color:#e23a85; font:normal Arial,Helvetica,sans-serif; line-height:45px; padding:0 24px; font-size:15px!important}
+.menu li{display:inline-block;*display:inline ; color:#e23a85; font:normal Arial,Helvetica,sans-serif; line-height:45px; padding:0 24px; font-size:15px!important}
 .menu li a{color:#e23a85; text-decoration:none; text-shadow:1px 0 0 #FFF;font-family:Arial,Helvetica,sans-serif}
 .menu li a:hover{color:#000}
 .menu li a.act{color:#000}
@@ -363,7 +364,7 @@ h2{color:#000; font:bold 18px Arial,Helvetica,sans-serif; line-height:40px}
 .user-login{width:303px; float:left; padding-left:50px; text-align:center; color:#5d6163; font-size:14px; margin-top:150px}
 
 #UserRegisterForm div.required label{    color:#DE006D;     float:left;     font:bold 13px/13px Arial,Helvetica,sans-serif;     width:204px;     text-align:left}
-#UserRegisterForm label, #UserLoginForm label{color:#DE006D; font:bold 13px/13px Arial,Helvetica,sans-serif;     padding:0 0px 0 0;     text-align:left; background:none}
+#UserRegisterForm label, #UserLoginForm label{color:#DE006D; font:bold 13px/17px Arial,Helvetica,sans-serif;     padding:0 0px 0 0;     text-align:left; background:none}
 
 #UserRegisterForm input[type="text"], #UserLoginForm input[type="text"]{    border:1px solid #DDD;     font-size:12px;     margin:0 5px 0 180px;     padding:0px;     width:240px}
 #UserRegisterForm input[type="password"], #UserLoginForm input[type="password"]{    border:1px solid #DDD;     font-size:12px;     margin:0 5px 0 180px;     padding:0px;     width:240px}
@@ -488,7 +489,7 @@ a.pdf {
 .my-account{margin:auto;margin-top:25px;margin-bottom:35px; overflow:hidden; color:#241F20}
  
 .my-account h1{ font-size:27px;}
-.my-account-right{ width:80%; margin-top:25px; padding-left:2%; float:left; font-size:12px; color:#241F20;border-left:1px dashed #ccc;}
+.my-account-right{ width:80.5%; margin-top:25px; padding-left:2%; float:left; font-size:12px; color:#241F20;border-left:1px dashed #ccc;min-height: 275px;}
 .my-account-right ul{ background:none;margin-top:20px; padding-left:20px;}
 .my-account-right li{ overflow:hidden;padding-bottom:15px;}
 .my-account-right label{ font:normal 13px Arial, Helvetica, sans-serif; width:204px;float:left;line-height:33px;   padding-left: 10px;}
@@ -894,7 +895,7 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .brand-right{ width:68%; margin-top:25px; padding-left:3%; float:left; font-size:12px; color:#241F20;}
 .brand-right ul{ background:none;margin-top:0px; padding-left:0px;}
 .brand-right ul li{ margin:0; padding:0;}
-.brand-right li a{ border: 1px solid #CCCCCC; float: left; height: 200px; margin: 0 5px 5px 0; opacity: 0.2; overflow: hidden; padding: 5px 15px; width: 200px;}
+.brand-right li a{ border: 1px solid #CCCCCC; float: left; height: 200px; margin: 0 5px 5px 0; opacity: 0.2; overflow: hidden; padding: 5px 15px; width: 200px;opacity: 0.2;filter: alpha(opacity=20);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";}
 .brand-right li a:hover{ opacity: 1;filter: alpha(opacity=100);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";}
 
 .brand-detail{margin:auto;margin-top:25px;margin-bottom:35px; overflow:hidden; color:#241F20}
@@ -957,11 +958,11 @@ form.search-form1 div.select select, form.search-form1 div.text input {
 .start.end{float:left;text-decoration: none;padding: 6px 10px;margin: 0 5px 0 0;text-align: center;font-size:12px;outline: 0;background: #fff;border:1px solid #ccc; color:#999999; cursor:pointer; }
 
 .finish{float:right;text-decoration: none;padding: 6px 10px;margin: 0 0px 0 0;text-align: center;font-size:12px;outline: 0;background: #fff;border:1px solid #CCC; cursor:pointer;}
-.finish:hover{background: #e43385;border:1px solid #e43385; cursor:pointer; color:#FFF;}
+/*.finish:hover{background: #e43385;border:1px solid #e43385; cursor:pointer; color:#FFF;} */
 .finish.active{background: #e43385;border:1px solid #e43385; cursor:pointer; color:#FFF;}
 
 .banner-nav{ width:988px; margin:0 auto; overflow:hidden; margin-top:10px;}
-.banner-nav ul li { float:left;}
+.banner-nav ul li { float:left;list-style: none;}
 .banner-nav ul li a{float:left;text-decoration: none;padding: 6px 10px;margin: 0 5px 0 0;text-align: center;font-size:12px;outline: 0;background: #fff;border:1px solid #CCC; color:#999; }
 .banner-nav ul li a:hover{background: #e43385;border:1px solid #e43385; color:#fff; }
 .banner-nav ul li a.cur{background: #e43385 !important;border:1px solid #e43385; color:#fff; }
@@ -1286,7 +1287,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2ede8', end
 .my-pro-survey .t-c5{ width:10%; float:left; text-align:center;}
 .my-pro-survey .t-c5 .but6 { display:inline-block;}
 
-.my-pro-survey .t-data .t-c1, .subscribe2 .t-data .t-c2, .subscribe2 .t-data .t-c3, .subscribe2 .t-data .t-c4{ padding-top:7px;}
+.my-pro-survey .t-data .t-c1, .subscribe2 .t-data .t-c2, .subscribe2 .t-data .t-c3, .subscribe2 .t-data .t-c4{ /* padding-top:7px; */}
+.pro-survey .banner-nav ul li a.js-visited1, 
+.pro-survey  .banner-nav ul li a.js-visited2, 
+.pro-survey .banner-nav ul li a.js-visited3, 
+.pro-survey .banner-nav ul li a.js-visited4, 
+.pro-survey .banner-nav ul li a.js-visited5, 
+.pro-survey .banner-nav ul li a.js-visited6, 
+.pro-survey .banner-nav ul li a.js-visited7, 
+.pro-survey .banner-nav ul li a.js-visited8 
+{background:#7B0C0D;}
 
 /* complete survey Table Data */
 .comp-survey-td{padding:90px 0 0 17px;}
@@ -1305,11 +1315,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c00256', end
 .comp-survey-td .t-date{ padding:12px 0px !important; margin:0 5px; float:none !important; border-bottom:1px solid #e6dcd3; background:#f9f6f3;overflow:visible; display:block; text-align:center; }
 .comp-survey-td .t-date:hover{ background:#f3ede8;}
 
-.comp-survey-td .t-c1{ width:30%; float:left; text-align:left; }
-.comp-survey-td .t-c2{ width:17%; float:left; text-align:center;}
-.comp-survey-td .t-c3{ width:17%; float:left;text-align:center;}
-.comp-survey-td .t-c4{ width:17%; float:left;text-align:center;}
-.comp-survey-td .t-c5{ width:17%; float:left; text-align:center;}
+.comp-survey-td .t-c1{ width:25%; float:left; text-align:left; }
+.comp-survey-td .t-c2{ width:15%; float:left; text-align:center;}
+.comp-survey-td .t-c3{ width:15%; float:left; text-align:center;}
+.comp-survey-td .t-c4{ width:15%; float:left; text-align:center;}
+.comp-survey-td .t-c5{ width:15%; float:left; text-align:center;}
+.comp-survey-td .t-c6{ width:15%; float:left; text-align:center;}
 .comp-survey-td .t-c5 .but6 { display:inline-block;}
 
 .comp-survey-td .t-data .t-c1, .comp-survey-td .t-data .t-c2, .comp-survey-td .t-data .t-c3, .comp-survey-td .t-data .t-c4{ padding-top:7px;}
@@ -1336,7 +1347,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c21b22', end
    }
    
 .pro-survey .get-slide2-right h1 { color:#000;}
-.pro-survey .start, .pro-survey .banner-nav ul li a.cur, .pro-survey .banner-nav ul li a:hover, .pro-survey .finish:hover{background: #c21b22;border:1px solid #961519; color:#fff; cursor:pointer; }
+.pro-survey .start, .pro-survey .banner-nav ul li a.cur, .pro-survey .banner-nav ul li a:hover, .pro-survey .finish.active{background: #c21b22 !important;border:1px solid #961519; color:#fff; cursor:pointer; }
 
 .pro-survey .left-arrow{background: url("../img/pro_servey_left_arrow.png") repeat scroll 0 0 transparent;}
 .pro-survey .left-arrow:hover{background: url("../img/pro_servey_left_arrow2.png") repeat scroll 0 0 transparent;}
@@ -1345,10 +1356,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c21b22', end
 
 .pro-survey .banner-thank h1, .pro-survey .banner-thank p{ color:#000;}
 .pro-survey .banner-thank h1 span { color:#666;}
-
+.pro-survey .start.end {
+	background: none repeat scroll 0 0 #FFFFFF !important;
+    border: 1px solid #CCCCCC;
+	color: #ccc;
+}
 .acc-banner .get-slide2-left p {
     padding: 0 0 0 0;
 }
 #inner-static ul,#inner-static ol{
 	padding-left:30px;
 }
+form#ProductSurveyForm select#ProductMonth {
+    width: 140px;
+}
+form#ProductSurveyForm label {
+	font-weight: bold;
+    padding-left: 0;
+    width: 128px;
+}
+#js-slide7-text-content{
+	height:20px;
+}
+.brand-right li a{text-align: center;}

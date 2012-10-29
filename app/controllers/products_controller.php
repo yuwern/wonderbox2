@@ -189,4 +189,231 @@ class ProductsController extends AppController
             throw new NotFoundException(__l('Invalid request'));
         }
     }
+	public function survey()
+	{
+		$this->_redirectGET2Named(array(
+            'month',
+        ));
+		$conditions = array();
+		$this->loadModel('PackageUser');
+		$packageUser = $this->PackageUser->find('first', array(
+            'conditions' => array(
+                'PackageUser.user_id' =>$this->Auth->user('id')
+            ) ,
+			'fields' => array(
+                'PackageUser.start_date'
+            ) ,
+ 		    'order'=> array(
+			     'PackageUser.id'=>'desc'
+			  ),
+            'recursive' => -1,
+        ));
+	   $startpackageUser = $this->PackageUser->find('first', array(
+            'conditions' => array(
+				'PackageUser.start_date >='=> date('Y-m-1'),
+                'PackageUser.user_id' => $this->Auth->user('id')
+            ) ,
+			'fields' => array(
+                'PackageUser.start_date'
+            ) ,
+ 		    'order'=> array(
+			     'PackageUser.id'=>'asc'
+			  ),
+            'recursive' => -1,
+        ));
+		$months = array();
+		if(!empty($startpackageUser))
+		$currentMonth = date('Y-m-d',strtotime("-1 months", strtotime($startpackageUser['PackageUser']['start_date'])));
+		else 
+		$currentMonth = date('Y-m-d',mktime(0, 0, 0, date("m")-1  , date("d"), date("Y")));
+		if(!empty($packageUser)):
+		$months = $this->get_months($currentMonth, $packageUser['PackageUser']['start_date']);
+		$conditions['Product.end_date >='] = $currentMonth;
+		$conditions['Product.end_date <='] = $packageUser['PackageUser']['start_date'];
+		endif; 
+		if(!empty($this->request->data['Product']['month'])){
+			$conditions['Product.end_date >='] = $this->request->data['Product']['month'];
+			$conditions['Product.end_date <='] = date("Y-m-t", strtotime($this->request->data['Product']['month']));
+		}else{
+			$conditions['Product.end_date >='] = $currentMonth;
+			$conditions['Product.end_date <='] = date("Y-m-t", strtotime($currentMonth));
+		}
+		$conditions['Product.is_active'] = 1;
+		$this->paginate = array(
+			'contain'=>array(
+				'Brand'=> array(
+					'fields'=> array(
+						'Brand.name',
+					)
+				)
+			),
+            'conditions' => $conditions,
+			'fields'=> array(
+				'Product.id',
+				'Product.brand_id',
+				'Product.wonder_point',
+				'Product.name',
+	            'Product.slug',
+				'Product.price',
+				'Product.end_date',
+			),
+            'recursive' => 1,
+        );
+
+		$this->set('months',$months);
+	    $this->set('products', $this->paginate());
+	}
+	function get_months($date1, $date2) {
+		date_default_timezone_set('UTC');
+		$time1 = strtotime($date1);
+		$time2 = strtotime($date2);
+		$my = date('mY', $time2);
+		$months = array(date('F Y', $time1));
+		$newmonths = array();
+		$newmonths[date('Y-m-1',$time1)] = date('F Y', $time1);
+		$f = '';
+		while($time1 < $time2) {
+		$time1 = strtotime((date('Y-m-d', $time1).' +15days'));
+
+		if(date('F', $time1) != $f) {
+		$f = date('F', $time1);
+		if(date('mY', $time1) != $my && ($time1 < $time2))
+			$months[] = date('F Y', $time1);
+			$newmonths[date('Y-m-1',$time1)] = date('F Y', $time1);
+		}
+		}
+		$months[] = date('F Y', $time2);
+		$newmonths[date('Y-m-1',$time2)] = date('F Y', $time2);
+		return $newmonths;
+	}
+    public function quiz($slug = null)
+    {
+        $this->pageTitle = __l('Product');
+        $product = $this->Product->find('first', array(
+            'conditions' => array(
+                'Product.slug = ' => $slug
+            ) ,
+            'fields' => array(
+                'Product.id',
+                'Product.category_id',
+                'Product.brand_id',
+                'Product.slug',
+                'Product.wonder_point',
+                'Product.slug',
+                'Product.name',
+                'Product.description',
+                'Product.price',
+                'Product.is_active',
+                'Category.id',
+                'Category.name',
+                'Brand.id',
+                'Brand.name',
+              ) ,
+            'recursive' => 1,
+        ));        
+        if (empty($product)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }
+		$checkSurveyCompleteOrNot = $this->Product->ProductSurvey->find('count', array(
+											'conditions'=> array(
+												'ProductSurvey.user_id'=> $this->Auth->user('id'),
+												'ProductSurvey.product_id'=> $product['Product']['id'],
+											)
+									)
+						);
+		if(!empty($checkSurveyCompleteOrNot)){
+			$this->redirect(array(
+						'action' => 'survey'
+			));
+		}
+        $this->pageTitle.= ' - ' . $product['Product']['name'];
+        $this->set('product', $product);
+    }
+	public function admin_chart($slug = null)
+	{
+		$product = $this->Product->find('first', array(
+            'conditions' => array(
+                'Product.slug = ' => $slug
+            ) ,
+            'fields' => array(
+                'Product.id',
+                'Product.category_id',
+                'Product.brand_id',
+                'Product.slug',
+                'Product.wonder_point',
+                'Product.slug',
+                'Product.name',
+                'Product.description',
+                'Product.end_date',
+                'Product.price',
+                'Product.is_active',
+                'Category.id',
+                'Category.name',
+                'Brand.id',
+                'Brand.name',
+              ) ,
+            'recursive' => 0,
+        ));  
+		if(!empty($this->request->params['named']['type'])&& $this->request->params['named']['type'] =='print'){
+			$this->layout = 'ajax';
+
+		}
+        if (empty($product)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }	
+		$participants  = $this->Product->ProductSurvey->find('all', array(
+			'conditions'=> array(
+				'ProductSurvey.product_id'=> $product['Product']['id']
+			),
+			'fields'=> array(
+				'Distinct(ProductSurvey.user_id)'
+			),
+            'recursive' => 0,
+        ));
+		$this->set('totalparticipants',count($participants));
+		$this->set('product', $product);
+	}
+	public function admin_test($slug = null){
+		$product = $this->Product->find('first', array(
+            'conditions' => array(
+                'Product.slug = ' => $slug
+            ) ,
+            'fields' => array(
+                'Product.id',
+                'Product.category_id',
+                'Product.brand_id',
+                'Product.slug',
+                'Product.wonder_point',
+                'Product.slug',
+                'Product.name',
+                'Product.description',
+                'Product.end_date',
+                'Product.price',
+                'Product.is_active',
+                'Category.id',
+                'Category.name',
+                'Brand.id',
+                'Brand.name',
+              ) ,
+            'recursive' => 0,
+        ));  
+		if(!empty($this->request->params['named']['type'])&& $this->request->params['named']['type'] =='print'){
+			$this->layout = 'ajax';
+
+		}
+        if (empty($product)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }	
+		$participants  = $this->Product->ProductSurvey->find('all', array(
+			'conditions'=> array(
+				'ProductSurvey.product_id'=> $product['Product']['id']
+			),
+			'fields'=> array(
+				'Distinct(ProductSurvey.user_id)'
+			),
+            'recursive' => 0,
+        ));
+		$this->set('totalparticipants',count($participants));
+		$this->set('product', $product);
+	}
 }

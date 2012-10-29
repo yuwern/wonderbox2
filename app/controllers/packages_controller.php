@@ -273,7 +273,7 @@ class PackagesController extends AppController
             $this->set('gateway_options', $gateway_options);
 		 }
 		 else {
-		  
+			    
 				$err_message  = ' ';
 				if(!empty($this->Package->PackageUser->User->UserShipping->validationErrors)){
 					$err_message  .= "<div  style='text-align:left;padding-left:300px;'>";

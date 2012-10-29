@@ -46,6 +46,19 @@ class Product extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+	   'ProductSurvey' => array(
+            'className' => 'ProductSurvey',
+            'foreignKey' => 'product_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
     );
     function __construct($id = false, $table = null, $ds = null)
     {

@@ -9,5 +9,6 @@
 		echo $this->Form->input('is_active');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__l('Update'));?>
+		<div class="submit-block">
+<?php echo $this->Form->end(__l('Update'));?></div>
 </div>

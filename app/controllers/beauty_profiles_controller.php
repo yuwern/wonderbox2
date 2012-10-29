@@ -47,7 +47,8 @@ class BeautyProfilesController extends AppController
         $this->set(compact('beautyQuestions'));
     }
   
-	function quiz(){
+	public function quiz(){
 
 	}
+	
 }

@@ -41,7 +41,7 @@ class AppController extends Controller
         'Security',
         'Auth',
         'XAjax',
-        'DebugKit.Toolbar',
+        //'DebugKit.Toolbar',
         'Cookie',
         'Pdf'
     );
@@ -234,7 +234,7 @@ class AppController extends Controller
         }
         $timezone_code = Configure::read('site.timezone_offset');
         if (!empty($timezone_code)) {
-            date_default_timezone_set($timezone_code);
+            date_default_timezone_set('UTC');
         }
         if (Configure::read('site.is_ssl_for_deal_buy_enabled')) {
             $secure_array = array(
@@ -781,4 +781,5 @@ class AppController extends Controller
     }
 		
 }
+
 ?>

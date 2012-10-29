@@ -110,6 +110,33 @@ class AppHelper extends Helper
 		else 
 		return 0;
 	}
+	function checkProductSurveyStatus($product_id, $user_id){
+		App::import('Model', 'ProductSurvey');
+        $this->ProductSurvey = new ProductSurvey();
+		$productsurveyCount = $this->ProductSurvey->find('count',array('conditions'=>array('ProductSurvey.product_id'=>$product_id,
+				'ProductSurvey.user_id'=>$user_id)));
+		if(!empty($productsurveyCount))
+			return 'Completed';
+		else
+		  return 'StartSurvey';	
+	}
+	function checkUserActive($user_id){
+		App::import('Model', 'PackageUser');
+		date_default_timezone_set('UTC');
+		$end_date = date('Y-m-d');
+        $this->PackageUser = new PackageUser();
+		$packageuserCount = $this->PackageUser->find('count',array(
+				'conditions'=>array(
+					'PackageUser.user_id' => $user_id,
+					'PackageUser.end_date >=' => $end_date,
+				),
+				'order'=> array(
+					'PackageUser.id'=>'desc'
+				),
+				'recursive'=> -1
+			));
+		return $packageuserCount;
+	}
 	function beautyProfileDetails($question_id){
 		App::import('Model', 'BeautyProfile');
 		$this->BeautyProfile = new BeautyProfile();
@@ -137,6 +164,36 @@ class AppHelper extends Helper
 			),
 		));
 		return $beautyprofies[0];
+	}
+	function productSuveryDetails($question_id,$product_id = null ){
+		$conditions = array();
+		$conditions['ProductSurvey.beauty_question_id'] = $question_id;
+		if(!empty($product_id))
+		$conditions['ProductSurvey.product_id'] = $product_id;
+		App::import('Model', 'ProductSurvey');
+		$this->ProductSurvey = new ProductSurvey();
+		$productSurveys = $this->ProductSurvey->find('all',array(
+			'conditions'=> $conditions,
+			'fields'=> array(
+				'SUM(ProductSurvey.answer1) as Answer1',
+				'SUM(ProductSurvey.answer2) as Answer2',
+				'SUM(ProductSurvey.answer3) as Answer3',
+				'SUM(ProductSurvey.answer4) as Answer4',
+				'SUM(ProductSurvey.answer5) as Answer5',
+				'SUM(ProductSurvey.answer6) as Answer6',
+				'SUM(ProductSurvey.answer7) as Answer7',
+				'SUM(ProductSurvey.answer8) as Answer8',
+				'SUM(ProductSurvey.answer9) as Answer9',
+				'SUM(ProductSurvey.answer10) as Answer10',
+				'SUM(ProductSurvey.answer11) as Answer11',
+				'SUM(ProductSurvey.answer12) as Answer12',
+				'ProductSurvey.beauty_question_id',
+				'BeautyQuestion.name',
+				'BeautyQuestion.beauty_answer_count',
+
+			),
+		));
+		return $productSurveys[0];
 	}
 	function dateDiff($start , $end ) {
 		$start_ts = strtotime($start);

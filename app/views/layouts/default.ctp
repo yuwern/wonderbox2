@@ -132,7 +132,7 @@ endif;
     						echo $this->Html->getUserAvatarLink($current_user_details, 'small_thumb'); ?></span>
     					
     					 <span> Hi, </span>
-						 <span> <?php echo __l('WonderPoints'); ?> : <?php echo $this->Html->getWonderPointAvialable($current_user_details['id']);?></span>
+						 <span class="js-currentWonderpoint"> <?php echo __l('WonderPoints'); ?> : <?php echo $this->Html->getWonderPointAvialable($current_user_details['id']);?></span>
                              </p>
                             <?php
 						
@@ -185,7 +185,7 @@ endif;
 				<li><?php echo $this->Html->link(sprintf(__l('Contact Us')), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => sprintf(__l('Contact Us')),'class'=> $active_class));?></li>	
 				<?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'index' ) ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('Brands')), array('controller' => 'brands', 'action' => 'index', 'admin' => false), array('title' => sprintf(__l('Brands')),'class'=> $active_class));?></li>
-				<?php $active_class = (($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'edit' || $this->request->params['action'] == 'profile_image'  )|| ($this->request->params['controller'] == 'user_shippings') ||($this->request->params['controller'] == 'package_users') ||($this->request->params['controller'] == 'transactions') || ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'change_password') ) ?  'act': null; ?>
+				<?php $active_class = (($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'edit' || $this->request->params['action'] == 'profile_image'  )|| ($this->request->params['controller'] == 'user_shippings') ||($this->request->params['controller'] == 'package_users') ||($this->request->params['controller'] == 'transactions') || ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'change_password') || ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'redemption') || ($this->request->params['controller'] == 'beauty_profiles' && $this->request->params['action'] == 'my_beauty_profile')|| ($this->request->params['controller'] == 'products' && $this->request->params['action'] == 'survey')) ?  'act': null; ?>
 				  <?php if ($this->Auth->sessionValid()): ?>
 				<li><?php echo $this->Html->link(sprintf(__l('My Account')), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => sprintf(__l('My Account')),'class'=> $active_class));?></li>
 				<?php endif; ?>

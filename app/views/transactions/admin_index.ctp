@@ -43,7 +43,7 @@
 				?>
             </td>
 			   <td class="dl">
-				<?php 	 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd ):
+				<?php 	 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint ):
 					echo $this->Html->cText($transaction['TransactionType']['name']);
 				else:
 				echo $this->Html->cText($transaction['Package']['name']);
@@ -51,14 +51,14 @@
 				?>
             </td>
 			 <td class="dl">
-				<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd ):
+				<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint ):
 					echo ' -- ';
 				else:
 					echo Configure::read('site.currency'). ' '. $this->Html->cInt($transaction['Package']['cost']);
 				endif;?>
             </td>
 			 <td class="dl">
-			<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd ):
+			<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint ):
 				   echo $this->Html->cText($transaction['Transaction']['wonder_points']);
 				else:
 			      echo $this->Html->cText($transaction['Package']['no_of_wonderpoints']);

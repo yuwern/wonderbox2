@@ -91,4 +91,24 @@ class BeautyCategoriesController extends AppController
             throw new NotFoundException(__l('Invalid request'));
         }
     }
+	public function admin_chart($category){
+		$beautyCategories = $this->BeautyCategory->find('first',array(
+											'conditions' => array(
+												'BeautyCategory.slug'=> $category
+											),
+											'contain' => array(
+												'BeautyQuestion'  => array(
+													'fields' => array(
+														'BeautyQuestion.id',
+														'BeautyQuestion.name',
+													)
+												)
+											),
+											'fields'=> array(
+												'BeautyCategory.name'
+											),
+											'recursive'=> 1
+									));
+		 $this->set('beautyCategories', $beautyCategories);
+	}
 }

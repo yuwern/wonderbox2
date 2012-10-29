@@ -13,7 +13,7 @@
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor'));
 		echo $this->Form->input('price',array('label'=>__('Amount')));
 		echo $this->Form->input('wonder_point');
-		echo $this->Form->input('end_date');
+		echo $this->Form->input('end_date',array('label'=>__l('Survey End date')));
 		echo $this->Form->input('is_active');
 	?>
 	</fieldset>

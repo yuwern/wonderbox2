@@ -9,7 +9,7 @@
 .slide4 ul{ overflow:hidden; padding-bottom:5px; margin-bottom:5px !important;}
 .slide8 ul{ margin-right:100px !important; width:350px;}
 .slide13 ul{margin-right:0px !important; margin-bottom:5px; overflow:hidden;}
-.checkbox{width:60%;}
+.checkbox{*width:65%;}
 
 .slide13 ul{ margin-bottom:5px !important;}
 
@@ -23,3 +23,6 @@
     width: 51px;
     z-index: 10000;
 }
+.comp-survey-td .t-c3{width: 65px !important }
+
+.menu li{display:inline; color:#e23a85; font:normal Arial,Helvetica,sans-serif; line-height:45px; padding:0 24px; font-size:15px!important}

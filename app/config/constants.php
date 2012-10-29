@@ -133,7 +133,7 @@ class ConstTransactionTypes
 	const PaidlAmountToCompany = 35;
 	const ReferralWonderPoint = 36;
     const ReferralWonderPointAdd = 37;
-    
+    const ProductSurveryWonderPoint = 40;
 
 }
 // Setting for privacy setting

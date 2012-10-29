@@ -15,8 +15,9 @@
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Brands'), array('controller' => 'brands', 'action' => 'index'),array('title' => __l('Brands'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'products') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Products'), array('controller' => 'products', 'action' => 'index'),array('title' => __l('Products'))); ?></li>
-			<?php $class = ($this->request->params['controller'] == 'beauty_questions' && $this->request->params['action'] == 'chart') ? ' class="active"' : null; ?>
-			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Beauty Profile Reports'), array('controller' => 'beauty_questions', 'action' => 'chart'),array('title' => __l('Beauty Profile Reports'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'beauty_categories') ? ' class="active"' : null;
+			?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Report Survey'), array('controller' => 'beauty_categories', 'action' => 'index'),array('title' => __l('Beauty Survey'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'settings') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Settings'), array('controller' => 'settings', 'action' => 'index'),array('title' => __l('Settings'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'email_templates') ? ' class="active"' : null; ?>

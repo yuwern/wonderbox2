@@ -2,7 +2,11 @@
 <div class="beautyCategories index">
 <h2><?php echo __l('Beauty Categories');?></h2>
 <?php echo $this->element('paging_counter');?>
-<ol class="list">
+    <table class="list">
+        <tr>
+			 <th class="dl"><div class="js-pagination"><?php echo __l('Action');?></div></th>
+			 <th class="dl"><div class="js-pagination"><?php echo __l('Name');?></div></th>
+       </tr>
 <?php
 if (!empty($beautyCategories)):
 
@@ -13,22 +17,21 @@ foreach ($beautyCategories as $beautyCategory):
 		$class = ' class="altrow"';
 	}
 ?>
-	<li<?php echo $class;?>>
-		<p><?php echo $this->Html->cText($beautyCategory['BeautyCategory']['name']);?></p>
-		<p><?php echo $this->Html->cBool($beautyCategory['BeautyCategory']['is_active']);?></p>
-		<div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $beautyCategory['BeautyCategory']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $beautyCategory['BeautyCategory']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div>
-	</li>
+	<tr<?php echo $class;?>>
+			<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $beautyCategory['BeautyCategory']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></div><div class="actions"><?php echo $this->Html->link(__l('Chart'), array('action'=>'chart', $beautyCategory['BeautyCategory']['slug']), array('class' => 'chart js-edit', 'title' => __l('Chart')));?></div></td>
+		<td><?php echo $this->Html->cText($beautyCategory['BeautyCategory']['name']);?></td>
+	</tr>
 <?php
     endforeach;
 else:
 ?>
-	<li>
-		<p class="notice"><?php echo __l('No Beauty Categories available');?></p>
-	</li>
+	<tr>
+		<td  colspan="4"><p class="notice"><?php echo __l('No Beauty Categories available');?></p></td>
+	</tr>
 <?php
 endif;
 ?>
-</ol>
+</table>
 
 <?php
 if (!empty($beautyCategories)) {
@@ -36,3 +39,4 @@ if (!empty($beautyCategories)) {
 }
 ?>
 </div>
+

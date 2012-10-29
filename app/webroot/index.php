@@ -121,6 +121,7 @@ function permanentCached($requested = null) {
 		session_unset($_SESSION['is_enable_hashbang_url']);
 	}
 	$debug_mode = DEBUG;
+	/*
 	if (empty($debug_mode) && PERMANENT_CACHE_CHECK && empty($_SESSION['Message']) && !in_array($_SERVER['REQUEST_METHOD'], array('POST', 'PUT', 'DELETE')) && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
 		$cache = !empty($requested) ? $requested : baseUrl() . '/' . $_GET['url'];
 		if (strpos($cache, '.') !== false) {
@@ -164,7 +165,7 @@ function permanentCached($requested = null) {
 			header('Content-Encoding: gzip');
 			return readfile($filename[0]);
 		}
-	}
+	}*/
 	return false;
 }
 function baseUrl() {
