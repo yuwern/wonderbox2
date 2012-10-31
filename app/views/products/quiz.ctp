@@ -627,6 +627,9 @@
 								});
 							}
 						});
+						window.setTimeout(function() {
+						    window.location.href = "<?php echo Router::url('/', true); ?>products/survey" ;
+						}, 3000);
 					}
 				});
 				$('#js-gobackward').click(function(){

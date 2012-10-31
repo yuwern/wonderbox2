@@ -35,8 +35,35 @@ class BeautyQuestion extends AppModel
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
+        ),
+      'ProductSurvey' => array(
+            'className' => 'ProductSurvey',
+            'foreignKey' => 'beauty_question_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ),
+      'BeautyAnswer' => array(
+            'className' => 'BeautyAnswer',
+            'foreignKey' => 'beauty_question_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ),
     );
+	
     function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);

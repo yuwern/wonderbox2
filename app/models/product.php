@@ -21,6 +21,14 @@ class Product extends AppModel
             'order' => '',
             'counterCache' => false
         ) ,
+		'BeautyCategory' => array(
+            'className' => 'BeautyCategory',
+            'foreignKey' => 'beauty_category_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'counterCache' => false
+        ) ,
         'Brand' => array(
             'className' => 'Brand',
             'foreignKey' => 'brand_id',
@@ -77,6 +85,12 @@ class Product extends AppModel
                     'allowEmpty' => false,
                     'message' => __l('Required') ,
                 ) ,
+            ) ,
+	        'beauty_category_id' => array(
+                'rule1' => array(
+                    'rule' => 'numeric',
+                    'message' => __l('Required')
+                )
             ) ,
             'wonder_point' => array(
                 'rule1' => array(

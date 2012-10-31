@@ -165,6 +165,41 @@ class AppHelper extends Helper
 		));
 		return $beautyprofies[0];
 	}
+	function beautyProfileBarChart($question_id,$fields = array()){
+		App::import('Model', 'BeautyProfile');
+		$field_conditions  = array(
+				'BeautyProfile.beauty_question_id',
+				'BeautyQuestion.name',
+				'BeautyQuestion.beauty_answer_count',
+		);
+		$fields = array_merge($fields,$field_conditions);
+		if(!empty($fields)){
+			$fields = implode(',',$fields);
+		}
+		$this->BeautyProfile = new BeautyProfile();
+		$beautyprofiles = $this->BeautyProfile->find('all',array(
+			'conditions'=> array(
+				'BeautyProfile.beauty_question_id'=> $question_id
+			),
+			'fields'=> array(
+					$fields
+		 	),
+		));
+		return $beautyprofiles[0];
+	}
+	function beautyQuestionListing($beauty_category_id){
+		App::import('Model', 'BeautyQuestion');
+		$this->BeautyQuestion = new BeautyQuestion();
+		$beautyQuestions = $this->BeautyQuestion->find('all',array(
+			'conditions'=> array(
+				'BeautyQuestion.beauty_category_id'=> $beauty_category_id
+			),
+			'recursive'=> -1
+		));
+
+
+		return $beautyQuestions;
+	}
 	function productSuveryDetails($question_id,$product_id = null ){
 		$conditions = array();
 		$conditions['ProductSurvey.beauty_question_id'] = $question_id;
@@ -194,6 +229,41 @@ class AppHelper extends Helper
 			),
 		));
 		return $productSurveys[0];
+	}
+	function productQuestionChoices($question_id ){
+		App::import('Model', 'BeautyQuestion');
+		$this->BeautyQuestion = new BeautyQuestion();
+		$productQuestion = $this->BeautyQuestion->find('first',array(
+						'conditions' => array(
+							'BeautyQuestion.id'=> $question_id
+						),
+						'contain'=> array(
+							'BeautyAnswer'=> array(
+								'fields'=> array(
+									'BeautyAnswer.answer',
+								)
+							)
+						),
+						'fields'=> array(
+							'BeautyQuestion.id',
+							'BeautyQuestion.beauty_category_id',
+							'BeautyQuestion.name',
+						)
+		));
+		return $productQuestion;
+	}
+	function getBrandLogo($brand_id){
+		App::import('Model', 'Brand');
+		$this->Brand = new Brand();
+		$brand  = $this->Brand->find('first',array(
+				'contain'=> array(
+					'Attachment',
+				),
+				'conditions'=> array(
+					'Brand.id'=> $brand_id
+				),
+		));
+		return $brand;
 	}
 	function dateDiff($start , $end ) {
 		$start_ts = strtotime($start);

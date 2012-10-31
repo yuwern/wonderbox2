@@ -8,7 +8,8 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Product Image'),'class'=>'required','div'=>'input file '));
-		echo $this->Form->input('category_id');
+		echo $this->Form->input('category_id',array('label'=>__l('Product Category')));
+		echo $this->Form->input('beauty_category_id',array('label'=>__l('Survey Product Category'),'options'=>$beautycategories,'empty'=>__l('Please select')));
 		echo $this->Form->input('brand_id');
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor'));
 		echo $this->Form->input('price',array('label'=>__('Amount')));

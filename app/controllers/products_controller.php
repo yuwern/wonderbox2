@@ -119,12 +119,17 @@ class ProductsController extends AppController
 							'Category.is_active'=> 1
 						)
 					));
+       $beautycategories = $this->Product->BeautyCategory->find('list',array(
+						'conditions'=> array(
+							'BeautyCategory.is_active'=> 1
+						)
+					));
         $brands = $this->Product->Brand->find('list',array(
 						'conditions'=> array(
 							'Brand.is_active'=> 1
 						)
 					));
-        $this->set(compact('categories', 'brands'));
+        $this->set(compact('categories', 'brands','beautycategories'));
     }
     public function admin_edit($id = null)
     {
@@ -172,8 +177,13 @@ class ProductsController extends AppController
 						'conditions'=> array(
 							'Brand.is_active'=> 1
 						)
-					));;
-        $this->set(compact('categories', 'brands'));
+					));
+	    $beautycategories = $this->Product->BeautyCategory->find('list',array(
+						'conditions'=> array(
+							'BeautyCategory.is_active'=> 1
+						)
+				));
+        $this->set(compact('categories', 'brands','beautycategories'));
     }
 	public function admin_delete($id = null)
     {
@@ -329,8 +339,7 @@ class ProductsController extends AppController
         $this->pageTitle.= ' - ' . $product['Product']['name'];
         $this->set('product', $product);
     }
-	public function admin_chart($slug = null)
-	{
+	public function admin_chart($slug = null){
 		$product = $this->Product->find('first', array(
             'conditions' => array(
                 'Product.slug = ' => $slug
@@ -338,6 +347,7 @@ class ProductsController extends AppController
             'fields' => array(
                 'Product.id',
                 'Product.category_id',
+                'Product.beauty_category_id',
                 'Product.brand_id',
                 'Product.slug',
                 'Product.wonder_point',
@@ -351,9 +361,10 @@ class ProductsController extends AppController
                 'Category.name',
                 'Brand.id',
                 'Brand.name',
-              ) ,
+				'BeautyCategory.name'
+		      ) ,
             'recursive' => 0,
-        ));  
+        ));
 		if(!empty($this->request->params['named']['type'])&& $this->request->params['named']['type'] =='print'){
 			$this->layout = 'ajax';
 
@@ -361,6 +372,29 @@ class ProductsController extends AppController
         if (empty($product)) {
             throw new NotFoundException(__l('Invalid request'));
         }	
+		
+		$beautyQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
+						'conditions' => array(
+							'BeautyQuestion.beauty_category_id'=> $product['Product']['beauty_category_id']
+						),
+						'contain'=> array(
+							'BeautyCategory'=> array(
+								'fields'=> array(
+									'BeautyCategory.name',
+								)
+							),
+							'BeautyAnswer'=> array(
+								'fields'=> array(
+									'BeautyAnswer.answer',
+								)
+							)
+						),
+						'fields'=> array(
+							'BeautyQuestion.id',
+							'BeautyQuestion.beauty_category_id',
+							'BeautyQuestion.name',
+						)
+		));
 		$participants  = $this->Product->ProductSurvey->find('all', array(
 			'conditions'=> array(
 				'ProductSurvey.product_id'=> $product['Product']['id']
@@ -372,48 +406,6 @@ class ProductsController extends AppController
         ));
 		$this->set('totalparticipants',count($participants));
 		$this->set('product', $product);
-	}
-	public function admin_test($slug = null){
-		$product = $this->Product->find('first', array(
-            'conditions' => array(
-                'Product.slug = ' => $slug
-            ) ,
-            'fields' => array(
-                'Product.id',
-                'Product.category_id',
-                'Product.brand_id',
-                'Product.slug',
-                'Product.wonder_point',
-                'Product.slug',
-                'Product.name',
-                'Product.description',
-                'Product.end_date',
-                'Product.price',
-                'Product.is_active',
-                'Category.id',
-                'Category.name',
-                'Brand.id',
-                'Brand.name',
-              ) ,
-            'recursive' => 0,
-        ));  
-		if(!empty($this->request->params['named']['type'])&& $this->request->params['named']['type'] =='print'){
-			$this->layout = 'ajax';
-
-		}
-        if (empty($product)) {
-            throw new NotFoundException(__l('Invalid request'));
-        }	
-		$participants  = $this->Product->ProductSurvey->find('all', array(
-			'conditions'=> array(
-				'ProductSurvey.product_id'=> $product['Product']['id']
-			),
-			'fields'=> array(
-				'Distinct(ProductSurvey.user_id)'
-			),
-            'recursive' => 0,
-        ));
-		$this->set('totalparticipants',count($participants));
-		$this->set('product', $product);
+		$this->set('beautyQuestions', $beautyQuestions);
 	}
 }

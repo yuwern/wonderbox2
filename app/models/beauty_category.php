@@ -25,6 +25,19 @@ class BeautyCategory extends AppModel
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
+        ),
+		'Product' => array(
+            'className' => 'Product',
+            'foreignKey' => 'beauty_category_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
         )
     );
     function __construct($id = false, $table = null, $ds = null)
