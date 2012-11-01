@@ -1379,3 +1379,8 @@ form#ProductSurveyForm label {
 	height:20px;
 }
 .brand-right li a{text-align: center;}
+.backlink{
+	font-family:Arial,Helvetica,sans-serif;
+	float:right;
+
+}

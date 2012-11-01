@@ -16,7 +16,7 @@
 						?>
 						<p><?php
 						echo  $this->Html->link($this->Html->truncate($product['Product']['name'],25, array('ending' => '...')), array('controller' => 'products', 'action' => 'view', $product['Product']['slug']),array('title' =>sprintf(__l('%s'),$product['Product']['name']), 'escape' => false)); ?></p>
-						<p><span><?php echo Configure::read('site.currency').' '.$this->Html->cText($product['Product']['price'],false); ?></span></p>
+						<p><span><?php echo Configure::read('site.currency').' '.number_format($product['Product']['price'], 2, '.', ''); ?></span></p>
 						</li>
 						<?php
 						endforeach;

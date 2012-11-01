@@ -51,6 +51,7 @@ class ProductsController extends AppController
                 'Category.name',
                 'Brand.id',
                 'Brand.name',
+                'Brand.slug',
               ) ,
             'recursive' => 1,
         ));
@@ -77,6 +78,7 @@ class ProductsController extends AppController
     {
         $this->pageTitle = __l('Add Product');
        if (!empty($this->request->data)) {
+		   $this->request->data['Product']['edition_date']['day']= 15;
 		   	 if (!empty($this->request->data['Attachment']['filename']['name'])) {
 					$this->request->data['Attachment']['filename']['type'] = get_mime($this->request->data['Attachment']['filename']['tmp_name']);
 					$this->Product->Attachment->Behaviors->attach('ImageUpload', Configure::read('image.file'));
@@ -129,7 +131,7 @@ class ProductsController extends AppController
 							'Brand.is_active'=> 1
 						)
 					));
-        $this->set(compact('categories', 'brands','beautycategories'));
+		$this->set(compact('categories', 'brands','beautycategories'));
     }
     public function admin_edit($id = null)
     {
@@ -142,6 +144,7 @@ class ProductsController extends AppController
             throw new NotFoundException(__l('Invalid product'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
+		   $this->request->data['Product']['edition_date']['day']= 15;
             if ($this->Product->save($this->request->data)) {
 				 if(!empty($this->request->data['Attachment']['filename']['name'])){
 						$attachment1=$this->Product->Attachment->find('first', array('conditions'=>array('Attachment.foreign_id'=>$this->request->data['Product']['id'], 'Attachment.class'=>'Product'), 'recursive'=>-1));
@@ -231,6 +234,7 @@ class ProductsController extends AppController
 			  ),
             'recursive' => -1,
         ));
+	  
 		$months = array();
 		if(!empty($startpackageUser))
 		$currentMonth = date('Y-m-d',strtotime("-1 months", strtotime($startpackageUser['PackageUser']['start_date'])));
@@ -238,15 +242,12 @@ class ProductsController extends AppController
 		$currentMonth = date('Y-m-d',mktime(0, 0, 0, date("m")-1  , date("d"), date("Y")));
 		if(!empty($packageUser)):
 		$months = $this->get_months($currentMonth, $packageUser['PackageUser']['start_date']);
-		$conditions['Product.end_date >='] = $currentMonth;
-		$conditions['Product.end_date <='] = $packageUser['PackageUser']['start_date'];
+		$conditions['Product.edition_date ='] = $packageUser['PackageUser']['start_date'];
 		endif; 
 		if(!empty($this->request->data['Product']['month'])){
-			$conditions['Product.end_date >='] = $this->request->data['Product']['month'];
-			$conditions['Product.end_date <='] = date("Y-m-t", strtotime($this->request->data['Product']['month']));
+			$conditions['Product.edition_date ='] = $this->request->data['Product']['month'];
 		}else{
-			$conditions['Product.end_date >='] = $currentMonth;
-			$conditions['Product.end_date <='] = date("Y-m-t", strtotime($currentMonth));
+			$conditions['Product.edition_date ='] = $currentMonth;
 		}
 		$conditions['Product.is_active'] = 1;
 		$this->paginate = array(
@@ -280,7 +281,7 @@ class ProductsController extends AppController
 		$my = date('mY', $time2);
 		$months = array(date('F Y', $time1));
 		$newmonths = array();
-		$newmonths[date('Y-m-1',$time1)] = date('F Y', $time1);
+		$newmonths[date('Y-m-15',$time1)] = date('F Y', $time1);
 		$f = '';
 		while($time1 < $time2) {
 		$time1 = strtotime((date('Y-m-d', $time1).' +15days'));
@@ -289,11 +290,11 @@ class ProductsController extends AppController
 		$f = date('F', $time1);
 		if(date('mY', $time1) != $my && ($time1 < $time2))
 			$months[] = date('F Y', $time1);
-			$newmonths[date('Y-m-1',$time1)] = date('F Y', $time1);
+			$newmonths[date('Y-m-15',$time1)] = date('F Y', $time1);
 		}
 		}
 		$months[] = date('F Y', $time2);
-		$newmonths[date('Y-m-1',$time2)] = date('F Y', $time2);
+		$newmonths[date('Y-m-15',$time2)] = date('F Y', $time2);
 		return $newmonths;
 	}
     public function quiz($slug = null)
