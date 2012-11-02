@@ -214,7 +214,8 @@ class ProductsController extends AppController
                 'PackageUser.user_id' =>$this->Auth->user('id')
             ) ,
 			'fields' => array(
-                'PackageUser.start_date'
+                'PackageUser.start_date',
+                'PackageUser.end_date',
             ) ,
  		    'order'=> array(
 			     'PackageUser.id'=>'desc'
@@ -234,13 +235,15 @@ class ProductsController extends AppController
 			  ),
             'recursive' => -1,
         ));
+	    
 	 	$months = array();
 		if(!empty($startpackageUser))
 		$currentMonth = date('Y-m-d',strtotime("-1 months", strtotime($startpackageUser['PackageUser']['start_date'])));
 		else 
 		$currentMonth = date('Y-m-d',mktime(0, 0, 0, date("m")-1  , 15 , date("Y")));
+
 		if(!empty($packageUser)):
-		$months = $this->get_months($currentMonth, $packageUser['PackageUser']['start_date']);
+		$months = $this->get_months($currentMonth, $packageUser['PackageUser']['end_date']);
 		$conditions['Product.edition_date ='] = $packageUser['PackageUser']['start_date'];
 		endif; 
 		if(!empty($this->request->data['Product']['month'])){
