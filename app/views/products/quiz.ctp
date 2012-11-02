@@ -852,7 +852,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide4 slide11 js-slide-content7">
-                            <h1><?php echo __l('Would you to purchase a full size of this product?');?></h1>
+                            <h1><?php echo __l('Would you purchase a full size of this product?');?></h1>
                             <ul>
                                 <li><a  title="Very likely" id="js-full-size-product1"><?php echo __l('Very likely');?></a></li>
                                 <li><a  title="Somewhat likely" id="js-full-size-product2"><?php echo __l('Somewhat');?> <br /><?php echo __l('likely');?></a></li>
