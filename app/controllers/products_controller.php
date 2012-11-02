@@ -234,12 +234,11 @@ class ProductsController extends AppController
 			  ),
             'recursive' => -1,
         ));
-	  
-		$months = array();
+	 	$months = array();
 		if(!empty($startpackageUser))
 		$currentMonth = date('Y-m-d',strtotime("-1 months", strtotime($startpackageUser['PackageUser']['start_date'])));
 		else 
-		$currentMonth = date('Y-m-d',mktime(0, 0, 0, date("m")-1  , date("d"), date("Y")));
+		$currentMonth = date('Y-m-d',mktime(0, 0, 0, date("m")-1  , 15 , date("Y")));
 		if(!empty($packageUser)):
 		$months = $this->get_months($currentMonth, $packageUser['PackageUser']['start_date']);
 		$conditions['Product.edition_date ='] = $packageUser['PackageUser']['start_date'];
@@ -341,6 +340,9 @@ class ProductsController extends AppController
         $this->set('product', $product);
     }
 	public function admin_chart($slug = null){
+			$this->setAction('chart',$slug);
+	}
+	public function chart($slug = null){
 		$product = $this->Product->find('first', array(
             'conditions' => array(
                 'Product.slug = ' => $slug
