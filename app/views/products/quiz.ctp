@@ -665,7 +665,7 @@
 					<div class="textSlide slide_1">
 				    	<div class="in-wel-pad">
 							<?php echo $this->Html->image('acc-banner_welcome2.png');?>
-                            <p><?php echo __l('Our brand partners would like to hear from you. We appreciate your participation as your feedback will help us bring on-board new and exciting brand partners.'); ?> </p>
+                            <p><?php echo __l('We thank you for your participation'); ?> </p>
                         </div>
                     </div>
 				</li>
