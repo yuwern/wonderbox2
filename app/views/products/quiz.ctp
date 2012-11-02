@@ -677,7 +677,7 @@
                     </div>
                     <div class="get-slide2-right">
                           <div class="slide4 slide11">
-                            <h1><?php echo __l('How long have you used our products?'); ?></h1>
+                            <h1><?php echo __l('How long have you been using our products?'); ?></h1>
                             <ul>
                                 <li><a title="First Time" id="js-product1"><?php echo __l('First Time'); ?></a></li>
                                 <li><a title="Less than 6 months" id="js-product2"><?php echo __l('Less than 6 months'); ?></a></li>
@@ -698,7 +698,7 @@
                     </div>
                     <div class="get-slide2-right">
                         <div class="slide4 slide11">
-                            <h1><?php echo __l('How likely is it that you would recommend us to a friend/colleague?'); ?></h1>
+                            <h1><?php echo __l('How likely is it that you would recommend this product to a friend/colleague?'); ?></h1>
                             <ul>
                                 <li><a  title="Very likely" id="js-likely1"><?php echo __l('Very likely'); ?></a></li>
                                 <li><a  title="Somewhat likely" id="js-likely2"><?php echo __l('Somewhat'); ?> <br /><?php echo __l('likely'); ?></a></li>
@@ -719,12 +719,12 @@
                     </div>
                     <div class="get-slide2-right">
                         <div class="slide3">
-                            <h1><?php echo __l('How many times have you tried our product ?');?></h1>
+                            <h1><?php echo __l('How many times have you tried this product ?');?></h1>
                             <ul>
-                                <li><a  title="Less the 2 times" id="js-time-tried1"><?php echo __l('Less then');?> <br /><?php echo __l('2 times');?></a></li>
-                                <li><a  title="More then 2 times" id="js-time-tried2"><?php echo __l('More then');?> <br /><?php echo __l('2 times');?></a></li>
-                                <li><a  title="More then 5 times" id="js-time-tried3"><?php echo __l('More then');?> <br /><?php echo __l('5 times');?></a></li>
-                                <li><a  title="More then 8 times" id="js-time-tried4"><?php echo __l('More then');?> <br /><?php echo __l('8 times');?></a></li>
+                                <li><a  title="Less the 2 times" id="js-time-tried1"><?php echo __l('Less than');?> <br /><?php echo __l('2 times');?></a></li>
+                                <li><a  title="More then 2 times" id="js-time-tried2"><?php echo __l('More than');?> <br /><?php echo __l('2 times');?></a></li>
+                                <li><a  title="More then 5 times" id="js-time-tried3"><?php echo __l('More than');?> <br /><?php echo __l('5 times');?></a></li>
+                                <li><a  title="More then 8 times" id="js-time-tried4"><?php echo __l('More than');?> <br /><?php echo __l('8 times');?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -737,7 +737,7 @@
                     </div>
                     <div class="get-slide2-right">
                         <div class="slide4 slide11">
-                            <h1><?php echo __l('How would you rate your overall satisfaction with our product?');?></h1>
+                            <h1><?php echo __l('How satisfied are you with this product?');?></h1>
                             <ul>
                                 <li><a  title="Very Satisfied" id="js-overall-satisfaction1"><?php echo __l('Very Satisfied');?></a></li>
                                 <li><a  title="Somewhat Satisfied" id="js-overall-satisfaction2"><?php echo __l('Somewhat Satisfied');?></a></li>
@@ -758,7 +758,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="comp-survey-td">
-                                	<h1><?php echo __l('Please indicate your level of satisfaction with the following attributes of our product.');?></h1>
+                                	<h1><?php echo __l('Please indicate your level of satisfaction with the following attributes of this product.');?></h1>
                                     <div class="table-data">
                                         <ul>
                                             <li class="t-head">
@@ -828,7 +828,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide4">
-                            <h1><?php echo __l('How frequently do you purchase from us?'); ?></h1>
+                            <h1><?php echo __l('How frequently have you been purchasing our product?'); ?></h1>
                             <ul>
                                 <li><a  title="Every week" id="js-frequently1"><?php echo __l('Every week'); ?></a></li>
                                 <li><a  title="Every 2 - 3 week" id="js-frequently2"><?php echo __l('Every 2 - 3'); ?><br/><?php echo __l('weeks'); ?></a></li>
@@ -852,7 +852,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide4 slide11 js-slide-content7">
-                            <h1><?php echo __l('How likely are you to purchase our full size product?');?></h1>
+                            <h1><?php echo __l('Would you to purchase a full size of this product?');?></h1>
                             <ul>
                                 <li><a  title="Very likely" id="js-full-size-product1"><?php echo __l('Very likely');?></a></li>
                                 <li><a  title="Somewhat likely" id="js-full-size-product2"><?php echo __l('Somewhat');?> <br /><?php echo __l('likely');?></a></li>
