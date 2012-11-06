@@ -92,23 +92,31 @@ class BeautyCategoriesController extends AppController
         }
     }
 	public function admin_chart($category){
-		$beautyCategories = $this->BeautyCategory->find('first',array(
-											'conditions' => array(
-												'BeautyCategory.slug'=> $category
-											),
-											'contain' => array(
-												'BeautyQuestion'  => array(
-													'fields' => array(
-														'BeautyQuestion.id',
-														'BeautyQuestion.name',
+			$beautyCategories = $this->BeautyCategory->find('first',
+										array('contain'=> array(
+											'BeautyQuestion'=> array(
+												'BeautyAnswer'=> array(
+													'fields'=> array(
+														'BeautyAnswer.answer'
 													)
-												)
-											),
-											'fields'=> array(
-												'BeautyCategory.name'
-											),
-											'recursive'=> 1
+												 ),
+												 'fields'=> array(
+													'BeautyQuestion.name'
+													)
+											)
+										),
+										'conditions' => array(
+											'BeautyCategory.slug'=> $category
+										),
+										'fields' => array(
+											'BeautyCategory.name',
+											'BeautyCategory.slug'
+										),
+										'recursive'=> 2
 									));
+		if(!empty($this->request->params['named']['type']) && $this->request->params['named']['type'] =='print'){
+			$this->layout ='pdf';
+		}
 		 $this->set('beautyCategories', $beautyCategories);
-	}
+	}	
 }

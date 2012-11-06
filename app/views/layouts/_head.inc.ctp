@@ -38,6 +38,8 @@ endif;
 		$this->Javascript->link('libs/jquery.flash', false);
 		$this->Javascript->link('libs/jquery.showcase', false);
 		$this->Javascript->link('libs/jquery.anythingslider', false);
+		$this->Javascript->link('libs/highcharts', false);
+		$this->Javascript->link('libs/exporting', false);
 		//$this->Javascript->link('libs/jcarousellite_1.0.1', false);
 	//	$this->Javascript->link('libs/widgets.js', false);
     	$this->Javascript->link('common', false);

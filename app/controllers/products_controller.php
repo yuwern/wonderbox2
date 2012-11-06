@@ -343,10 +343,7 @@ class ProductsController extends AppController
         $this->set('product', $product);
     }
 	public function admin_chart($slug = null){
-			$this->setAction('chart',$slug);
-	}
-	public function chart($slug = null){
-		$product = $this->Product->find('first', array(
+	$product = $this->Product->find('first', array(
             'conditions' => array(
                 'Product.slug = ' => $slug
             ) ,
@@ -372,13 +369,36 @@ class ProductsController extends AppController
             'recursive' => 0,
         ));
 		if(!empty($this->request->params['named']['type'])&& $this->request->params['named']['type'] =='print'){
-			$this->layout = 'ajax';
-
+			$this->layout = 'pdf';
 		}
         if (empty($product)) {
             throw new NotFoundException(__l('Invalid request'));
         }	
-		
+		$productQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
+						'conditions' => array(
+								'BeautyQuestion.id BETWEEN ? AND ?' => array(
+						            16,
+									23,
+							),
+						),
+						'contain'=> array(
+							'BeautyCategory'=> array(
+								'fields'=> array(
+									'BeautyCategory.name',
+								)
+							),
+							'BeautyAnswer'=> array(
+								'fields'=> array(
+									'BeautyAnswer.answer',
+								)
+							)
+						),
+						'fields'=> array(
+							'BeautyQuestion.id',
+							'BeautyQuestion.beauty_category_id',
+							'BeautyQuestion.name',
+						)
+		));
 		$beautyQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
 						'conditions' => array(
 							'BeautyQuestion.beauty_category_id'=> $product['Product']['beauty_category_id']
@@ -413,5 +433,6 @@ class ProductsController extends AppController
 		$this->set('totalparticipants',count($participants));
 		$this->set('product', $product);
 		$this->set('beautyQuestions', $beautyQuestions);
+		$this->set('productQuestions', $productQuestions);
 	}
 }

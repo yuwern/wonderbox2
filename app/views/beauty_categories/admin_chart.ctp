@@ -1,282 +1,281 @@
 <h2> <?php echo __l('Survey Reports'); ?></h2> 
-<?php $sno = 1; if(!empty($beautyCategories['BeautyQuestion'])): ?>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      // Load the Visualization API and the piechart package.
-      google.load('visualization', '1.0', {'packages':['corechart']});
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-	function drawChart() {
-	  <?php  
-		$bsflag = 0;
-		$psflag = 0;
-		foreach($beautyCategories['BeautyQuestion'] as $beautyQuestion){
-	    $i= $beautyQuestion['id'];
-		if($i <= 15)
-		$beautyProfile =  $this->Html->beautyProfileDetails($i);
-		else
-		$beautyProfile =  $this->Html->productSuveryDetails($i);
-		?>
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-		<?php if($i == 1): $bsflag = 1; ?>
-        data.addRows([
-          ['Trendy', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Professional', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Sporty', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Low-Maintenance', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Natural', <?php echo $beautyProfile[0]['Answer5']; ?>],
-          ['Sophisticated', <?php echo $beautyProfile[0]['Answer6']; ?>],
-          ['Outgoing', <?php echo $beautyProfile[0]['Answer7']; ?>],
-          ['Conservative', <?php echo $beautyProfile[0]['Answer8']; ?>],
-          ['Formal', <?php echo $beautyProfile[0]['Answer9']; ?>]
-        ]);
-		<?php endif; ?>
-		<?php if($i == 2): $bsflag = 1; ?>
-        data.addRows([
-          ['Not Very Comfortable', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Somewhat Comfortable', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Very Comfortable', <?php echo $beautyProfile[0]['Answer3']; ?>]
-        ]);
-		<?php endif; ?>
-		<?php if($i == 3): $bsflag = 1; ?>
-        data.addRows([
-          ['Less then 15mins', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Between 15mins - 30mins', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Between 30mins - 45mins', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['About 1 hour', <?php echo $beautyProfile[0]['Answer4']; ?>]
-        ]);
-		<?php endif; ?>
-	   	<?php if($i == 4): $bsflag = 1; ?>
-        data.addRows([
-          ['Very Fair', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Very Dark', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Tan', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Yellow Undertone', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Dark', <?php echo $beautyProfile[0]['Answer5']; ?>],
-          ['Fair', <?php echo $beautyProfile[0]['Answer6']; ?>],
-          ['Olive', <?php echo $beautyProfile[0]['Answer7']; ?>]
-        ]);
-		<?php endif; ?>
-	   	<?php if($i == 5): $bsflag = 1; ?>
-        data.addRows([
-          ['None', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Pigmentation', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Blemishes', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Sensitivity', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Wrinkles / Texture', <?php echo $beautyProfile[0]['Answer5']; ?>],
-          ['Acne', <?php echo $beautyProfile[0]['Answer6']; ?>],
-          ['Rosacea', <?php echo $beautyProfile[0]['Answer7']; ?>]
-        ]);
-		<?php endif; ?>
-	   	<?php if($i == 6): $bsflag = 1; ?>
-        data.addRows([
-          ['Combination', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Oily', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Mature', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Normal', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Sensitive', <?php echo $beautyProfile[0]['Answer5']; ?>],
-          ['Dry', <?php echo $beautyProfile[0]['Answer6']; ?>]
-          ]);
-		<?php endif; ?>
-	   	<?php if($i == 7): $bsflag = 1; ?>
-        data.addRows([
-          ['Cleanser', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Hair Care', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Trendy makeup color', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Fragrance', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Eye cream', <?php echo $beautyProfile[0]['Answer5']; ?>],
-          ['Lip Gloss', <?php echo $beautyProfile[0]['Answer6']; ?>],
-          ['Lipstick', <?php echo $beautyProfile[0]['Answer7']; ?>],
-          ['Nail Colors', <?php echo $beautyProfile[0]['Answer8']; ?>],
-          ['Body Lotion', <?php echo $beautyProfile[0]['Answer9']; ?>],
-          ['Concealer', <?php echo $beautyProfile[0]['Answer10']; ?>],
-          ['Foundation', <?php echo $beautyProfile[0]['Answer11']; ?>],
-          ['Face cream', <?php echo $beautyProfile[0]['Answer12']; ?>]
-          ]);
-		<?php endif; ?>
-	   	<?php if($i == 8): $bsflag = 1; ?>
-        data.addRows([
-          ['Frizzy', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Dry', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Damaged/ broken', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Chemically treated', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Oily', <?php echo $beautyProfile[0]['Answer5']; ?>],
-          ['Thick', <?php echo $beautyProfile[0]['Answer6']; ?>],
-          ['Normal', <?php echo $beautyProfile[0]['Answer7']; ?>],
-          ['Curly', <?php echo $beautyProfile[0]['Answer8']; ?>],
-          ['Fine', <?php echo $beautyProfile[0]['Answer9']; ?>]
-          ]);
-		<?php endif; ?>
-	   	<?php if($i == 9): $bsflag = 1; ?>
-        data.addRows([
-          ['Hair Colouring', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Hai Perming', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Hair Straightening', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Hair Treatment', <?php echo $beautyProfile[0]['Answer4']; ?>]
-           ]);
-		<?php endif; ?>
-	   	<?php if($i == 10): $bsflag = 1; ?>
-        data.addRows([
-          ['When I feel like it', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Once a month', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Once every 2 weeks', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Once a week', <?php echo $beautyProfile[0]['Answer4']; ?>]
-           ]);
-		<?php endif; ?>
-	   	<?php if($i == 11): $bsflag = 1; ?>
-        data.addRows([
-          ['Price', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Ease of Application', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Colour Selection', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Brand Name', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['How long does it last', <?php echo $beautyProfile[0]['Answer5']; ?>]
-           ]);
-		<?php endif; ?>
-	   	<?php if($i == 12): $bsflag = 1; ?>
-        data.addRows([
-          ['Less then RM200', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Between RM200 - RM499', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Between RM 200 - RM 1000', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Between RM 1000 - RM 2000', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['More then RM 2000', <?php echo $beautyProfile[0]['Answer5']; ?>]
-           ]);
-		<?php endif; ?>
-		<?php if($i == 13): $bsflag = 1; ?>
-        data.addRows([
-          ['Employed', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Self-employed', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['A homemaker', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['A student', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Retired', <?php echo $beautyProfile[0]['Answer5']; ?>]
-           ]);
-		<?php endif; ?>
-		<?php if($i == 14): $bsflag = 1; ?>
-        data.addRows([
-          ['Departmetal Store', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Mass Retailers', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Online Store', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Specialty Retailers', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Company-owned Store', <?php echo $beautyProfile[0]['Answer5']; ?>]
-           ]);
-		<?php endif; ?>
- 	   <?php if($i == 15): $bsflag = 1; ?>
-        data.addRows([
-          ['Below RM3,000 per month', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['RM3,000 - RM 5,000 per month', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['RM5,000 - RM 10,000 per month', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['RM10,000 - RM 20,000 per month', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Above RM20,000 per month', <?php echo $beautyProfile[0]['Answer5']; ?>]
-           ]);
-		<?php endif;?>
-		<?php if($i == 16): $psflag = 1;?>
-        data.addRows([
-          ['First Time', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Less than 6 months', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['1 year to less than 3 years', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['3 years to less than 5 years', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['5 years or more', <?php echo $beautyProfile[0]['Answer5']; ?>]
-        ]);
-		<?php endif; ?>
-		<?php if($i == 17): $psflag = 1;?>
-        data.addRows([
-          ['Very likely', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Somewhat likely', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Neutral', <?php echo $beautyProfile[0]['Answer3']; ?>],
-		  ['Somewhat unlikely', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Very unlikely', <?php echo $beautyProfile[0]['Answer5']; ?>]
-        ]);
-		<?php endif; ?>
-		<?php if($i == 18): $psflag = 1;?>
-        data.addRows([
-          ['Less then 2 times', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['More then 2 times', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['More then 5 times', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['More then 8 times', <?php echo $beautyProfile[0]['Answer4']; ?>]
-        ]);
-		<?php endif; ?>
-	   	<?php if($i == 19): $psflag = 1;?>
-        data.addRows([
-          ['Very Satisfied', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Somewhat Satisfied', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Neutral', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Somewhat Dissatisfied', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Very Dissatisfied', <?php echo $beautyProfile[0]['Answer5']; ?>]
-         ]);
-		<?php endif; ?>
-	   	<?php if($i == 20): $psflag = 1;?>
-        data.addRows([
-          ['Product Quality', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Product Sample Size', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Product Suitablity', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Product Packaging', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Product Retail Price', <?php echo $beautyProfile[0]['Answer5']; ?>]
-        ]);
-		<?php endif; ?>
-	   	<?php if($i == 21): $psflag = 1;?>
-        data.addRows([
-          ['Every week', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Every 2 - 3 weeks', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Every month', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Every 2 - 3 months', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Every 4 - 6 months', <?php echo $beautyProfile[0]['Answer5']; ?>],
-          ['Once or twice a year', <?php echo $beautyProfile[0]['Answer6']; ?>],
-          ['Never before', <?php echo $beautyProfile[0]['Answer7']; ?>]
-          ]);
-		<?php endif; ?>
-	   	<?php if($i == 22): $psflag = 1;?>
-        data.addRows([
-          ['Very likely', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Somewhat likely', <?php echo $beautyProfile[0]['Answer2']; ?>],
-          ['Neutral', <?php echo $beautyProfile[0]['Answer3']; ?>],
-          ['Somewhat unlikely', <?php echo $beautyProfile[0]['Answer4']; ?>],
-          ['Very unlikely', <?php echo $beautyProfile[0]['Answer5']; ?>]
-          ]);
-		<?php endif; ?>
-	 	<?php if($i == 23): $psflag = 1;?>
-        data.addRows([
-          ['Somewhat unlikely', <?php echo $beautyProfile[0]['Answer1']; ?>],
-          ['Very unlikely', <?php echo $beautyProfile[0]['Answer2']; ?>]
-          ]);
-		<?php endif; ?>
-         // Set chart options
-        var options = {'title':"<?php echo $sno .') '.$beautyProfile['BeautyQuestion']['name']; ?>",
-                       'width':750,
-                       'height':350};
-	// Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div<?php echo $i; ?>'));
-        chart.draw(data, options);
-		<?php $sno++; } ?>
+<script  type="text/javascript">
+Highcharts.theme = {
+   colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+   chart: {
+      borderWidth: 0,
+      plotBackgroundColor: 'rgba(255, 255, 255, .9)',
+      plotShadow: false,
+      plotBorderWidth: 1
+   },
+   title: {
+      style: {
+         color: '#000',
+         font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
       }
-    </script>
-	  <?php $bflag = 0;$pflag = 0; 
-	  for($i=1 ; $i<=23; $i++ ){ 	 
-		  ?>
-		  <?php if($bsflag == 1): if($bflag == 0 && ($i>= 1 && $i<=15)): ?>
-			 <h1><?php echo __l('Beauty Profile Survey'); ?> </h1>
-			   <?php if($bsflag == 0):?>
-				 <p class="notice"><?php echo __l('No beauty Profile Survey avialable'); ?> </p>
-		  <?php $bsflag = 1; endif; ?>
-		  <?php  $bflag = 1; endif;
-				endif; 
-		  ?>
-		
-		  <?php if($psflag == 1): if($pflag == 0 && ($i>= 16 && $i<=23)): ?>
-			 <h1><?php echo __l('Product Survey'); ?> </h1>
-		  <?php if($psflag == 0):?>
-				 <p class="notice"><?php echo __l('No Product Survey avialable'); ?> </p>
-		  <?php $psflag = 1; endif; ?>
-			<?php $pflag = 1; endif; 
-			endif; 
-		  ?>
-	    	<div id="chart_div<?php echo $i; ?>"></div>
-	<?php } ?>
-		
-	<?php else: ?>
-		<p class="notice"> <?php echo __l('No Chart is avialable'); ?> </p>
-	<?php endif;?>
+   },
+   subtitle: {
+      style: {
+         color: '#666666',
+         font: 'bold 12px "Trebuchet MS", Verdana, sans-serif'
+      }
+   },
+   xAxis: {
+      gridLineWidth: 1,
+      lineColor: '#000',
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px Trebuchet MS, Verdana, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: '12px',
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+
+         }
+      }
+   },
+   yAxis: {
+      minorTickInterval: 'auto',
+      lineColor: '#000',
+      lineWidth: 1,
+      tickWidth: 1,
+      tickColor: '#000',
+      labels: {
+         style: {
+            color: '#000',
+            font: '11px Trebuchet MS, Verdana, sans-serif'
+         }
+      },
+      title: {
+         style: {
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: '12px',
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+         }
+      }
+   },
+   legend: {
+      itemStyle: {
+         font: '9pt Trebuchet MS, Verdana, sans-serif',
+         color: 'black'
+
+      },
+      itemHoverStyle: {
+         color: '#039'
+      },
+      itemHiddenStyle: {
+         color: 'gray'
+      }
+   },
+   labels: {
+      style: {
+         color: '#99b'
+      }
+   }
+};
+
+// Apply the theme
+var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
+</script>
+<?php  if(!empty($beautyCategories['BeautyQuestion'])): ?>
+<button id="js-print-button">Print All</button>
+<button id="export">Download Image</button>
+<?php  $chart_arr = array(); 
+		foreach($beautyCategories['BeautyQuestion'] as $qkey => $beautyQuestion): ?>
+			<?php
+			if($beautyQuestion['id'] <= 15)
+				$data =  $this->Html->beautyProfileDetails($beautyQuestion['id']);
+				else
+				$data =  $this->Html->productSuveryDetails($beautyQuestion['id']);
+				$response_data = array();
+				if(!empty($beautyQuestion['BeautyAnswer'])):
+					foreach($beautyQuestion['BeautyAnswer'] as $key => $Answer):
+						$fields = 'Answer'.($key+1);
+							$response_data[$Answer['answer']] = $data[0][$fields]	;					
+
+					endforeach;
+				endif; ?>
+			<script type="text/javascript">
+
+		 var chart<?php echo $qkey; ?>;
+		 <?php
+		 $chart_arr[] = 'chart'.$qkey;
+		 ?>
+
+	 $(document).ready(function() {
+        chart<?php echo $qkey; ?> = new Highcharts.Chart({
+            chart: {
+                renderTo: "container<?php echo $qkey; ?>",
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: "<?php echo ($qkey+1).') '.$beautyQuestion['name']; ?>",
+				style: {
+						font: 'bold 11px "Trebuchet MS", Verdana, sans-serif'
+		        }
+            },
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+            	percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+  Highcharts.numberFormat(this.percentage,1, '.')  +' %';
+                        }
+                    },
+					 showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+					<?php 
+					if(!empty($beautyQuestion['BeautyAnswer'])):
+						foreach($beautyQuestion['BeautyAnswer'] as $key => $Answer):
+						$fields = 'Answer'.($key+1);
+						if(!empty($data[0][$fields])):
+							$value = number_format($data[0][$fields],2);
+							echo '["'.$Answer['answer'].'",'.$value.'],';
+						endif;
+						endforeach;
+					endif; 
+					?>
+                ]
+            }]
+        });
+    });
+	</script>
+	<div id="container<?php echo $qkey; ?>" style="min-width: 400px; height: 400px; margin: 0 auto" ></div>
+	<?php endforeach; ?>
+	<script type="text/javascript">
+	 $(document).ready(function() {
+		  function printCharts(charts) {
+
+                var origDisplay = [],
+                    origParent = [],
+                    body = document.body,
+                    childNodes = body.childNodes;
+
+                // hide all body content
+                Highcharts.each(childNodes, function (node, i) {
+                    if (node.nodeType === 1) {
+                        origDisplay[i] = node.style.display;
+                        node.style.display = "none";
+                    }
+                });
+
+                // put the charts back in
+                $.each(charts, function (i, chart) {
+                    origParent[i] = chart.container.parentNode;
+                    body.appendChild(chart.container);
+                });
+
+                // print
+                window.print();
+
+                // allow the browser to prepare before reverting
+                setTimeout(function () {
+                    // put the chart back in
+                    $.each(charts, function (i, chart) {
+                        origParent[i].appendChild(chart.container);
+                    });
+
+                    // restore all body content
+                    Highcharts.each(childNodes, function (node, i) {
+                        if (node.nodeType === 1) {
+                            node.style.display = origDisplay[i];
+                        }
+                    });
+                }, 500);
+            }
+
+		$('#js-print-button').click(function() {
+			    printCharts([<?php echo implode(',',$chart_arr); ?>]);
+		});
+				/**
+ * Create a global getSVG method that takes an array of charts as an argument
+ */
+Highcharts.getSVG = function(charts) {
+    var svgArr = [],
+        top = 0,
+        width = 0;
+
+    $.each(charts, function(i, chart) {
+        var svg = chart.getSVG();
+        svg = svg.replace('<svg', '<g transform="translate(0,' + top + ')" ');
+        svg = svg.replace('</svg>', '</g>');
+
+        top += chart.chartHeight;
+        width = Math.max(width, chart.chartWidth);
+
+        svgArr.push(svg);
+    });
+
+    return '<svg height="'+ top +'" width="' + width + '" version="1.1" xmlns="http://www.w3.org/2000/svg">' + svgArr.join('') + '</svg>';
+};
+
+/**
+ * Create a global exportCharts method that takes an array of charts as an argument,
+ * and exporting options as the second argument
+ */
+	Highcharts.exportCharts = function(charts, options) {
+		var form
+			svg = Highcharts.getSVG(charts);
+
+		// merge the options
+		options = Highcharts.merge(Highcharts.getOptions().exporting, options);
+
+		// create the form
+		form = Highcharts.createElement('form', {
+			method: 'post',
+			action: options.url
+		}, {
+			display: 'none'
+		}, document.body);
+
+		// add the values
+		Highcharts.each(['filename', 'type', 'width', 'svg'], function(name) {
+			Highcharts.createElement('input', {
+				type: 'hidden',
+				name: name,
+				value: {
+					filename: options.filename || 'chart',
+					type: options.type,
+					width: options.width,
+					svg: svg
+				}[name]
+			}, null, form);
+		});
+		//console.log(svg); return;
+		// submit
+		form.submit();
+
+		// clean up
+		form.parentNode.removeChild(form);
+	};
+
+	$('#export').click(function() {
+		Highcharts.exportCharts([<?php echo implode(',',$chart_arr); ?>]);
+	});
+        });
+</script>
+<?php else: ?>
+	<p class="notice"> <?php echo __l('No Chart is avialable'); ?> </p>
+<?php endif; ?>
