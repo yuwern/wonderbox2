@@ -425,12 +425,20 @@ class ProductsController extends AppController
 			'conditions'=> array(
 				'ProductSurvey.product_id'=> $product['Product']['id']
 			),
+			'contain'=> array(
+				'User'=> array(
+					'fields'=> array(
+						'User.email'
+					)
+				)
+			),
 			'fields'=> array(
 				'Distinct(ProductSurvey.user_id)'
 			),
-            'recursive' => 0,
+            'recursive' => 1,
         ));
 		$this->set('totalparticipants',count($participants));
+		$this->set('participants',$participants);
 		$this->set('product', $product);
 		$this->set('beautyQuestions', $beautyQuestions);
 		$this->set('productQuestions', $productQuestions);

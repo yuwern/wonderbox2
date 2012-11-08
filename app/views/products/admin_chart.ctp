@@ -1,3 +1,4 @@
+
 <script  type="text/javascript">
 Highcharts.theme = {
    colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
@@ -85,18 +86,30 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 </script><?php if(empty($this->request->params['named']['type']) && !empty($totalparticipants)): ?>
 <button id="js-print-button">Print All</button>
 <button id="export">Download Image</button>
- <?php endif; ?>	
- <?php  $brand =  $this->Html->getBrandLogo($product['Product']['brand_id']); ?>
 
+ <?php endif; ?>	
+<?php  $brand =  $this->Html->getBrandLogo($product['Product']['brand_id']); ?>
+
+<div style="float:left;width:700px;">
+<div style="float:left;border-width:5px;border-style:double;"><?php echo $this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'normal_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))); ?></div>
+<span style="padding:120px;font-weight: bold;"><?php echo __l('Product Survey Report'); ?> </span>
+<div style="float:right;margin:0px">
+<?php echo $this->Html->image('small-logo.jpg'); ?>
+</div>
+</div>
+<div class="clearfix"></div>
 <p> <?php echo __l('Product Name'); ?>: <?php echo $product['Product']['name']; ?></p>
 <p> <?php echo __l('Survey Duration (days)'); ?>: <?php echo date('d F Y',strtotime($product['Product']['end_date'])); ?></p>
 <p> <?php echo __l('Participants'); ?> : <?php echo $totalparticipants; ?></p>
-
+</p>
 <?php if(!empty($totalparticipants)): ?>
+<p> <?php echo __l('Email'); ?> : <?php foreach($participants as $key => $participant):
+		echo $participant['User']['email'];
+		if($totalparticipants == ($key+1))
+		echo ',';
+endforeach;?></p>
 <?php  if(!empty($productQuestions)):
 ?>
-
-<pre>
 <?php foreach($productQuestions as $qkey => $productQuestion): 
 	$data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
 	$response_data = array();
