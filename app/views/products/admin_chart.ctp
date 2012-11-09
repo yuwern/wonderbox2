@@ -84,9 +84,9 @@ Highcharts.theme = {
 // Apply the theme
 var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 </script><?php if(empty($this->request->params['named']['type']) && !empty($totalparticipants)): ?>
-<button id="js-print-button">Print All</button>
+<?php echo $this->Html->link(__l('Print All'), array('controller' => 'products','action'=>'chart', $product['Product']['slug'],'type'=>'print'), array('title' => __l('Print All'),'target'=>'__blank'));?>
+<button id="js-print-button">Export to print</button>
 <button id="export">Download Image</button>
-
  <?php endif; ?>	
 <?php  $brand =  $this->Html->getBrandLogo($product['Product']['brand_id']); ?>
 
@@ -397,4 +397,9 @@ Highcharts.getSVG = function(charts) {
 <?php endif; ?>
 <?php else: ?>
 	<p class="notice"><?php echo __l('No users is Participants'); ?></p>
+<?php endif; ?>
+<?php if(!empty($this->request->params['named']['type']) && $this->request->params['named']['type']=='print'): ?>
+	<script type="text/javascript">
+	window.print();
+	</script>
 <?php endif; ?>
