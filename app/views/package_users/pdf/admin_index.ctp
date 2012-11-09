@@ -6,7 +6,6 @@ $mpdf->useOnlyCoreFonts = true;    // false is default
 $mpdf->SetProtection(array('copy','print','modify','annot-forms','fill-forms','extract','assemble','print-highres'), 'wonderbox', 'wonderbox');
 $mpdf->SetTitle("Wonderbox - Report");
 $mpdf->SetAuthor("Wonder Box");
-$mpdf->SetWatermarkText("WonderBox");
 $mpdf->showWatermarkText = true;
 $mpdf->watermarkTextAlpha = 0.1;
 $mpdf->SetDisplayMode('fullpage');
