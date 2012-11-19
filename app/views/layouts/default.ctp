@@ -216,7 +216,7 @@ endif;
 			<!--banner-->
 			<div class="bot_sec">
 				<div class="featured borderimg">
-					<h2><?php echo __l('Are you excited yet?'); ?></h2>
+					<h2><?php echo __l('Check out WonderBox'October's Edition?'); ?></h2>
 					<?php echo $this->element('home-page-organizers-index'); ?>
 				</div>
 				<div class="borderimg3 f-left"  align="center">	<?php echo Configure::read('facebook.like_box'); ?></div>
