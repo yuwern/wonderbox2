@@ -2,7 +2,9 @@
 class PackageUsersController extends AppController
 {
     public $name = 'PackageUsers';
-	
+	public $helpers = array(
+        'Csv',
+    );
     public $disabledFields = array(
 		'PackageUser.q',
 		'PackageUser.month',
@@ -203,7 +205,7 @@ class PackageUsersController extends AppController
 			$conditions['User.email'] = $this->request->params['named']['email'];
 
 		}
-	    if ($this->RequestHandler->prefers('pdf')) {
+		if ($this->RequestHandler->prefers('pdf') || $this->RequestHandler->prefers('csv')) {
 			$packageUsers = $this->PackageUser->find('all',array(
 				'conditions'=> $conditions,
 				'contain'=> array(
@@ -211,6 +213,7 @@ class PackageUsersController extends AppController
 						'UserProfile'=> array(
 							'fields'=> array(
 								'UserProfile.first_name',
+								'UserProfile.last_name',
 							)	
 						 ),
 						'UserShipping'=> array(
@@ -223,9 +226,27 @@ class PackageUsersController extends AppController
 								'fields'=> array(
 									'Country.name'
 								)
+							),
+							'fields'=> array(
+								'UserShipping.id',
+								'UserShipping.address',
+								'UserShipping.address2',
+								'UserShipping.contact_no',
+								'UserShipping.contact_no1',
+								'UserShipping.zip_code',
+								'UserShipping.state_id',
+								'UserShipping.country_id',
 							)
 						),
+						'fields'=> array(
+							'User.id',
+							'User.email',
+						)
 					)
+				),
+				'fields'=> array(
+					'PackageUser.id',
+					'PackageUser.user_id',
 				),
 				'order'=> array(
 					'PackageUser.id'=> 'desc'

@@ -16,7 +16,8 @@
 
      <div class="clearfix add-block1"><?php 
 	if (!empty($packageUsers)):
-	  echo $this->Html->link(__l('PDF'), array_merge(array('controller' => 'package_users', 'action' => 'index', 'ext' => 'pdf', 'admin' => true), $this->request->params['named']), array('title' => __l('PDF'), 'class' => 'pdf','target'=>'__blank'));
+	  echo $this->Html->link(__l('PDF'), array_merge(array('controller' => 'package_users', 'action' => 'index', 'ext' => 'pdf', 'admin' => true), $this->request->params['named']), array('title' => __l('PDF'), 'class' => 'pdf'));
+     echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'package_users', 'action' => 'index', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export'));
 	 endif; 
 	 ?></div>
 <?php echo $this->element('paging_counter');?>

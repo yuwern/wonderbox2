@@ -101,7 +101,8 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 							$response_data[$Answer['answer']] = $data[0][$fields]	;					
 
 					endforeach;
-				endif; ?>
+				endif;
+				?>
 			<script type="text/javascript">
 
 		 var chart<?php echo $qkey; ?>;
@@ -124,7 +125,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 		        }
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+        	    pointFormat: '{series.name}: <b> {point.percentage}%</b>',
             	percentageDecimals: 1
             },
             plotOptions: {
@@ -136,7 +137,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
                         color: '#000000',
                         connectorColor: '#000000',
                         formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+  Highcharts.numberFormat(this.percentage,1, '.')  +' %';
+                            return '<b>'+ this.point.name +'</b>: '+ this.y + ' ('+ Highcharts.numberFormat(this.percentage,1, '.')  +' % )';
                         }
                     },
 					 showInLegend: true

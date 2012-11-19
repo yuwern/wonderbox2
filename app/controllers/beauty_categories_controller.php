@@ -95,6 +95,9 @@ class BeautyCategoriesController extends AppController
 			$beautyCategories = $this->BeautyCategory->find('first',
 										array('contain'=> array(
 											'BeautyQuestion'=> array(
+												'conditions'=> array(
+													'BeautyQuestion.id <='=> 15		
+												),
 												'BeautyAnswer'=> array(
 													'fields'=> array(
 														'BeautyAnswer.answer'
@@ -114,6 +117,7 @@ class BeautyCategoriesController extends AppController
 										),
 										'recursive'=> 2
 									));
+	
 		if(!empty($this->request->params['named']['type']) && $this->request->params['named']['type'] =='print'){
 			$this->layout ='pdf';
 		}

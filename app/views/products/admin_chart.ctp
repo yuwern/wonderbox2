@@ -85,6 +85,7 @@ Highcharts.theme = {
 var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 </script><?php if(empty($this->request->params['named']['type']) && !empty($totalparticipants)): ?>
 <?php echo $this->Html->link(__l('Print All'), array('controller' => 'products','action'=>'chart', $product['Product']['slug'],'type'=>'print'), array('title' => __l('Print All'),'target'=>'__blank'));?>
+&nbsp;&nbsp;<?php echo $this->Html->link(__l('Export to CSV'), array('controller' => 'products','action'=>'chart', $product['Product']['slug'], 'ext' => 'csv', 'admin' => true), array('title' => __l('Export to CSV'),'class'=>'export','target'=>'__blank'));?>
 <button id="js-print-button">Export to print</button>
 <button id="export">Download Image</button>
  <?php endif; ?>	
@@ -103,14 +104,39 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 <p> <?php echo __l('Participants'); ?> : <?php echo $totalparticipants; ?></p>
 </p>
 <?php if(!empty($totalparticipants)): ?>
-<p> <?php echo __l('Email'); ?> : <?php foreach($participants as $key => $participant):
-		echo $participant['User']['email'];
-		if($totalparticipants == ($key+1))
-		echo ',';
-endforeach;?></p>
 <?php  if(!empty($productQuestions)):
 ?>
 <?php foreach($productQuestions as $qkey => $productQuestion): 
+	if(!empty($productQuestion['BeautyQuestion']['id'])&& $productQuestion['BeautyQuestion']['id'] == 23){
+		echo "<div style='bold 11px Trebuchet MS Verdana, sans-serif'>8)".$productQuestion['BeautyQuestion']['name']."</div>"; 
+		$data =  $this->Html->productSuvery23Questions($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
+		if(!empty($data)):
+		?>
+		<table  class="list">
+			<tr> <th align='left'>Somewhat unlikely</th> <th align='left'>Very unlikely</th></tr>
+			<tr> <td align='left'><?php if(!empty($data['Answer1'])):
+				foreach($data['Answer1'] as $key => $answer1):
+					$sno = $key + 1;
+					echo "$sno) ".$answer1['ProductSurvey']['other_answer']."<br/>";
+				endforeach;
+				else:
+					echo "No data available";
+				endif; 
+		?> 	
+		</td> <td align='left'><?php if(!empty($data['Answer2'])):
+				foreach($data['Answer2'] as $key => $answer1):
+					$sno = $key + 1;
+					echo "$sno) ".$answer1['ProductSurvey']['other_answer']."<br/>";
+				endforeach;
+				else:
+					echo "No data available";
+				endif; 
+		?> 	</td></tr>
+		</table>
+		<?php endif; ?>
+
+	<?php }
+	else{
 	$data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
 	$response_data = array();
 	if(!empty($productQuestion['BeautyAnswer'])):
@@ -118,7 +144,7 @@ endforeach;?></p>
 				$fields = 'Answer'.($key+1);
 					$response_data[$Answer['answer']] = $data[0][$fields]	;					
 			endforeach;
-	endif; 		
+	endif;
 ?>
 	<script type="text/javascript">
 	 var chart<?php echo $qkey; ?>;
@@ -141,7 +167,7 @@ endforeach;?></p>
 		      }
             },
             tooltip: {
-        	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+        	    pointFormat: "{series.name}: <b> {point.percentage}%</b>",
             	percentageDecimals: 1
             },
             plotOptions: {
@@ -153,7 +179,7 @@ endforeach;?></p>
                         color: '#000000',
                         connectorColor: '#000000',
                         formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+  Highcharts.numberFormat(this.percentage,1, '.')  +' %';
+                              return '<b>'+ this.point.name +'</b>: '+ this.y + ' ('+ Highcharts.numberFormat(this.percentage,1, '.')  +' % )';
                         }
                     },
 					 showInLegend: true
@@ -208,7 +234,7 @@ endforeach;?></p>
 						$barChartReport .='data:'."[";
 						$bary = 1;
 						foreach($beautyDataResponse as $ykey => $beautyDataResponse1):
-						$barChartReport .= ($beautyDataResponse1 == 0)? 0:($response_data2/$beautyDataResponse1);
+						$barChartReport .= ($response_data2 == 0)? 0:number_format(($beautyDataResponse1/$response_data2),2);
 						if(count($beautyDataResponse) != $bary)
 						$barChartReport .=',';
 						$bary++;
@@ -281,7 +307,7 @@ endforeach;?></p>
 	</script>
 	<div id="barcontainer<?php echo $beautyQuestion['BeautyQuestion']['id'].$qkey; ?>" ></div>
 	<?php endforeach; ?>
-<?php endforeach; ?>
+<?php } endforeach; ?>
 	<script type="text/javascript">
 	 $(document).ready(function() {
 		  function printCharts(charts) {
@@ -394,7 +420,11 @@ Highcharts.getSVG = function(charts) {
 	});
         });
 </script>
-<?php endif; ?>
+<?php endif;
+
+
+?>
+
 <?php else: ?>
 	<p class="notice"><?php echo __l('No users is Participants'); ?></p>
 <?php endif; ?>

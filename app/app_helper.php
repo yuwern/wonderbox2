@@ -98,8 +98,11 @@ class AppHelper extends Helper
     }
 	function checkPackageAvialable(){
 		App::import('Model', 'PackageUser');
-		date_default_timezone_set('UTC');
-        $this->PackageUser = new PackageUser();
+		$timezone_code = Configure::read('site.timezone_offset');
+        if (!empty($timezone_code)) {
+            date_default_timezone_set($timezone_code);
+        }
+		$this->PackageUser = new PackageUser();
 		$start_date = date('Y-'.Configure::read('header.month').'-15');
 		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+1 month");
 		$end_date= date('Y-m-d', $dateMonthAdded);
@@ -122,7 +125,10 @@ class AppHelper extends Helper
 	}
 	function checkUserActive($user_id){
 		App::import('Model', 'PackageUser');
-		date_default_timezone_set('UTC');
+		$timezone_code = Configure::read('site.timezone_offset');
+        if (!empty($timezone_code)) {
+            date_default_timezone_set($timezone_code);
+        }
 		$end_date = date('Y-m-d');
         $this->PackageUser = new PackageUser();
 		$packageuserCount = $this->PackageUser->find('count',array(
@@ -229,6 +235,31 @@ class AppHelper extends Helper
 			),
 		));
 		return $productSurveys[0];
+	}
+	function productSuvery23Questions($question_id,$product_id = null ){
+		$conditions = array();
+		$conditions['ProductSurvey.beauty_question_id'] = $question_id;
+		if(!empty($product_id))
+		$conditions['ProductSurvey.product_id'] = $product_id;
+		$conditions['ProductSurvey.answer1'] = 1;
+		$conditions['ProductSurvey.other_answer !='] = '';
+		App::import('Model', 'ProductSurvey');
+		$this->ProductSurvey = new ProductSurvey();
+		$productSurveysAnswer['Answer1'] = $this->ProductSurvey->find('all',array(
+			'conditions'=> $conditions,
+			'fields'=> array(
+					'ProductSurvey.other_answer'	
+			),
+		));
+		unset($conditions['ProductSurvey.answer1']);
+		$conditions['ProductSurvey.answer2'] = 1;
+		$productSurveysAnswer['Answer2'] = $this->ProductSurvey->find('all',array(
+			'conditions'=> $conditions,
+			'fields'=> array(
+					'ProductSurvey.other_answer'	
+			),
+		));	
+		return $productSurveysAnswer;
 	}
 	function productQuestionChoices($question_id ){
 		App::import('Model', 'BeautyQuestion');

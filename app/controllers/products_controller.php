@@ -2,6 +2,9 @@
 class ProductsController extends AppController
 {
     public $name = 'Products';
+    public $helpers = array(
+        'Csv',
+    );
     public function index()
     {
         $this->pageTitle = __l('Products');
@@ -277,7 +280,10 @@ class ProductsController extends AppController
 	    $this->set('products', $this->paginate());
 	}
 	function get_months($date1, $date2) {
-		date_default_timezone_set('UTC');
+		$timezone_code = Configure::read('site.timezone_offset');
+        if (!empty($timezone_code)) {
+            date_default_timezone_set($timezone_code);
+        }
 		$time1 = strtotime($date1);
 		$time2 = strtotime($date2);
 		$my = date('mY', $time2);
@@ -437,10 +443,16 @@ class ProductsController extends AppController
 			),
             'recursive' => 1,
         ));
+	   if ($this->RequestHandler->prefers('csv')) {
+            Configure::write('debug', 0);
+			$this->set('participants',$participants);
+      } else {
 		$this->set('totalparticipants',count($participants));
 		$this->set('participants',$participants);
 		$this->set('product', $product);
 		$this->set('beautyQuestions', $beautyQuestions);
 		$this->set('productQuestions', $productQuestions);
+	  }
 	}
 }
+?>
