@@ -640,10 +640,7 @@ class AppController extends Controller
 			$month = Configure::read('header.month');
 			$year = date("Y");
 		}
-		$timezone_code = Configure::read('site.timezone_offset');
-        if (!empty($timezone_code)) {
-            date_default_timezone_set($timezone_code);
-        }
+		date_default_timezone_set('UTC');
 		$result_details['start_date'] = date('Y-m-d',mktime(0, 0, 0, $month , 15, $year));
 		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($result_details['start_date'])) . "+".$no_of_month." month");
 		$result_details['end_date'] = date('Y-m-d', $dateMonthAdded);

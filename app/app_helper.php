@@ -98,11 +98,8 @@ class AppHelper extends Helper
     }
 	function checkPackageAvialable(){
 		App::import('Model', 'PackageUser');
-		$timezone_code = Configure::read('site.timezone_offset');
-        if (!empty($timezone_code)) {
-            date_default_timezone_set($timezone_code);
-        }
-		$this->PackageUser = new PackageUser();
+		date_default_timezone_set('UTC');
+        $this->PackageUser = new PackageUser();
 		$start_date = date('Y-'.Configure::read('header.month').'-15');
 		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+1 month");
 		$end_date= date('Y-m-d', $dateMonthAdded);
@@ -125,10 +122,7 @@ class AppHelper extends Helper
 	}
 	function checkUserActive($user_id){
 		App::import('Model', 'PackageUser');
-		$timezone_code = Configure::read('site.timezone_offset');
-        if (!empty($timezone_code)) {
-            date_default_timezone_set($timezone_code);
-        }
+		date_default_timezone_set('UTC');
 		$end_date = date('Y-m-d');
         $this->PackageUser = new PackageUser();
 		$packageuserCount = $this->PackageUser->find('count',array(

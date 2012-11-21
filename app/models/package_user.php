@@ -71,10 +71,7 @@ class PackageUser extends AppModel
 							$packageBox['PackageUser']['referred_by_user_id'] = !empty($referred_by_user_id)?$referred_by_user_id:0;
 							$packageBox['PackageUser']['is_paid'] = 1;
 							$packageBox['PackageUser']['end_date'] = $end_date;
-							$timezone_code = Configure::read('site.timezone_offset');
-							if (!empty($timezone_code)) {
-					            date_default_timezone_set($timezone_code);
-							}
+							date_default_timezone_set('UTC');
 							$this->save($packageBox,false);
 							if($box_month == 12){
 								$box_year = date('Y') + 1 ;
