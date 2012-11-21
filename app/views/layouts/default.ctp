@@ -162,7 +162,7 @@ endif;
 				?>'s</span> subscription closes <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
                 <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?> </span> Edition Wonderbox today as there are only <span class="f16"><?php echo
 				$this->Html->checkPackageAvialable();?> left </span></p>
-				<p>Send the best gift to a friend today with <a href="http://wonderbox.com.my/page/gift">WonderBox Gift Subscription</a>    </p>
+				<p>Send the best gift to a friend today with <a href="http://wonderbox.com.my/page/gift">WonderBox Gift Subscription</a>    <img src="/img/gift/gift-box-icon.png"</p>
             </div>
 		</div>
 		<!--menu-->
