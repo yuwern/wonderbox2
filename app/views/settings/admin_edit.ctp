@@ -137,6 +137,9 @@ if(!empty($settings_category['SettingCategory']['description'])):
 				if($setting['Setting']['name'] == 'header.month'):
 					$options['options'] =  $this->Html->getMonthLists();
 				endif;
+				if($setting['Setting']['name'] == 'header.year'):
+					$options['options'] =  $this->Html->getYearLists();
+				endif;
 				$options['label'] = $setting['Setting']['label'];
 				if ($setting['SettingCategory']['name'] == 'Images' && $inputDisplay == 0):
 					$options['class'] = 'image-settings';

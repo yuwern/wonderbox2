@@ -638,7 +638,7 @@ class AppController extends Controller
 			$month = $date_array[1];
 		} else {
 			$month = Configure::read('header.month');
-			$year = date("Y");
+			$year = Configure::read('header.year');
 		}
 		date_default_timezone_set('UTC');
 		$result_details['start_date'] = date('Y-m-d',mktime(0, 0, 0, $month , 15, $year));

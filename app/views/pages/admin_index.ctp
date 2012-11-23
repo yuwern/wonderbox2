@@ -2,7 +2,7 @@
 <div class="pages index">
 <h2><?php echo __l('Pages');?></h2>
 <div class="clearfix add-block1">
-	<?php //echo $this->Html->link(__l('Add'), array('controller' => 'pages', 'action' => 'add'), array('class' => 'add','title' => __l('Add'))); ?>
+	<?php echo $this->Html->link(__l('Add'), array('controller' => 'pages', 'action' => 'add'), array('class' => 'add','title' => __l('Add'))); ?>
 </div>
 <div class="staticpage index">
 <?php echo $this->element('paging_counter');?>

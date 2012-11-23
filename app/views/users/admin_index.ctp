@@ -83,7 +83,7 @@
                         <th><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Login Count'), 'User.user_login_count'); ?></div></th>
                         <th><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Signup IP'), 'User.signup_ip'); ?></div></th>
                         <th><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Created On'), 'User.created'); ?></div></th>
-		                        <th class="dr"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Available Balance Amount'), 'User.available_balance_amount').' ('.Configure::read('site.currency').')'; ?></div></th>
+		                        <th class="dr"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Available Wonder Point'), 'User.available_wonder_points '); ?></div></th>
                     </tr>
 					          <?php
                 if (!empty($users)):
@@ -163,7 +163,7 @@
                                 echo $this->Html->cDateTimeHighlight($user['User']['created']);
                             }?></td>
 
-                        <td class="dr"><?php echo $this->Html->cCurrency($user['User']['available_balance_amount']);?></td>
+                        <td class="dr"><?php echo $this->Html->cInt($user['User']['available_wonder_points']);?></td>
                     </tr>
                 <?php
                     endforeach;
