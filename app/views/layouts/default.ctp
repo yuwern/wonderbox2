@@ -143,7 +143,7 @@ endif;
 		  <div class="head-subs">
 		  		<?php 
 				$date_left = $this->Html->dateDiff(date('y-m-d',strtotime('now')),date('y-m-d',mktime(0, 0, 0,Configure::read('header.month'), 15,  Configure::read('header.year')))); ?>
-	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16">  <?php  
+	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16">  <?php
 				$current_month = date('m',strtotime('now'));
 				$current_date = date('d',strtotime('now'));
 				$current_year = date('Y',strtotime('now'));
@@ -155,7 +155,7 @@ endif;
 					$duration_month = 1;
 				$months = $this->Html->getMonthLists();
 				echo $months[Configure::read('header.month')]; 
-				?>'s</span> subscription closes <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
+				?>'s</span> subscription <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
                 <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?> </span> Edition Wonderbox today as there are only <span class="f16"><?php echo
 				$this->Html->checkPackageAvialable();?> left </span></p>
 				<p><a href="http://wonderbox.com.my/page/gift">Gift a WonderBox </a> <a href="http://wonderbox.com.my/page/gift"><img src="/img/gift/gift-box-icon.png"</a> </p>
