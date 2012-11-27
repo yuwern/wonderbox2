@@ -136,8 +136,102 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 		<?php endif; ?>
 
 	<?php }
+	else if(!empty($productQuestion['BeautyQuestion']['id'])&& $productQuestion['BeautyQuestion']['id'] == 20){
+	for($subquestion = 1; $subquestion<=5 ; $subquestion++){
+	if($subquestion == 1)
+		 $txtString = 'Product Quality';
+	else if($subquestion == 2)
+		 $txtString = 'Product Sample Size';	
+	else if($subquestion == 3)
+		 $txtString = 'Product Suitablity';
+	else if($subquestion == 4)
+	   $txtString = 'Product Packaging';
+	else if($subquestion == 5)
+    	 $txtString = 'Product Retail Price';
+	
+	$data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id'],$subquestion);
+	//print_r($data);
+	$response_data = array();
+	if(!empty($productQuestion['BeautyAnswer'])):
+			foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
+				$fields = 'Answer'.($key+1);
+					$response_data[$Answer['answer']] = $data[0][$fields]	;					
+			endforeach;
+	endif;
+		?>
+		
+<script type="text/javascript">
+	 var chart<?php echo $subquestion.$qkey; ?>;
+	 <?php
+		 $chart_arr[] = 'chart'.$subquestion.$qkey;
+	 ?>
+	 $(document).ready(function() {
+		
+        chart<?php echo $subquestion.$qkey; ?> = new Highcharts.Chart({
+            chart: {
+                renderTo: "container<?php echo $subquestion.$qkey; ?>",
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: "<?php echo ($qkey+1).'- '.$subquestion.') '.$productQuestion['BeautyQuestion']['name'].' ('.$txtString.')'; ?>",
+				style: {
+						font: 'bold 11px "Trebuchet MS", Verdana, sans-serif'
+		      }
+            },
+            tooltip: {
+        	    pointFormat: "{series.name}: <b> {point.percentage}%</b>",
+            	percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                              return '<b>'+ this.point.name +'</b>: '+ this.y + ' ('+ Highcharts.numberFormat(this.percentage,1, '.')  +' % )';
+                        }
+                    },
+					 showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+					<?php 
+					if(!empty($productQuestion['BeautyAnswer'])):
+						$count = count($productQuestion['BeautyAnswer']);
+						$tcount = 1;
+						foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
+						$fields = 'Answer'.($key+1);
+						if(!empty($data[0][$fields])):
+							$value = number_format($data[0][$fields],2);
+							echo '["'.$Answer['answer'].'",'.$value.']';
+							if($count != $tcount)
+								echo ',';
+						endif;
+						$tcount++;	
+						endforeach;
+					endif; 
+					?>
+                ]
+            }]
+        });
+    });
+	</script>
+	<div id="container<?php echo $subquestion.$qkey; ?>" ></div>
+	<?php
+	
+	}
+	}
 	else{
 	$data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
+	//print_r($data);
 	$response_data = array();
 	if(!empty($productQuestion['BeautyAnswer'])):
 			foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
@@ -211,7 +305,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
     });
 	</script>
 	<div id="container<?php echo $qkey; ?>" ></div>
-	<?php foreach($beautyQuestions as $beautyQuestion): 
+	<?php   foreach($beautyQuestions as $beautyQuestion): 
 			 $barchartCount = count($beautyQuestion['BeautyAnswer']);
 			 $beautydata =  $this->Html->beautyProfileDetails($beautyQuestion['BeautyQuestion']['id']);
 			 $beautyCategory = ' ';
@@ -234,7 +328,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 						$barChartReport .='data:'."[";
 						$bary = 1;
 						foreach($beautyDataResponse as $ykey => $beautyDataResponse1):
-						$barChartReport .= ($response_data2 == 0)? 0:number_format(($beautyDataResponse1/$response_data2),2);
+						$barChartReport .= ($response_data2 == 0)? 0:($response_data2/$totalparticipants)*100;
 						if(count($beautyDataResponse) != $bary)
 						$barChartReport .=',';
 						$bary++;
@@ -245,7 +339,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
 				endforeach;
 	
-//				echo $barChartReport;
+		//		echo $barChartReport;
 	
 			endif;
 //			echo "Y";

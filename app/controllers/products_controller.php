@@ -407,7 +407,11 @@ class ProductsController extends AppController
 		));
 		$beautyQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
 						'conditions' => array(
-							'BeautyQuestion.beauty_category_id'=> $product['Product']['beauty_category_id']
+							'BeautyQuestion.beauty_category_id'=> $product['Product']['beauty_category_id'],
+							'BeautyQuestion.id BETWEEN ? AND ?' => array(
+						            16,
+									23,
+							),
 						),
 						'contain'=> array(
 							'BeautyCategory'=> array(

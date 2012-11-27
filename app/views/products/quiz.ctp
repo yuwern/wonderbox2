@@ -395,24 +395,132 @@
 				});
 				// SLIDE 5
 
-				$(".js-level-satisfaction1").click(function(){
-					$('#js-slide5_1').val($(this).val() );
+				$("#js-level-satis11").click(function(){
+					$('#js-slide5_1,#js-slide5_2,#js-slide5_3,#js-slide5_4,#js-slide5_5').val(0) ;
+					$('#js-slide5_1').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis12").click(function(){
+					$('#js-slide5_1,#js-slide5_2,#js-slide5_3,#js-slide5_4,#js-slide5_5').val(0) ;
+					$('#js-slide5_2').val($(this).val());
+					$.fn.showbutton(5);
+				});								
+				$("#js-level-satis13").click(function(){
+					$('#js-slide5_1,#js-slide5_2,#js-slide5_3,#js-slide5_4,#js-slide5_5').val(0) ;
+					$('#js-slide5_3').val($(this).val());
+					$.fn.showbutton(5);
+				});							
+				$("#js-level-satis14").click(function(){
+					$('#js-slide5_1,#js-slide5_2,#js-slide5_3,#js-slide5_4,#js-slide5_5').val(0) ;
+					$('#js-slide5_4').val($(this).val());
 					$.fn.showbutton(5);
 				});
-				$(".js-level-satisfaction2").click(function(){
-					$('#js-slide5_2').val($(this).val() );
+						
+				$("#js-level-satis15").click(function(){
+					$('#js-slide5_1,#js-slide5_2,#js-slide5_3,#js-slide5_4,#js-slide5_5').val(0) ;
+					$('#js-slide5_5').val($(this).val());
 					$.fn.showbutton(5);
 				});
-				$(".js-level-satisfaction3").click(function(){
-					$('#js-slide5_3').val($(this).val() );
+		
+				$("#js-level-satis21").click(function(){
+					$('#js-slide5_21,#js-slide5_22,#js-slide5_23,#js-slide5_24,#js-slide5_25').val(0) ;
+					$('#js-slide5_21').val($(this).val());
 					$.fn.showbutton(5);
 				});
-				$(".js-level-satisfaction4").click(function(){
-					$('#js-slide5_4').val($(this).val() );
+				$("#js-level-satis22").click(function(){
+					$('#js-slide5_21,#js-slide5_22,#js-slide5_23,#js-slide5_24,#js-slide5_25').val(0) ;
+					$('#js-slide5_22').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis23").click(function(){
+					$('#js-slide5_21,#js-slide5_22,#js-slide5_23,#js-slide5_24,#js-slide5_25').val(0) ;
+					$('#js-slide5_23').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis24").click(function(){
+					$('#js-slide5_21,#js-slide5_22,#js-slide5_23,#js-slide5_24,#js-slide5_25').val(0) ;
+					$('#js-slide5_24').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis25").click(function(){
+					$('#js-slide5_21,#js-slide5_22,#js-slide5_23,#js-slide5_24,#js-slide5_25').val(0) ;
+					$('#js-slide5_25').val($(this).val());
 					$.fn.showbutton(5);
 				});
-				$(".js-level-satisfaction5").click(function(){
-					$('#js-slide5_5').val($(this).val() );
+				$("#js-level-satis31").click(function(){
+				$('#js-slide5_31,#js-slide5_32,#js-slide5_33,#js-slide5_34,#js-slide5_35').val(0) ;
+					$('#js-slide5_31').val($(this).val());
+					$.fn.showbutton(5);
+				});
+				$("#js-level-satis32").click(function(){
+				$('#js-slide5_31,#js-slide5_32,#js-slide5_33,#js-slide5_34,#js-slide5_35').val(0) ;
+					$('#js-slide5_32').val($(this).val());
+					$.fn.showbutton(5);
+				});		
+				$("#js-level-satis33").click(function(){
+					$('#js-slide5_31,#js-slide5_32,#js-slide5_33,#js-slide5_34,#js-slide5_35').val(0) ;
+					$('#js-slide5_33').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis34").click(function(){
+					$('#js-slide5_31,#js-slide5_32,#js-slide5_33,#js-slide5_34,#js-slide5_35').val(0) ;
+					$('#js-slide5_34').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis35").click(function(){
+					$('#js-slide5_31,#js-slide5_32,#js-slide5_33,#js-slide5_34,#js-slide5_35').val(0) ;
+					$('#js-slide5_35').val($(this).val());
+					$.fn.showbutton(5);
+				});								
+				$("#js-level-satis41").click(function(){
+					$('#js-slide5_41,#js-slide5_42,#js-slide5_43,#js-slide5_44,#js-slide5_45').val(0) ;
+					$('#js-slide5_41').val($(this).val());
+					$.fn.showbutton(5);
+				});
+				$("#js-level-satis42").click(function(){
+					$('#js-slide5_41,#js-slide5_42,#js-slide5_43,#js-slide5_44,#js-slide5_45').val(0) ;
+					$('#js-slide5_42').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis43").click(function(){
+					$('#js-slide5_41,#js-slide5_42,#js-slide5_43,#js-slide5_44,#js-slide5_45').val(0) ;
+					$('#js-slide5_43').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis44").click(function(){
+					$('#js-slide5_41,#js-slide5_42,#js-slide5_43,#js-slide5_44,#js-slide5_45').val(0) ;
+					$('#js-slide5_44').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis45").click(function(){
+					$('#js-slide5_41,#js-slide5_42,#js-slide5_43,#js-slide5_44,#js-slide5_45').val(0) ;
+					$('#js-slide5_45').val($(this).val());
+					$.fn.showbutton(5);
+				});
+				$("#js-level-satis51").click(function(){
+					$('#js-slide5_51,#js-slide5_52,#js-slide5_53,#js-slide5_54,#js-slide5_55').val(0) ;
+					$('#js-slide5_51').val($(this).val());
+					$.fn.showbutton(5);
+				});				
+				$("#js-level-satis52").click(function(){
+					$('#js-slide5_51,#js-slide5_52,#js-slide5_53,#js-slide5_54,#js-slide5_55').val(0) ;
+					$('#js-slide5_52').val($(this).val());
+					$.fn.showbutton(5);
+				});
+				
+				$("#js-level-satis53").click(function(){
+					$('#js-slide5_51,#js-slide5_52,#js-slide5_53,#js-slide5_54,#js-slide5_55').val(0) ;
+					$('#js-slide5_53').val($(this).val());
+					$.fn.showbutton(5);
+				});
+				$("#js-level-satis54").click(function(){
+					$('#js-slide5_51,#js-slide5_52,#js-slide5_53,#js-slide5_54,#js-slide5_55').val(0) ;
+					$('#js-slide5_54').val($(this).val());
+					$.fn.showbutton(5);
+				});
+				$("#js-level-satis55").click(function(){
+					$('#js-slide5_51,#js-slide5_52,#js-slide5_53,#js-slide5_54,#js-slide5_55').val(0) ;
+					$('#js-slide5_55').val($(this).val());
 					$.fn.showbutton(5);
 				});
 				//SLIDE 6
@@ -665,7 +773,7 @@
 					<div class="textSlide slide_1">
 				    	<div class="in-wel-pad">
 							<?php echo $this->Html->image('acc-banner_welcome2.png');?>
-                            <p><?php echo __l('We thank you for your participation'); ?> </p>
+                            <p><?php echo __l('Your complete beauty profile helps us to find the best products for you, for your next monthly WonderBox'); ?> </p>
                         </div>
                     </div>
 				</li>
@@ -677,7 +785,7 @@
                     </div>
                     <div class="get-slide2-right">
                           <div class="slide4 slide11">
-                            <h1><?php echo __l('How long have you been using our products?'); ?></h1>
+                            <h1><?php echo __l('How long have you used our products?'); ?></h1>
                             <ul>
                                 <li><a title="First Time" id="js-product1"><?php echo __l('First Time'); ?></a></li>
                                 <li><a title="Less than 6 months" id="js-product2"><?php echo __l('Less than 6 months'); ?></a></li>
@@ -698,7 +806,7 @@
                     </div>
                     <div class="get-slide2-right">
                         <div class="slide4 slide11">
-                            <h1><?php echo __l('How likely is it that you would recommend this product to a friend/colleague?'); ?></h1>
+                            <h1><?php echo __l('How likely is it that you would recommend us to a friend/colleague?'); ?></h1>
                             <ul>
                                 <li><a  title="Very likely" id="js-likely1"><?php echo __l('Very likely'); ?></a></li>
                                 <li><a  title="Somewhat likely" id="js-likely2"><?php echo __l('Somewhat'); ?> <br /><?php echo __l('likely'); ?></a></li>
@@ -719,12 +827,12 @@
                     </div>
                     <div class="get-slide2-right">
                         <div class="slide3">
-                            <h1><?php echo __l('How many times have you tried this product ?');?></h1>
+                            <h1><?php echo __l('How many times have you tried our product ?');?></h1>
                             <ul>
-                                <li><a  title="Less the 2 times" id="js-time-tried1"><?php echo __l('Less than');?> <br /><?php echo __l('2 times');?></a></li>
-                                <li><a  title="More then 2 times" id="js-time-tried2"><?php echo __l('More than');?> <br /><?php echo __l('2 times');?></a></li>
-                                <li><a  title="More then 5 times" id="js-time-tried3"><?php echo __l('More than');?> <br /><?php echo __l('5 times');?></a></li>
-                                <li><a  title="More then 8 times" id="js-time-tried4"><?php echo __l('More than');?> <br /><?php echo __l('8 times');?></a></li>
+                                <li><a  title="Less the 2 times" id="js-time-tried1"><?php echo __l('Less then');?> <br /><?php echo __l('2 times');?></a></li>
+                                <li><a  title="More then 2 times" id="js-time-tried2"><?php echo __l('More then');?> <br /><?php echo __l('2 times');?></a></li>
+                                <li><a  title="More then 5 times" id="js-time-tried3"><?php echo __l('More then');?> <br /><?php echo __l('5 times');?></a></li>
+                                <li><a  title="More then 8 times" id="js-time-tried4"><?php echo __l('More then');?> <br /><?php echo __l('8 times');?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -737,7 +845,7 @@
                     </div>
                     <div class="get-slide2-right">
                         <div class="slide4 slide11">
-                            <h1><?php echo __l('How satisfied are you with this product?');?></h1>
+                            <h1><?php echo __l('How would you rate your overall satisfaction with our product?');?></h1>
                             <ul>
                                 <li><a  title="Very Satisfied" id="js-overall-satisfaction1"><?php echo __l('Very Satisfied');?></a></li>
                                 <li><a  title="Somewhat Satisfied" id="js-overall-satisfaction2"><?php echo __l('Somewhat Satisfied');?></a></li>
@@ -758,7 +866,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="comp-survey-td">
-                                	<h1><?php echo __l('Please indicate your level of satisfaction with the following attributes of this product.');?></h1>
+                                	<h1><?php echo __l('Please indicate your level of satisfaction with the following attributes of our product.');?></h1>
                                     <div class="table-data">
                                         <ul>
                                             <li class="t-head">
@@ -772,47 +880,47 @@
                                             </li> 
                                             <li class="t-date">
                                                 <div class="t-c1"><?php echo __l('Product Quality');?></div>
-                                                <div class="t-c2"><input name="pro1" type="radio" value="1" class="js-level-satisfaction1"/></div>
-                                                <div class="t-c3"><input name="pro1" type="radio" value="2" class="js-level-satisfaction1"/></div>
-                                                <div class="t-c4"><input name="pro1" type="radio" value="3" class="js-level-satisfaction1"/></div>
-                                                <div class="t-c5"><input name="pro1" type="radio" value="4" class="js-level-satisfaction1"/></div>
-                                                <div class="t-c6"><input name="pro1" type="radio" value="5" class="js-level-satisfaction1"/></div>
+                                                <div class="t-c2"><input name="pro1" type="radio" value="1" class="js-level-satisfaction1" id="js-level-satis11"/></div>
+                                                <div class="t-c3"><input name="pro1" type="radio" value="1" class="js-level-satisfaction1" id="js-level-satis12"/></div>
+                                                <div class="t-c4"><input name="pro1" type="radio" value="1" class="js-level-satisfaction1" id="js-level-satis13"/></div>
+                                                <div class="t-c5"><input name="pro1" type="radio" value="1" class="js-level-satisfaction1" id="js-level-satis14"/></div>
+                                                <div class="t-c6"><input name="pro1" type="radio" value="1" class="js-level-satisfaction1" id="js-level-satis15"/></div>
                                                 <div class="clear"></div>
                                             </li>
                                             <li class="t-date">
                                                 <div class="t-c1"><?php echo __l('Product Sample Size');?></div>
-                                                <div class="t-c2"><input name="pro2" type="radio" value="1"  class="js-level-satisfaction2"/></div>
-                                                <div class="t-c3"><input name="pro2" type="radio" value="2"  class="js-level-satisfaction2"/></div>
-                                                <div class="t-c4"><input name="pro2" type="radio" value="3"  class="js-level-satisfaction2"/></div>
-                                                <div class="t-c5"><input name="pro2" type="radio" value="4"  class="js-level-satisfaction2"/></div>
-                                                <div class="t-c6"><input name="pro2" type="radio" value="5"  class="js-level-satisfaction2"/></div>
+                                                <div class="t-c2"><input name="pro2" type="radio" value="1"  class="js-level-satisfaction2" id="js-level-satis21"/></div>
+                                                <div class="t-c3"><input name="pro2" type="radio" value="1"  class="js-level-satisfaction2" id="js-level-satis22"/></div>
+                                                <div class="t-c4"><input name="pro2" type="radio" value="1"  class="js-level-satisfaction2" id="js-level-satis23"/></div>
+                                                <div class="t-c5"><input name="pro2" type="radio" value="1"  class="js-level-satisfaction2" id="js-level-satis24"/></div>
+                                                <div class="t-c6"><input name="pro2" type="radio" value="1"  class="js-level-satisfaction2" id="js-level-satis25"/></div>
                                                 <div class="clear"></div>
                                             </li>
                                             <li class="t-date">
                                                 <div class="t-c1"><?php echo __l('Product Suitablity');?></div>
-                                                <div class="t-c2"><input name="pro3" type="radio" value="1" class="js-level-satisfaction3"/></div>
-                                                <div class="t-c3"><input name="pro3" type="radio" value="2" class="js-level-satisfaction3"/></div>
-                                                <div class="t-c4"><input name="pro3" type="radio" value="3" class="js-level-satisfaction3" /></div>
-                                                <div class="t-c5"><input name="pro3" type="radio" value="4" class="js-level-satisfaction3"/></div>
-                                                <div class="t-c6"><input name="pro3" type="radio" value="5" class="js-level-satisfaction3"/></div>
+                                                <div class="t-c2"><input name="pro3" type="radio" value="1" class="js-level-satisfaction3" id="js-level-satis31"/></div>
+                                                <div class="t-c3"><input name="pro3" type="radio" value="1" class="js-level-satisfaction3" id="js-level-satis32"/></div>
+                                                <div class="t-c4"><input name="pro3" type="radio" value="1" class="js-level-satisfaction3" id="js-level-satis33" /></div>
+                                                <div class="t-c5"><input name="pro3" type="radio" value="1" class="js-level-satisfaction3" id="js-level-satis34"/></div>
+                                                <div class="t-c6"><input name="pro3" type="radio" value="1" class="js-level-satisfaction3" id="js-level-satis35"/></div>
                                                 <div class="clear"></div>
                                             </li>
                                             <li class="t-date">
                                                 <div class="t-c1"><?php echo __l('Product Packaging');?></div>
-                                                <div class="t-c2"><input name="pro4" type="radio" value="1" class="js-level-satisfaction4"/></div>
-                                                <div class="t-c3"><input name="pro4" type="radio" value="2" class="js-level-satisfaction4"/></div>
-                                                <div class="t-c4"><input name="pro4" type="radio" value="3" class="js-level-satisfaction4"/></div>
-                                                <div class="t-c5"><input name="pro4" type="radio" value="4" class="js-level-satisfaction4"/></div>
-                                                <div class="t-c6"><input name="pro4" type="radio" value="5" class="js-level-satisfaction4"/></div>
+                                                <div class="t-c2"><input name="pro4" type="radio" value="1" class="js-level-satisfaction4" id="js-level-satis41"/></div>
+                                                <div class="t-c3"><input name="pro4" type="radio" value="1" class="js-level-satisfaction4" id="js-level-satis42"/></div>
+                                                <div class="t-c4"><input name="pro4" type="radio" value="1" class="js-level-satisfaction4" id="js-level-satis43"/></div>
+                                                <div class="t-c5"><input name="pro4" type="radio" value="1" class="js-level-satisfaction4" id="js-level-satis44"/></div>
+                                                <div class="t-c6"><input name="pro4" type="radio" value="1" class="js-level-satisfaction4" id="js-level-satis45"/></div>
                                                 <div class="clear"></div>
                                             </li>
                                             <li class="t-date">
                                                 <div class="t-c1"><?php echo __l('Product Retail Price');?></div>
-                                                <div class="t-c2"><input name="pro5" type="radio" value="1" class="js-level-satisfaction5"/></div>
-                                                <div class="t-c3"><input name="pro5" type="radio" value="2" class="js-level-satisfaction5"/></div>
-                                                <div class="t-c4"><input name="pro5" type="radio" value="3" class="js-level-satisfaction5"/></div>
-                                                <div class="t-c5"><input name="pro5" type="radio" value="4" class="js-level-satisfaction5"/></div>
-                                                <div class="t-c6"><input name="pro5" type="radio" value="5" class="js-level-satisfaction5"/></div>
+                                                <div class="t-c2"><input name="pro5" type="radio" value="1" class="js-level-satisfaction5" id="js-level-satis51"/></div>
+                                                <div class="t-c3"><input name="pro5" type="radio" value="1" class="js-level-satisfaction5" id="js-level-satis52"/></div>
+                                                <div class="t-c4"><input name="pro5" type="radio" value="1" class="js-level-satisfaction5" id="js-level-satis53"/></div>
+                                                <div class="t-c5"><input name="pro5" type="radio" value="1" class="js-level-satisfaction5" id="js-level-satis54"/></div>
+                                                <div class="t-c6"><input name="pro5" type="radio" value="1" class="js-level-satisfaction5" id="js-level-satis55"/></div>
                                                 <div class="clear"></div>
                                             </li>
                                         </ul>
@@ -828,7 +936,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide4">
-                            <h1><?php echo __l('How frequently have you been purchasing our product?'); ?></h1>
+                            <h1><?php echo __l('How frequently do you purchase from us?'); ?></h1>
                             <ul>
                                 <li><a  title="Every week" id="js-frequently1"><?php echo __l('Every week'); ?></a></li>
                                 <li><a  title="Every 2 - 3 week" id="js-frequently2"><?php echo __l('Every 2 - 3'); ?><br/><?php echo __l('weeks'); ?></a></li>
@@ -852,7 +960,7 @@
                     </div>
                             <div class="get-slide2-right">
                             	<div class="slide4 slide11 js-slide-content7">
-                            <h1><?php echo __l('Would you purchase a full size of this product?');?></h1>
+                            <h1><?php echo __l('How likely are you to purchase our full size product?');?></h1>
                             <ul>
                                 <li><a  title="Very likely" id="js-full-size-product1"><?php echo __l('Very likely');?></a></li>
                                 <li><a  title="Somewhat likely" id="js-full-size-product2"><?php echo __l('Somewhat');?> <br /><?php echo __l('likely');?></a></li>
@@ -948,11 +1056,47 @@
 		<!-- slide 5 -->
 		
 		<?php echo $this->Form->input('ProductSurvey.5.beauty_question_id',array('value'=> 20,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.5.question_no',array('value'=> 1,'type'=>'hidden')); ?>
 		<?php echo $this->Form->input('ProductSurvey.5.answer1',array('value'=> 0,'id'=>'js-slide5_1','type'=>'hidden')); ?>
 		<?php echo $this->Form->input('ProductSurvey.5.answer2',array('value'=> 0,'id'=>'js-slide5_2','type'=>'hidden')); ?>
 		<?php echo $this->Form->input('ProductSurvey.5.answer3',array('value'=> 0,'id'=>'js-slide5_3','type'=>'hidden')); ?>
 		<?php echo $this->Form->input('ProductSurvey.5.answer4',array('value'=> 0,'id'=>'js-slide5_4','type'=>'hidden')); ?>
 		<?php echo $this->Form->input('ProductSurvey.5.answer5',array('value'=> 0,'id'=>'js-slide5_5','type'=>'hidden')); ?>
+
+		
+		<?php echo $this->Form->input('ProductSurvey.9.beauty_question_id',array('value'=> 20,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.9.question_no',array('value'=> 2,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.9.answer1',array('value'=> 0,'id'=>'js-slide5_21','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.9.answer2',array('value'=> 0,'id'=>'js-slide5_22','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.9.answer3',array('value'=> 0,'id'=>'js-slide5_23','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.9.answer4',array('value'=> 0,'id'=>'js-slide5_24','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.9.answer5',array('value'=> 0,'id'=>'js-slide5_25','type'=>'hidden')); ?>
+
+		
+		<?php echo $this->Form->input('ProductSurvey.10.beauty_question_id',array('value'=> 20,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.10.question_no',array('value'=> 3,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.10.answer1',array('value'=> 0,'id'=>'js-slide5_31','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.10.answer2',array('value'=> 0,'id'=>'js-slide5_32','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.10.answer3',array('value'=> 0,'id'=>'js-slide5_33','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.10.answer4',array('value'=> 0,'id'=>'js-slide5_34','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.10.answer5',array('value'=> 0,'id'=>'js-slide5_35','type'=>'hidden')); ?>
+
+		<?php echo $this->Form->input('ProductSurvey.11.beauty_question_id',array('value'=> 20,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.11.question_no',array('value'=> 4,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.11.answer1',array('value'=> 0,'id'=>'js-slide5_41','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.11.answer2',array('value'=> 0,'id'=>'js-slide5_42','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.11.answer3',array('value'=> 0,'id'=>'js-slide5_43','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.11.answer4',array('value'=> 0,'id'=>'js-slide5_44','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.11.answer5',array('value'=> 0,'id'=>'js-slide5_45','type'=>'hidden')); ?>
+		
+		
+		<?php echo $this->Form->input('ProductSurvey.12.beauty_question_id',array('value'=> 20,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.12.question_no',array('value'=> 5,'type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.12.answer1',array('value'=> 0,'id'=>'js-slide5_51','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.12.answer2',array('value'=> 0,'id'=>'js-slide5_52','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.12.answer3',array('value'=> 0,'id'=>'js-slide5_53','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.12.answer4',array('value'=> 0,'id'=>'js-slide5_54','type'=>'hidden')); ?>
+		<?php echo $this->Form->input('ProductSurvey.12.answer5',array('value'=> 0,'id'=>'js-slide5_55','type'=>'hidden')); ?>
 							
 		<!-- slide 6 -->
 		

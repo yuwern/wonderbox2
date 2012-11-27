@@ -200,11 +200,13 @@ class AppHelper extends Helper
 
 		return $beautyQuestions;
 	}
-	function productSuveryDetails($question_id,$product_id = null ){
+	function productSuveryDetails($question_id,$product_id = null,$subquestion = null ){
 		$conditions = array();
 		$conditions['ProductSurvey.beauty_question_id'] = $question_id;
 		if(!empty($product_id))
 		$conditions['ProductSurvey.product_id'] = $product_id;
+		if(!empty($subquestion))
+		$conditions['ProductSurvey.question_no'] = $subquestion;
 		App::import('Model', 'ProductSurvey');
 		$this->ProductSurvey = new ProductSurvey();
 		$productSurveys = $this->ProductSurvey->find('all',array(
@@ -228,6 +230,7 @@ class AppHelper extends Helper
 
 			),
 		));
+
 		return $productSurveys[0];
 	}
 	function productSuvery23Questions($question_id,$product_id = null ){
