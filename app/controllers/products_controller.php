@@ -409,8 +409,8 @@ class ProductsController extends AppController
 						'conditions' => array(
 							'BeautyQuestion.beauty_category_id'=> $product['Product']['beauty_category_id'],
 							'BeautyQuestion.id BETWEEN ? AND ?' => array(
-						            16,
-									23,
+						            1,
+									15,
 							),
 						),
 						'contain'=> array(

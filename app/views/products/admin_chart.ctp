@@ -225,6 +225,103 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
     });
 	</script>
 	<div id="container<?php echo $subquestion.$qkey; ?>" ></div>
+		<?php   foreach($beautyQuestions as $beautyQuestion): 
+			 $barchartCount = count($beautyQuestion['BeautyAnswer']);
+			 $beautydata =  $this->Html->beautyProfileDetails($beautyQuestion['BeautyQuestion']['id']);
+			 $beautyCategory = ' ';
+			 $beautyDataResponse = array();
+		     foreach($beautyQuestion['BeautyAnswer'] as $key=> $beautyAnswer):
+				
+				 $beautyCategory .=  "'".$beautyAnswer['answer']."'";
+				 $fieldName = 'Answer'.($key + 1);
+					if($barchartCount!= ($key + 1))
+						$beautyCategory .= ',';
+				$beautyDataResponse[$beautyAnswer['answer']] = $beautydata[0][$fieldName];
+				
+			 endforeach;
+				if(!empty($response_data)):
+				$barChartReport ='';
+
+				foreach($response_data as $rkey => $response_data2):
+						$barChartReport .='{';
+						$barChartReport .='name:'."'".$rkey."',";
+						$barChartReport .='data:'."[";
+						$bary = 1;
+						foreach($beautyDataResponse as $ykey => $beautyDataResponse1):
+						$barChartReport .= ($response_data2 == 0)? 0:number_format(($beautyDataResponse1/$response_data2)/100 ,1, '.', '');
+						if(count($beautyDataResponse) != $bary)
+						$barChartReport .=',';
+						$bary++;
+						endforeach;
+						$barChartReport .="]}";
+						if(count($response_data) != $rkey)
+						$barChartReport .=',';
+
+				endforeach;
+	
+		//		echo $barChartReport;
+	
+			endif;
+//			echo "Y";
+//		print_r($beautyDataResponse);
+//						echo "X";
+//			 print_r($response_data);
+//			 echo $beautyQuestion['BeautyQuestion']['id'];
+	?>
+	<script type="text/javascript">	
+
+			var barchart<?php echo $beautyQuestion['BeautyQuestion']['id'].$subquestion.$qkey; ?>;
+			<?php
+				 $chart_arr[] = 'barchart'.$beautyQuestion['BeautyQuestion']['id'].$subquestion.$qkey;
+			?>
+		    $(document).ready(function() {
+	        barchart<?php echo $beautyQuestion['BeautyQuestion']['id'].$subquestion.$qkey; ?> = new Highcharts.Chart({
+            chart: {
+                renderTo: "barcontainer<?php echo $beautyQuestion['BeautyQuestion']['id'].$subquestion.$qkey; ?>",
+                type: 'column'
+            },
+            title: {
+                text: ' '
+            },
+            xAxis: {
+                categories: [<?php echo $beautyCategory; ?>]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ' '
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' %';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [<?php 		echo $barChartReport; ?>]
+        });
+    });
+
+	</script>
+	<div id="barcontainer<?php echo $beautyQuestion['BeautyQuestion']['id'].$subquestion.$qkey; ?>" ></div>
+	<?php endforeach; ?>
+
 	<?php
 	
 	}
@@ -328,7 +425,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 						$barChartReport .='data:'."[";
 						$bary = 1;
 						foreach($beautyDataResponse as $ykey => $beautyDataResponse1):
-						$barChartReport .= ($response_data2 == 0)? 0:($response_data2/$totalparticipants)*100;
+						$barChartReport .= ($response_data2 == 0)? 0: number_format(($beautyDataResponse1/$response_data2)/100 ,1, '.', '');
 						if(count($beautyDataResponse) != $bary)
 						$barChartReport .=',';
 						$bary++;

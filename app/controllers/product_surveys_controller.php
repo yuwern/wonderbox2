@@ -71,4 +71,88 @@ class ProductSurveysController extends AppController
         $this->ProductSurvey->recursive = 0;
 	    $this->set('productSurveys', $this->paginate());
     }
+	public function test(){
+		$this->autoRender = false;
+		$participants  = $this->ProductSurvey->find('all', array(
+			'conditions'=> array(
+				'ProductSurvey.beauty_question_id'=> 20
+			),
+            'recursive' => -1,
+        ));
+			echo "<pre>";
+		foreach($participants as $participant){
+			//print_r($participant);
+					echo "<br/>";
+			echo 'INSERT INTO `product_surveys` (`id`, `created`, `modified`, `beauty_question_id`, `question_no`, `product_id`, `user_id`, `answer1`, `answer2`, `answer3`, `answer4`, `answer5`, `answer6`, `answer7`, `answer8`, `answer9`, `answer10`, `answer11`, `answer12`, `other_answer`) VALUES';
+	
+
+			if($participant['ProductSurvey']['answer1'] == 1)		
+			echo '(null,now(), now(), 20, 1, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 1, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer1'] == 2)		
+			echo '(null,now(), now(), 20, 2, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 1, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer1'] == 3)		
+			echo '(null,now(), now(), 20, 3, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 1, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer1'] == 4)		
+			echo '(null,now(), now(), 20, 4, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 1,0, 0, 0, 0, 0, 0, 0, 0, NULL);';	
+			if($participant['ProductSurvey']['answer1'] == 5)		
+			echo '(null,now(), now(), 20, 5, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 0,1, 0, 0, 0, 0, 0, 0, 0, NULL);';
+					echo "<br/>";
+			echo 'INSERT INTO `product_surveys` (`id`, `created`, `modified`, `beauty_question_id`, `question_no`, `product_id`, `user_id`, `answer1`, `answer2`, `answer3`, `answer4`, `answer5`, `answer6`, `answer7`, `answer8`, `answer9`, `answer10`, `answer11`, `answer12`, `other_answer`) VALUES';
+	
+			if($participant['ProductSurvey']['answer2'] == 1)		
+			echo '(null,now(), now(), 20, 1, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 1, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer2'] == 2)		
+			echo '(null,now(), now(), 20, 2, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 1, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer2'] == 3)		
+			echo '(null,now(), now(), 20, 3, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 1, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer2'] == 4)		
+			echo '(null,now(), now(), 20, 4, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 1,0, 0, 0, 0, 0, 0, 0, 0, NULL);';	
+			if($participant['ProductSurvey']['answer2'] == 5)		
+			echo '(null,now(), now(), 20, 5, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 0,1, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			echo "<br/>";
+	echo 'INSERT INTO `product_surveys` (`id`, `created`, `modified`, `beauty_question_id`, `question_no`, `product_id`, `user_id`, `answer1`, `answer2`, `answer3`, `answer4`, `answer5`, `answer6`, `answer7`, `answer8`, `answer9`, `answer10`, `answer11`, `answer12`, `other_answer`) VALUES';
+			
+			if($participant['ProductSurvey']['answer3'] == 1)		
+			echo '(null,now(), now(), 20, 1, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 1, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer3'] == 2)		
+			echo '(null,now(), now(), 20, 2, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 1, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer3'] == 3)		
+			echo '(null,now(), now(), 20, 3, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 1, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer3'] == 4)		
+			echo '(null,now(), now(), 20, 4, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 1,0, 0, 0, 0, 0, 0, 0, 0, NULL);';	
+			if($participant['ProductSurvey']['answer3'] == 5)		
+			echo '(null,now(), now(), 20, 5, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 0,1, 0, 0, 0, 0, 0, 0, 0, NULL);';
+	echo "<br/>";
+				echo 'INSERT INTO `product_surveys` (`id`, `created`, `modified`, `beauty_question_id`, `question_no`, `product_id`, `user_id`, `answer1`, `answer2`, `answer3`, `answer4`, `answer5`, `answer6`, `answer7`, `answer8`, `answer9`, `answer10`, `answer11`, `answer12`, `other_answer`) VALUES';
+		
+			if($participant['ProductSurvey']['answer4'] == 1)		
+			echo '(null,now(), now(), 20, 1, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 1, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer4'] == 2)		
+			echo '(null,now(), now(), 20, 2, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 1, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer4'] == 3)		
+			echo '(null,now(), now(), 20, 3, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 1, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer4'] == 4)		
+			echo '(null,now(), now(), 20, 4, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 1,0, 0, 0, 0, 0, 0, 0, 0, NULL);';	
+			if($participant['ProductSurvey']['answer4'] == 5)		
+			echo '(null,now(), now(), 20, 5, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 0,1, 0, 0, 0, 0, 0, 0, 0, NULL);';
+				echo "<br/>";
+		echo 'INSERT INTO `product_surveys` (`id`, `created`, `modified`, `beauty_question_id`, `question_no`, `product_id`, `user_id`, `answer1`, `answer2`, `answer3`, `answer4`, `answer5`, `answer6`, `answer7`, `answer8`, `answer9`, `answer10`, `answer11`, `answer12`, `other_answer`) VALUES';
+		
+			if($participant['ProductSurvey']['answer5'] == 1)		
+			echo '(null,now(), now(), 20, 1, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 1, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer5'] == 2)		
+			echo '(null,now(), now(), 20, 2, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 1, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer5'] == 3)		
+			echo '(null,now(), now(), 20, 3, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 1, 0,0, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			if($participant['ProductSurvey']['answer5'] == 4)		
+			echo '(null,now(), now(), 20, 4, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 1,0, 0, 0, 0, 0, 0, 0, 0, NULL);';	
+			if($participant['ProductSurvey']['answer5'] == 5)		
+			echo '(null,now(), now(), 20, 5, '.$participant['ProductSurvey']['product_id'].','. $participant['ProductSurvey']['user_id'].', 0, 0, 0, 0,1, 0, 0, 0, 0, 0, 0, 0, NULL);';
+			
+			echo "<br/>";
+
+		}
+		echo "test";
+		exit;
+	}
    }
