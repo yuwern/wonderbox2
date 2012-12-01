@@ -137,13 +137,18 @@ class AppHelper extends Helper
 			));
 		return $packageuserCount;
 	}
-	function beautyProfileDetails($question_id){
+
+	function beautyProfileDetails($question_id,$participantUserIds = array()){
 		App::import('Model', 'BeautyProfile');
 		$this->BeautyProfile = new BeautyProfile();
+		$conditions = array();
+		if(!empty($question_id))
+			$conditions['BeautyProfile.beauty_question_id'] =  $question_id;
+		if(!empty($participantUserIds))
+			$conditions['BeautyProfile.user_id'] =  $participantUserIds;
+
 		$beautyprofies = $this->BeautyProfile->find('all',array(
-			'conditions'=> array(
-				'BeautyProfile.beauty_question_id'=> $question_id
-			),
+			'conditions'=> $conditions,
 			'fields'=> array(
 				'SUM(BeautyProfile.answer1) as Answer1',
 				'SUM(BeautyProfile.answer2) as Answer2',
@@ -160,6 +165,101 @@ class AppHelper extends Helper
 				'BeautyProfile.beauty_question_id',
 				'BeautyQuestion.name',
 				'BeautyQuestion.beauty_answer_count',
+				
+
+			),
+		));
+		return $beautyprofies[0];
+	}
+	function beautyProfileDetailsResult($question_id,$participantUserIds = array(),$totalparticipants){
+		App::import('Model', 'BeautyProfile');
+		$this->BeautyProfile = new BeautyProfile();
+		$conditions = array();
+		if(!empty($question_id))
+			$conditions['BeautyProfile.beauty_question_id'] =  $question_id;
+		if(!empty($participantUserIds))
+			$conditions['BeautyProfile.user_id'] =  $participantUserIds;
+
+		$beautyprofies = $this->BeautyProfile->find('all',array(
+			'conditions'=> $conditions,
+			'fields'=> array(
+			    "(SUM(BeautyProfile.answer1)/$totalparticipants)*100 as Answer1",
+				"(SUM(BeautyProfile.answer2)/$totalparticipants)*100 as Answer2",
+				"(SUM(BeautyProfile.answer3)/$totalparticipants)*100 as Answer3",
+				"(SUM(BeautyProfile.answer4)/$totalparticipants)*100 as Answer4",
+				"(SUM(BeautyProfile.answer5)/$totalparticipants)*100 as Answer5",
+				"(SUM(BeautyProfile.answer6)/$totalparticipants)*100 as Answer6",
+				"(SUM(BeautyProfile.answer7)/$totalparticipants)*100 as Answer7",
+				"(SUM(BeautyProfile.answer8)/$totalparticipants)*100 as Answer8",
+				"(SUM(BeautyProfile.answer9)/$totalparticipants)*100 as Answer9",
+				"(SUM(BeautyProfile.answer10)/$totalparticipants)*100 as Answer10",
+				"(SUM(BeautyProfile.answer11)/$totalparticipants)*100 as Answer11",
+				"(SUM(BeautyProfile.answer12)/$totalparticipants)*100 as Answer12",
+				'BeautyProfile.beauty_question_id',
+				'BeautyQuestion.name',
+				'BeautyQuestion.beauty_answer_count',
+				
+
+			),
+		));
+		return $beautyprofies[0];
+	}
+	function beautyProfileDetailsNew($question_id,$participantUserIds = array(),$totalparticipants){
+		App::import('Model', 'BeautyProfile');
+		$this->BeautyProfile = new BeautyProfile();
+		$conditions = array();
+		if(!empty($question_id))
+			$conditions['BeautyProfile.beauty_question_id'] =  $question_id;
+		if(!empty($participantUserIds))
+			$conditions['BeautyProfile.user_id'] =  $participantUserIds;
+			$beautyprofies = $this->BeautyProfile->find('all',array(
+			'conditions'=> $conditions,
+			'fields'=> array(
+				"(SUM(BeautyProfile.answer1)/$totalparticipants) as Answer1",
+				"(SUM(BeautyProfile.answer2)/$totalparticipants) as Answer2",
+				"(SUM(BeautyProfile.answer3)/$totalparticipants) as Answer3",
+				"(SUM(BeautyProfile.answer4)/$totalparticipants) as Answer4",
+				"(SUM(BeautyProfile.answer5)/$totalparticipants) as Answer5",
+				"(SUM(BeautyProfile.answer6)/$totalparticipants) as Answer6",
+				"(SUM(BeautyProfile.answer7)/$totalparticipants) as Answer7",
+				"(SUM(BeautyProfile.answer8)/$totalparticipants) as Answer8",
+				"(SUM(BeautyProfile.answer9)/$totalparticipants) as Answer9",
+				"(SUM(BeautyProfile.answer10)/$totalparticipants) as Answer10",
+				"(SUM(BeautyProfile.answer11)/$totalparticipants) as Answer11",
+				"(SUM(BeautyProfile.answer12)/$totalparticipants) as Answer12",
+				'BeautyProfile.beauty_question_id',
+				'BeautyQuestion.name',
+				'BeautyQuestion.beauty_answer_count',
+			),
+		));
+		return $beautyprofies[0];
+	}
+		
+	function beautyProfileDetailsNew1($question_id,$participantUserIds = array(),$totalparticipants,$userFields){
+		App::import('Model', 'BeautyProfile');
+		$this->BeautyProfile = new BeautyProfile();
+		$conditions = array();
+		if(!empty($question_id))
+			$conditions['BeautyProfile.beauty_question_id'] =  $question_id;
+		if(!empty($participantUserIds))
+			$conditions['BeautyProfile.user_id'] =  $participantUserIds;
+		if(!empty($userFields)){
+			$fields = array();
+			//print_r($userFields);	
+			foreach($userFields as $userField){
+			 $userField1 = ucfirst($userField); 
+			 $fields[]= "(SUM(BeautyProfile.$userField)/$totalparticipants)*100 as $userField1";
+			}
+		}
+		$fields  =  implode(',',$fields);
+		$beautyprofies = $this->BeautyProfile->find('all',array(
+			'conditions'=> $conditions,
+			'fields'=> array(
+				$fields,
+				'BeautyProfile.beauty_question_id',
+				'BeautyQuestion.name',
+				'BeautyQuestion.beauty_answer_count',
+				
 
 			),
 		));
@@ -230,8 +330,28 @@ class AppHelper extends Helper
 
 			),
 		));
-
 		return $productSurveys[0];
+	}
+	function productSuveryUserLists($question_id,$product_id = null,$field = null ,$subquestion = null){
+		$conditions = array();
+		$conditions['ProductSurvey.beauty_question_id'] = $question_id;
+		if(!empty($product_id))
+		$conditions['ProductSurvey.product_id'] = $product_id;
+		if(!empty($field))
+		$conditions["ProductSurvey.$field"] = 1;
+		if(!empty($subquestion))
+		$conditions['ProductSurvey.question_no'] = $subquestion;
+		App::import('Model', 'ProductSurvey');
+		$this->ProductSurvey = new ProductSurvey();
+		$productSurveys = $this->ProductSurvey->find('all',array(
+			'conditions'=> $conditions,
+			'fields'=> array(
+				'Distinct(ProductSurvey.user_id)'
+
+			),
+		));
+		$participantUserIds = Set::extract('/ProductSurvey/user_id', $productSurveys);
+		return $participantUserIds;
 	}
 	function productSuvery23Questions($question_id,$product_id = null ){
 		$conditions = array();

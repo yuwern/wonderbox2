@@ -275,7 +275,6 @@ class ProductsController extends AppController
 			),
             'recursive' => 1,
         );
-
 		$this->set('months',$months);
 	    $this->set('products', $this->paginate());
 	}
@@ -348,6 +347,118 @@ class ProductsController extends AppController
         $this->pageTitle.= ' - ' . $product['Product']['name'];
         $this->set('product', $product);
     }
+/*	public function admin_chart($slug = null){
+	$product = $this->Product->find('first', array(
+            'conditions' => array(
+                'Product.slug = ' => $slug
+            ) ,
+            'fields' => array(
+                'Product.id',
+                'Product.category_id',
+                'Product.beauty_category_id',
+                'Product.brand_id',
+                'Product.slug',
+                'Product.wonder_point',
+                'Product.slug',
+                'Product.name',
+                'Product.description',
+                'Product.end_date',
+                'Product.price',
+                'Product.is_active',
+                'Category.id',
+                'Category.name',
+                'Brand.id',
+                'Brand.name',
+				'BeautyCategory.name'
+		      ) ,
+            'recursive' => 0,
+        ));
+		if(!empty($this->request->params['named']['type'])&& $this->request->params['named']['type'] =='print'){
+			$this->layout = 'pdf';
+		}
+        if (empty($product)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }	
+		$productQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
+						'conditions' => array(
+								'BeautyQuestion.id BETWEEN ? AND ?' => array(
+						            16,
+									23,
+							),
+						),
+						'contain'=> array(
+							'BeautyCategory'=> array(
+								'fields'=> array(
+									'BeautyCategory.name',
+								)
+							),
+							'BeautyAnswer'=> array(
+								'fields'=> array(
+									'BeautyAnswer.answer',
+								)
+							)
+						),
+						'fields'=> array(
+							'BeautyQuestion.id',
+							'BeautyQuestion.beauty_category_id',
+							'BeautyQuestion.name',
+						)
+		));
+		$beautyQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
+						'conditions' => array(
+							'BeautyQuestion.beauty_category_id'=> $product['Product']['beauty_category_id'],
+							'BeautyQuestion.id BETWEEN ? AND ?' => array(
+						            1,
+									15,
+							),
+						),
+						'contain'=> array(
+							'BeautyCategory'=> array(
+								'fields'=> array(
+									'BeautyCategory.name',
+								)
+							),
+							'BeautyAnswer'=> array(
+								'fields'=> array(
+									'BeautyAnswer.answer',
+								)
+							)
+						),
+						'fields'=> array(
+							'BeautyQuestion.id',
+							'BeautyQuestion.beauty_category_id',
+							'BeautyQuestion.name',
+						)
+		));
+		$participants  = $this->Product->ProductSurvey->find('all', array(
+			'conditions'=> array(
+				'ProductSurvey.product_id'=> $product['Product']['id']
+			),
+			'contain'=> array(
+				'User'=> array(
+					'fields'=> array(
+						'User.email'
+					)
+				)
+			),
+			'fields'=> array(
+				'Distinct(ProductSurvey.user_id)'
+			),
+            'recursive' => 1,
+        ));
+	   if ($this->RequestHandler->prefers('csv')) {
+            Configure::write('debug', 0);
+			$this->set('participants',$participants);
+      } else {
+	    $participantUserIds = Set::extract('/ProductSurvey/user_id', $participants);
+	    $this->set('participantUserIds',$participantUserIds);
+		$this->set('totalparticipants',count($participants));
+		$this->set('participants',$participants);
+		$this->set('product', $product);
+		$this->set('beautyQuestions', $beautyQuestions);
+		$this->set('productQuestions', $productQuestions);
+	  }
+	}*/
 	public function admin_chart($slug = null){
 	$product = $this->Product->find('first', array(
             'conditions' => array(
@@ -451,12 +562,14 @@ class ProductsController extends AppController
             Configure::write('debug', 0);
 			$this->set('participants',$participants);
       } else {
+	    $participantUserIds = Set::extract('/ProductSurvey/user_id', $participants);
+	    $this->set('participantUserIds',$participantUserIds);
 		$this->set('totalparticipants',count($participants));
 		$this->set('participants',$participants);
 		$this->set('product', $product);
 		$this->set('beautyQuestions', $beautyQuestions);
 		$this->set('productQuestions', $productQuestions);
 	  }
-	}
+	}	
 }
 ?>

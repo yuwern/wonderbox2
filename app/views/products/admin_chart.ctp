@@ -1,4 +1,3 @@
-
 <script  type="text/javascript">
 Highcharts.theme = {
    colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
@@ -82,8 +81,8 @@ Highcharts.theme = {
 };
 
 // Apply the theme
-var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
-</script><?php if(empty($this->request->params['named']['type']) && !empty($totalparticipants)): ?>
+var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
+<?php if(empty($this->request->params['named']['type']) && !empty($totalparticipants)): ?>
 <?php echo $this->Html->link(__l('Print All'), array('controller' => 'products','action'=>'chart', $product['Product']['slug'],'type'=>'print'), array('title' => __l('Print All'),'target'=>'__blank'));?>
 &nbsp;&nbsp;<?php echo $this->Html->link(__l('Export to CSV'), array('controller' => 'products','action'=>'chart', $product['Product']['slug'], 'ext' => 'csv', 'admin' => true), array('title' => __l('Export to CSV'),'class'=>'export','target'=>'__blank'));?>
 <button id="js-print-button">Export to print</button>
@@ -92,7 +91,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 <?php  $brand =  $this->Html->getBrandLogo($product['Product']['brand_id']); ?>
 
 <div style="float:left;width:700px;">
-<div style="float:left;border-width:5px;border-style:double;"><?php echo $this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'normal_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))); ?></div>
+<div style="float:left;border-width:5px;border-style:double;"><?php echo $this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'brand_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))); ?></div>
 <span style="padding:120px;font-weight: bold;"><?php echo __l('Product Survey Report'); ?> </span>
 <div style="float:right;margin:0px">
 <?php echo $this->Html->image('small-logo.jpg'); ?>
@@ -103,10 +102,11 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 <p> <?php echo __l('Survey Duration (days)'); ?>: <?php echo date('d F Y',strtotime($product['Product']['end_date'])); ?></p>
 <p> <?php echo __l('Participants'); ?> : <?php echo $totalparticipants; ?></p>
 </p>
-<?php if(!empty($totalparticipants)): ?>
-<?php  if(!empty($productQuestions)):
+<?php if(!empty($totalparticipants)): 
+	  if(!empty($productQuestions)):
 ?>
-<?php foreach($productQuestions as $qkey => $productQuestion): 
+<?php  foreach($productQuestions as $qkey => $productQuestion):
+
 	if(!empty($productQuestion['BeautyQuestion']['id'])&& $productQuestion['BeautyQuestion']['id'] == 23){
 		echo "<div style='bold 11px Trebuchet MS Verdana, sans-serif'>8)".$productQuestion['BeautyQuestion']['name']."</div>"; 
 		$data =  $this->Html->productSuvery23Questions($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
@@ -137,30 +137,35 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
 	<?php }
 	else if(!empty($productQuestion['BeautyQuestion']['id'])&& $productQuestion['BeautyQuestion']['id'] == 20){
-	for($subquestion = 1; $subquestion<=5 ; $subquestion++){
-	if($subquestion == 1)
-		 $txtString = 'Product Quality';
-	else if($subquestion == 2)
-		 $txtString = 'Product Sample Size';	
-	else if($subquestion == 3)
-		 $txtString = 'Product Suitablity';
-	else if($subquestion == 4)
-	   $txtString = 'Product Packaging';
-	else if($subquestion == 5)
-    	 $txtString = 'Product Retail Price';
-	
-	$data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id'],$subquestion);
-	//print_r($data);
-	$response_data = array();
-	if(!empty($productQuestion['BeautyAnswer'])):
-			foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
-				$fields = 'Answer'.($key+1);
-					$response_data[$Answer['answer']] = $data[0][$fields]	;					
-			endforeach;
-	endif;
-		?>
-		
-<script type="text/javascript">
+		for($subquestion = 1; $subquestion<=5 ; $subquestion++){
+				if($subquestion == 1)
+					 $txtString = 'Product Quality';
+				else if($subquestion == 2)
+					 $txtString = 'Product Sample Size';	
+				else if($subquestion == 3)
+					 $txtString = 'Product Suitablity';
+				else if($subquestion == 4)
+				   $txtString = 'Product Packaging';
+				else if($subquestion == 5)
+					 $txtString = 'Product Retail Price';
+
+		$data = array();
+		$data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id'],$subquestion);
+		$productLabels = array();
+		foreach($productQuestion['BeautyAnswer'] as $key => $productAnswer){
+			$productLabels['answer'.($key+1)] = $productAnswer['answer'];
+		}
+	   $userIds = array();
+	  if(!empty($data)){
+		$totalAnswer  = count( $productQuestion['BeautyAnswer']);
+		$i = 1;
+		foreach($data[0] as $key => $data1){
+			if($i < $totalAnswer)
+			$userIds[$key] = $this->Html->productSuveryUserLists($productQuestion['BeautyQuestion']['id'],$product['Product']['id'],strtolower($key),$subquestion);
+			$i++;
+		}
+	 }?>
+	 <script type="text/javascript">
 	 var chart<?php echo $subquestion.$qkey; ?>;
 	 <?php
 		 $chart_arr[] = 'chart'.$subquestion.$qkey;
@@ -225,50 +230,28 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
     });
 	</script>
 	<div id="container<?php echo $subquestion.$qkey; ?>" ></div>
-		<?php   foreach($beautyQuestions as $beautyQuestion): 
-			 $barchartCount = count($beautyQuestion['BeautyAnswer']);
-			 $beautydata =  $this->Html->beautyProfileDetails($beautyQuestion['BeautyQuestion']['id']);
-			 $beautyCategory = ' ';
-			 $beautyDataResponse = array();
-		     foreach($beautyQuestion['BeautyAnswer'] as $key=> $beautyAnswer):
-				
+	 	<?php foreach($beautyQuestions as $beautyQuestion):
+		 $beautyCategory = ' ';
+		 $barchartCount = count($beautyQuestion['BeautyAnswer']);
+	     foreach($beautyQuestion['BeautyAnswer'] as $key=> $beautyAnswer):
 				 $beautyCategory .=  "'".$beautyAnswer['answer']."'";
 				 $fieldName = 'Answer'.($key + 1);
 					if($barchartCount!= ($key + 1))
-						$beautyCategory .= ',';
-				$beautyDataResponse[$beautyAnswer['answer']] = $beautydata[0][$fieldName];
-				
-			 endforeach;
-				if(!empty($response_data)):
-				$barChartReport ='';
-
-				foreach($response_data as $rkey => $response_data2):
-						$barChartReport .='{';
-						$barChartReport .='name:'."'".$rkey."',";
-						$barChartReport .='data:'."[";
-						$bary = 1;
-						foreach($beautyDataResponse as $ykey => $beautyDataResponse1):
-						$barChartReport .= ($response_data2 == 0)? 0:number_format(($beautyDataResponse1/$response_data2)/100 ,1, '.', '');
-						if(count($beautyDataResponse) != $bary)
-						$barChartReport .=',';
-						$bary++;
-						endforeach;
-						$barChartReport .="]}";
-						if(count($response_data) != $rkey)
-						$barChartReport .=',';
-
-				endforeach;
-	
-		//		echo $barChartReport;
-	
-			endif;
-//			echo "Y";
-//		print_r($beautyDataResponse);
-//						echo "X";
-//			 print_r($response_data);
-//			 echo $beautyQuestion['BeautyQuestion']['id'];
-	?>
-	<script type="text/javascript">	
+						$beautyCategory .= ',';		
+		 endforeach;
+ 		 $barChartReport = '';
+		 foreach($userIds as $key => $userId){
+			 if(!empty($userId)) {
+				$beautydata =  $this->Html->beautyProfileDetailsResult($beautyQuestion['BeautyQuestion']['id'],$userId,$totalparticipants);
+				$beautyResult = array_slice($beautydata[0],0,$beautydata['BeautyQuestion']['beauty_answer_count']);
+				$productchartTitle = $productLabels[strtolower($key)];
+				$barChartReport .= '{';
+				$barChartReport  .= 'name: "'.$productchartTitle.' ",';
+				$barChartReport  .= 'data: ['.implode(',',$beautyResult).']';
+				$barChartReport	.= '},';
+			}
+		 } ?>
+			<script type="text/javascript">	
 
 			var barchart<?php echo $beautyQuestion['BeautyQuestion']['id'].$subquestion.$qkey; ?>;
 			<?php
@@ -283,8 +266,10 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
             title: {
                 text: ' '
             },
-            xAxis: {
-                categories: [<?php echo $beautyCategory; ?>]
+             xAxis: {
+                categories: [
+					<?php echo $beautyCategory; ?>
+                ]
             },
             yAxis: {
                 min: 0,
@@ -314,29 +299,37 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
                     borderWidth: 0
                 }
             },
-            series: [<?php 		echo $barChartReport; ?>]
+			 series: [<?php echo $barChartReport; ?> ]
         });
     });
 
 	</script>
 	<div id="barcontainer<?php echo $beautyQuestion['BeautyQuestion']['id'].$subquestion.$qkey; ?>" ></div>
 	<?php endforeach; ?>
-
 	<?php
-	
+		}	
 	}
-	}
-	else{
-	$data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
-	//print_r($data);
-	$response_data = array();
-	if(!empty($productQuestion['BeautyAnswer'])):
-			foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
-				$fields = 'Answer'.($key+1);
-					$response_data[$Answer['answer']] = $data[0][$fields]	;					
-			endforeach;
-	endif;
+	else {
+	$data = array();
+	 $data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
+	 $productLabels = array();
+	 foreach($productQuestion['BeautyAnswer'] as $key => $productAnswer){
+		$productLabels['answer'.($key+1)] = $productAnswer['answer'];
+			
+	 }
+	 $userIds = array();
+	 if(!empty($data)){
+		$totalAnswer  = count( $productQuestion['BeautyAnswer']);
+		$i = 1;
+		foreach($data[0] as $key => $data1){
+			if($i < $totalAnswer)
+			$userIds[$key] = $this->Html->productSuveryUserLists($productQuestion['BeautyQuestion']['id'],$product['Product']['id'],strtolower($key));
+			$i++;
+		}
+
+	 }
 ?>
+
 	<script type="text/javascript">
 	 var chart<?php echo $qkey; ?>;
 	 <?php
@@ -402,50 +395,28 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
     });
 	</script>
 	<div id="container<?php echo $qkey; ?>" ></div>
-	<?php   foreach($beautyQuestions as $beautyQuestion): 
-			 $barchartCount = count($beautyQuestion['BeautyAnswer']);
-			 $beautydata =  $this->Html->beautyProfileDetails($beautyQuestion['BeautyQuestion']['id']);
-			 $beautyCategory = ' ';
-			 $beautyDataResponse = array();
-		     foreach($beautyQuestion['BeautyAnswer'] as $key=> $beautyAnswer):
-				
+	<?php foreach($beautyQuestions as $beautyQuestion):
+		 $beautyCategory = ' ';
+		 $barchartCount = count($beautyQuestion['BeautyAnswer']);
+	     foreach($beautyQuestion['BeautyAnswer'] as $key=> $beautyAnswer):
 				 $beautyCategory .=  "'".$beautyAnswer['answer']."'";
 				 $fieldName = 'Answer'.($key + 1);
 					if($barchartCount!= ($key + 1))
-						$beautyCategory .= ',';
-				$beautyDataResponse[$beautyAnswer['answer']] = $beautydata[0][$fieldName];
-				
-			 endforeach;
-				if(!empty($response_data)):
-				$barChartReport ='';
-
-				foreach($response_data as $rkey => $response_data2):
-						$barChartReport .='{';
-						$barChartReport .='name:'."'".$rkey."',";
-						$barChartReport .='data:'."[";
-						$bary = 1;
-						foreach($beautyDataResponse as $ykey => $beautyDataResponse1):
-						$barChartReport .= ($response_data2 == 0)? 0: number_format(($beautyDataResponse1/$response_data2)/100 ,1, '.', '');
-						if(count($beautyDataResponse) != $bary)
-						$barChartReport .=',';
-						$bary++;
-						endforeach;
-						$barChartReport .="]}";
-						if(count($response_data) != $rkey)
-						$barChartReport .=',';
-
-				endforeach;
-	
-		//		echo $barChartReport;
-	
-			endif;
-//			echo "Y";
-//		print_r($beautyDataResponse);
-//						echo "X";
-//			 print_r($response_data);
-//			 echo $beautyQuestion['BeautyQuestion']['id'];
-	?>
-	<script type="text/javascript">	
+						$beautyCategory .= ',';		
+		 endforeach;
+ 		 $barChartReport = '';
+		 foreach($userIds as $key => $userId){
+			 if(!empty($userId)) {
+				$beautydata =  $this->Html->beautyProfileDetailsResult($beautyQuestion['BeautyQuestion']['id'],$userId,$totalparticipants);
+				$beautyResult = array_slice($beautydata[0],0,$beautydata['BeautyQuestion']['beauty_answer_count']);
+				$productchartTitle = $productLabels[strtolower($key)];
+				$barChartReport .= '{';
+				$barChartReport  .= 'name: "'.$productchartTitle.' ",';
+				$barChartReport  .= 'data: ['.implode(',',$beautyResult).']';
+				$barChartReport	.= '},';
+			 }
+		 } ?>
+			<script type="text/javascript">	
 
 			var barchart<?php echo $beautyQuestion['BeautyQuestion']['id'].$qkey; ?>;
 			<?php
@@ -460,8 +431,10 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
             title: {
                 text: ' '
             },
-            xAxis: {
-                categories: [<?php echo $beautyCategory; ?>]
+             xAxis: {
+                categories: [
+					<?php echo $beautyCategory; ?>
+                ]
             },
             yAxis: {
                 min: 0,
@@ -491,15 +464,19 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
                     borderWidth: 0
                 }
             },
-            series: [<?php 		echo $barChartReport; ?>]
+			 series: [<?php echo $barChartReport; ?> ]
         });
     });
 
 	</script>
 	<div id="barcontainer<?php echo $beautyQuestion['BeautyQuestion']['id'].$qkey; ?>" ></div>
-	<?php endforeach; ?>
-<?php } endforeach; ?>
-	<script type="text/javascript">
+		
+	<?php  endforeach; ?>
+
+<?php }
+ endforeach; 
+?>
+<script type="text/javascript">
 	 $(document).ready(function() {
 		  function printCharts(charts) {
 
@@ -611,11 +588,7 @@ Highcharts.getSVG = function(charts) {
 	});
         });
 </script>
-<?php endif;
-
-
-?>
-
+<?php endif;?>
 <?php else: ?>
 	<p class="notice"><?php echo __l('No users is Participants'); ?></p>
 <?php endif; ?>
