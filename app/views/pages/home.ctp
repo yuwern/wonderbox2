@@ -1,7 +1,7 @@
 <?php echo $this->element('home-page-banners-index',array('cache' => array('config' => 'site_element_cache', 'key' => 'banner-slider')));?>
 
 				<div class="banner_text">
-					<h1>Discover Beauty's Secrets At Your Doorstep</h1>
+					<h1>Discover Beauty Secrets At Your Doorstep</h1>
 					<h3>	<ul>
 					<li>Try out new products every month
 					<li>Let our experts guide and inspire you
