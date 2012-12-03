@@ -91,7 +91,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
 <?php  $brand =  $this->Html->getBrandLogo($product['Product']['brand_id']); ?>
 
 <div style="float:left;width:700px;">
-<div style="float:left;border-width:5px;border-style:double;"><?php echo $this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'brand_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))); ?></div>
+<div style="float:left;border-width:5px;border-style:double;"><?php echo $this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'normal_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))); ?></div>
 <span style="padding:120px;font-weight: bold;"><?php echo __l('Product Survey Report'); ?> </span>
 <div style="float:right;margin:0px">
 <?php echo $this->Html->image('small-logo.jpg'); ?>
@@ -241,9 +241,10 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
 		 endforeach;
  		 $barChartReport = '';
 		 foreach($userIds as $key => $userId){
+			 $beautyResult = array();
 			 if(!empty($userId)) {
 				$beautydata =  $this->Html->beautyProfileDetailsResult($beautyQuestion['BeautyQuestion']['id'],$userId,$totalparticipants);
-				$beautyResult = array_slice($beautydata[0],0,$beautydata['BeautyQuestion']['beauty_answer_count']);
+				$beautyResult = array_slice($beautydata[0],0,$barchartCount);
 				$productchartTitle = $productLabels[strtolower($key)];
 				$barChartReport .= '{';
 				$barChartReport  .= 'name: "'.$productchartTitle.' ",';
@@ -406,9 +407,10 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
 		 endforeach;
  		 $barChartReport = '';
 		 foreach($userIds as $key => $userId){
+			 $beautyResult = array();
 			 if(!empty($userId)) {
 				$beautydata =  $this->Html->beautyProfileDetailsResult($beautyQuestion['BeautyQuestion']['id'],$userId,$totalparticipants);
-				$beautyResult = array_slice($beautydata[0],0,$beautydata['BeautyQuestion']['beauty_answer_count']);
+				$beautyResult = array_slice($beautydata[0],0,$barchartCount);
 				$productchartTitle = $productLabels[strtolower($key)];
 				$barChartReport .= '{';
 				$barChartReport  .= 'name: "'.$productchartTitle.' ",';
