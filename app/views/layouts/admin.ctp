@@ -107,7 +107,7 @@
                 </div>
 		</div>
 		 <div id="openwave" class="clearfix">
-			<p class="copy">&copy; 2012 All Rights Reserved | Designed and developed by <a href="http://www.openwavecomp.com/">Openwave Computing</a>.</p>          
+			<p class="copy">&copy; 2012 All Rights Reserved | Designed and developed by <a href="http://www.wonderbox.com.my/">WonderBox Malaysia</a>.</p>          
           </div>
 	</div>
 	<?php echo $this->element('site_tracker');?>
