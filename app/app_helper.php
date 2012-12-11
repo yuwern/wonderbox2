@@ -100,15 +100,39 @@ class AppHelper extends Helper
 		App::import('Model', 'PackageUser');
 		date_default_timezone_set('UTC');
         $this->PackageUser = new PackageUser();
-		$start_date = date('Y-'.Configure::read('header.month').'-15');
+		$start_date = Configure::read('header.year').'-'.Configure::read('header.month').'-15';
 		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+1 month");
 		$end_date= date('Y-m-d', $dateMonthAdded);
 		$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date >= '=>$start_date,
 				'PackageUser.end_date <= '=>$end_date)));
 		if((Configure::read('header.number_of_paid_subscriber') - $package_available)>= 1)
 		return (Configure::read('header.number_of_paid_subscriber') - $package_available);
-		else 
-		return 0;
+		else {
+		App::import('Model', 'Setting');
+        $this->Setting = new Setting();
+		$year = Configure::read('header.year');
+		if(Configure::read('header.month') == 12){
+         	$year = Configure::read('header.year') + 1;
+			$month =  1;
+		} else 
+		   $month = Configure::read('header.month') + 1;
+			$this->Setting->updateAll(array(
+				'Setting.value' => $year
+			) , array(
+				'Setting.name'=> 'header.year',
+			));
+			$this->Setting->updateAll(array(
+				'Setting.value' => $month
+			) , array(
+				'Setting.name'=> 'header.month',
+			));
+			$start_date = $year.'-'.$month.'-15';
+			$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+1 month");
+			$end_date= date('Y-m-d', $dateMonthAdded);
+			$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date >= '=>$start_date,
+				'PackageUser.end_date <= '=>$end_date)));
+			return (Configure::read('header.number_of_paid_subscriber') - $package_available);
+		}
 	}
 	function checkProductSurveyStatus($product_id, $user_id){
 		App::import('Model', 'ProductSurvey');

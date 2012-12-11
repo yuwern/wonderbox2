@@ -47,7 +47,7 @@ class PackageUser extends AppModel
 						)
 				  );
 				  $box_date = 15;
-				  $box_year = date('Y');
+				  $box_year = Configure::read('header.year');
 				  if(!empty($user)){
 					$date_array = explode('-',$user['User']['subscription_expire_date']);	
 					$box_month = $date_array[1];	
