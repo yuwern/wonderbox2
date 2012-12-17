@@ -101,10 +101,7 @@ class AppHelper extends Helper
 		date_default_timezone_set('UTC');
         $this->PackageUser = new PackageUser();
 		$start_date = Configure::read('header.year').'-'.Configure::read('header.month').'-15';
-		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+1 month");
-		$end_date= date('Y-m-d', $dateMonthAdded);
-		$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date >= '=>$start_date,
-				'PackageUser.end_date <= '=>$end_date)));
+		$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date ='=>$start_date)));
 		if((Configure::read('header.number_of_paid_subscriber') - $package_available)>= 1)
 		return (Configure::read('header.number_of_paid_subscriber') - $package_available);
 		else {
@@ -127,10 +124,7 @@ class AppHelper extends Helper
 				'Setting.name'=> 'header.month',
 			));
 			$start_date = $year.'-'.$month.'-15';
-			$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+1 month");
-			$end_date= date('Y-m-d', $dateMonthAdded);
-			$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date >= '=>$start_date,
-				'PackageUser.end_date <= '=>$end_date)));
+			$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date ='=>$start_date)));
 			return (Configure::read('header.number_of_paid_subscriber') - $package_available);
 		}
 	}
