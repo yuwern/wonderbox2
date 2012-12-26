@@ -542,6 +542,57 @@ class ProductsController extends AppController
 							'BeautyQuestion.name',
 						)
 		));
+		$beautyQuestionProductCategorys = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
+						'conditions' => array(
+							'BeautyQuestion.beauty_category_id'=> 3,
+							'BeautyQuestion.id BETWEEN ? AND ? ' => array(
+						            1,
+									15,
+							),
+						),
+						'contain'=> array(
+							'BeautyCategory'=> array(
+								'fields'=> array(
+									'BeautyCategory.name',
+								)
+							),
+							'BeautyAnswer'=> array(
+								'fields'=> array(
+									'BeautyAnswer.answer',
+								)
+							)
+						),
+						'fields'=> array(
+							'BeautyQuestion.id',
+							'BeautyQuestion.beauty_category_id',
+							'BeautyQuestion.name',
+						)
+		));
+		$productQuestionCategorys = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
+						'conditions' => array(
+								'BeautyQuestion.id BETWEEN ? AND ?' => array(
+						            21,
+									22,
+							),
+						),
+						'contain'=> array(
+							'BeautyCategory'=> array(
+								'fields'=> array(
+									'BeautyCategory.name',
+								)
+							),
+							'BeautyAnswer'=> array(
+								'fields'=> array(
+									'BeautyAnswer.answer',
+								)
+							)
+						),
+						'fields'=> array(
+							'BeautyQuestion.id',
+							'BeautyQuestion.beauty_category_id',
+							'BeautyQuestion.name',
+						)
+		));
 		$participants  = $this->Product->ProductSurvey->find('all', array(
 			'conditions'=> array(
 				'ProductSurvey.product_id'=> $product['Product']['id']
@@ -569,6 +620,8 @@ class ProductsController extends AppController
 		$this->set('product', $product);
 		$this->set('beautyQuestions', $beautyQuestions);
 		$this->set('productQuestions', $productQuestions);
+		$this->set('beautyQuestionProductCategorys', $beautyQuestionProductCategorys);
+		$this->set('productQuestionCategorys', $productQuestionCategorys);
 	  }
 	}	
 }

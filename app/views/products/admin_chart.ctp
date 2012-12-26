@@ -478,6 +478,176 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
 <?php }
  endforeach; 
 ?>
+<?php  foreach($productQuestionCategorys as $qkey => $productQuestion):
+
+	$data = array();
+	 $data =  $this->Html->productSuveryDetails($productQuestion['BeautyQuestion']['id'],$product['Product']['id']);
+	 $productLabels = array();
+	 foreach($productQuestion['BeautyAnswer'] as $key => $productAnswer){
+		$productLabels['answer'.($key+1)] = $productAnswer['answer'];
+			
+	 }
+	 $userIds = array();
+	 if(!empty($data)){
+		$totalAnswer  = count( $productQuestion['BeautyAnswer']);
+		$i = 1;
+		foreach($data[0] as $key => $data1){
+			if($i < $totalAnswer)
+			$userIds[$key] = $this->Html->productSuveryUserLists($productQuestion['BeautyQuestion']['id'],$product['Product']['id'],strtolower($key));
+			$i++;
+		}
+
+	 }
+?>
+
+	<script type="text/javascript">
+	 var pchart<?php echo $qkey; ?>;
+	 <?php
+		 $chart_arr[] = 'pchart'.$qkey;
+	 ?>
+	 $(document).ready(function() {
+		
+        pchart<?php echo $qkey; ?> = new Highcharts.Chart({
+            chart: {
+                renderTo: "pcontainer<?php echo $qkey; ?>",
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: "<?php echo ($qkey+1).') '.$productQuestion['BeautyQuestion']['name']; ?>",
+				style: {
+						font: 'bold 11px "Trebuchet MS", Verdana, sans-serif'
+		      }
+            },
+            tooltip: {
+        	    pointFormat: "{series.name}: <b> {point.percentage}%</b>",
+            	percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                              return '<b>'+ this.point.name +'</b>: '+ this.y + ' ('+ Highcharts.numberFormat(this.percentage,1, '.')  +' % )';
+                        }
+                    },
+					 showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+					<?php 
+					if(!empty($productQuestion['BeautyAnswer'])):
+						$count = count($productQuestion['BeautyAnswer']);
+						$tcount = 1;
+						foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
+						$fields = 'Answer'.($key+1);
+						if(!empty($data[0][$fields])):
+							$value = number_format($data[0][$fields],2);
+							echo '["'.$Answer['answer'].'",'.$value.']';
+							if($count != $tcount)
+								echo ',';
+						endif;
+						$tcount++;	
+						endforeach;
+					endif; 
+					?>
+                ]
+            }]
+        });
+    });
+	</script>
+	<div id="pcontainer<?php echo $qkey; ?>" ></div>
+	<?php foreach($beautyQuestionProductCategorys as $beautyQuestion):
+		 $beautyCategory = ' ';
+		 $barchartCount = count($beautyQuestion['BeautyAnswer']);
+	     foreach($beautyQuestion['BeautyAnswer'] as $key=> $beautyAnswer):
+				 $beautyCategory .=  "'".$beautyAnswer['answer']."'";
+				 $fieldName = 'Answer'.($key + 1);
+					if($barchartCount!= ($key + 1))
+						$beautyCategory .= ',';		
+		 endforeach;
+ 		 $barChartReport = '';
+		 foreach($userIds as $key => $userId){
+			 $beautyResult = array();
+			 if(!empty($userId)) {
+				$beautydata =  $this->Html->beautyProfileDetailsResult($beautyQuestion['BeautyQuestion']['id'],$userId,$totalparticipants);
+				$beautyResult = array_slice($beautydata[0],0,$barchartCount);
+				$productchartTitle = $productLabels[strtolower($key)];
+				$barChartReport .= '{';
+				$barChartReport  .= 'name: "'.$productchartTitle.' ",';
+				$barChartReport  .= 'data: ['.implode(',',$beautyResult).']';
+				$barChartReport	.= '},';
+			 }
+		 } ?>
+			<script type="text/javascript">	
+
+			var pbarchart<?php echo $beautyQuestion['BeautyQuestion']['id'].$qkey; ?>;
+			<?php
+				 $chart_arr[] = 'pbarchart'.$beautyQuestion['BeautyQuestion']['id'].$qkey;
+			?>
+		    $(document).ready(function() {
+	        pbarchart<?php echo $beautyQuestion['BeautyQuestion']['id'].$qkey; ?> = new Highcharts.Chart({
+            chart: {
+                renderTo: "pbarcontainer<?php echo $beautyQuestion['BeautyQuestion']['id'].$qkey; ?>",
+                type: 'column'
+            },
+            title: {
+                text: ' '
+            },
+             xAxis: {
+                categories: [
+					<?php echo $beautyCategory; ?>
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ' '
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' %';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+			 series: [<?php echo $barChartReport; ?> ]
+        });
+    });
+
+	</script>
+	<div id="pbarcontainer<?php echo $beautyQuestion['BeautyQuestion']['id'].$qkey; ?>" ></div>
+		
+	<?php  endforeach; ?>
+
+<?php 
+ endforeach; 
+?>
+
 <script type="text/javascript">
 	 $(document).ready(function() {
 		  function printCharts(charts) {
