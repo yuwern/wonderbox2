@@ -665,7 +665,8 @@ class PackagesController extends AppController
 				    $this->loadModel('TempPaymentLog');
 						$tempPaymentLog = $this->TempPaymentLog->find('first',array(
 								'conditions' => array(
-									'TempPaymentLog.order_id'=> $orderid
+									'TempPaymentLog.order_id'=> $orderid,
+									'TempPaymentLog.is_paid'=> 0
 								)
 							));
 						if(!empty($tempPaymentLog)){		
@@ -772,6 +773,11 @@ class PackagesController extends AppController
 										) , true) ,
 									);
 								    $this->_sendMail($emailFindReplace, $email_message, $user['User']['email']);
+							        $this->TempPaymentLog->updateAll(array(
+										'TempPaymentLog.is_paid' => 1
+									) , array(
+										'TempPaymentLog.order_id' => $orderid 
+									));
             					    $this->redirect(array(
 										'controller' => 'transactions',
 										'action' => 'index',
@@ -779,7 +785,14 @@ class PackagesController extends AppController
 									));
 							}
 
-						}				
+						} else{
+							 $this->redirect(array(
+										'controller' => 'transactions',
+										'action' => 'index',
+										'admin' => false
+								));
+						}
+						
 					
 				} else {
 				// failure action
