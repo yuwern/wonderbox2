@@ -10,7 +10,9 @@
       <th class="left-cur"><?php echo __l('Package Name'); ?></th>
       <th><?php echo __l('Start Date'); ?></th>
   	  <th><?php echo __l('Till Date'); ?></th>
-      <th class="right-cur"><?php echo __l('Status'); ?></th>
+      <th><?php echo __l('Status'); ?></th>
+	  <th><?php echo __l('Tracking Number'); ?></th>
+	  <th class="right-cur"><?php echo __l('Go'); ?></th>
     </tr>
 <?php
 if (!empty($packageUsers)):
@@ -27,6 +29,19 @@ foreach ($packageUsers as $packageUser):
       <td><?php  echo  date("F Y",strtotime($packageUser['PackageUser']['start_date']));  ?></td>
 	  <td><?php  echo  date("F Y",strtotime($packageUser['PackageUser']['end_date']));  ?></td>
       <td><?php  echo  date("F Y",strtotime($packageUser['PackageUser']['start_date']));  ?></td>
+	  <td><?php if(!empty($packageUser['PackageUser']['tracking_number'])): ?>
+			<?php echo $this->Html->cText($packageUser['PackageUser']['tracking_number']);?>
+		  <?php else: 
+			  echo __l('Nil');
+		   endif; ?>
+	  </td>
+	   <td><?php
+			 if(!empty($packageUser['PackageUser']['tracking_number'])): 
+				echo $this->Html->link(__l('Go'),'http://203.106.236.200/official/etracking.php', array( 'title' => __l('Go'),'target'=>'_blank'));
+			 else:
+			  echo "---";
+		     endif; ?>
+	  </td>
     </tr>
 <?php
     endforeach;

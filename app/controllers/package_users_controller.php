@@ -285,6 +285,70 @@ class PackageUsersController extends AppController
 		}
 		$this->set('packageUsers', $packageUsers);
     }
+	public function admin_import(){
+		if(!empty($this->request->data)){
+			if(!empty($this->request->data['Attachment']['filename']['name']) && !empty($this->request->data['PackageUser']['year']) &&  !empty($this->request->data['PackageUser']['month'])){
+				$file_ext = array_pop(explode('.', $this->request->data['Attachment']['filename']['name']));
+				if ($file_ext == "csv") {
+					$start_date = date($this->request->data['PackageUser']['year'].'-'.$this->request->data['PackageUser']['month'].'-1');
+					$end_date = date($this->request->data['PackageUser']['year'].'-'.$this->request->data['PackageUser']['month'].'-t');
+					$handle = fopen($this->request->data['Attachment']['filename']['tmp_name'], "r");
+				  // read the 1st row as headings
+					$header = fgetcsv($handle);
+					while (($row = fgetcsv($handle)) !== FALSE) {
+						$user = $this->PackageUser->User->find('first', array(
+											'conditions' => array(
+												'User.email'=>$row[0]
+											),
+											'fields'=> array(
+												'User.id',
+												'User.email'
+											),
+											'recursive'=> -1
+								));
+						 if(!empty($user)&& !empty($row[1])){
+							$tracking_number = $row[1];
+							$packageUsers = $this->PackageUser->find('all', array(
+											'conditions' => array(
+												'PackageUser.user_id' => $user['User']['id'],
+												'PackageUser.start_date >= ' => $start_date,
+												'PackageUser.start_date <= ' => $end_date,
+											),
+											'fields'=> array(
+												'PackageUser.user_id',
+												'PackageUser.id',
+											),
+											'recursive'=> -1
+								));
+								$tracking_number = explode('||',$tracking_number);
+								if(!empty($packageUsers)){
+								  foreach($packageUsers as $pkey => $packageUser) {
+									  $this->PackageUser->updateAll(array(
+											'PackageUser.tracking_number' => '\'' .$tracking_number[$pkey] . '\'',
+										) , array(
+											'PackageUser.id' => $packageUser['PackageUser']['id'] ,
+										));
+								  }
+							  }
+							 // echo $row[1];
+						 }
+					 }
+					 fclose($handle);
+					$this->Session->setFlash(__l('Tracking Number is uploaded successfully..') , 'default', null, 'success');
+					$this->redirect(array(
+						'action' => 'index'
+					));
+				}
+				else {
+					$this->Session->setFlash(__l('Please uploaded csv file') , 'default', null, 'error');
+				}
+				
+			}else{
+				$this->Session->setFlash(__l('Please uploaded csv file ,month and year') , 'default', null, 'error');
+			
+			}
+		}
+	}
     public function admin_view($id = null)
     {
         $this->pageTitle = __1('Package User');
@@ -372,7 +436,7 @@ class PackageUsersController extends AppController
     }
     public function admin_edit($id = null)
     {
-        $this->pageTitle = __1('Edit Package User');
+        $this->pageTitle = __l('Edit Package User');
         if (is_null($id)) {
             throw new NotFoundException(__l('Invalid request'));
         }
@@ -382,12 +446,12 @@ class PackageUsersController extends AppController
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->PackageUser->save($this->request->data)) {
-                $this->Session->setFlash(__l('package user has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Tracking Number has been updated') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('package user could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Tracking Number could not be updated. Please, try again.') , 'default', null, 'error');
             }
         } else {
             $this->data = $this->PackageUser->read(null, $id);
