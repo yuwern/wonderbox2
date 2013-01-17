@@ -135,13 +135,15 @@ ul.admin-links li h4{padding:3px 5px; font-size:13px}
 div.submit-update-block{margin:5px 0 5px 315px}
 div.clearAll{margin:10px 0 0 0}
 
-a.add, a.delete, a.edit, a.export, a.update, a.pending, a.approve, a.view, a.update-status,a.chart{background:url(../img/icon-add.gif) 0 0 no-repeat; padding:0px 2px 3px 20px; margin-right:16px; color:#000}
+a.add, a.delete, a.edit, a.export, a.update, a.pending, a.approve, a.view, a.update-status,a.chart,a.import,a.pdf{background:url(../img/icon-add.gif) 0 0 no-repeat; padding:0px 2px 3px 20px; margin-right:16px; color:#000}
 
 div.export-block{text-align:right}
 a.delete{background:url(../img/icon-delete.png) no-repeat left top}
 a.edit{background:url(../img/icon-edit.png) no-repeat left top; padding:0 2px 3px 20px}
 a.chart{background:url(../img/icon-chart.png) no-repeat left top;}
 a.export{background:url(../img/icon-export.png) no-repeat left top}
+a.import{background:url(../img/import-icon.png) no-repeat left top}
+
 
 a.asc{background:transparent url(../img/icon-sort-down.gif) no-repeat scroll right center}
 a.desc{background:transparent url(../img/icon-sort-up.gif) no-repeat scroll right center}
