@@ -15,6 +15,7 @@
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Category Name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Brand Name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Wonder point');?></div></th>
+			 <th class="dl"><div class="js-pagination"><?php echo __l('Product Redeem count');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Active');?></div></th>	
             </tr>
 <?php
@@ -39,6 +40,12 @@ foreach ($products as $product):
 		<td><?php echo $this->Html->cText($product['Category']['name']);?></p>
 		<td><?php echo $this->Html->cText($product['Brand']['name']);?></p>
 		<td><?php echo $this->Html->cInt($product['Product']['wonder_point']);?></p>
+		<td><?php if(!empty($product['Product']['product_redeem_count'])):
+				  echo $this->Html->link($product['Product']['product_redeem_count'], array('controller'=>'product_redeems','action'=>'index', $product['Product']['id']), array('title' => $product['Product']['product_redeem_count']));
+				  else:
+				  echo $this->Html->cInt($product['Product']['product_redeem_count']);
+				  endif;
+				  ?></p>
 		<td><?php echo $this->Html->cBool($product['Product']['is_active']);?></p>
 
 	</tr>

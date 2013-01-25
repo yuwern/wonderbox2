@@ -191,6 +191,7 @@ class UserProfilesController extends AppController
                         'fields' => array(
                             'UserProfile.first_name',
                             'UserProfile.last_name',
+			                'UserProfile.age_group_id',
 	                        'UserProfile.gender_id',
                             'UserProfile.address',
                             'UserProfile.country_id',
@@ -231,7 +232,7 @@ class UserProfilesController extends AppController
         }
         $this->pageTitle.= ' - ' . $this->request->data['User']['username'];
         $genders = $this->UserProfile->Gender->find('list');
-      
+		$ageGroups = $this->UserProfile->AgeGroup->find('list');      
         $countries = $this->UserProfile->Country->find('list', array(
             'order' => array(
                 'Country.name' => 'ASC'
@@ -242,7 +243,7 @@ class UserProfilesController extends AppController
                 'State.name' => 'ASC'
             )
         ));
-        $this->set(compact('genders', 'countries', 'states','languages'));
+        $this->set(compact('genders', 'countries', 'states','languages','ageGroups'));
     }
 	public function shipping($id = null){
 	 
@@ -459,6 +460,7 @@ class UserProfilesController extends AppController
                             'UserProfile.first_name',
                             'UserProfile.last_name',
 	                        'UserProfile.gender_id',
+	                        'UserProfile.age_group_id',
                             'UserProfile.address',
                             'UserProfile.country_id',
                             'UserProfile.state_id',
@@ -498,8 +500,8 @@ class UserProfilesController extends AppController
         }
         $this->pageTitle.= ' - ' . $this->request->data['User']['username'];
         $genders = $this->UserProfile->Gender->find('list');
-      
-        $countries = $this->UserProfile->Country->find('list', array(
+		$ageGroups = $this->UserProfile->AgeGroup->find('list');      
+		$countries = $this->UserProfile->Country->find('list', array(
             'order' => array(
                 'Country.name' => 'ASC'
             )
@@ -509,7 +511,7 @@ class UserProfilesController extends AppController
                 'State.name' => 'ASC'
             )
         ));
-        $this->set(compact('genders', 'countries', 'states','languages'));
+        $this->set(compact('genders', 'countries', 'states','languages','ageGroups'));
     }
     public function admin_user_account($user_id = null)
     {
@@ -525,5 +527,9 @@ class UserProfilesController extends AppController
         }
         $this->set('user_id', $user_id);
     }
+	public function admin_chart(){
+		$ageGroups = $this->UserProfile->AgeGroup->find('list');   
+		$this->set(compact('ageGroups'));
+	}
 }
 ?>

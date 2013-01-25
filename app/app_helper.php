@@ -80,6 +80,28 @@ class AppHelper extends Helper
 			   }
 			 return $years;
 	}
+	function getAgeReport($age_group_id)
+    {
+        App::import('Model', 'UserProfile');
+        $this->UserProfile = new UserProfile();
+		$conditions = array();
+		$conditions['UserProfile.age_group_id'] = $age_group_id;
+		$userProfile = $this->UserProfile->find('count',array(
+			'conditions'=> $conditions
+		));
+		return $userProfile;
+    }
+	function getShippingReport($state_id)
+    {
+        App::import('Model', 'UserShipping');
+        $this->UserShipping = new UserShipping();
+		$conditions = array();
+		$conditions['UserShipping.state_id'] = $state_id;
+		$userShipping = $this->UserShipping->find('count',array(
+			'conditions'=> $conditions
+		));
+		return $userShipping;
+    }
 	function getWonderPointAvialable($user_id)
     {
         App::import('Model', 'User');
@@ -104,7 +126,9 @@ class AppHelper extends Helper
 		$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date ='=>$start_date)));
 		if((Configure::read('header.number_of_paid_subscriber') - $package_available)>= 1)
 		return (Configure::read('header.number_of_paid_subscriber') - $package_available);
-		else {
+		else 
+		return 0;
+		/* else {
 		App::import('Model', 'Setting');
         $this->Setting = new Setting();
 		$year = Configure::read('header.year');
@@ -126,7 +150,7 @@ class AppHelper extends Helper
 			$start_date = $year.'-'.$month.'-15';
 			$package_available = $this->PackageUser->find('count',array('conditions'=>array('PackageUser.start_date ='=>$start_date)));
 			return (Configure::read('header.number_of_paid_subscriber') - $package_available);
-		}
+		}*/
 	}
 	function checkProductSurveyStatus($product_id, $user_id){
 		App::import('Model', 'ProductSurvey');
@@ -137,6 +161,16 @@ class AppHelper extends Helper
 			return 'Completed';
 		else
 		  return 'StartSurvey';	
+	}
+	function checkProductRedeemStatus($product_id, $user_id){
+		App::import('Model', 'ProductRedeem');
+        $this->ProductRedeem = new ProductRedeem();
+		$productRedeemCount = $this->ProductRedeem->find('count',array('conditions'=>array('ProductRedeem.product_id'=>$product_id,
+				'ProductRedeem.user_id'=>$user_id)));
+		if(!empty($productRedeemCount))
+			return 'Completed';
+		else
+		  return 'StartRedemption';	
 	}
 	function checkUserActive($user_id){
 		App::import('Model', 'PackageUser');

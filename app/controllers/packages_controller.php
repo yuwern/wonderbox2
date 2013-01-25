@@ -138,7 +138,8 @@ class PackagesController extends AppController
 	public function purchase(){
 	if(!empty($this->request->data)){
 		$this->Package->PackageUser->User->UserShipping->set($this->request->data['UserShipping']);
-		if($this->Package->PackageUser->User->UserShipping->validates()){
+		$this->Package->PackageUser->User->UserProfile->set($this->request->data['UserProfile']);
+		if($this->Package->PackageUser->User->UserShipping->validates()&$this->Package->PackageUser->User->UserProfile->validates()){
 			$package = $this->Package->find('first', array(
             'conditions' => array(
                 'Package.slug = ' => $this->request->data['Package']['slug']
@@ -161,7 +162,7 @@ class PackagesController extends AppController
 			if(empty($this->request->data['UserShipping']['id']))
 			$this->Package->PackageUser->User->UserShipping->create();
 
-			$this->Package->PackageUser->User->UserShipping->save($this->request->data['UserShipping'],false);
+			$this->Package->PackageUser->User->UserShipping->save($this->request->data,false);
 			if (empty($package)) {
 				 throw new NotFoundException(__l('Invalid request'));
 			}
@@ -275,8 +276,24 @@ class PackagesController extends AppController
 		 else {
 			    
 				$err_message  = ' ';
+				$err_message  .= "<div  style='text-align:left;padding-left:300px;'>";
+				if(!empty($this->Package->PackageUser->User->UserProfile->validationErrors)){
+						foreach($this->Package->PackageUser->User->UserProfile->validationErrors as $key => $uservalidation){
+							if($key == 'first_name'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the First number';
+								else
+								$err_message .= '<br/>First number - '.$uservalidation;
+							}
+							if($key == 'last_name'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Last number';
+								else
+								$err_message .= '<br/>Last number - '.$uservalidation;
+							}
+						}
+				}
 				if(!empty($this->Package->PackageUser->User->UserShipping->validationErrors)){
-					$err_message  .= "<div  style='text-align:left;padding-left:300px;'>";
 						foreach($this->Package->PackageUser->User->UserShipping->validationErrors as $key => $uservalidation){
 							if($key == 'contact_no'){
 								if($uservalidation == 'Required')
@@ -305,8 +322,8 @@ class PackagesController extends AppController
 							}
 					
 						}
-						$err_message  .=  "</div>";
 				}
+				$err_message  .=  "</div>";
 				 $this->Session->setFlash( $err_message, 'default', null, 'error');
 				 $this->redirect(array(
 							'controller' => 'packages',

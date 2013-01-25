@@ -276,6 +276,22 @@ class User extends AppModel
                     'rule' => 'notempty',
                     'message' => __l('Required')
                 )
+            ),
+			'available_wonder_points' => array(
+                 'rule2' => array(
+                    'rule' => array(
+                        'comparison',
+                        '>',
+                        0
+                    ) ,
+                    'allowEmpty' => false,
+                    'message' => __l('Should be greater than 0')
+                ) ,
+                'rule1' => array(
+                    'rule' => 'numeric',
+                    'allowEmpty' => false,
+                    'message' => __l('Required')
+                ) ,
             )
         );
         $this->validateCreditCard = array(
@@ -489,6 +505,75 @@ class User extends AppModel
 				$this->Email->content = strtr($template['email_content'], $emailFindReplace);
 				$this->Email->sendAs = ($template['is_html']) ? 'html' : 'text';
 				$this->Email->send($this->Email->content);
+			}
+		}
+	}
+	// Send welcome mail to User how purchase the Gift Package
+	function _sendWelcomeMailToGiftUser(){
+		App::import('Model', 'EmailTemplate');
+		$this->EmailTemplate = new EmailTemplate();
+		App::import('Core', 'ComponentCollection');
+		$collection = new ComponentCollection();
+		App::import('Component', 'Email');
+		$this->Email = new EmailComponent($collection);	
+	    $email = $this->EmailTemplate->selectTemplate('Welcome Email To GiftUser');
+		$users = $this->find('all', array(
+				'conditions'=> array(
+					'User.is_gift_user'=> 1 ,
+					'User.is_email_confirmed'=> 1 ,
+					'User.is_active' => 1
+				),
+				'contain'=> array(
+					'UserProfile' => array(
+						'fields'=> array(
+							'UserProfile.first_name'
+						)
+					)
+				),
+				'fields' => array(
+					'User.id',
+					'User.email',
+					'User.username',
+				),
+				'recursive'=> 1
+				)
+		);
+		if(!empty($users)){ 
+			foreach($users as $user){
+				$user_email =  $user['User']['email'];
+				$emailFindReplace = array(
+					'##SITE_LINK##' => Router::url('/', true) ,
+					'##SITE_NAME##' => Configure::read('site.name') ,
+					'##FROM_EMAIL##' => $this->changeFromEmail(($email['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email['from']) ,
+					'##USERNAME##' => $user['User']['username'],
+					'##SUPPORT_EMAIL##' => Configure::read('site.contact_email') ,
+					'##LOGIN_EMAIL##' => $user_email,
+					'##PASSWORD##' => Configure::read('gift.login_password'),
+					'##SITE_URL##' => Router::url('/', true) ,
+					'##CONTACT_URL##' => Router::url(array(
+						'controller' => 'contacts',
+						'action' => 'add',
+						'admin' => false
+					) , true) ,
+					'##LOGIN_LINK##' => Router::url(array(
+						'controller' => 'users',
+						'action' => 'login',
+						'admin' => false
+					) , true),
+					'##SITE_LOGO##' => Router::url(array(
+						'controller' => 'img',
+						'action' => 'blue-theme',
+						'logo-email.png',
+						'admin' => false
+					) , true) ,
+				);
+
+				$this->Email->from = ($email['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email['from'];
+				$this->Email->replyTo = ($email['reply_to'] == '##REPLY_TO_EMAIL##') ? Configure::read('EmailTemplate.reply_to_email') : $email['reply_to'];
+				$this->Email->to = $user_email;
+				$this->Email->subject = strtr($email['subject'], $emailFindReplace);
+				$this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
+				$this->Email->send(strtr($email['email_content'], $emailFindReplace));
 			}
 		}
 	}

@@ -261,6 +261,7 @@ class PackageUsersController extends AppController
 						'UserProfile'=> array(
 							'fields'=> array(
 								'UserProfile.first_name',
+								'UserProfile.last_name',
 							)	
 						 ),
 						'UserShipping'=> array(

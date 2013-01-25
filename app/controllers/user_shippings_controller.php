@@ -31,7 +31,11 @@ class UserShippingsController extends AppController
                 $this->Session->setFlash(__l('Shipping Information could not be added. Please, try again.') , 'default', null, 'error');
             }
         }
-        $states = $this->UserShipping->State->find('list');
+      	$states = $this->UserShipping->State->find('list',array(
+							'conditions'=> array(
+								'State.is_approved'=> 1
+							)
+		));
         $countries = $this->UserShipping->Country->find('list');
         $this->set(compact('states', 'countries'));
     }
@@ -46,9 +50,9 @@ class UserShippingsController extends AppController
             throw new NotFoundException(__l('Invalid user shipping'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-				$this->request->data['UserShipping']['user_id'] = $this->Auth->user('id');
+			$this->request->data['UserShipping']['user_id'] = $this->Auth->user('id');
             if ($this->UserShipping->save($this->request->data)) {
-                $this->Session->setFlash(__l('Shipping Information has been updated') , 'default', null, 'success');
+			    $this->Session->setFlash(__l('Shipping Information has been updated') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
@@ -62,8 +66,21 @@ class UserShippingsController extends AppController
             }
         }
         $this->pageTitle.= ' - ' . $this->data['UserShipping']['address'];
-        $states = $this->UserShipping->State->find('list');
+       	$states = $this->UserShipping->State->find('list',array(
+							'conditions'=> array(
+								'State.is_approved'=> 1
+							)
+		));
         $countries = $this->UserShipping->Country->find('list');
         $this->set(compact('states', 'countries'));
     }
+	
+	public function admin_chart(){
+		$states = $this->UserShipping->State->find('list',array(
+							'conditions'=> array(
+								'State.is_approved'=> 1
+							)
+		));
+        $this->set(compact('states'));
+	}
   }

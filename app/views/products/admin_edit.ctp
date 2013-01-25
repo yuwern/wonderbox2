@@ -14,6 +14,7 @@
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor'));
 		echo $this->Form->input('price',array('label'=>__('Amount')));
 		echo $this->Form->input('wonder_point');
+		echo $this->Form->input('redeem_wonder_point');
 		echo $this->Form->input('end_date',array('label'=>__l('Survey End date')));
 		echo $this->Form->input('edition_date', array( 'label' => __l('Wonder Edition'), 'dateFormat' => 'MY', 'minYear' => date('Y')+1, 'maxYear' => date('Y')));
 		echo $this->Form->input('is_active');

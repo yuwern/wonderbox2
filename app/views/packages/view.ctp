@@ -27,7 +27,18 @@
                    	<?php echo $this->Form->create('Package', array('action'=>'purchase','class' => 'normal-form'));?>
 				    <ul>
                    						
-                        	<li><?php echo $this->Form->input('User.email',array('value'=>$this->Auth->user('email'),'readonly'=>'readonly'));?><?php	echo $this->Form->input('slug',array('type'=>'hidden','value'=>$package['Package']['slug']));echo $this->Form->input('UserShipping.id');?>
+                        	<li><?php echo $this->Form->input('User.email',array('value'=>$this->Auth->user('email'),'readonly'=>'readonly'));?>
+							<?php	echo $this->Form->input('slug',array('type'=>'hidden','value'=>$package['Package']['slug']));echo $this->Form->input('UserShipping.id');?>
+                            </li>
+							<li>
+                            <?php
+							$first_name = $this->request->data['User']['UserProfile']['first_name'];
+							echo $this->Form->input('UserProfile.first_name',array('value'=>!empty($first_name)? $first_name:' ','label' => __l('First Name'))); ?>
+                            </li>                            
+							<li>
+                            <?php
+							$last_name = $this->request->data['User']['UserProfile']['last_name'];
+							echo $this->Form->input('UserProfile.last_name',array('value'=>!empty($last_name)? $last_name:' ','label' => __l('Last Name'))); ?>
                             </li>
 						    <li>
                             <?php

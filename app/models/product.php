@@ -36,7 +36,7 @@ class Product extends AppModel
             'fields' => '',
             'order' => '',
             'counterCache' => false
-        )
+        )		
     );
     public $hasMany = array(
         'Attachment' => array(
@@ -56,6 +56,19 @@ class Product extends AppModel
         ) ,
 	   'ProductSurvey' => array(
             'className' => 'ProductSurvey',
+            'foreignKey' => 'product_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
+	   'ProductRedeem' => array(
+            'className' => 'ProductRedeem',
             'foreignKey' => 'product_id',
             'dependent' => true,
             'conditions' => '',
@@ -93,6 +106,13 @@ class Product extends AppModel
                 )
             ) ,
             'wonder_point' => array(
+                'rule1' => array(
+                    'rule' => 'numeric',
+                    'allowEmpty' => false,
+                    'message' => __l('Required') ,
+                ) ,
+            ) ,
+            'redeem_wonder_point' => array(
                 'rule1' => array(
                     'rule' => 'numeric',
                     'allowEmpty' => false,

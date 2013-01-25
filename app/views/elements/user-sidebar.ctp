@@ -11,9 +11,11 @@
 						 <li class="bor"></li>
                       	<?php $class = ($this->request->params['controller'] == 'package_users' && $this->request->params['action'] == 'index') ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Subscription'), array('controller' => 'package_users', 'action' => 'index'), array('title' => __l('My Subscription')));?></li>
+	                  	<?php $class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'index') ? ' class="active"' : null; ?>
+                        <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Gift Subscription'), array('controller' => 'gift_users', 'action' => 'index'), array('title' => __l('My Gift Subscription')));?></li>
 						<?php $class = ($this->request->params['controller'] == 'transactions' && $this->request->params['action'] == 'index') ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Transaction'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('My Transaction')));?></li>
-						<?php if(Configure::read('wonderpoint.is_system_enabled')): ?>
+						<?php if(Configure::read('wonderpoint.is_system_enabled') && $this->Html->checkPackageAvialable()): ?>
 						<?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'redemption') ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Redemption'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('My Redemption')));?></li>
 						<?php endif; ?>
@@ -23,6 +25,8 @@
 						<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>			
 						 <?php $class = ($this->request->params['controller'] == 'products' && ($this->request->params['action'] == 'survey' || $this->request->params['action'] == 'quiz')) ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>
+						<?php $class = ($this->request->params['controller'] == 'products' && ($this->request->params['action'] == 'product_redeem' || $this->request->params['action'] == 'quiz')) ? ' class="active"' : null; ?>
+					    <li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemption'), array('controller' => 'products', 'action' => 'product_redeem'), array('title' => __l('Product Redemption')));?></li>
 						<?php endif; ?>
                     </ul>
  </div>

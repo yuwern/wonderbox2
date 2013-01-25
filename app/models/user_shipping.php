@@ -34,6 +34,18 @@ class UserShipping extends AppModel
     {
         parent::__construct($id, $table, $ds);
         $this->validate = array(
+		 'first_name' => array(
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+          ) ,	
+		'last_name' => array(
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+          ) ,	
          'contact_no' => array(
                 'rule2' => array(
                     'rule' => 'numeric',
@@ -85,4 +97,22 @@ class UserShipping extends AppModel
 
         );
     }
+	function afterSave($created){
+		if(!empty($this->data['UserShipping']['user_id'])){
+			if(!empty($this->data['UserProfile']['first_name'])) {
+				$this->User->UserProfile->updateAll(array(
+					'UserProfile.first_name' => '\'' . $this->data['UserProfile']['first_name'] . '\'',
+				) , array(
+					'UserProfile.user_id' => $this->data['UserShipping']['user_id']
+				));
+			}
+			if(!empty($this->data['UserProfile']['last_name'])) {
+				$this->User->UserProfile->updateAll(array(
+					'UserProfile.last_name' => '\'' . $this->data['UserProfile']['last_name'] . '\'',
+				) , array(
+					'UserProfile.user_id' => $this->data['UserShipping']['user_id']
+				));
+			}
+		}
+	}
 }

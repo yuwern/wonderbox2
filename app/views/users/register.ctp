@@ -1,4 +1,4 @@
-<?php
+<?php 
 	$action = "register";
 	$type = '';
 ?>
@@ -10,8 +10,8 @@
 
 <?php echo $this->Form->create('User', array('action' => $action, 'class' => 'normal js-company-map js-register-form '.$formClass)); ?>
 	   <h3><?php echo __l('Create your').' '.Configure::read('site.name').' '.__l('Account'); ?> </h3>
-	       <p>Your journey of discovery with us begins here.<br>
-                       We just need a few details from you so we can set up your account:</p>
+	       <p>Your journey of discovery with us begins here. We just need a few details from you so that we can get in touch once we've ironed out the details and are ready to begin delivery. <br>
+Signing up now ensures that you will be one of the first people to know when the first WonderBox is ready! you don't have to pay anything until we begin delivery! </p>
 		   <ul>
 		   <li>
 	<?php
@@ -27,6 +27,7 @@
 
 <li><?php			echo $this->Form->input('UserProfile.first_name', array( 'label' => __l('First Name*')));?></li>
 	<li>	<?php	echo $this->Form->input('UserProfile.last_name', array( 'label' => __l('Last Name*')));?></li>
+	<li><?php   echo $this->Form->input('UserProfile.age_group_id', array('label' => __l('Age Group'),'empty' => __l('Please select'))); ?></li>
 	<li>	<div  style="padding-bottom:20px">
 			<label for="UserProfileGender" style="padding-left:10px"><?php echo __l('Gender*'); ?></label>
 		

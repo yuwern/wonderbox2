@@ -83,7 +83,7 @@
                         <th><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Login Count'), 'User.user_login_count'); ?></div></th>
                         <th><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Signup IP'), 'User.signup_ip'); ?></div></th>
                         <th><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Created On'), 'User.created'); ?></div></th>
-		                        <th class="dr"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Available Wonder Point'), 'User.available_wonder_points '); ?></div></th>
+		                        <th class="dr"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Available Wonder Point'), 'User.available_wonder_points'); ?></div></th>
                     </tr>
 					          <?php
                 if (!empty($users)):
@@ -110,6 +110,7 @@
 								<?php 	if(!empty($this->request->params['named']['main_filter_id']) && $this->request->params['named']['main_filter_id'] != ConstMoreAction::VerifiedUser): ?>                   
                                 <span><?php echo $this->Html->link(__l('Edit'), array('controller' => 'user_profiles', 'action'=>'edit', $user['User']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span>
 								<?php endif; ?>
+								  <span><?php echo $this->Html->link(__l('Add WonderPoint'), array('controller' => 'users', 'action'=>'add_wonderpoint', $user['User']['id']), array('class' => 'add-fund', 'title' => __l('Add WonderPoint')));?></span>
                             <?php if($user['User']['user_type_id'] != ConstUserTypes::Admin){ ?>
                                 <span><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $user['User']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></span>
                             <?php } ?>

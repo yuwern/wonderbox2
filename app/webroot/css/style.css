@@ -135,7 +135,7 @@ ul.admin-links li h4{padding:3px 5px; font-size:13px}
 div.submit-update-block{margin:5px 0 5px 315px}
 div.clearAll{margin:10px 0 0 0}
 
-a.add, a.delete, a.edit, a.export, a.update, a.pending, a.approve, a.view, a.update-status,a.chart,a.import,a.pdf{background:url(../img/icon-add.gif) 0 0 no-repeat; padding:0px 2px 3px 20px; margin-right:16px; color:#000}
+a.add, a.delete, a.edit, a.export, a.update, a.pending, a.approve, a.view, a.update-status,a.chart,a.import,a.pdf,a.add-fund{background:url(../img/icon-add.gif) 0 0 no-repeat; padding:0px 2px 3px 20px; margin-right:16px; color:#000}
 
 div.export-block{text-align:right}
 a.delete{background:url(../img/icon-delete.png) no-repeat left top}
@@ -1385,4 +1385,8 @@ form#ProductSurveyForm label {
 	font-family:Arial,Helvetica,sans-serif;
 	float:right;
 
+}
+a.add-fund {
+	background:url(../img/add-fund.png)  no-repeat scroll left top transparent;
+    padding: 0 2px 3px 20px;
 }

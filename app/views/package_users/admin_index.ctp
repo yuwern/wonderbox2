@@ -46,8 +46,8 @@ foreach ($packageUsers as $packageUser):
 	$address = $packageUser['User']['UserShipping'][0]['address'].','.$packageUser['User']['UserShipping'][0]['State']['name'].','.$packageUser['User']['UserShipping'][0]['Country']['name'].','.$packageUser['User']['UserShipping'][0]['zip_code'];
 ?>
 	<tr<?php echo $class;?>>
-		 <td><div class="actions"><?php echo $this->Html->link(__l('Tracking No'), array('action'=>'edit',$packageUser['PackageUser']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></div></td>
-	      <td>  <?php echo $this->Html->cText($packageUser['User']['UserProfile']['first_name']);?></td>
+		 <td><div class="actions"><span><?php echo $this->Html->link(__l('Tracking No'), array('action'=>'edit',$packageUser['PackageUser']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span><span><?php echo $this->Html->link(__l('Add WonderPoint'), array('controller' => 'users', 'action'=>'add_wonderpoint', $packageUser['User']['id']), array('class' => 'add-fund', 'title' => __l('Add WonderPoint')));?></span></div>	  </td>
+	      <td>  <?php echo $this->Html->cText($packageUser['User']['UserProfile']['first_name'].' '.$packageUser['User']['UserProfile']['last_name']);?></td>
           <td>  <?php echo $this->Html->cText($packageUser['User']['email']);?></td>
           <td>  <?php echo $this->Html->cText($address);?></td>
           <td>  <?php echo $this->Html->cText($packageUser['User']['UserShipping'][0]['contact_no']);?></td>

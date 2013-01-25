@@ -134,6 +134,8 @@ class ConstTransactionTypes
 	const ReferralWonderPoint = 36;
     const ReferralWonderPointAdd = 37;
     const ProductSurveryWonderPoint = 40;
+    const GiftSent = 4;
+    const GiftReceived = 5;
 
 }
 // Setting for privacy setting

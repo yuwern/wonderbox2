@@ -306,8 +306,6 @@ class UsersController extends AppController
               
                 $this->User->set($this->request->data);
                 $this->User->UserProfile->set($this->request->data);
-              
-             
                 if ($this->User->validates() & $this->User->UserProfile->validates() ) {
                     $this->User->create();
                     if (!empty($this->request->data['User']['openid_url']) or !empty($this->request->data['User']['fb_user_id'])) {
@@ -498,8 +496,9 @@ class UsersController extends AppController
         }
         //end
         $countries = $this->User->UserProfile->Country->find('list');
+		$ageGroups = $this->User->UserProfile->AgeGroup->find('list');   
         $this->set('type', $type);
-        $this->set(compact('countries'));
+        $this->set(compact('countries','ageGroups'));
         unset($this->request->data['User']['passwd']);
         unset($this->request->data['User']['confirm_password']);
         unset($this->request->data['User']['captcha']);
@@ -2120,6 +2119,58 @@ class UsersController extends AppController
         $this->Email->content = strtr($template['email_content'], $email_content_array);
         $this->Email->sendAs = ($template['is_html']) ? 'html' : 'text';
 	    $this->Email->send($this->Email->content);
+    }
+	public function admin_add_wonderpoint($id = null)
+    {
+        $this->pageTitle = __l('Add WonderPoint');
+		if (!empty($this->request->data['User']['id'])) {
+            $id = $this->request->data['User']['id'];
+        }
+        if (is_null($id)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }
+        $user = $this->User->find('first', array(
+            'conditions' => array(
+                'User.id' => $id
+            ) ,
+            'recursive' => - 1
+        ));
+	    if (empty($user)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }
+        $this->pageTitle.= ' - ' . $user['User']['username'];
+        if (!empty($this->request->data)) {
+			$this->User->set($this->request->data);
+            if ($this->User->validates()) {
+			$this->loadModel('Transaction');
+            $this->request->data['Transaction']['foreign_id'] = ConstUserIds::Admin;
+		    $this->request->data['Transaction']['user_id'] = $this->request->data['User']['id'];
+            $this->request->data['Transaction']['class'] = 'SecondUser';
+	        $this->request->data['Transaction']['amount'] = 0 ;
+			$this->request->data['Transaction']['wonder_points'] = $this->request->data['User']['available_wonder_points'];
+            $this->request->data['Transaction']['transaction_type_id'] = ConstTransactionTypes::ReferralWonderPoint;
+				if ($this->Transaction->save($this->request->data['Transaction'])) {
+					$this->User->updateAll(array(
+						'User.available_wonder_points' => 'User.available_wonder_points +' . $this->request->data['User']['available_wonder_points'],
+					) , array(
+						'User.id' => $this->request->data['User']['id']
+					));
+					$this->Session->setFlash(__l('WonderPoint has been added successfully') , 'default', null, 'success');
+					$this->redirect(array(
+						'controller' => 'users',
+						'action' => 'index'
+					));
+				} else {
+					$this->Session->setFlash(__l('WonderPoint could not be added. Please, try again.') , 'default', null, 'error');
+				}
+			} else {
+				$this->Session->setFlash(__l('WonderPoint could not be added. Please, try again.') , 'default', null, 'error');
+			}
+
+        } else {
+            $this->request->data['User']['id'] = $id;
+        }
+        $this->set('user', $user);
     }
     public function change_password($user_id = null)
     {

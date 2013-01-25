@@ -8,12 +8,8 @@
 
 						<?php echo $this->Form->create('UserShipping', array('class' => 'normal-form js-ajax-form', 'enctype' => 'multipart/form-data'));?>
 							  <ul>
-                        		<li>
-								<?php
-									echo $this->Form->input('id');
-									echo $this->Form->input('address',array('label' => __l('Address'),'type'=>'textarea'));
-								?>
-								  </li>		
+								  <li><?php  echo $this->Form->input('id');  ?></li>
+								  <li><?php echo $this->Form->input('address',array('label' => __l('Address'),'type'=>'textarea'));?></li>
 								  <li><?php echo $this->Form->input('contact_no',array('label' => __l('Mobile Number'))); ?> </li>
 							  	  <li><?php echo $this->Form->input('contact_no1',array('label' => __l('Home Number'))); ?> </li>
 								  <li><?php echo $this->Form->input('zip_code',array('label' => __l('Postal Code'))); ?> </li>

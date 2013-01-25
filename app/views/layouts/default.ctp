@@ -143,7 +143,7 @@ endif;
 		  <div class="head-subs">
 		  		<?php 
 				$date_left = $this->Html->dateDiff(date('y-m-d',strtotime('now')),date('y-m-d',mktime(0, 0, 0,Configure::read('header.month'), 15,  Configure::read('header.year')))); ?>
-	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16">  <?php
+	            <p><?php echo __l('Next surprise:'); ?><span class="f16"> <?php echo $date_left; ?> days</span> left for <span class="f16">  <?php  
 				$current_month = date('m',strtotime('now'));
 				$current_date = date('d',strtotime('now'));
 				$current_year = date('Y',strtotime('now'));
@@ -155,10 +155,13 @@ endif;
 					$duration_month = 1;
 				$months = $this->Html->getMonthLists();
 				echo $months[Configure::read('header.month')]; 
-				?>'s</span> subscription <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));?></p>
+				?>'s</span> subscription closes <?php if($this->Html->checkPackageAvialable()):
+						echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('class'=>'but2 f-rightbtn','title' =>__l('Subscribe')));
+						endif; 
+						?></p>
                 <p>Get Your <span class="f16"><?php echo $months[Configure::read('header.month')];  ?> </span> Edition Wonderbox today as there are only <span class="f16"><?php echo
 				$this->Html->checkPackageAvialable();?> left </span></p>
-				<p><a href="http://wonderbox.com.my/page/gift">Gift a WonderBox </a> <a href="http://wonderbox.com.my/page/gift"><img src="/img/gift/gift-box-icon.png"</a> </p>
+				<p><?php echo $this->Html->link(__l('Gift a WonderBox'), array('controller' => 'gift_users', 'action' => 'add', 'admin' => false), array('title' =>__l('Gift a WonderBox')));?></p>
             </div>
 		</div>
 		<!--menu-->
@@ -172,8 +175,10 @@ endif;
 				</li>
 				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('How it Works?')), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => sprintf(__l('How it Works?')),'class'=> $active_class));?></li>
+				<?php if($this->Html->checkPackageAvialable()): ?>
 				<?php  $active_class = ($this->request->params['controller'] == 'packages' && $this->request->params['action'] == 'subscribe' ) ?  'act': null; ?>
 				<li><?php echo $this->Html->link(sprintf(__l('Subscribe')), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('title' => __l('Subscribe'),'class'=> $active_class));?></li>
+				<?php endif; ?>
 				<?php if ($this->Auth->sessionValid()): ?>
 				  <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'act' : null; ?> 
 				<li><?php echo $this->Html->link(__l('Refer a Friend'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('title' => __l('Refer a Friend'),'class'=> $active_class));?></li>

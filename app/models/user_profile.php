@@ -46,6 +46,14 @@ class UserProfile extends AppModel
             'fields' => '',
             'order' => ''
         ) ,
+	    'AgeGroup' => array(
+            'className' => 'AgeGroup',
+            'foreignKey' => 'age_group_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ) ,
+     
      
 
     );
@@ -78,6 +86,12 @@ class UserProfile extends AppModel
                 )
             ) ,			
             'gender_id' => array(
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ) ,
+		   'age_group_id' => array(
                 'rule1' => array(
                     'rule' => 'notempty',
                     'message' => __l('Required')

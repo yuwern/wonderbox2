@@ -5,7 +5,10 @@ class ProductsController extends AppController
     public $helpers = array(
         'Csv',
     );
-    public function index()
+    public $components = array(
+        'Email',
+    );
+	public function index()
     {
         $this->pageTitle = __l('Products');
         $this->Product->recursive = 0;
@@ -277,6 +280,115 @@ class ProductsController extends AppController
         );
 		$this->set('months',$months);
 	    $this->set('products', $this->paginate());
+	}
+	public function product_redeem()
+	{
+		$conditions = array();
+		$conditions['Product.edition_date >='] =  date('Y-m-d',mktime(0, 0, 0, date("m")-1  , 15 , date("Y")));;
+		$conditions['Product.is_active'] = 1;
+		$conditions['Product.redeem_wonder_point !='] = 0;
+		$this->paginate = array(
+			'contain'=>array(
+				'Brand'=> array(
+					'fields'=> array(
+						'Brand.name',
+					)
+				)
+			),
+            'conditions' => $conditions,
+			'fields'=> array(
+				'Product.id',
+				'Product.brand_id',
+				'Product.redeem_wonder_point',
+				'Product.name',
+	            'Product.slug',
+				'Product.price',
+				'Product.end_date',
+			),
+            'recursive' => 1,
+        );
+	    $this->set('products', $this->paginate());
+	}
+	public function redeem($slug)
+	{
+		$this->autoRender = false;
+		$product = $this->Product->find('first', array(
+            'conditions' => array(
+                'Product.slug = ' => $slug
+            ) ,
+             'recursive' => -1,
+        ));
+		if (empty($product)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }
+		$this->loadModel('User');
+		$user = $this->User->find('first',array(
+				'conditions'=> array(
+					'User.id'=> $this->Auth->user('id')
+				),
+				'fields'=> array(
+					'User.id',
+					'User.username',
+					'User.email',
+					'User.available_wonder_points'
+				),
+				'recursive' => -1,
+			));
+		if (!empty($user)){
+			if ($user['User']['available_wonder_points'] >= $product['Product']['redeem_wonder_point']){
+				$this->Product->ProductRedeem->create();
+				$productredeem['ProductRedeem']['user_id'] = $this->Auth->user('id');
+				$productredeem['ProductRedeem']['product_id'] = $product['Product']['id'];
+				$this->Product->ProductRedeem->save($productredeem,false);
+				$this->User->updateAll(array(
+						'User.available_wonder_points' => 'User.available_wonder_points -' . $product['Product']['redeem_wonder_point'],
+					) , array(
+						'User.id' => $user['User']['id']
+			    ));
+				$this->loadModel('EmailTemplate');
+				$email = $this->EmailTemplate->selectTemplate('Product Redemption Confirm');
+                $emailFindReplace = array(
+                        '##SITE_LINK##' => Router::url('/', true) ,
+                        '##USERNAME##' => $user['User']['username'],
+                        '##SITE_NAME##' => Configure::read('site.name') ,
+                        '##SIGNUP_IP##' => $this->RequestHandler->getClientIP() ,
+                        '##PRODUCT_NAME##' => $product['Product']['name'],
+                        '##WONDER_POINT##' => $product['Product']['redeem_wonder_point'],
+                        '##EMAIL##' => $user['User']['email'],
+						'##CONTACT_URL##' => Router::url(array(
+							'controller' => 'contacts',
+							'action' => 'add',
+							'city' => $this->request->params['named']['city'],
+							'admin' => false
+						) , true) ,
+						'##FROM_EMAIL##' => $this->User->changeFromEmail(($email['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email['from']) ,
+						'##SITE_LOGO##' => Router::url(array(
+							'controller' => 'img',
+							'action' => 'blue-theme',
+							'logo-email.png',
+							'admin' => false
+						) , true) ,
+					);
+					// Send e-mail to users
+					$this->Email->from = ($email['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email['from'];
+					$this->Email->replyTo = ($email['reply_to'] == '##REPLY_TO_EMAIL##') ? Configure::read('EmailTemplate.reply_to_email') : $email['reply_to'];
+					$this->Email->to = $user['User']['email'];
+					$this->Email->subject = strtr($email['subject'], $emailFindReplace);
+					$this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
+					$this->Email->send(strtr($email['email_content'], $emailFindReplace));	
+					 $this->Session->setFlash(__l('Your product redemption completed successfully...') , 'default', null, 'success');
+			} else {
+				 $this->Session->setFlash(__l('Sorry, but you do not have enough WonderPoints to redeem this product.') , 'default', null, 'error');
+			}
+		}
+		$this->redirect(array(
+				'action' => 'product_redeem'
+		));
+		/*
+		echo "<pre>";
+		print_r($product);
+		print_r($user);
+		exit;*/
 	}
 	function get_months($date1, $date2) {
 		$timezone_code = Configure::read('site.timezone_offset');

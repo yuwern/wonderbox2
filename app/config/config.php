@@ -5,7 +5,7 @@
  */
 // site actions that needs random attack protection...
 if (!defined('DEBUG')) {
-	define('DEBUG',2);
+	define('DEBUG',0);
 	// permanent cache re1ated settings
 	define('PERMANENT_CACHE_CHECK', (!empty($_SERVER['SERVER_ADDR']) && $_SERVER['SERVER_ADDR'] != '127.0.0.1') ? true : false);
 	// site default language
@@ -99,6 +99,7 @@ $config['pagelogo']['file'] = array(
 );
 $config['widget_no_scroll'] = array(1, 2, 3, 4);
 $config['site']['search_distance'] = 30000;
+$config['gift']['login_password'] = 123456789;
 
 $config['cdn']['images'] = null; // 'http://images.localhost/';
 $config['cdn']['css'] = null; // 'http://static.localhost/';

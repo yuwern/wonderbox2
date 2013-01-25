@@ -30,6 +30,9 @@
 							 <li>
                             	<?php   echo $this->Form->input('UserProfile.dob', array('label' => __l('Date of Birth'),'empty' => __l('Select'), 'minYear' => date('Y') - 100, 'maxYear' => date('Y'), 'orderYear' => 'asc')); ?>
 	                         </li>
+							 	<li>
+                            	<?php   echo $this->Form->input('UserProfile.age_group_id', array('label' => __l('Age Group'),'empty' => __l('Please select'))); ?>
+	                         </li>
 							<li>
                             	<?php echo $this->Form->input('country_id',array('options'=>$countries,'default'=>143,'label'=>__l('Country')));?>
 
