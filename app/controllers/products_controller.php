@@ -260,7 +260,7 @@ class ProductsController extends AppController
         ));
 		$conditions = array();
 		$this->loadModel('PackageUser');
-		$packageUser = $this->PackageUser->find('first', array(
+		/* $packageUser = $this->PackageUser->find('first', array(
             'conditions' => array(
                 'PackageUser.user_id' =>$this->Auth->user('id')
             ) ,
@@ -273,7 +273,7 @@ class ProductsController extends AppController
 			  ),
             'recursive' => -1,
         ));
-	   $startpackageUser = $this->PackageUser->find('first', array(
+	  $startpackageUser = $this->PackageUser->find('first', array(
             'conditions' => array(
 				'PackageUser.start_date >='=> date('Y-m-1'),
                 'PackageUser.user_id' => $this->Auth->user('id')
@@ -286,21 +286,31 @@ class ProductsController extends AppController
 			  ),
             'recursive' => -1,
         ));
-	    
+	    */
 	 	$months = array();
-		if(!empty($startpackageUser))
-		$currentMonth = date('Y-m-d',strtotime("-1 months", strtotime($startpackageUser['PackageUser']['start_date'])));
-		else 
-		$currentMonth = date('Y-m-d',mktime(0, 0, 0, date("m")-1  , 15 , date("Y")));
-
-		if(!empty($packageUser)):
-		$months = $this->get_months($currentMonth, $packageUser['PackageUser']['end_date']);
-		$conditions['Product.edition_date ='] = $packageUser['PackageUser']['start_date'];
-		endif; 
+		$packageUserMonths = $this->PackageUser->find('all', array(
+            'conditions' => array(
+                'PackageUser.user_id' =>$this->Auth->user('id')
+            ) ,
+			'fields' => array(
+                'PackageUser.start_date',
+                'PackageUser.end_date',
+            ) ,
+ 		    'order'=> array(
+			     'PackageUser.id'=>'asc'
+			  ),
+            'recursive' => -1,
+        ));
+		$months = array();
+		if(!empty($packageUserMonths)) {
+			$conditions['Product.edition_date ='] = $packageUserMonths[0]['PackageUser']['start_date'];
+			foreach($packageUserMonths as $packageUserMonth) {
+				$months[$packageUserMonth['PackageUser']['start_date']] = date('F Y', strtotime($packageUserMonth['PackageUser']['start_date']));
+				$months[$packageUserMonth['PackageUser']['end_date']] = date('F Y', strtotime($packageUserMonth['PackageUser']['end_date']));
+			}
+		}
 		if(!empty($this->request->data['Product']['month'])){
 			$conditions['Product.edition_date ='] = $this->request->data['Product']['month'];
-		}else{
-			$conditions['Product.edition_date ='] = $currentMonth;
 		}
 		$conditions['Product.is_active'] = 1;
 		$this->paginate = array(

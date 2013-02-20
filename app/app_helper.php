@@ -175,21 +175,29 @@ class AppHelper extends Helper
 	function checkUserActive($user_id){
 		App::import('Model', 'PackageUser');
 		date_default_timezone_set('UTC');
-		$end_date = date('Y-m-d');
-        $this->PackageUser = new PackageUser();
-		$packageuserCount = $this->PackageUser->find('count',array(
+	    $this->PackageUser = new PackageUser();
+		$packageUser = $this->PackageUser->find('first',array(
 				'conditions'=>array(
 					'PackageUser.user_id' => $user_id,
-					'PackageUser.end_date >=' => $end_date,
 				),
-				'order'=> array(
+				'fields' => array(
+					'PackageUser.end_date'
+				),
+				'order' => array(
 					'PackageUser.id'=>'desc'
 				),
 				'recursive'=> -1
 			));
-		return $packageuserCount;
+		if(!empty($packageUser)){
+			$starttime = strtotime(date("Y-m-d"));  
+			$endtime = strtotime(date('Y-m-t',strtotime($packageUser['PackageUser']['end_date'])));
+			if($starttime <= $endtime)
+				return 1;
+			else 
+				return 0;
+		} else
+			return 0;
 	}
-
 	function beautyProfileDetails($question_id,$participantUserIds = array()){
 		App::import('Model', 'BeautyProfile');
 		$this->BeautyProfile = new BeautyProfile();
