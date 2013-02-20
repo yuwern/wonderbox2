@@ -45,7 +45,9 @@ $(function(){
 					                 <span class="c3"> <?php $cost = explode('.',$package['Package']['cost']); echo  $cost[0]; ?></span>
                                     <span class="c4"> <?php echo  $cost[1]; ?></span>
                                 <div class="clear"></div>
+								  <?php if($this->Html->checkPackageAvialable() > 0): ?>
                                   <p><?php echo $this->Html->link(' ', array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('escape'=>false,'title' =>__l('Subscribe Now'),'class'=>'rate-subs-now')); ?></p>
+								  <?php endif; ?>
                                 </div>
                             </div>
                         </div>

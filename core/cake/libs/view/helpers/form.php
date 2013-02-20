@@ -565,7 +565,9 @@ class FormHelper extends AppHelper {
 		} else {
 			$labelFor = $this->domId($fieldName);
 		}
-
+		//echo $text;
+		//echo $fieldName;
+		$text ='<strong>'.$text .'</strong>';
 		return sprintf(
 			$this->Html->tags['label'],
 			$labelFor,

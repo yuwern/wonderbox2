@@ -32,27 +32,10 @@
 		echo $this->Html->meta('keywords', $meta_for_layout['keywords']), "\n";
 		echo $this->Html->meta('description', $meta_for_layout['description']), "\n";
 	?>
-		<link rel="stylesheet" type="text/css" href="/wonderbox/css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="/wonderbox/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="/wonderbox/css/global.css" />
-	<link rel="stylesheet" type="text/css" href="/wonderbox/css/anythingslider.css" />
-	<link rel="stylesheet" type="text/css" href="/wonderbox/css/chromestyle.css" />
-	<link rel="stylesheet" type="text/css" href="/wonderbox/css/jquery.countdown.css" />
-	<link rel="stylesheet" type="text/css" href="/wonderbox/css/jquery-ui-1.7.1.custom.css" />
-	<script type="text/javascript">
-//<![CDATA[
-var cfg = {"cfg":{"icm":0,"path_relative":"\/wonderbox\/","path_absolute":"http:\/\/192.9.200.11\/wonderbox\/","date_format":"M d, Y","today_date":"2013-02-07","site_name":"wonderbox","small_big_thumb.width":"316","small_big_thumb.height":"193","medium_big_thumb.width":"450","medium_big_thumb.height":"320","user_type_id":"1"}}
-//]]>
-</script>
-	<script type="text/javascript" src="/wonderbox/js/libs/jquery.min.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/libs/jquery.livequery.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/libs/jquery.easing.min.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/libs/jquery-ui-1.7.2.custom.min.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/libs/slides.min.jquery.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/libs/jquery.countdown.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/libs/jquery.anythingslider.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/libs/chrome.js"></script>
-	<script type="text/javascript" src="/wonderbox/js/frontend_common.js"></script><!--
+	<?php 	require_once('_head.inc.ctp');
+    		echo $this->Asset->scripts_for_layout();
+
+	?><!--
 	<meta content="111586242311802" property="og:app_id" />
 	<meta content="111586242311802" property="fb:app_id" />
 	<meta property="og:image" content="http://192.9.200.11/wonderbox/img/blue-theme/logo-email.png"/>
@@ -175,7 +158,11 @@ var cfg = {"cfg":{"icm":0,"path_relative":"\/wonderbox\/","path_absolute":"http:
 			<?php  endif; ?>
 			<?php if ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home' ): ?>
             <div class="showcase" id="slides">
-                	 <div class="banner_sub"> <?php echo $this->Html->link(' ', array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('escape'=>false,'title' =>__l('Subscribe'),'class'=>'banner-sub-now')); ?></div>
+			 	  <?php if($this->Html->checkPackageAvialable() > 0): ?>
+                	 <div class="banner_sub"> 
+					 <?php echo $this->Html->link(' ', array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('escape'=>false,'title' =>__l('Subscribe'),'class'=>'banner-sub-now')); ?>
+					 </div>
+					 <?php endif; ?>
 					<div class="slides_container">
 						<?php echo $this->element('home-page-banners-index',array('cache' => array('config' => 'site_element_cache', 'key' => 'banner-slider')));?>
 					</div>
