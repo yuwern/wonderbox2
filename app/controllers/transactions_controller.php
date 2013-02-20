@@ -53,7 +53,7 @@ class TransactionsController extends AppController
             ) ,
             'recursive' => 2
         );
-        $this->set('transactions', $this->paginate());
+	    $this->set('transactions', $this->paginate());
     }
     public function admin_index()
     {

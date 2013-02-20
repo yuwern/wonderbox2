@@ -1,89 +1,91 @@
-<?php if(empty($this->request->params['isAjax']) ): ?>	<div class="my-account">
+			<?php if(empty($this->request->params['isAjax']) ): ?>
+				<div class="account">
 				<?php echo $this->element('user-sidebar'); ?>
-            	<div class="my-account-right">
-	<?php endif; ?> 
-<?php if(empty($this->request->params['isAjax']) ): ?>	 <h1><?php echo __l('My Transactions');?></h1>	<?php endif; ?> <div class="transactions index js-response js-responses">
-    <?php echo $this->element('paging_counter');?>
-    <table class="list">
-        <tr>
-            <th class="left-cur"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Date'), 'created');?></div></th>
-            <th class="dl"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Billing Cycle'),'Package.name');?></div></th>
-			 <th class="dl"><div class="js-pagination"><?php echo __l('Subscription Type');?></div></th>
-			 <th class="dl"><div class="js-pagination"><?php echo __l('Billing Amount');?></div></th>
-			 <th class="dl right-cur"><div class="js-pagination"><?php echo __l('Wonder Points');?></div></th>	
-        </tr>
-    <?php
-		if (!empty($transactions)):
-			$i = 0;
-			$j = 1;
-			foreach ($transactions as $transaction):
-				$class = null;
-				if ($i++ % 2 == 0) {
-					$class = ' class="altrow"';
-				}
-	?>
-        <tr<?php echo $class;?>>
-            <td><?php echo $this->Html->cDateTime($transaction['Transaction']['created']);?></td>
-            <td class="dl">
-				<?php  
-				 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint):
-					echo $this->Html->cText($transaction['TransactionType']['name']);
-				else:
-				echo $this->Html->cText($transaction['Package']['name']);
-				endif;
-				?>
-            </td>
-            <td class="dl">
-				<?php 
-				 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint):
-				echo ' -- ';
-				else:
-				echo $this->Html->cText($transaction['TransactionType']['name']);
-				endif;
-				?>
-            </td>
-			 <td class="dl">
-				<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint ):
-					echo ' -- ';
-				else:
-					echo Configure::read('site.currency'). ' '. $this->Html->cFloat($transaction['Package']['cost']);
-				endif;
-				?>
-            </td>
-			 <td class="dl">
-			   <?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint):
-				   echo $this->Html->cText($transaction['Transaction']['wonder_points']);
-				else:
-			      echo $this->Html->cText($transaction['Package']['no_of_wonderpoints']);
-				endif;
-				?>
-            </td>
-        </tr>
-    <?php
-        $j++;
-        endforeach;
-    ?>
-    <?php
-    else:
-    ?>
-        <tr>
-            <td colspan="11" class="notice"><?php echo __l('No Transactions available');?></td>
-        </tr>
-    <?php
-    endif;
-    ?>
-    </table>
-    <?php
-    if (!empty($transactions)) {
-        ?>
-            <div class="js-pagination">
-                <?php echo $this->element('paging_links'); ?>
-            </div>
-        <?php
-    }
-    ?>
-    </div>
-<?php if(empty($this->request->params['isAjax']) ): ?>	
-                </div>    
-            </div>	
-		<?php endif; ?>
+                 <?php endif; ?>
+                    <div class="acc-right">
+                    	<div class="head">
+                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Beauty Account'); ?></h1>
+                            <p> <?php echo __l('Account copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                        </div>
+                       	<div class="acc-trans">
+                        	<h3><?php echo __l('My Transactions'); ?></h3>
+							<?php echo $this->element('paging_counter');?>
+                        	<div class="table-data">
+                         	<ul id="ship-in">
+                            	<li class="t-head">
+                                	<div class="t-c1"><?php echo __l('DATE'); ?> </div>
+                                    <div class="t-c2"><?php echo __l('BILLING CYCLE'); ?> </div>
+                                    <div class="t-c3"><?php echo __l('TYPE'); ?> </div>
+                                    <div class="t-c4"><?php echo __l('AMOUNT'); ?> </div>
+                                    <div class="t-c5"><?php echo __l('WONDER POINTS'); ?></div>
+                                    <div class="clear"></div>
+                                </li>
+							    <?php
+									if (!empty($transactions)):
+										$i = 0;
+										$j = 1;
+										foreach ($transactions as $transaction):
+											$class = null;
+											if ($i++ % 2 == 0) {
+												$class = ' class="altrow"';
+											}
+								?>
+									<li class="t-data">
+										<div class="t-c1"><?php  echo  date("F Y",strtotime($transaction['Transaction']['created']));  ?></div>
+										<div class="t-c2"><?php  
+											 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint):
+												echo $this->Html->cText($transaction['TransactionType']['name'],false);
+											else:
+											echo $this->Html->cText($transaction['Package']['name'],false);
+											endif;
+											?>
+										</div>
+										<div class="t-c3">	<?php 
+											 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint):
+											echo ' -- ';
+											else:
+											echo $this->Html->cText($transaction['TransactionType']['name'],false);
+											endif;
+										?></div>
+										<div class="t-c4"><?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint ):
+												echo ' -- ';
+											else:
+												echo Configure::read('site.currency'). ' '. $this->Html->cFloat($transaction['Package']['cost'],false);
+											endif;
+										?></div>
+									<div class="t-c5">  <?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint):
+										   echo $this->Html->cText($transaction['Transaction']['wonder_points']);
+										else:
+										  echo $this->Html->cText($transaction['Package']['no_of_wonderpoints'],false);
+										endif;
+									 ?></div>
+										<div class="clear"></div>
+									</li>
+								<?php
+									$j++;
+									endforeach;
+									else:
+								?>
+									 <li class="t-data">
+										<div class="t-no-result"><?php echo __l('No Transactions available');?></div><div class="clear"></div>
+									 </li>
+								<?php
+								endif;
+								?>
+                            </ul>
+                         </div>
+						   <?php
+							if (!empty($transactions)) {
+								?>
+									<div class="js-pagination">
+										<?php echo $this->element('paging_links'); ?>
+									</div>
+								<?php
+							}
+							?>
+                        </div>
+                        
+                    </div>
+           <?php if(empty($this->request->params['isAjax']) ): ?>	
+                </div>
+				<?php endif; ?>

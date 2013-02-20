@@ -35,7 +35,7 @@ class ContactsController extends AppController
                     '##IP##' => $ip,
                     '##TELEPHONE##' => $this->request->data['Contact']['telephone'],
                     '##MESSAGE##' => $this->request->data['Contact']['message'],
-                    '##SUBJECT##' => $this->request->data['Contact']['subject'],
+                    '##SUBJECT##' => 'Contact Us',
                     '##POST_DATE##' => date('F j, Y g:i:s A (l) T (\G\M\TP)', strtotime(date('Y-m-d H:i:s'))) ,
                     '##CONTACT_URL##' => Router::url(array(
                         'controller' => 'contacts',
@@ -73,7 +73,8 @@ class ContactsController extends AppController
                 $this->Email->subject = strtr($email['subject'], $emailFindReplace);
                 $this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
                 $this->Email->send(strtr($email['email_content'], $emailFindReplace));
-                $this->set('success', 1);
+				 $this->Session->setFlash( __l('Thank you, we received your message and will get back to you as soon as possible.') , 'default', null, 'success');;
+
             } else {
                 $this->Session->setFlash(__l('Contact could not be added. Please, try again.') , 'default', null, 'error');
             }

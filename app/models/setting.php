@@ -44,7 +44,12 @@ class Setting extends AppModel
      */
     function getKeyValuePairs()
     {
-        $settings = $this->find('all');
+        $settings = $this->find('all',array(
+				'fields' => array(
+					'Setting.name',
+					'Setting.value'
+				)
+			));
         $names = Set::extract($settings, '{n}.Setting.name');
         $values = Set::extract($settings, '{n}.Setting.value');
         $setting_key_value_pairs = array_combine($names, $values);

@@ -6,6 +6,8 @@ class CronComponent extends Component
     {
         App::import('Model', 'User');
         $this->User = new  User();
+		App::import('Model', 'GiftUser');
+        $this->GiftUser = new  GiftUser();
         App::import('Model', 'EmailTemplate');
         $this->EmailTemplate = new EmailTemplate();
         App::import('Core', 'ComponentCollection');
@@ -21,6 +23,7 @@ class CronComponent extends Component
         ));
 		/* Send a remainder mail to user */
 		$this->User->_sendReminderMail();
+		$this->GiftUser->_sendWelcomeMailToGiftUser();
     }
 
 }

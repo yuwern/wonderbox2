@@ -20,6 +20,14 @@ class Package extends AppModel
             'fields' => '',
             'order' => '',
             'counterCache' => false
+        ),
+	    'PackageCategory' => array(
+            'className' => 'PackageCategory',
+            'foreignKey' => 'package_category_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'counterCache' => false
         )
     );
     public $hasMany = array(
@@ -48,7 +56,7 @@ class Package extends AppModel
                     'message' => __l('Required') ,
                 ) ,
             ) ,
-            'slug' => array(
+         /*   'slug' => array(
                 'rule1' => array(
                     'rule' => 'notempty',
                     'allowEmpty' => false,
@@ -62,7 +70,7 @@ class Package extends AppModel
                     'message' => __l('Required') ,
                 ) ,
             ) ,
-            'cost' => array(
+           */ 'cost' => array(
                 'rule1' => array(
                     'rule' => 'numeric',
                     'allowEmpty' => false,

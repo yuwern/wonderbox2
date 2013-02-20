@@ -11,7 +11,10 @@ class GiftUsersController extends AppController
 	public $disabledFields = array(
         'UserShipping',
 		'GiftUser',
-		'User'
+		'User',
+		'PackageUser.q',
+		'PackageUser.month',
+		'PackageUser.year',
     );
     public function beforeFilter()
     {
@@ -62,6 +65,9 @@ class GiftUsersController extends AppController
         );
         $this->set('giftUsers', $this->paginate());
     }
+	public function mygift(){
+
+	}
     public function add()
     {							
 	    $this->pageTitle = __l('Add Gift User');
@@ -161,7 +167,11 @@ class GiftUsersController extends AppController
             }
         }
         $users = $this->GiftUser->User->find('list');
-        $packages = $this->GiftUser->Package->find('list');
+        $packages = $this->GiftUser->Package->find('list',array(
+					'conditions' => array(
+						'Package.package_category_id' => ConstPaymentCategory::GiftUserPackage
+					)
+		));
 		$states = $this->GiftUser->User->UserShipping->State->find('list');	
 		$countries = $this->GiftUser->User->UserShipping->Country->find('list');	
         $this->set(compact('users', 'packages','states','countries'));
@@ -467,6 +477,70 @@ class GiftUsersController extends AppController
 		);
         $this->set('giftUsers', $this->paginate());
     }
+	public function admin_import(){
+		if(!empty($this->request->data)){
+			if(!empty($this->request->data['Attachment']['filename']['name']) && !empty($this->request->data['GiftUser']['year']) &&  !empty($this->request->data['GiftUser']['month'])){
+				$file_ext = array_pop(explode('.', $this->request->data['Attachment']['filename']['name']));
+				if ($file_ext == "csv") {
+					$start_date = date($this->request->data['GiftUser']['year'].'-'.$this->request->data['GiftUser']['month'].'-1');
+					$end_date = date($this->request->data['GiftUser']['year'].'-'.$this->request->data['GiftUser']['month'].'-t');
+					$handle = fopen($this->request->data['Attachment']['filename']['tmp_name'], "r");
+				  // read the 1st row as headings
+					$header = fgetcsv($handle);
+					while (($row = fgetcsv($handle)) !== FALSE) {
+						$user = $this->GiftUser->User->find('first', array(
+											'conditions' => array(
+												'User.email'=>$row[0]
+											),
+											'fields'=> array(
+												'User.id',
+												'User.email'
+											),
+											'recursive'=> -1
+								));
+						 if(!empty($user)&& !empty($row[1])){
+							$tracking_number = $row[1];
+							$giftUsers = $this->GiftUser->find('all', array(
+											'conditions' => array(
+												'GiftUser.user_id' => $user['User']['id'],
+												'GiftUser.start_date >= ' => $start_date,
+												'GiftUser.start_date <= ' => $end_date,
+											),
+											'fields'=> array(
+												'GiftUser.user_id',
+												'GiftUser.id',
+											),
+											'recursive'=> -1
+								));
+							 	$tracking_number = explode('||',$tracking_number);
+								if(!empty($giftUsers)){
+								  foreach($giftUsers as $pkey => $giftUser) {
+									  $this->GiftUser->updateAll(array(
+											'GiftUser.tracking_number' => '\'' .$tracking_number[$pkey] . '\'',
+										) , array(
+											'GiftUser.id' => $giftUser['GiftUser']['id'] ,
+										));
+								  }
+							  }
+							 // echo $row[1];
+						 }
+					 }
+					 fclose($handle);
+					$this->Session->setFlash(__l('Tracking Number is uploaded successfully..') , 'default', null, 'success');
+					$this->redirect(array(
+						'action' => 'index'
+					));
+				}
+				else {
+					$this->Session->setFlash(__l('Please uploaded csv file') , 'default', null, 'error');
+				}
+				
+			}else{
+				$this->Session->setFlash(__l('Please uploaded csv file ,month and year') , 'default', null, 'error');
+			
+			}
+		}
+	}
     public function admin_add()
     {
         $this->pageTitle = __l('Add Gift User');

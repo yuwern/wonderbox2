@@ -27,14 +27,26 @@ class ProductsController extends AppController
         }
 		$this->paginate = array(
             'conditions' => $conditions,
-            'recursive' => 1,
+			'contain'=> array(
+				'Attachment',
+				'Brand' => array(
+					'fields'=> array(
+						'Brand.id',
+						'Brand.name',
+						'Brand.slug',
+						'Brand.short_description',
+					)
+				)
+			),
+            'recursive' => 2,
             'order' => $order,
             'limit' => $limit
         );
-        $this->set('products', $this->paginate());
-		 if (!empty($this->request->params['named']['type']) && $this->request->params['named']['type'] == 'product-lists') {
+		$this->set('products', $this->paginate());
+		if (!empty($this->request->params['named']['type']) && $this->request->params['named']['type'] == 'product-lists') {
                 $this->render('index-product-lists');
          }
+		 
     }
     public function view($slug = null)
     {
@@ -57,6 +69,7 @@ class ProductsController extends AppController
                 'Category.name',
                 'Brand.id',
                 'Brand.name',
+                'Brand.short_description',
                 'Brand.slug',
               ) ,
             'recursive' => 1,
@@ -72,6 +85,33 @@ class ProductsController extends AppController
         $this->pageTitle = __l('Products');
         $this->Product->recursive = 1;
 		$this->paginate = array(
+		  'contain'=> array(
+			'Attachment',
+			'Category'=> array(
+				'fields' => array(
+					'Category.name'
+				)
+			),
+			'BeautyCategory'=> array(
+				'fields' => array(
+					'Category.name'
+				)
+			),
+			'Brand'=> array(
+				'fields' => array(
+					'Brand.id',
+					'Brand.name'
+				)
+			)
+		  ),
+		  'fields'=> array(
+			'Product.id',
+			'Product.slug',
+			'Product.name',
+			'Product.wonder_point',
+			'Product.product_redeem_count',
+			'Product.is_active'
+		   ),
 		  'order' => array(
                 'Product.id' => 'desc'
             )
@@ -84,7 +124,7 @@ class ProductsController extends AppController
     {
         $this->pageTitle = __l('Add Product');
        if (!empty($this->request->data)) {
-		   $this->request->data['Product']['edition_date']['day']= 15;
+		   $this->request->data['Product']['edition_date']['day'] = 15;
 		   	 if (!empty($this->request->data['Attachment']['filename']['name'])) {
 					$this->request->data['Attachment']['filename']['type'] = get_mime($this->request->data['Attachment']['filename']['tmp_name']);
 					$this->Product->Attachment->Behaviors->attach('ImageUpload', Configure::read('image.file'));
@@ -97,6 +137,7 @@ class ProductsController extends AppController
 			 if ($this->request->data['Attachment']['filename']['error'] == 4) {
 					$ini_upload_error = 0;
   			 }
+		   date_default_timezone_set('UTC');
 		   $this->Product->set($this->request->data);
 		   if($this->Product->validates() && $ini_upload_error) {
 				$this->Product->create();
@@ -150,8 +191,12 @@ class ProductsController extends AppController
             throw new NotFoundException(__l('Invalid product'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-		   $this->request->data['Product']['edition_date']['day']= 15;
-            if ($this->Product->save($this->request->data)) {
+		   $this->request->data['Product']['edition_date']['month'] = $this->request->data['Product']['edition_date']['month'];
+		   ;
+		   $this->request->data['Product']['edition_date']['day'] = 15;
+		   $this->request->data['Product']['edition_date']['year'] = $this->request->data['Product']['edition_date']['year'];
+		   date_default_timezone_set('UTC');
+		   if ($this->Product->save($this->request->data)) {
 				 if(!empty($this->request->data['Attachment']['filename']['name'])){
 						$attachment1=$this->Product->Attachment->find('first', array('conditions'=>array('Attachment.foreign_id'=>$this->request->data['Product']['id'], 'Attachment.class'=>'Product'), 'recursive'=>-1));
 						if(!empty($attachment1)){

@@ -12,14 +12,21 @@ class HomePageOrganizersController extends AppController
     public function index()
     {
         $this->pageTitle = __l('homePageOrganizers');
-        $this->HomePageOrganizer->recursive = 0;
-		       $this->paginate = array(
+        $homePageOrganizer = $this->HomePageOrganizer->find('first',array(
 			 'conditions' => array(
                 'HomePageOrganizer.is_active' => 1
 			  ),
-            'limit' => 1,
-        );
-        $this->set('homePageOrganizers', $this->paginate());
+			  'contain'=> array(
+				'Attachment',	
+			  ),
+			  'fields'=> array(
+				'HomePageOrganizer.id',
+				'HomePageOrganizer.title',
+			 ),
+			 'recursive'=> 2
+			)
+		  );
+        $this->set('homePageOrganizer', $homePageOrganizer);
     }
     public function admin_index()
     {

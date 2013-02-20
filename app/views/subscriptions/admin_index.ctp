@@ -19,7 +19,7 @@
 		  <div class="add-block">
 		  <?php //echo $this->Html->link(__l('Update Subscribers'), array('controller' => 'subscriptions', 'action' => 'admin_update_subscribers'), array('info' => 'Update unsubscribers list to our database from mailchimp', 'title' => 'Update Subscribers', 'escape' => false)); ?>
 		  <?php if(!empty($subscriptions)) {?>
-		  <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'subscriptions', 'action' => 'index','city' => $city_slug, 'ext' => 'csv',  'admin' => true), $this->request->params['named']), array('class' => 'export', 'title' => 'CSV Export', 'escape' => false)); ?>
+		  <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'subscriptions', 'action' => 'index','city' => 'malaysia', 'ext' => 'csv',  'admin' => true), $this->request->params['named']), array('class' => 'export', 'title' => 'CSV Export', 'escape' => false)); ?>
 		  <?php } ?>
 		  </div>
   <?php

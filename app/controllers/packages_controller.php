@@ -15,6 +15,7 @@ class PackagesController extends AppController
     );
 	public $disabledFields = array(
         'Package.token',
+        'PaymentType.package_type_id',
         'UserProfile.address',
         'UserProfile.zipcode',
         'UserProfile.id',
@@ -32,7 +33,8 @@ class PackagesController extends AppController
         $this->Package->recursive = 0;
 		$this->paginate = array(
 			'conditions'=> array(
-			'Package.is_active'=> 1
+			'Package.is_active'=> 1,
+			'Package.package_category_id'=> ConstPaymentCategory::SubscribePackage
 		  )
 		);
 	   $this->set('packages', $this->paginate());
@@ -44,7 +46,8 @@ class PackagesController extends AppController
         $this->Package->recursive = 0;
 		$this->paginate = array(
 			'conditions'=> array(
-			'Package.is_active'=> 1
+			'Package.is_active'=> 1,
+			'Package.package_category_id'=> ConstPaymentCategory::SubscribePackage
 		  )
 		);
 		$this->loadModel('PaymentGateway');
@@ -137,6 +140,7 @@ class PackagesController extends AppController
     }
 	public function purchase(){
 	if(!empty($this->request->data)){
+
 		$this->Package->PackageUser->User->UserShipping->set($this->request->data['UserShipping']);
 		$this->Package->PackageUser->User->UserProfile->set($this->request->data['UserProfile']);
 		if($this->Package->PackageUser->User->UserShipping->validates()&$this->Package->PackageUser->User->UserProfile->validates()){
@@ -333,6 +337,13 @@ class PackagesController extends AppController
 					));	
 			}
 		 }
+		 if(empty($package['Package']['cost'])){
+			 	$this->redirect(array(
+									'controller' => 'pages',
+									'action' => 'home',
+									'admin' => false
+								));
+		 }
 		 $this->set('package', $package);
 		 $this->set('action', $action);
 	}
@@ -346,10 +357,10 @@ class PackagesController extends AppController
 					)
 			));
 			if(!empty($this->request->data['Package']['package_type_id']))
-			$this->Session->write('Payment_type',$this->request->data['Package']['package_type_id'] );
+			 $this->Session->write('Payment_type',$this->request->data['Package']['package_type_id'] );
 			 $package = $this->Package->find('first', array(
 				'conditions' => array(
-					'Package.id = ' => $this->request->data['Package']['id']
+					'Package.slug = ' => $this->request->data['Package']['slug']
 				) ,
 				'fields' => array(
 					'Package.id',
@@ -895,7 +906,8 @@ class PackagesController extends AppController
             }
         }
         $packageTypes = $this->Package->PackageType->find('list');
-        $this->set(compact('packageTypes'));
+        $packageCategories = $this->Package->PackageCategory->find('list');
+        $this->set(compact('packageTypes','packageCategories'));
     }
     public function admin_edit($id = null)
     {
@@ -924,7 +936,8 @@ class PackagesController extends AppController
         }
         $this->pageTitle.= ' - ' . $this->data['Package']['name'];
         $packageTypes = $this->Package->PackageType->find('list');
-        $this->set(compact('packageTypes'));
+        $packageCategories = $this->Package->PackageCategory->find('list');
+        $this->set(compact('packageTypes','packageCategories'));
     }
     public function admin_delete($id = null)
     {

@@ -31,7 +31,7 @@
 		echo $this->Html->meta('icon'), "\n";
 		echo $this->Html->meta('keywords', $meta_for_layout['keywords']), "\n";
 		echo $this->Html->meta('description', $meta_for_layout['description']), "\n";
-		require_once('_head.inc.ctp');
+		require_once('_adminhead.inc');
 		echo $this->Asset->scripts_for_layout();
 	?>
 </head>
@@ -107,7 +107,7 @@
                 </div>
 		</div>
 		 <div id="openwave" class="clearfix">
-			<p class="copy">&copy; 2012 All Rights Reserved | Designed and developed by <a href="http://www.wonderbox.com.my/">WonderBox Malaysia</a>.</p>          
+			<p class="copy">&copy; 2012 All Rights Reserved | Designed and developed by <a href="http://www.openwavecomp.com/">Openwave Computing</a>.</p>          
           </div>
 	</div>
 	<?php echo $this->element('site_tracker');?>

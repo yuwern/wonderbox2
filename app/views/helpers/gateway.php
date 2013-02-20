@@ -289,7 +289,7 @@ class GatewayHelper extends AppHelper
             'name' => 'country',
             'value' => $settings['country']
         ));
-        echo "<div class='clearfix'>" . $this->Form->submit(__l('Pay via MOLPay'),array('class'=>'but7')) ."</div>";
+        echo "<div class='clearfix'>" . $this->Form->submit(__l('Pay via MOLPay'),array('class'=>'btn1')) ."</div>";
         echo $this->Form->end();
     }
 }

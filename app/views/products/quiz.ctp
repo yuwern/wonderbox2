@@ -755,7 +755,7 @@
 				});
 		});
 	</script>	<div class="my-account">
-            	    <?php echo $this->element('user-sidebar'); ?><div class="my-account-right acc-banner">
+            	    <?php echo $this->element('user-sidebar'); ?><div class="my-account-right acc-right acc-banner">
            	    <div class="comp-survey">
                      	<div class="comp-survey-img">  <?php  echo $this->Html->showImage('Product',  $product['Attachment'][0], array('dimension' => 'brand_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Product']['name'], false)), 'title' => $this->Html->cText($product['Product']['name'], false))); ?></div>
                         <div class="comp-survey-name">

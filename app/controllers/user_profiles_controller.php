@@ -43,16 +43,7 @@ class UserProfilesController extends AppController
                             'UserProfile.language_id',
                         )
                     ) ,
-                    'UserAvatar' => array(
-                        'fields' => array(
-                            'UserAvatar.id',
-                            'UserAvatar.filename',
-                            'UserAvatar.dir',
-                            'UserAvatar.width',
-                            'UserAvatar.height'
-                        )
-                    )
-                ) ,
+                  ) ,
                 'recursive' => 0
             ));
             if (!empty($user)) {
@@ -133,15 +124,6 @@ class UserProfilesController extends AppController
                         'fields' => array(
                             'UserProfile.id'
                         )
-                    ) ,
-                    'UserAvatar' => array(
-                        'fields' => array(
-                            'UserAvatar.id',
-                            'UserAvatar.filename',
-                            'UserAvatar.dir',
-                            'UserAvatar.width',
-                            'UserAvatar.height'
-                        )
                     )
                 ) ,
                 'recursive' => 0
@@ -149,7 +131,7 @@ class UserProfilesController extends AppController
             if (!empty($user['User'])) {
                 unset($user['UserProfile']);
                 $this->request->data['User'] = array_merge($user['User'], $this->request->data['User']);
-                $this->request->data['UserAvatar'] = $user['UserAvatar'];
+                //$this->request->data['UserAvatar'] = $user['UserAvatar'];
             }
             //Setting ajax layout when submitting through iframe with jquery ajax form plugin
             if (!empty($this->request->params['form']['is_iframe_submit'])) {
@@ -178,16 +160,7 @@ class UserProfilesController extends AppController
                     'User.fb_user_id',
                 ) ,
                 'contain' => array(
-                    'UserAvatar' => array(
-                        'fields' => array(
-                            'UserAvatar.id',
-                            'UserAvatar.dir',
-                            'UserAvatar.filename',
-                            'UserAvatar.width',
-                            'UserAvatar.height'
-                        )
-                    ) ,
-                    'UserProfile' => array(
+                     'UserProfile' => array(
                         'fields' => array(
                             'UserProfile.first_name',
                             'UserProfile.last_name',

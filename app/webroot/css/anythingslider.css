@@ -11,7 +11,7 @@ div.anythingSlider {
 	width: 988px;
 	height: 467px;
 	margin: 0 auto;
-	background:url(../img/getstarted_banner_bg.jpg) no-repeat;
+	background:url(../img/getstarted_banner_bg.jpg) -38px 0 no-repeat;
 	font-family:Arial, Helvetica, sans-serif;
 	
 }
@@ -19,7 +19,7 @@ div.anythingSlider {
 	width: 804px !important;
 	height: 467px !important;
 	margin: 0 auto;
-	background:url(../img/getstarted_banner_welcome_bg2.jpg) no-repeat !important;
+	background:url(../img/getstarted_banner_welcome_bg2.jpg) -44px 0 no-repeat !important;
 	font-family:Arial, Helvetica, sans-serif;
 	
 }
@@ -27,7 +27,7 @@ div.anythingSlider {
 	width: 804px !important;
 	height: 467px !important;
 	margin: 0 auto;
-	background:url(../img/product_banner_welcome_bg.jpg) no-repeat !important;
+	background:url(../img/product_banner_welcome_bg.jpg) -32px 0 no-repeat !important;
 	font-family:Arial, Helvetica, sans-serif;
 	
 }

@@ -13,18 +13,26 @@ class BrandsController extends AppController
     }
     public function index()
     {
-	     $this->pageTitle = __l('brands');
-        $this->Brand->recursive = 0;
+	    $this->pageTitle = __l('brands');
 		$this->paginate = array(
 			'conditions'=> array(
 				'Brand.is_active'=> 1
 			),
+			'contain' => array(
+				'Attachment'
+			),
+			'fields'=> array(
+				'Brand.id',
+				'Brand.name',
+				'Brand.slug',
+			),
 			'order' => array(
                 'Brand.name' => 'asc'
             ),
-			'limit'=> 200
+			'limit'=> 200,
+			'recursive' => 2
         );
-        $this->set('brands', $this->paginate());
+	     $this->set('brands', $this->paginate());
     }
     public function view($slug = null)
     {
@@ -41,6 +49,7 @@ class BrandsController extends AppController
                 'Brand.id',
                 'Brand.name',
                 'Brand.slug',
+                'Brand.short_description',
                 'Brand.description',
                 'Brand.location',
                 'Brand.telephone_no',

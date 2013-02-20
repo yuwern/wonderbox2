@@ -1,27 +1,37 @@
-<?php if(empty($this->request->params['isAjax']) ): ?>	<div class="my-account">
+			<?php if(empty($this->request->params['isAjax']) ): ?>
+				<div class="account">
 				<?php echo $this->element('user-sidebar'); ?>
-            	<div class="my-account-right">
-<?php endif; ?>
-
-<div class="dashboard-block">
-<h1><?php echo __l('My Profile'); ?></h1>
-<?php echo $this->Form->create('User', array('action' => 'profile_image', 'class' => 'normal-form',  'enctype' => 'multipart/form-data'));
-      echo $this->Form->input('User.id', array('type' => 'hidden'));
-	 echo $this->Form->input('User.profile_image_id', array('type'=>'hidden','value'=> 3)); ?>
-<div class="clearfix avatar-options">
-		<?php if(!empty($this->request->data['UserAvatar']) && !empty($this->request->data['UserAvatar']['id'])){
-			echo $this->Html->showImage('UserAvatar', $this->request->data['UserAvatar'], array('dimension' => 'big_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($this->request->data['User']['username'], false)),'class' => 'upload-avatar', 'title' => $this->Html->cText($this->request->data['User']['username'], false)), null, array('inline' => false));
-			}
-		?>
-	   <h4><?php echo __l('Upload Image'); ?></h4>
-		<?php echo $this->Form->input('UserAvatar.filename', array('type' => 'file','size' => '20', 'label' => false,'class' =>'browse-field')); ?>
-		
-</div><br/>
-
-<?php echo $this->Form->submit(__l('Update profile'),array('class'=>'btn5'));?>
-<?php echo $this->Form->end(); ?>
-</div>
-<?php if(empty($this->request->params['isAjax']) ): ?>	
-           </div>    
-        </div>	
-<?php endif; ?>
+                 <?php endif; ?>
+                    <div class="acc-right">
+                    	<div class="head">
+                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Beauty Account'); ?></h1>
+                            <p> <?php echo __l('Account copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                        </div>
+                       	<div class="acc-fm-box">
+                        	<h3><?php echo __l('My Profile Image'); ?></h3>
+								<div class="pro-img"><?php
+								$current_user_details = array(
+								'username' => $this->Auth->user('username'),
+								'user_type_id' =>  $this->Auth->user('user_type_id'),
+								'id' =>  $this->Auth->user('id'),
+								'fb_user_id' =>  $this->Auth->user('fb_user_id')
+							);                         
+                    		$current_user_details['UserAvatar'] = $this->Html->getUserAvatar($this->Auth->user('id'));
+							echo $this->Html->getUserAvatarLink($current_user_details, 'big_thumb'); ?>
+							</div>
+					
+							 <div class="pro-upload">
+                            	<span><?php echo __l('Upload Image'); ?></span>
+                               	<?php echo $this->Form->create('User', array('action' => 'profile_image', 'class' => 'normal-form',  'enctype' => 'multipart/form-data'));
+								echo $this->Form->input('User.id', array('type' => 'hidden'));
+								echo $this->Form->input('User.profile_image_id', array('type'=>'hidden','value'=> 3)); 
+								echo $this->Form->input('UserAvatar.filename', array('type' => 'file','size' => '20', 'label' => false,'class' =>'browse-field'));
+								echo $this->Form->submit(__l('Update'),array('class'=>'btn1','div'=>'input'));
+								echo $this->Form->end();
+							?>
+                            </div>
+                        </div>
+                    </div>
+				<?php if(empty($this->request->params['isAjax']) ): ?>	
+                </div>
+				<?php endif; ?>

@@ -571,7 +571,7 @@ class AppHelper extends Helper
         }
         return $r;
     }
-    function getUserLink($user_details)
+    function getUserLink($user_details,$front_end = false)
     {
         if ($user_details['user_type_id'] == ConstUserTypes::Admin || $user_details['user_type_id'] == ConstUserTypes::User) {
 			App::import('Model', 'UserProfile');
@@ -588,14 +588,19 @@ class AppHelper extends Helper
 				'recursive' => -1
 			));
 			$username = !empty($user_profile['UserProfile']['first_name'])?$user_profile['UserProfile']['first_name']:$user_details['username'];
-            return $this->link($this->cText($username) , array(
+			 if (!empty($front_end))
+				$usernameString = '<strong>'.$this->cText($username).'</strong>'.$this->image('head_arrow.jpg') ;
+			 else 
+				$usernameString = '<strong>'.$this->cText($username).'</strong>' ;
+            return $this->link($usernameString, array(
                 'controller' => 'users',
                 'action' => 'view',
                 $user_details['username'],
                 'admin' => false
             ) , array(
                 'title' => $this->cText($user_details['username'], false) ,
-                'escape' => false
+                'escape' => false,
+				'rel'=>'dropmenu1'
             ));
         }
         //for company
@@ -641,8 +646,8 @@ class AppHelper extends Helper
         if ($user_details['user_type_id'] == ConstUserTypes::Admin || $user_details['user_type_id'] == ConstUserTypes::User ) {
 			$user_image = '';
 			// Setting Default Profile Image //
-			$width = $this->Setting->find('first', array('conditions' => array('Setting.name' => 'thumb_size.'.$dimension.'.width'), 'recursive' => -1));
-			$height = $this->Setting->find('first', array('conditions' => array('Setting.name' => 'thumb_size.'.$dimension.'.height'), 'recursive' => -1));
+			$width = $this->Setting->find('first', array('conditions' => array('Setting.name' => 'thumb_size.'.$dimension.'.width'),'fields'=> array('Setting.value'), 'recursive' => -1));
+			$height = $this->Setting->find('first', array('conditions' => array('Setting.name' => 'thumb_size.'.$dimension.'.height'),'fields'=> array('Setting.value'), 'recursive' => -1));
 			if(!empty($user['User']['fb_user_id'])){
 				$user_image = $this->getFacebookAvatar($user['User']['fb_user_id'], $height['Setting']['value'],$width['Setting']['value']);						
 			}

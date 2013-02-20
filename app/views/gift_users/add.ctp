@@ -19,5 +19,5 @@
    	<?php	echo $this->Form->input('zip_code');?>
      <?php	echo $this->Form->input('state_id');?>
       <?php	echo $this->Form->input('country_id',array('default'=>143)); ?>
-<?php echo $this->Form->end(__l('Add'));?>
+<?php echo $this->Form->end(__l('Next'));?>
 </div>

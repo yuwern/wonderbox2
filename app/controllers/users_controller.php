@@ -947,6 +947,7 @@ class UsersController extends AppController
             $this->User->create();
             $this->request->data['UserProfile']['first_name'] = !empty($me['first_name']) ? $me['first_name'] : '';
             $this->request->data['UserProfile']['last_name'] = !empty($me['last_name']) ? $me['last_name'] : '';
+            $this->request->data['UserProfile']['gender_id'] = 2;
             if (empty($this->request->data['User']['username']) && strlen($me['first_name']) > 2) {
                 $this->request->data['User']['username'] = $this->User->checkUsernameAvailable(strtolower($me['first_name']));
             }
@@ -2018,6 +2019,9 @@ class UsersController extends AppController
 								'conditions'=> array(
 									'User.id'=>$this->Auth->user('id')
 								),
+								'fields'=> array(
+									'User.available_wonder_points',
+								),
 								'recursive'=> -1	
 					)
 				);
@@ -2102,7 +2106,13 @@ class UsersController extends AppController
 					$packages = $this->Package->find('all',array(
 									'conditions'=> array(
 										'Package.is_active'=> 1,
+										'Package.package_category_id' => ConstPaymentCategory::WalletPackage,
 										'PackageType.no_of_months <='=> $package_months
+									),
+									'fields'=> array(
+										'Package.id',
+										'PackageType.name',
+										'PackageType.no_of_months',
 									),
 									'recursive'=> 0
 						));

@@ -8,5 +8,7 @@
 		echo $this->Form->input('tracking_number');
 	?>
 	</fieldset>
+	<div class="submit-block clearfix">
 <?php echo $this->Form->end(__l('Update'));?>
+    </div>
 </div>

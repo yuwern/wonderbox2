@@ -5,12 +5,19 @@ class UserShippingsController extends AppController
     public function index()
     {
 		$this->pageTitle = __l('userShippings');
-        $this->UserShipping->recursive = 0;
+        $this->UserShipping->recursive = 1;
         $this->paginate = array(
                 'conditions' => array(
 					'UserShipping.user_id' => $this->Auth->user('id')
 				),
-                'order' => array(
+				'fields' => array(
+					'UserShipping.id',
+					'UserShipping.address',
+					'UserShipping.zip_code',
+					'Country.name',
+					'State.name',
+				),
+				'order' => array(
                     'UserShipping.id' => 'desc'
                 )
             );

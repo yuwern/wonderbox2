@@ -4,6 +4,7 @@
     <tr>
       <th><?php echo __l('Select'); ?></th>
       <th><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Billing Cycle'),'name'); ?></div></th>
+	  <th class="dl"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Package Catogories'),'PackageCategory.name'); ?></div></th>
       <th class="dl"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Subscription Type'),'PackageType.name'); ?></div></th>
 	  <th class="dl"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Billing Amount'),'cost'); ?></div></th>
   	  <th class="dl"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Wonder Points'),'no_of_wonderpoints'); ?></div></th>
@@ -34,6 +35,7 @@ foreach ($packages as $package):
 		</div>
 	  <?php echo $this->Form->input('Package.'.$package['Package']['id'].'.id', array('type' => 'checkbox', 'id' => "admin_checkbox_".$package['Package']['id'], 'label' => false, 'class' =>$status_class.' js-Package-list js-checkbox-list')); ?></td>
       <td><?php echo $this->Html->cText($package['Package']['name']);?></td>
+      <td class="dl"><?php echo $this->Html->cText($package['PackageCategory']['name']);?></td>
       <td class="dl"><?php echo $this->Html->cText($package['PackageType']['name']);?></td>
       <td class="dl"><?php echo $this->Html->cText($package['Package']['cost']);?></td>
       <td class="dl"><?php echo ($package['Package']['no_of_wonderpoints'])?$this->Html->cText($package['Package']['no_of_wonderpoints']) :'--';?></td>

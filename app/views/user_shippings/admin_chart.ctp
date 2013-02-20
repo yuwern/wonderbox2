@@ -108,7 +108,7 @@ $(function () {
                 plotShadow: false
             },
             title: {
-                text: "Report for State"
+                text: "Report for Age Groups"
             },
             tooltip: {
         	    pointFormat: '{series.name}: <b>{point.percentage}%</b>',

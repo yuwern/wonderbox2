@@ -117,7 +117,17 @@ class PagesController extends AppController
     //   $this->cacheAction = Configure::read('action.cache_duration');
         $this->Page->recursive = - 1;
         if (!empty($slug)) {
-            $page = $this->Page->findBySlug($slug);
+            $page = $this->Page->find('first', array(
+                'conditions' => array(
+                    'Page.slug' => $slug
+                ),
+				'fields'=> array(
+					'Page.id',
+					'Page.slug',
+					'Page.title',
+					'Page.content',
+				 )
+            ));
         } else {
             $page = $this->Page->find('first', array(
                 'conditions' => array(
@@ -212,6 +222,18 @@ class PagesController extends AppController
 	public function home()
 	{
 		$this->pageTitle = __l('Home');
+		$this->loadModel('Package');
+	    $package = $this->Package->find('first',array(
+					'conditions'=> array(
+						'Package.package_type_id'=> 1
+					),
+					'fields' => array(
+						'Package.cost'
+					),
+					'recursive'=> -1
+			)
+		);
+	  $this->set('package',$package);
 	}
     public function static_page($id){
 		    $page = $this->Page->find('first', array(

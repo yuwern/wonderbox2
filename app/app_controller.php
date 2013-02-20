@@ -201,7 +201,7 @@ class AppController extends Controller
 			}
 		}
         // End of Code
-        if (!empty($this->request->params['named']['type']) && $this->request->params['named']['type'] == 'geocity') {
+   /*     if (!empty($this->request->params['named']['type']) && $this->request->params['named']['type'] == 'geocity') {
 		    $this->loadModel('City');
             $city =  $this->City->find('first', array(
                 'conditions' => array(
@@ -232,7 +232,8 @@ class AppController extends Controller
 
             }
         }
-        $timezone_code = Configure::read('site.timezone_offset');
+     */ $this->request->params['named']['city'] = Configure::read('site.city');
+		$timezone_code = Configure::read('site.timezone_offset');
         if (!empty($timezone_code)) {
             date_default_timezone_set($timezone_code);
         }
@@ -251,7 +252,7 @@ class AppController extends Controller
                 $this->_unforceSSL();
             }
         }
-        if ($this->request->params['controller'] != 'images' && $this->request->params['action'] != 'flashupload') {
+      	/*  if ($this->request->params['controller'] != 'images' && $this->request->params['action'] != 'flashupload') {
             $_SESSION['city_attachment'] = '';
             $city_slug = !empty($this->request->params['named']['city']) ? $this->request->params['named']['city'] : Configure::read('site.city');
             // This cache file will delete, in city model after save
@@ -277,7 +278,7 @@ class AppController extends Controller
 					Cache::write('site_city_detail_'.$city['City']['slug'], $city);
 				}
             }
-			// setting table to update current city thumb size
+		// setting table to update current city thumb size
 			if( (!empty($city['City']['thumb_width']) &&  (Configure::read('thumb_size.city_background_thumb.width') != $city['City']['thumb_width'])) || ( !empty($city['City']['thumb_height']) && (Configure::read('thumb_size.city_background_thumb.height') != $city['City']['thumb_height'] ))){
 				$this->loadModel('Setting');	
 				$background =  $this->Setting->find('all', array( 
@@ -310,9 +311,9 @@ class AppController extends Controller
             if ($this->Auth->user('id')) {
 			    $this->loadModel('User');
                 $this->set('user_available_balance', $this->User->checkUserBalance($this->Auth->user('id')));
-            }
-        }
-		if(isset($this->request->data['Subscription']['city_id'])){
+            }*/
+       // }
+		/*if(isset($this->request->data['Subscription']['city_id'])){
             $this->loadModel('City');
 			$city_info = $this->City->find('first', array(
                 'conditions' => array(
@@ -322,7 +323,9 @@ class AppController extends Controller
                 'recursive' => -1
             ));
 			setcookie('CakeCookie[city_slug]',$city_info['City']['slug']);
-		}else if (!empty($this->request->params['named']['city']) && empty($this->request->params['isAjax']) && empty($this->request->params['requested'])) {
+		}else*/
+			
+		if (!empty($this->request->params['named']['city']) && empty($this->request->params['isAjax']) && empty($this->request->params['requested'])) {
 			setcookie('CakeCookie[city_slug]', $this->request->params['named']['city']);
             setcookie('CakeCookie[city_slug]', $this->request->params['named']['city'],time()+60*60*24*30,'/');
         }

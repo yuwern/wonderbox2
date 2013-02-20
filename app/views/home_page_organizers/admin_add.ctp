@@ -5,7 +5,7 @@
 		<legend><?php echo $this->Html->link(__l('Home Page Organizers'), array('action' => 'index'));?> &raquo; <?php echo __l('Admin Add Home Page Organizer');?></legend>
 	<?php
 		echo $this->Form->input('title');
-		echo $this->Form->input('Attachment.filename', array('type' => 'file','size' => '20', 'label' => __l('Upload Image'),'class' =>'browse-field')); 
+		echo $this->Form->input('Attachment.filename', array('type' => 'file','size' => '20', 'label' => __l('Upload Image'),'class' =>'browse-field','info'=>__('Image size should be 150 X 100'))); 
 		echo $this->Form->input('content',array('type'=>'textarea'));
 		echo $this->Form->input('is_active',array('type'=>'checkbox'));
 	?>

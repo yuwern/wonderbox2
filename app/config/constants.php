@@ -156,6 +156,12 @@ class ConstPaymentGateways
 	// affiliate setting 
 	const PayPal = 3;
 }
+class ConstPaymentCategory
+{
+    const SubscribePackage = 1;
+    const GiftUserPackage = 2;
+    const WalletPackage = 3;
+}
 class ConstPaymentGatewayFilterOptions
 {
     const Active = 1;

@@ -1,29 +1,54 @@
-<?php echo $this->element('home-page-banners-index',array('cache' => array('config' => 'site_element_cache', 'key' => 'banner-slider')));?>
-
-				<div class="banner_text">
-					<h1>Discover Beauty Secrets At Your Doorstep</h1>
-					<h3>	<ul>
-					<li>Try out new products every month
-					<li>Let our experts guide and inspire you
-					<li>Learn and explore with your WonderBox community
-					<li>Share your discoveries with all your friends and get rewarded
-                                        </ul></h3>
-					 <?php if (!$this->Auth->sessionValid()): ?>
-					<span class="f-right"><?php echo $this->Html->link(sprintf(__l('Join Now')), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('class'=>'but3','title' => sprintf(__l('Join Now'))));?></span>
-					<?php endif; ?>
-				</div>
-			</div>
-			<h2>Brands that we intend to bring to you in your next WonderBox:</h2>
-			<div class="brand">
-				<ul>
-					<li><?php echo $this->Html->image('brand1.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand2.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand3.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand4.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand5.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand6.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand7.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand8.jpg'); ?></li>
-					<li><?php echo $this->Html->image('brand9.jpg'); ?></li>
-				</ul>
-			</div> 
+<script type="text/javascript">
+$(function(){
+	var month = <?php  echo Configure::read('header.month') - 1; ?>;
+	var year = <?php  echo Configure::read('header.year'); ?>;
+	var ts = (new Date(year, month, 15)).getTime();
+	$('#countdown').countdown({
+		timestamp : ts
+	});
+});
+</script>
+<!-- Brand Logo Sec  -->
+          		<div class="brand_logo">
+                  	  <h3><?php echo __l('Brands that we intend to bring to you in your next').' '.Configure::read('site.name'); ?></h3>
+                      <ul>
+						<li><?php echo $this->Html->image('b_logo1.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->image('b_logo2.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->image('b_logo3.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->image('b_logo4.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->image('b_logo5.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->image('b_logo6.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->image('b_logo7.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->image('b_logo8.jpg',array('width'=>'114','height'=>'49')); ?></li>
+				      </ul>
+           		</div>
+                <!-- ADD SEC -->
+                <div class="ad_sec">
+                	<div class="ad1"><?php echo $this->element('home-page-organizers-index'); ?></div>
+                    <div class="ad2"><?php echo $this->Html->image('ad2.jpg',array('width'=>'209','height'=>'193')); ?></div>
+                    <div class="ad3">
+                    	<div class="sub_box">
+                       	  <div class="s-box-left">
+                           	<h2><strong><?php echo __l('NEXT SURPRISE'); ?></strong></h2>
+                            <p><?php echo $this->Html->image('sub_img.jpg',array('width'=>'89','height'=>'85')); ?></p>
+                           </div>
+                            <div class="s-box-right">
+                            	<div class="date-row">
+									<div id="countdown"></div>
+                                	<p><?php echo __l('DAYS'); ?></p>
+                                    <p><?php echo __l('HOURS'); ?></p>
+                                    <p><?php echo __l('MINUTES'); ?></p>
+                                </div>
+                              <div class="rate-row"> 
+                                	<span class="c1"><?php echo __l('LIMITED UNITS'); ?> <br /><b><?php echo __l('DELIVERY TO YOUR DOORSTEP'); ?></b></span>
+                                    <span class="c2"><?php echo  configure::read('site.currency'); ?></span>
+					                 <span class="c3"> <?php $cost = explode('.',$package['Package']['cost']); echo  $cost[0]; ?></span>
+                                    <span class="c4"> <?php echo  $cost[1]; ?></span>
+                                <div class="clear"></div>
+                                  <p><?php echo $this->Html->link(' ', array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('escape'=>false,'title' =>__l('Subscribe Now'),'class'=>'rate-subs-now')); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+    

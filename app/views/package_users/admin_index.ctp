@@ -26,6 +26,7 @@
     <tr> 
 	    <th class="dl"><div><?php echo __l('Action');?></div></th>
         <th><div class="js-pagination"><?php echo __l('Name');?></div></th>
+        <th><div class="js-pagination"><?php echo __l('Package Type');?></div></th>
         <th><div class="js-pagination"><?php echo __l('Email');?></div></th>
         <th><div class="js-pagination"><?php echo __l('Address');?></div></th>
         <th><div class="js-pagination"><?php echo __l('Mobile No');?></div></th>
@@ -43,15 +44,33 @@ foreach ($packageUsers as $packageUser):
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
 	}
-	$address = $packageUser['User']['UserShipping'][0]['address'].','.$packageUser['User']['UserShipping'][0]['State']['name'].','.$packageUser['User']['UserShipping'][0]['Country']['name'].','.$packageUser['User']['UserShipping'][0]['zip_code'];
+	$address  = ' <p> ';
+	if(!empty($packageUser['User']['UserShipping'][0]['address'])):
+	$address  .= $packageUser['User']['UserShipping'][0]['address'].', ';
+	endif; 
+	if(!empty($packageUser['User']['UserShipping'][0]['State']['name'])):
+	$address  .= $packageUser['User']['UserShipping'][0]['State']['name'] .', ';
+	endif; 
+	if(!empty($packageUser['User']['UserShipping'][0]['Country']['name'])):
+	$address  .= $packageUser['User']['UserShipping'][0]['Country']['name'] .', ';
+	endif; 	
+	if(!empty($packageUser['User']['UserShipping'][0]['zip_code'])):
+	$address  .= $packageUser['User']['UserShipping'][0]['zip_code'] ;
+	endif; 
+	$address .= "</p>";
 ?>
 	<tr<?php echo $class;?>>
-		 <td><div class="actions"><span><?php echo $this->Html->link(__l('Tracking No'), array('action'=>'edit',$packageUser['PackageUser']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span><span><?php echo $this->Html->link(__l('Add WonderPoint'), array('controller' => 'users', 'action'=>'add_wonderpoint', $packageUser['User']['id']), array('class' => 'add-fund', 'title' => __l('Add WonderPoint')));?></span></div>	  </td>
+		 <td><div class="actions"><span><?php echo $this->Html->link(__l('Tracking No'), array('action'=>'edit',$packageUser['PackageUser']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span></div></td>
 	      <td>  <?php echo $this->Html->cText($packageUser['User']['UserProfile']['first_name'].' '.$packageUser['User']['UserProfile']['last_name']);?></td>
+          <td>  <?php echo $this->Html->cText($packageUser['Package']['PackageCategory']['name']);?></td>
           <td>  <?php echo $this->Html->cText($packageUser['User']['email']);?></td>
-          <td>  <?php echo $this->Html->cText($address);?></td>
-          <td>  <?php echo $this->Html->cText($packageUser['User']['UserShipping'][0]['contact_no']);?></td>
-          <td>  <?php echo $this->Html->cText($packageUser['User']['UserShipping'][0]['contact_no1']);?></td>
+          <td>  <?php echo $this->Html->cHtml($address);?></td>
+          <td>  <?php if(!empty($packageUser['User']['UserShipping'][0]['contact_no'])):
+						echo $this->Html->cText($packageUser['User']['UserShipping'][0]['contact_no']);
+					  endif; ?></td>
+          <td>  <?php if(!empty($packageUser['User']['UserShipping'][0]['contact_no1'])):
+						echo $this->Html->cText($packageUser['User']['UserShipping'][0]['contact_no1']);
+					  endif; ?></td>
           <td>  <?php echo date("F Y",strtotime($packageUser['PackageUser']['start_date']));?></td>
           <td>  <?php echo !empty($packageUser['PackageUser']['tracking_number'])?$this->Html->cText($packageUser['PackageUser']['tracking_number']):__('Nil');?></td>
 		   <td><?php if(!empty($packageUser['PackageUser']['tracking_number'])): 

@@ -20,15 +20,9 @@
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Products'), array('controller' => 'products', 'action' => 'index'),array('title' => __l('Products'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'product_redeems') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redeems'), array('controller' => 'product_redeems', 'action' => 'index'),array('title' => __l('Product Redeems'))); ?></li>
-			<?php $class = ($this->request->params['controller'] == 'beauty_categories') ? ' class="active"' : null;
+			<?php $class = ($this->request->params['controller'] == 'beauty_categories' || $this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'admin_chart' || $this->request->params['controller'] == 'user_shippings' && $this->request->params['action'] == 'admin_chart' ) ? ' class="active"' : null;
 			?>
-			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Report Survey'), array('controller' => 'beauty_categories', 'action' => 'index'),array('title' => __l('Beauty Survey'))); ?></li>
-			<?php $class = ($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'admin_chart') ? ' class="active"' : null;
-			?>
-			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Report for Age Groups'), array('controller' => 'user_profiles', 'action' => 'chart'),array('title' => __l('Report for Age Groups'))); ?></li>
-				<?php $class = ($this->request->params['controller'] == 'user_shippings' && $this->request->params['action'] == 'admin_chart') ? ' class="active"' : null;
-			?>
-			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Report for State'), array('controller' => 'user_shippings', 'action' => 'chart'),array('title' => __l('Report for Age Groups'))); ?></li>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Beauty and Demographic categories'), array('controller' => 'beauty_categories', 'action' => 'index'),array('title' => __l('Beauty and Demographic categories'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'settings') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Settings'), array('controller' => 'settings', 'action' => 'index'),array('title' => __l('Settings'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'email_templates') ? ' class="active"' : null; ?>

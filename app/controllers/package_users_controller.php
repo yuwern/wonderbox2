@@ -257,6 +257,16 @@ class PackageUsersController extends AppController
 			  $this->paginate = array(
 				'conditions'=> $conditions,
 				'contain'=> array(
+					'Package'=> array(
+						'PackageCategory' => array(
+							'fields'=> array(
+								'PackageCategory.name',
+							)	
+						 ),
+						'fields'=> array(
+							'Package.id',
+						)
+					),
 					'User' => array(
 						'UserProfile'=> array(
 							'fields'=> array(
@@ -274,8 +284,23 @@ class PackageUsersController extends AppController
 								'fields'=> array(
 									'Country.name'
 								)
+							),
+							'fields'=> array(
+								'UserShipping.id',
+								'UserShipping.address',
+								'UserShipping.address2',
+								'UserShipping.contact_no',
+								'UserShipping.contact_no1',
+								'UserShipping.zip_code',
+								'UserShipping.state_id',
+								'UserShipping.country_id',
 							)
 						),
+						'fields'=> array(
+							'User.id',
+							'User.username',
+							'User.email',
+						)
 					)
 				),
 				'order'=> array(
