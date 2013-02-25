@@ -215,7 +215,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
 						foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
 						$fields = 'Answer'.($key+1);
 						if(!empty($data[0][$fields])):
-							$value = number_format($data[0][$fields],2);
+							$value = number_format($data[0][$fields],2, '.', '');
 							echo '["'.$Answer['answer'].'",'.$value.']';
 							if($count != $tcount)
 								echo ',';
@@ -381,7 +381,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
 						foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
 						$fields = 'Answer'.($key+1);
 						if(!empty($data[0][$fields])):
-							$value = number_format($data[0][$fields],2);
+							$value = number_format($data[0][$fields],2, '.', ''); 
 							echo '["'.$Answer['answer'].'",'.$value.']';
 							if($count != $tcount)
 								echo ',';
@@ -550,7 +550,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
 						foreach($productQuestion['BeautyAnswer'] as $key => $Answer):
 						$fields = 'Answer'.($key+1);
 						if(!empty($data[0][$fields])):
-							$value = number_format($data[0][$fields],2);
+							$value = number_format($data[0][$fields],2, '.', '');
 							echo '["'.$Answer['answer'].'",'.$value.']';
 							if($count != $tcount)
 								echo ',';
