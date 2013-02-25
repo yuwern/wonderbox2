@@ -239,7 +239,6 @@ class AppHelper extends Helper
 			$conditions['BeautyProfile.beauty_question_id'] =  $question_id;
 		if(!empty($participantUserIds))
 			$conditions['BeautyProfile.user_id'] =  $participantUserIds;
-
 		$beautyprofies = $this->BeautyProfile->find('all',array(
 			'conditions'=> $conditions,
 			'fields'=> array(
@@ -262,6 +261,30 @@ class AppHelper extends Helper
 
 			),
 		));
+		if(empty($beautyprofies[0][0]['Answer1']))
+		$beautyprofies[0][0]['Answer1'] = 0;
+		if(empty($beautyprofies[0][0]['Answer2']))
+		$beautyprofies[0][0]['Answer2'] = 0;
+		if(empty($beautyprofies[0][0]['Answer3']))
+		$beautyprofies[0][0]['Answer3'] = 0;
+		if(empty($beautyprofies[0][0]['Answer4']))
+		$beautyprofies[0][0]['Answer4'] = 0;
+		if(empty($beautyprofies[0][0]['Answer5']))
+		$beautyprofies[0][0]['Answer5'] = 0;
+		if(empty($beautyprofies[0][0]['Answer6']))
+		$beautyprofies[0][0]['Answer6'] = 0;
+		if(empty($beautyprofies[0][0]['Answer7']))
+		$beautyprofies[0][0]['Answer7'] = 0;
+		if(empty($beautyprofies[0][0]['Answer8']))
+		$beautyprofies[0][0]['Answer8'] = 0;
+		if(empty($beautyprofies[0][0]['Answer9']))
+		$beautyprofies[0][0]['Answer9'] = 0;
+		if(empty($beautyprofies[0][0]['Answer10']))
+		$beautyprofies[0][0]['Answer10'] = 0;		
+		if(empty($beautyprofies[0][0]['Answer11']))
+		$beautyprofies[0][0]['Answer11'] = 0;
+		if(empty($beautyprofies[0][0]['Answer12']))
+		$beautyprofies[0][0]['Answer12'] = 0;
 		return $beautyprofies[0];
 	}
 	function beautyProfileDetailsNew($question_id,$participantUserIds = array(),$totalparticipants){

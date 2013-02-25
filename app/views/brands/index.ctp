@@ -38,7 +38,7 @@
 							$class = ' class="no-pad"';
 							}
 						?> 
-						<li<?php echo $class; ?>><?php     echo $this->Html->link($this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'brand_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))), array('controller' => 'brands', 'action' => 'view', $brand['Brand']['slug']),array('title' =>sprintf(__l('%s'),$brand['Brand']['name']), 'escape' => false));
+						<li<?php echo $class; ?>><?php     echo $this->Html->link($this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'brand_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))).'<span></span>', array('controller' => 'brands', 'action' => 'view', $brand['Brand']['slug']),array('title' =>sprintf(__l('%s'),$brand['Brand']['name']), 'escape' => false));
 							?> </li>
 						<?php
 							endforeach;

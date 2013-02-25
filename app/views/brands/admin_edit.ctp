@@ -7,7 +7,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name',array('div'=>'input text required'));
-		echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Image'),'class'=>'required','div'=>'input file' ,'info'=>__('Image size should be 950 X 352')));
+		echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Image'),'class'=>'required','div'=>'input file' ,'info'=>__('Image size for ex. 150 X 150, 200 X 200')));
 		echo $this->Form->input('short_description', array('label' => __l('Short Description'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor' ,'div'=>'input text required'));
 		?>

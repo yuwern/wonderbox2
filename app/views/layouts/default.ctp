@@ -70,8 +70,7 @@
 							);                         
                     		$current_user_details['UserAvatar'] = $this->Html->getUserAvatar($this->Auth->user('id'));
     				?>
-					<div class="c2">&nbsp;<?php //echo $this->Html->image('facebook_like.jpg',array('width'=>'95','height'=>'20')); ?></div>
-					<!--<div class="c2"><div class="fb-like" data-href="<?php echo Router::url('/',true); ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></div> -->
+					<div class="c2">&nbsp;<fb:like href="<?php echo Router::url('/', true);?>" layout="button_count" font="tahoma"></fb:like></div>
                    <div class="c3" id="chromemenu"><span class="f-left"><strong><?php echo __l('Hi'); ?></strong> </span><span class="f-left"><?php echo $this->Html->getUserAvatarLink($current_user_details, 'micro_thumb'); ?></span> <span class="f-left"><?php echo $this->Html->getUserLink($current_user_details,true); ?>&nbsp;| &nbsp; <?php echo $this->Html->link('<strong>'.__l('Logout').'</strong>', array('controller' => 'users', 'action' => 'logout'), array( 'title' => __l('Logout'),'escape'=>false)); ?>   </span>
 					<div id="dropmenu1" class="dropmenudiv">
 					
@@ -101,10 +100,8 @@
 					<div class="c5"><?php echo $this->Html->link(__l('Admin panel'), array('controller' => 'users' , 'action' => 'stats' , 'admin' => true), array('title' => __l('Admin panel'), 'escape' => false)); ?></div> 
 					<?php endif; ?>
 					<?php else: ?>
-					   <div class="c3"><?php echo $this->Html->link('<strong>'.__l('Login').'</strong>', array('controller' => 'users', 'action' => 'login'), array('title' => __l('Login'),'escape'=>false));?> | <?php echo $this->Html->link('<strong>'.__l('Register').'</strong>', array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Register'),'escape'=>false));?>  <?php if(Configure::read('facebook.is_enabled_facebook_connect') && !empty($fb_login_url)):  ?> |
-						<?php echo $this->Html->link(__l('Facebook Login'), array('controller' => 'users', 'action' => 'login','type'=>'facebook'), array('title' => __l('Facebook Login'),'class'=>'f-login', 'escape' => false)); ?>
-					 <?php endif; ?></div>
-
+					<div class="c2">&nbsp;<fb:like href="<?php echo Router::url('/', true);?>" layout="button_count" font="tahoma"></fb:like></div>
+                 	   <div class="c3"><?php echo $this->Html->link('<strong>'.__l('Login').'</strong>', array('controller' => 'users', 'action' => 'login'), array('title' => __l('Login'),'escape'=>false));?>&nbsp;&nbsp; |&nbsp;&nbsp; <?php echo $this->Html->link('<strong>'.__l('Register').'</strong>', array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Register'),'escape'=>false));?>  </div>
 					<?php endif; ?>
 					<div class="clear"></div>
                 </div>
@@ -125,7 +122,7 @@
 							<?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'index' ) ?  'class="active"': null; ?>
 				            <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Brands'), array('controller' => 'brands', 'action' => 'index', 'admin' => false), array('title' => __l('Brands'),'class'=> 'brands'));?></li>
 							<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'class="active"': null; ?>
-                            <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('How it Works?'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('How it Works?'),'class'=> 'howit'));?></li>
+                            <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('How it Works'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('How it Works'),'class'=> 'howit'));?></li>
 							<?php if ($this->Auth->sessionValid()): ?>
 							 <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'class="active"' : null; ?> 
 							<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Refer a Friend'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('class'=>'refer_icon','title' => __l('Refer a Friend')));?></li>

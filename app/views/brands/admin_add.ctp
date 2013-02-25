@@ -6,7 +6,7 @@
 		<legend><?php echo $this->Html->link(__l('Brands'), array('action' => 'index'));?> &raquo; <?php echo __l('Admin Add Brand');?></legend>
 	<?php
 		echo $this->Form->input('name',array('div'=>'input text required'));
-		echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Image'),'class'=>'required','div'=>'input file required','info'=>__('Image size should be 100 X 100')));
+		echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Image'),'class'=>'required','div'=>'input file required','info'=>__('Image size for ex. 150 X 150, 200 X 200')));
 		echo $this->Form->input('short_description', array('label' => __l('Short Description'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		?>

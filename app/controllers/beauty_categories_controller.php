@@ -117,7 +117,6 @@ class BeautyCategoriesController extends AppController
 										),
 										'recursive'=> 2
 									));
-	
 		if(!empty($this->request->params['named']['type']) && $this->request->params['named']['type'] =='print'){
 			$this->layout ='pdf';
 		}
