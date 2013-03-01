@@ -934,7 +934,7 @@ jQuery(document).ready(function($) {
 		$this = $(this);
 		$('div.js-responses').block();
 		var product_count = parseInt($('.js-product-count').val());
-		$.get(__cfg('path_absolute') + 'product_redemptions/addproduct_more/' +product_count, function(data) {
+		$.get(__cfg('path_absolute') + 'malaysia/product_redemptions/addproduct_more/' +product_count, function(data) {
 			$('.js-product-content').append(data);
 			$('.js-product-count').val(product_count + 1);
 			$('div.js-responses').unblock();

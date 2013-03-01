@@ -21,9 +21,9 @@
 							  <span><?php echo __l('for'); ?> <?php echo $package['PackageType']['no_of_months']; ?> <?php echo __l('month'); ?></span>
 							  <p><?php echo __l('WonderPoints earned:'); ?> <?php echo $package['Package']['no_of_wonderpoints']; ?></p>
 							 <?php if($i== 1): ?>
-								 <p class="align-Center"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.$package['Package']['cost'].'||'.$package['PackageType']['no_of_months']; ?>" class="js-payment-gift-plan select-on" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Selected'); ?></a></p>
+								 <p class="align-Center"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.configure::read('site.currency').$package['Package']['cost'].'||'.$package['PackageType']['name']; ?>" class="js-payment-gift-plan select-on" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Selected'); ?></a></p>
 							 <?php else: ?>
-								 <p class="align-Center"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.$package['Package']['cost'].'||'.$package['PackageType']['no_of_months']; ?>" class="js-payment-gift-plan select-off" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Select'); ?></a></p>
+								 <p class="align-Center"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.configure::read('site.currency').$package['Package']['cost'].'||'.$package['PackageType']['name']; ?>" class="js-payment-gift-plan select-off" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Select'); ?></a></p>
 							 <?php endif; ?>
 						  
 							</div>
@@ -69,7 +69,7 @@
                                 </li>
                                 <li class="t-data">
                                 	<div class="t-c1">
-                                    	<p><label><?php echo __l('PACKAGE NAME'); ?></label> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span></p>
+                                    	<p><label><?php echo __l('PACKAGE NAME'); ?></label> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['name']); ?></span></p>
                                         <p><label><?php echo __l('PACKAGE AMOUNT'); ?></label><span class="js-payment-cost"> <?php echo Configure::read('site.currency'); ?><?php echo($packages[0]['Package']['cost']); ?></span></p>
                                     </div>
 									
