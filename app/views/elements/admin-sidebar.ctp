@@ -18,8 +18,10 @@
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Brands'), array('controller' => 'brands', 'action' => 'index'),array('title' => __l('Brands'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'products') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Products'), array('controller' => 'products', 'action' => 'index'),array('title' => __l('Products'))); ?></li>
-			<?php $class = ($this->request->params['controller'] == 'product_redeems') ? ' class="active"' : null; ?>
-			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redeems'), array('controller' => 'product_redeems', 'action' => 'index'),array('title' => __l('Product Redeems'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'product_redemptions') ? ' class="active"' : null; ?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemptions'), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' => __l('Product Redemptions'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'product_redemption_users') ? ' class="active"' : null; ?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemption Users'), array('controller' => 'product_redemption_users', 'action' => 'index'),array('title' => __l('Product Redemption Users'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'beauty_categories' || $this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'admin_chart' || $this->request->params['controller'] == 'user_shippings' && $this->request->params['action'] == 'admin_chart' ) ? ' class="active"' : null;
 			?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Beauty and Demographic categories'), array('controller' => 'beauty_categories', 'action' => 'index'),array('title' => __l('Beauty and Demographic categories'))); ?></li>

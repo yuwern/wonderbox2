@@ -36,8 +36,8 @@
 						<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>			
 						 <?php $class = ($this->request->params['controller'] == 'products' && ($this->request->params['action'] == 'survey' || $this->request->params['action'] == 'quiz')) ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>
-						<?php $class = ($this->request->params['controller'] == 'products' && ($this->request->params['action'] == 'product_redeem' || $this->request->params['action'] == 'quiz')) ? ' class="active"' : null; ?>
-					    <li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemption'), array('controller' => 'products', 'action' => 'product_redeem'), array('title' => __l('Product Redemption')));?></li>
+						<?php $class = ($this->request->params['controller'] == 'product_redemptions' && ($this->request->params['action'] == 'index')) ? ' class="active"' : null; ?>
+					    <li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemption'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('Product Redemption')));?></li>
 						<?php endif; ?>
                        </ul>
                   </div>

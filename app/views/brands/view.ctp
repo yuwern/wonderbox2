@@ -9,7 +9,6 @@
                     	<div class="pro-each-main-left">
                         	<?php echo $this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'brand_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))); ?>
 							<br/>
-							<br/>
 							<?php echo $this->Html->cHtml($brand['Brand']['description']);?>
                         </div>
                      	<?php echo $this->element('product-index', array('brand_id'=>$brand['Brand']['id']));?>

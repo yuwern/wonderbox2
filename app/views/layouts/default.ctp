@@ -34,12 +34,26 @@
 	?>
 	<?php 	require_once('_head.inc.ctp');
     		echo $this->Asset->scripts_for_layout();
-
-	?><!--
-	<meta content="111586242311802" property="og:app_id" />
-	<meta content="111586242311802" property="fb:app_id" />
-	<meta property="og:image" content="http://192.9.200.11/wonderbox/img/blue-theme/logo-email.png"/>
-	-->
+	// For other than Facebook (facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)), wrap it in comments for XHTML validation...
+if (strpos(env('HTTP_USER_AGENT'), 'facebookexternalhit')===false):
+    echo '<!--', "\n";
+endif;
+    ?>
+	<meta content="<?php echo Configure::read('facebook.app_id');?>" property="og:app_id" />
+	<meta content="<?php echo Configure::read('facebook.app_id');?>" property="fb:app_id" />
+		<meta property="og:site_name" content="<?php echo Configure::read('site.name'); ?>"/>
+		<meta property="og:image" content="<?php echo Router::url(array(
+				'controller' => 'img',
+				'action' => 'blue-theme',
+				'logo-email.png',
+				'admin' => false
+			) , true);?>"/>
+	<?php
+if (strpos(env('HTTP_USER_AGENT'), 'facebookexternalhit')===false):
+    echo '-->', "\n";
+endif;
+// <--
+?>
 </head>
 <body>
     <!-- Header & Body Div -->
@@ -88,7 +102,7 @@
 							<li><?php echo $this->Html->link(__l('My Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('My Beauty Profile')));?></li>
 							<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
 							<li><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>		
-							<li><?php echo $this->Html->link(__l('Product Redemption'), array('controller' => 'products', 'action' => 'product_redeem'), array('title' => __l('Product Redemption')));?></li>
+							<li><?php echo $this->Html->link(__l('Product Redemption'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('Product Redemption')));?></li>
 							<?php endif; ?></ul>
 							<?php endif; ?>
 						</div>

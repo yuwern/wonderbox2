@@ -930,6 +930,35 @@ jQuery(document).ready(function($) {
 		}
 		return false;
 	});
+	$('.js-add-more-product').livequery('click', function() {
+		$this = $(this);
+		$('div.js-responses').block();
+		var product_count = parseInt($('.js-product-count').val());
+		$.get(__cfg('path_absolute') + 'product_redemptions/addproduct_more/' +product_count, function(data) {
+			$('.js-product-content').append(data);
+			$('.js-product-count').val(product_count + 1);
+			$('div.js-responses').unblock();
+			return false;
+		});		
+		$('div.js-responses').unblock();
+		return false;
+	});
+	$('.js-product-delete').livequery('click', function() {
+		var product_count = parseInt($('.js-product-count').val());
+		$('div.js-responses').block();
+		$this = $(this);
+		if (window.confirm('Are you sure you want to delete brand #' + product_count+ '?')) {
+			if(product_count > 1){
+				$('#js-product-'+product_count).remove();
+				$('.js-product-count').val(product_count - 1);
+				$.fn.setflashMsg('Product deleted', 'success');
+			}else {
+				$.fn.setflashMsg('Two Product Should be Must', 'error');
+			}
+		}
+    	$('div.js-responses').unblock();
+		return false;
+	});
     $('form select.js-autosubmit').livequery('change', function() {
         $(this).parents('form').submit();
     });

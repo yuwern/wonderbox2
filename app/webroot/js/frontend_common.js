@@ -23,6 +23,15 @@ jQuery(document).ready(function($) {
 		$(".js-payment-cost").html(response[1]);
 		$(".js-payment-month").html(response[2]);
 	});
+	$('a.js-payment-gift-plan').livequery('click',function(){
+	 	$(".js-payment-gift-plan").addClass("select-off");
+		$("#"+$(this).attr('id')).removeClass('select-off').addClass('select-on');
+		var content = $.trim($('#'+$(this).attr("id")).attr('rel'));
+		response = content.split("||");
+		$("#js-subscription-plan").val(response[0]);
+		$(".js-payment-cost").html(response[1]);
+		$(".js-payment-month").html(response[2]);
+	});
 	 $('form select.js-autosubmit').livequery('change', function() {
         $(this).parents('form').submit();
     });

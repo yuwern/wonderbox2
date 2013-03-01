@@ -3,7 +3,7 @@
 .container{ width:950px; margin:0 auto;}
 .header{}
 /*  Global link css  */
-.global_link{ background:#ede8dc; border:1px solid #d3c8bd; border-top:1px; padding:1px; overflow:hidden;font-family:rawengulkbold;}
+.global_link{ background:#ede8dc; border:1px solid #d3c8bd; border-top:1px; padding:1px; /* overflow:hidden; */ font-family:rawengulkbold;}
 .global_link .c1{ float:left;  font-size:14px; font-family:rawengulkbold; color:#302a2b; font-weight:bold; padding-top:5px; padding-left:10px;}
 .global_link .c1 span{font-size:14px; font-family:rawengulkbold; color:#e885a8; font-weight:bold;}
 .global_link .c1 i{ font-size:10px;}
@@ -165,7 +165,7 @@ div.submit{ padding-left: 41%;padding-top: 10px;}
 .date select#UserProfileDobYear{ width:59px;}
 .gender span{display:inline-block; width:41%;font-family:rawengulkbold; font-size:11px; font-weight:bold; text-transform: uppercase;}
 .gender .input.radio{display:inline-block;}
-.contact-box .input textarea {
+.contact-box .input textarea,.gift-wonder .input textarea {
     border: 1px solid #A8A8A8;
     display: inline-block;
     font-family: rawengulkbold;
@@ -173,11 +173,11 @@ div.submit{ padding-left: 41%;padding-top: 10px;}
     width: 175px;
 }
 
-.contact-box  .error-message {
+.contact-box  .error-message{
     color: red;
     padding-left: 100px;
 }
-.contact-box  .input.textarea label{vertical-align: top;}
+.contact-box  .input.textarea label,.gift-wonder  .input.textarea label{vertical-align: top;}
 /* About Us css */
 .about{ overflow:hidden; padding-top:30px;}
 .about .head h1{ font-size:25px; font-weight:bold; color:#e88ea9; font-family:rawengulkbold; line-height:18px; padding-bottom:2px;}
@@ -826,7 +826,9 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .step-bor.end2 { background: url("../img/step_end2.jpg") no-repeat scroll right center transparent !important;    margin: 20px 0 25px; padding-right: 19px; width: 455px;}
 .step-bor.end2 ul li.select {padding-right: 39px; background: right top no-repeat #F7D4E1;}
 .contact-box #UserShareFriendForm .error-message{padding-left:0px; }
-
+.gift-wonder .normal span.info {
+	margin:5px 0px 0px 138px;
+}
 .refer_friend h1.refer-head {
     color: #E88EA9;
     font-size: 15px;
@@ -839,3 +841,56 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 /* end developer css */
 
 .step-bor.end2 ul li.select{float:none}
+
+
+/*  Gift a wonderbox  */
+.gift-wonder{ overflow:hidden;padding-top:30px;}
+.gift-wonder .head p{ padding-bottom:8px; text-align:left;}
+.gift-wonder .head{ margin-bottom:20px;}
+.giftw-left{ width:230px; float:left;}
+.giftw-right{ width:690px; float:right;}
+.gift-wonder h2{ font-weight:normal; color:#0f0d0e;}
+.gift-wonder h3{ font-weight:normal; font-size:13px;}
+.gw-box-left{ width:49%; float:left; margin:15px 0;}
+.gw-box-right{ width:49%; float:right;margin:15px 0;}
+.gift-wonder input.f11{ font-size:11px; padding:5px 3px;}
+#gift-data h3{ font-weight:normal; font-size:18px;}
+#gift-data{}
+#gift-data .t-c1{ width:75%; float:left;}
+#gift-data .t-c2{ width:25%; float:left; text-align:right; }
+#gift-data label{ display:inline-block; width:40%;}
+#gift-data  span{color:#d3557b;}
+#gift-data li:hover{ background:inherit;}
+#gift-data li.t-head:hover{ background:#F5F5F5}
+#gift-data li.t-head h3{ text-transform:none;}
+.pay-btn1{ display:inline-block; width:170px; height:38px; border:0; background:url(../img/pay_btn1.jpg) no-repeat; text-indent:-9999px; font-size:0; cursor:pointer;}
+.pay-btn1:hover{ display:inline-block; width:170px; height:38px; border:0; background:url(../img/pay_btn1_h.jpg) no-repeat; text-indent:-9999px; font-size:0; cursor:pointer;}
+.gray{ color:#999;}
+.f11{ font-size:11px;}
+
+
+/* product redeem */
+.product_redeem{overflow:hidden;padding-top:30px;}
+.product_redeem h3{ padding:20px 0; font-size:17px; font-weight:normal;}
+.reddeem-box{ width:298px; min-height:350px; border:1px solid #dedede; border-bottom:0; padding:5px; overflow:hidden}
+.reddeem-box p{ text-align:center; padding-bottom:25px;}
+.redeem-now{ float:left; margin:0 7px 0 4px; width:143px; height:31px; border:0; background:url(../img/redeem_now.jpg) no-repeat; text-indent:-9999px; font-size:0; cursor:pointer;}
+.redeem-now:hover{background:url(../img/redeem_now_h.jpg) no-repeat;}
+.redeem-complete{ float:left; margin:0 7px 0 4px; width:143px; height:31px; border:0; background:url(../img/completed.jpg) no-repeat; text-indent:-9999px; font-size:0; }
+
+.what-inside{float:left; width:143px; height:31px; border:0; background:url(../img/what_inside.jpg) no-repeat; text-indent:-9999px; font-size:0; cursor:pointer;}
+.what-inside:hover{ background:url(../img/what_inside_h.jpg) no-repeat;}
+.set-box{width:298px;border:1px solid #dedede; padding:5px 5px 10px 5px; }
+.set-head{ background:#302a2b; padding:3px 5px; margin-bottom:10px; text-align:center; font-size:14px; color: #FFF; font-weight:normal;}
+.set-box2{width:298px;border:1px solid #dedede; border-top:0; padding:5px 5px 10px 5px; }
+
+.set-box label{ float:left;width:24%; padding-right:1%; text-align:right; font-size:14px;}
+.set-box span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;}
+.set-box2 label{ float:left;width:24%; padding-right:1%; text-align:right; font-size:14px;}
+.set-box2 span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;}
+.set-box2 div{ padding:10px 10px; margin:0 5px; background:#ede8dc;}
+.set-box span a{color:#d3557b;}
+.pro-red-box{ float:left;}
+.pro-red-box.mrl{ margin:0 10px;}
+.pre-month h1{ background:#e3e3e3; color:#e88ea9; font-size:26px; text-align:center; padding:20px 5px; margin:3px 3px 10px 3px; font-weight:normal;}
+.pro-red-box.pre-month .reddeem-box p{ text-align:center; padding-bottom:10px;}

@@ -1,4 +1,3 @@
-<?php /* SVN: $Id: index_list.ctp 99 2008-07-09 09:33:42Z rajesh_04ag02 $ */ ?>
 <div class="products index">
 <h2><?php echo __l('Products');?></h2>
   <div class="add-block">
@@ -15,7 +14,6 @@
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Category Name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Brand Name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Wonder point');?></div></th>
-			 <th class="dl"><div class="js-pagination"><?php echo __l('Product Redeem count');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Active');?></div></th>	
             </tr>
 <?php
@@ -36,17 +34,11 @@ foreach ($products as $product):
 	<tr<?php echo $class;?>>
 		    <td><?php  echo $this->Form->input('Product.'. $product['Product']['id'].'.id',array('type' => 'checkbox', 'id' => "admin_checkbox_". $product['Product']['id'],'label' => false , 'class' =>  $status_class.' js-checkbox-list'));   ?></td>
 		<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $product['Product']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $product['Product']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div><div class="actions"><?php echo $this->Html->link(__l('Chart'), array('action'=>'chart', $product['Product']['slug']), array('class' => 'chart js-edit', 'title' => __l('Chart')));?></div></td>
-		<td> <?php echo $this->Html->showImage('Product',  $product['Attachment'][0], array('dimension' => 'medium_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Product']['name'], false)), 'title' => $this->Html->cText($product['Product']['name'], false)));?> <?php echo $this->Html->cText($product['Product']['name']);?></p>
-		<td><?php echo $this->Html->cText($product['Category']['name']);?></p>
-		<td><?php echo $this->Html->cText($product['Brand']['name']);?></p>
-		<td><?php echo $this->Html->cInt($product['Product']['wonder_point']);?></p>
-		<td><?php if(!empty($product['Product']['product_redeem_count'])):
-				  echo $this->Html->link($product['Product']['product_redeem_count'], array('controller'=>'product_redeems','action'=>'index', $product['Product']['id']), array('title' => $product['Product']['product_redeem_count']));
-				  else:
-				  echo $this->Html->cInt($product['Product']['product_redeem_count']);
-				  endif;
-				  ?></p>
-		<td><?php echo $this->Html->cBool($product['Product']['is_active']);?></p>
+		<td> <?php echo $this->Html->showImage('Product',  $product['Attachment'][0], array('dimension' => 'medium_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Product']['name'], false)), 'title' => $this->Html->cText($product['Product']['name'], false)));?> <?php echo $this->Html->cText($product['Product']['name']);?></td>
+		<td><?php echo $this->Html->cText($product['Category']['name']);?></td>
+		<td><?php echo $this->Html->cText($product['Brand']['name']);?></td>
+		<td><?php echo $this->Html->cInt($product['Product']['wonder_point']);?></td>
+		<td><?php echo $this->Html->cBool($product['Product']['is_active']);?></td>
 
 	</tr>
 <?php

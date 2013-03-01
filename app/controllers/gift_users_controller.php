@@ -78,7 +78,7 @@ class GiftUsersController extends AppController
 		    if ($this->GiftUser->validates()) {
 				$package = $this->GiftUser->Package->find('first', array(
 					'conditions' => array(
-					'Package.id = ' => $this->request->data['GiftUser']['package_id']
+					'Package.slug = ' => $this->request->data['GiftUser']['slug']
 				) ,
 				'recursive' => -1,
 				));
@@ -109,8 +109,7 @@ class GiftUsersController extends AppController
 								}
 					  }
 
-				}
-				
+				}				
 				$orderID = time();
 				$amount = number_format($package['Package']['cost'],2);
 				$vcode = md5($amount.Configure::read('molpay.merchant_id').$orderID.Configure::read('molpay.verify_key'));
@@ -134,7 +133,7 @@ class GiftUsersController extends AppController
 				$personal_data = array();
 				$personal_data['personal_data']['contact_no'] = $this->request->data['GiftUser']['contact_no'];
 				$personal_data['personal_data']['contact_no1'] = $this->request->data['GiftUser']['contact_no1'];
-				$personal_data['shipping_data']['address'] = $this->request->data['GiftUser']['address'];
+				$personal_data['shipping_data']['address'] = $this->request->data['GiftUser']['address'] .' '.$this->request->data['GiftUser']['address1'].' '.$this->request->data['GiftUser']['address2'];
 				$personal_data['shipping_data']['zip_code'] = $this->request->data['GiftUser']['zip_code'];
 				$personal_data['shipping_data']['state_id'] = $this->request->data['GiftUser']['state_id'];
 				$personal_data['shipping_data']['country_id'] = $this->request->data['GiftUser']['country_id'];
@@ -167,10 +166,28 @@ class GiftUsersController extends AppController
             }
         }
         $users = $this->GiftUser->User->find('list');
-        $packages = $this->GiftUser->Package->find('list',array(
+        $packages = $this->GiftUser->Package->find('all',array(
 					'conditions' => array(
 						'Package.package_category_id' => ConstPaymentCategory::GiftUserPackage
-					)
+					),
+					'contain'=> array(
+						'PackageType'=> array(
+							'fields'=> array(
+								'PackageType.name',
+								'PackageType.no_of_months'
+							)
+						)
+					),
+					'fields' => array(
+						'Package.id',
+						'Package.name',
+						'Package.slug',
+						'Package.description',
+						'Package.package_type_id',
+						'Package.cost',
+						'Package.no_of_wonderpoints',
+					),
+					'recursive'=> 2
 		));
 		$states = $this->GiftUser->User->UserShipping->State->find('list');	
 		$countries = $this->GiftUser->User->UserShipping->Country->find('list');	
