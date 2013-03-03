@@ -205,6 +205,7 @@ endif;
                 	<li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ')));?></li>
                     <li><?php echo $this->Html->link(__l('Shipping & Returns'), array('controller' => 'pages', 'action' => 'view', 'shipping-return', 'admin' => false), array('title' => __l('Shipping & Returns')));?></li>
                     <li><?php echo $this->Html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact Us')));?></li>
+                    <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions')));?></li>
                 </ul>
                 <h3><?php echo __l('Browse'); ?></h3>
                 <p><?php if (!$this->Auth->sessionValid()): echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?> /
@@ -236,7 +237,7 @@ endif;
     js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=<?php echo Configure::read('facebook.app_id');?>";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
-  <!-- FACEBOOK PLUGIN -->  
+  <!-- FACEBOOK PLUGIN -->
 	<?php echo $this->element('site_tracker', array('cache' => array('config' => 'site_element_cache'), 'plugin' => 'site_tracker')); ?>
 	<?php echo $this->element('sql_dump'); ?>
 

@@ -5,7 +5,7 @@
                     <div class="acc-right">
                     	<div class="head">
                         	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Subscription Redemption'); ?></h1>
-                            <p> <?php echo __l('Account copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                            <p> <?php echo __l('Redeem Complimentary WonderBox With Your WonderPoints'); ?></p>
                         </div>
                        	<div class="acc-fm-box">
                         	<h3><?php echo __l('Redemption'); ?> </h3>
