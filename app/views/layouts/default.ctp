@@ -72,8 +72,8 @@ endif;
 					$duration_month = 1;
 				$months = $this->Html->getMonthLists();
 				?>
-			  	<div class="c1"><strong><?php echo __l('Available units on'); ?> <?php echo $months[Configure::read('header.month')];  ?> :</strong> <span><strong><?php echo
-				$this->Html->checkPackageAvialable();?> <?php echo __l('units'); ?></strong></span> <i><?php echo __l('Running Fast'); ?></i></div>
+			  	<div class="c1"><strong><?php echo __l('Available units for'); ?> <?php echo $months[Configure::read('header.month')];  ?> :</strong> <span><strong><?php echo
+				$this->Html->checkPackageAvialable();?> <?php echo __l('units'); ?></strong></span> <i><?php echo __l('Running out Fast'); ?></i></div>
 				<?php
 					if ($this->Auth->sessionValid()):
 						$current_user_details = array(

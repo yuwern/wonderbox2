@@ -3,7 +3,8 @@
                     <div class="contact-right">
                     	<div class="head">
                         	<h1><?php echo __l('Need help?'); ?> </h1>
-                            <p><?php echo __l('Submission copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                            <p><?php echo __l('For answers to commonly asked questions including shipping, subscriptions, and orders, please read our FAQ!'); ?></p> <br>
+                            <?php echo __l('Still need help? Send us a message, and we'll respond as soon as possible.'); ?></p>
                         </div>
                        	<div class="contact-address">
                         	<div class="address-box">
@@ -14,7 +15,7 @@
                                     </li>
                                     <li>
                                     	<label><?php echo __l('EMAIL / PHONE'); ?></label>
-                                    	<span><a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a> <br />03 8888 9999</span>
+                                    	<span><a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a> </span>
                                     </li>
                                     <li>
                                     	<label><?php echo __l('OPERATING HOURS'); ?></label>
