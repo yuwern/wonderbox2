@@ -206,6 +206,7 @@ endif;
                     <li><?php echo $this->Html->link(__l('Shipping & Returns'), array('controller' => 'pages', 'action' => 'view', 'shipping-return', 'admin' => false), array('title' => __l('Shipping & Returns')));?></li>
                     <li><?php echo $this->Html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact Us')));?></li>
                     <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions')));?></li>
+                    <li><?php echo $this->Html->link(__l('Privacy Policy'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policy')));?></li>
                 </ul>
                 <h3><?php echo __l('Browse'); ?></h3>
                 <p><?php if (!$this->Auth->sessionValid()): echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?> /
