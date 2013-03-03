@@ -4,8 +4,8 @@
                  <?php endif; ?>
                     <div class="acc-right">
                     	<div class="head">
-                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Beauty Account'); ?></h1>
-                            <p> <?php echo __l(''); ?></p>
+                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Subscription Status'); ?></h1>
+                            <p> <?php echo __l('Below are the WonderBox Edition You Are Subscribe To'); ?></p>
                         </div>
                        	<div class="acc-subscription">
                         	<h3><?php echo __l('My Subscriptions'); ?></h3>

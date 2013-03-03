@@ -4,7 +4,7 @@
                  <?php endif; ?>
                     <div class="acc-right">
                     	<div class="head">
-                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Beauty Account'); ?></h1>
+                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Subscription Redemption'); ?></h1>
                             <p> <?php echo __l('Account copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
                         </div>
                        	<div class="acc-fm-box">
