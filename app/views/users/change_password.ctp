@@ -5,7 +5,7 @@
                     <div class="acc-right">
                     	<div class="head">
                         	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Beauty Account'); ?></h1>
-                            <p> <?php echo __l('Account copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                            <p> <?php echo __l(''); ?></p>
                         </div>
                        	<div class="acc-fm-box">
                         	<h3><?php echo __l('Change Password'); ?></h3>

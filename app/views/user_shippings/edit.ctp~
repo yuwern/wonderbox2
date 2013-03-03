@@ -1,15 +1,16 @@
-			<?php if(empty($this->request->params['isAjax']) ): ?>
+				<?php if(empty($this->request->params['isAjax']) ): ?>
 				<div class="account">
 				<?php echo $this->element('user-sidebar'); ?>
                  <?php endif; ?>
                     <div class="acc-right">
                     	<div class="head">
                         	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Beauty Account'); ?></h1>
-                            <p> <?php echo __l(''); ?></p>
+                            <p> <?php echo __l('Account copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
                         </div>
                        	<div class="acc-fm-box">
                         	<h3><?php echo __l('Shipping Information'); ?></h3>
                         	<?php echo $this->Form->create('UserShipping', array('class' => 'normal-form js-ajax-form', 'enctype' => 'multipart/form-data'));  
+								echo $this->Form->input('id');
 								echo $this->Form->input('address',array('label' => __l('Address 1')));
 								echo $this->Form->input('address2',array('label' => __l('Address 2')));
 								echo $this->Form->input('address3',array('label' => __l('Address 3')));
