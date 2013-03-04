@@ -4,7 +4,7 @@
                     <div class="giftw-right">
                     	<div class="head">
                         	<h1><?php echo __l('Gift a WonderBox!'); ?></h1>
-                            <p><?php echo __l('Gift a WonderBox copywriting text, temporary text copywriting text copy test temp text temporary tex. temporary text copywriting text copy test temp text temporary tex. temporary text copywriting text copy testrary tex.'); ?></p>
+                            <p><?php echo __l('Send someone a monthly surprise filled with high-end beauty samples. Follow the steps below to get started.'); ?></p>
                         </div>
                        	<h2><?php echo __l('1. Select your subscription plan'); ?></h2>
 						<?php 
@@ -18,7 +18,7 @@
 						 <div class="pay-box <?php echo $class; ?>">
 							  <h1><?php echo $package['PackageType']['name']; ?></h1>
 							  <h2><?php echo  configure::read('site.currency'); ?><?php echo $package['Package']['cost']; ?></h2>
-							  <span><?php echo __l('for'); ?> <?php echo $package['PackageType']['no_of_months']; ?> <?php echo __l('month'); ?></span>
+							  <span><?php echo __l('for'); ?> <?php echo $package['PackageType']['no_of_months']; ?> <?php echo __l('month(s)'); ?></span>
 							  <p><?php echo __l('WonderPoints earned:'); ?> <?php echo $package['Package']['no_of_wonderpoints']; ?></p>
 							 <?php if($i== 1): ?>
 								 <p class="align-Center"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.configure::read('site.currency').$package['Package']['cost'].'||'.$package['PackageType']['name']; ?>" class="js-payment-gift-plan select-on" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Selected'); ?></a></p>
