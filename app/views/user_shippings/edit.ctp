@@ -10,9 +10,9 @@
                         	<h3><?php echo __l('Shipping Information'); ?></h3>
                         	<?php echo $this->Form->create('UserShipping', array('class' => 'normal-form js-ajax-form', 'enctype' => 'multipart/form-data'));  
 								echo $this->Form->input('id');
-								echo $this->Form->input('address',array('label' => __l('Address 1')));
-								echo $this->Form->input('address2',array('label' => __l('Address 2')));
-								echo $this->Form->input('address3',array('label' => __l('Address 3')));
+								echo $this->Form->input('address',array('label' => __l('Address 1'),'info'=>__l('Unit/House Number')));
+								echo $this->Form->input('address2',array('label' => __l('Address 2'),'info'=>__l('Street Name/Residential Name')));
+								echo $this->Form->input('address3',array('label' => __l('Address 3'),'info'=>__l('Residential Name')));
 								echo $this->Form->input('contact_no',array('label' => __l('Mobile Number'))); 
 								echo $this->Form->input('contact_no1',array('label' => __l('Home Number'))); 
 								echo $this->Form->input('zip_code',array('label' => __l('Postal Code'))); 
