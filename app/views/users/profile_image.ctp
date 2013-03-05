@@ -5,8 +5,7 @@
                     <div class="acc-right">
                     	<div class="head">
                         	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Avatar'); ?></h1>
-                            <p> <?php echo __l(''); ?></p>
-                        </div>
+                             </div>
                        	<div class="acc-fm-box">
                         	<h3><?php echo __l('My Profile Image'); ?></h3>
 								<div class="pro-img"><?php

@@ -5,7 +5,7 @@
                         	<h1><?php echo __l('Need help?'); ?> </h1>
                             <p><?php echo __l('For answers to commonly asked questions including shipping, subscriptions, and orders, please read our FAQ!'); ?> <br>
                             <?php echo __l('Still need help? Send us a message, and we will respond as soon as possible.'); ?></p>
-                        </div>
+                                       </div>
                        	<div class="contact-address">
                         	<div class="address-box">
                             	<ul>
@@ -15,7 +15,7 @@
                                     </li>
                                     <li>
                                     	<label><?php echo __l('EMAIL / PHONE'); ?></label>
-                                    	<span><a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a> </span>
+                                    	<span><a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a></span>
                                     </li>
                                     <li>
                                     	<label><?php echo __l('OPERATING HOURS'); ?></label>

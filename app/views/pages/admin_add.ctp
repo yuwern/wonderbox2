@@ -28,7 +28,8 @@
                 echo $this->Form->input('title', array('between' => '', 'label' =>__l('Page title')));
                 echo $this->Form->input('content', array('type' => 'textarea', 'class' => 'js-editor', 'label' => __l('Body'), 'info' => __l('Available Variables: ##SITE_NAME##, ##SITE_URL##, ##ABOUT_US_URL##, ##CONTACT_US_URL##, ##FAQ_URL##')));                
                 echo $this->Form->input('description_meta_tag',array('label' => __l('Description Meta Tag')));
-                echo $this->Form->input('slug',array('label' => __l('Slug'),'info' => __l('When you create link for this page, url should be page/value of this field.')));
+                echo $this->Form->input('beauty_tips',array('label' => __l('Checked this to list in Beauty tips')));
+				echo $this->Form->input('slug',array('label' => __l('Slug'),'info' => __l('When you create link for this page, url should be page/value of this field.')));
 			?>
             <div class="submit-block clearfix">
             	<?php

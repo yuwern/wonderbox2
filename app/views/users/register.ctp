@@ -5,6 +5,7 @@
                         	<h1><?php echo __l('Create your').' '.Configure::read('site.name').' '.__l('Account'); ?></h1>
                             <p><?php echo __l('Your journey of discovery with us begins here.'); ?> <br>
                             <?php echo __l('We just need a few details from you so we can set up your account:'); ?></p>
+                       
                         </div>
                         <div class="signup-box-left">
 							<?php $formClass = !empty($this->request->data['User']['is_requested']) ? 'js-ajax-login' : ''; ?>

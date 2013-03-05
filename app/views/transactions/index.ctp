@@ -5,7 +5,6 @@
                     <div class="acc-right">
                     	<div class="head">
                         	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Account Transactions'); ?></h1>
-                            <p> <?php echo __l(''); ?></p>
                         </div>
                        	<div class="acc-trans">
                         	<h3><?php echo __l('My Transactions'); ?></h3>

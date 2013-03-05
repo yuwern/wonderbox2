@@ -829,6 +829,9 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .gift-wonder .normal span.info {
 	margin:5px 0px 0px 138px;
 }
+.normal-form span.info {
+	margin:5px 0px 0px 130px;
+}
 .refer_friend h1.refer-head {
     color: #E88EA9;
     font-size: 15px;
@@ -890,7 +893,7 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .set-box2 span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;}
 .set-box2 div{ padding:10px 10px; margin:0 5px; background:#ede8dc;}
 .set-box span a{color:#d3557b;}
-.pro-red-box{ float:left;}
+.pro-red-box{ float:left;margin-bottom: 10px;}
 .pro-red-box.mrl{ margin:0 10px;}
 .pre-month h1{ background:#e3e3e3; color:#e88ea9; font-size:26px; text-align:center; padding:20px 5px; margin:3px 3px 10px 3px; font-weight:normal;}
 .pro-red-box.pre-month .reddeem-box p{ text-align:center; padding-bottom:10px;}

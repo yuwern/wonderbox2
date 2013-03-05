@@ -51,9 +51,9 @@
 							<?php echo $this->Form->input('UserShipping.contact_no',array('label' => __l('Mobile'))); ?>
                             <?php echo $this->Form->input('UserShipping.contact_no1',array('label' => __l('Home'))); ?>
 							<h3 class="m-top40"><?php echo __l('Shipping Information'); ?></h3>
-							<?php	echo $this->Form->input('UserShipping.address',array('label'=>__l('Address 1'),'info'=>__l('Address details 1')));?>
-							<?php	echo $this->Form->input('UserShipping.address2',array('label'=>__l('Address 2'),'info'=>__l('Address details 2')));?>
-							<?php	echo $this->Form->input('UserShipping.address3',array('label'=>__l('Address 3'),'info'=>__l('Address details 3')));?>
+							<?php	echo $this->Form->input('UserShipping.address',array('label'=>__l('Address 1'),'info'=>__l('Unit/House Number')));?>
+							<?php	echo $this->Form->input('UserShipping.address2',array('label'=>__l('Address 2'),'info'=>__l('Street Name/Residential Name')));?>
+							<?php	echo $this->Form->input('UserShipping.address3',array('label'=>__l('Address 3'),'info'=>__l('Residential Name')));?>
 							<?php	echo $this->Form->input('UserShipping.zip_code',array('label'=>__l('POST CODE')));?>
                             <?php	echo $this->Form->input('UserShipping.state_id');?>
 							<?php	echo $this->Form->input('UserShipping.country_id',array('default'=>143));?>

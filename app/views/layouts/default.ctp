@@ -191,12 +191,16 @@ endif;
     	<div class="footer">
         	<div class="f-c1">
             	<h3><?php echo __l('BeauTy Tips'); ?></h3>
-                <ul>
-   			        <li><?php echo $this->Html->link(__l('3 Make up tips every girl should know.'), array('controller' => 'pages', 'action' => 'view', '3-make-up-tips-every-girl-should-know', 'admin' => false), array('title' => __l('3 Make up tips every girl should know.')));?></li>
-					<li><?php echo $this->Html->link(__l('Latest Spring 2013 Colour of the Season'), array('controller' => 'pages', 'action' => 'view', 'latest-spring-2013-colour-of-the-season', 'admin' => false), array('title' => __l('Latest Spring 2013 Colour of the Season')));?></li>
-					<li><?php echo $this->Html->link(__l('10-Step Beauty tips from Bobbi Brown'), array('controller' => 'pages', 'action' => 'view', '10-step-beauty-tips-from-bobbi-brown', 'admin' => false), array('title' => __l('10-Step Beauty tips from Bobbi Brown')));?></li>
-					<li><?php echo $this->Html->link(__l('3 Make up tips every girl should know'), array('controller' => 'pages', 'action' => 'view', '3-make-up-tips-every-girl-should-know', 'admin' => false), array('title' => __l('3 Make up tips every girl should know')));?></li>
-					<li><?php echo $this->Html->link(__l('Latest Spring 2013 Colour of the Seaso'), array('controller' => 'pages', 'action' => 'view', 'latest-spring-2013-colour-of-the-season', 'admin' => false), array('title' => __l('Latest Spring 2013 Colour of the Seaso')));?></li>
+				<?php $beautyTipsPages = $this->Html->getBeautyTips(); ?>
+				<ul>
+				 <?php if(!empty($beautyTipsPages)): 
+						 foreach($beautyTipsPages as $beautyTipsPage): ?>
+						   <li><?php echo $this->Html->link($beautyTipsPage['Page']['title'], array('controller' => 'pages', 'action' => 'view', $beautyTipsPage['Page']['slug'], 'admin' => false), array('title' =>$beautyTipsPage['Page']['title']));?></li>
+					<?php 
+						  endforeach; 	
+					   else: ?>
+					   <li><?php echo __l('No Beauty Tips is avialable'); ?></li>
+					<?php endif?>
 				</ul>
             </div>
             <div class="f-c2">
@@ -205,7 +209,7 @@ endif;
                 	<li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ')));?></li>
                     <li><?php echo $this->Html->link(__l('Shipping & Returns'), array('controller' => 'pages', 'action' => 'view', 'shipping-return', 'admin' => false), array('title' => __l('Shipping & Returns')));?></li>
                     <li><?php echo $this->Html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact Us')));?></li>
-                    <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions')));?></li>
+				   <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions')));?></li>
                     <li><?php echo $this->Html->link(__l('Privacy Policy'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policy')));?></li>
                 </ul>
                 <h3><?php echo __l('Browse'); ?></h3>
@@ -238,7 +242,7 @@ endif;
     js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=<?php echo Configure::read('facebook.app_id');?>";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
-  <!-- FACEBOOK PLUGIN -->
+  <!-- FACEBOOK PLUGIN -->  
 	<?php echo $this->element('site_tracker', array('cache' => array('config' => 'site_element_cache'), 'plugin' => 'site_tracker')); ?>
 	<?php echo $this->element('sql_dump'); ?>
 

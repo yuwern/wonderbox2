@@ -72,6 +72,13 @@ class UserShipping extends AppModel
                     'allowEmpty' => false,
                     'message' => __l('Required') ,
                 ) ,
+            ) ,			
+           'address2' => array(
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'allowEmpty' => false,
+                    'message' => __l('Required') ,
+                ) ,
             ) ,
             'zip_code' => array(
                 'rule1' => array(

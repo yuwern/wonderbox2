@@ -29,27 +29,7 @@
                 echo $this->Form->input('title', array('between' => '', 'label' => __l('Page title')));
                 echo $this->Form->input('content', array('type' => 'textarea', 'class' => 'js-editor', 'label' =>__l('Body'), 'info' => __l('Available Variables: ##SITE_NAME##, ##SITE_URL##, ##ABOUT_US_URL##, ##CONTACT_US_URL##, ##FAQ_URL##, ##SITE_CONTACT_PHONE##, ##SITE_CONTACT_EMAIL##')));                
                 echo $this->Form->input('slug',array('label' => __l('Slug'),'info' => __l('If you change value of this field then don\'t forget to update links created for this page. It should be page/value of this field.')));
-				if($this->request->data['Page']['slug'] == 'pre-launch'):
-					echo $this->Form->input('PageLogo.site_logo', array('type' => 'file','size' => '33', 'label' => __l('Upload Site Logo'), 'info' => '(Preferred 282x65)', 'class' =>'browse-field'));
-					if(!empty($this->request->data['PageLogo'])){
-						foreach($this->request->data['PageLogo'] as $value){
-							if($value['description'] == 'site_logo'){ ?> 
-				<div class="bgimg-input-block">	<?php	echo $this->Form->input('PageLogo.'.$value['id'].'.id', array('type' => 'checkbox', 'id' => "admin_checkbox_".$value['id'], 'label' => __l('Delete?'), 'class' => ' js-checkbox-list'));?>
-						<div class="bg-img-subscription">	<?php	echo $this->Html->showImage('PageLogo', $value, array('dimension' => 'medium_thumb', 'alt' => $value['description'] , 'title' => $value['description'])); ?> </div>
-                 </div>
-                    	<?php	}
-						}
-					}
-					echo $this->Form->input('PageLogo.background_image', array('type' => 'file','size' => '33', 'label' => __l('Upload Background Image'), 'info' => '(Preferred 950x552)', 'class' =>'browse-field'));
-					if(!empty($this->request->data['PageLogo'])){
-						foreach($this->request->data['PageLogo'] as $value){
-							if($value['description'] == 'background_image'){ ?>
-						<div class="bgimg-input-block">	<?php	echo $this->Form->input('PageLogo.'.$value['id'].'.id', array('type' => 'checkbox', 'id' => "admin_checkbox_".$value['id'], 'label' => __l('Delete?'), 'class' => ' js-checkbox-list')); ?>
-						<div class="bg-img-subscription"><?php	echo $this->Html->showImage('PageLogo', $value, array('dimension' => 'medium_thumb', 'alt' => $value['description'] , 'title' => $value['description'])); ?> </div>
-					</div>	<?php	}
-						}
-					}
-				endif;
+                echo $this->Form->input('beauty_tips',array('label' => __l('Checked this to list in Beauty tips')));
 				?>
                 <div class="submit-block clearfix">
                 <?php echo $this->Form->submit(__l('Update'), array('name' => 'data[Page][Update]')); ?>

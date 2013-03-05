@@ -91,6 +91,22 @@ class AppHelper extends Helper
 		));
 		return $userProfile;
     }
+	function getBeautyTips()
+    {
+        App::import('Model', 'Page');
+        $this->Page = new Page();
+		$conditions = array();
+		$conditions['Page.beauty_tips'] = 1;
+		$pages = $this->Page->find('all',array(
+			'conditions'=> $conditions,
+			'fields' => array(
+				'Page.title',
+				'Page.slug',
+			),
+			'recursive'=> -1
+		));
+		return $pages;
+    }
 	function getShippingReport($state_id)
     {
         App::import('Model', 'UserShipping');
@@ -162,11 +178,11 @@ class AppHelper extends Helper
 		else
 		  return 'StartSurvey';	
 	}
-	function checkProductRedeemStatus($product_id, $user_id){
-		App::import('Model', 'ProductRedeem');
-        $this->ProductRedeem = new ProductRedeem();
-		$productRedeemCount = $this->ProductRedeem->find('count',array('conditions'=>array('ProductRedeem.product_id'=>$product_id,
-				'ProductRedeem.user_id'=>$user_id)));
+	function checkProductRedeemStatus($productRedemption_id, $user_id){
+		App::import('Model', 'ProductRedemptionUser');
+        $this->ProductRedemptionUser = new ProductRedemptionUser();
+		$productRedeemCount = $this->ProductRedemptionUser->find('count',array('conditions'=>array('ProductRedemptionUser.product_redemption_id'=>$productRedemption_id,
+				'ProductRedemptionUser.user_id'=>$user_id)));
 		if(!empty($productRedeemCount))
 			return 'Completed';
 		else
