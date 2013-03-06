@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/reset.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/style.css" />
 <!--[if IE]> <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/style-ie7.css" /><![endif]-->
+<link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/website.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/global.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/anythingslider.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/chromestyle.css" />

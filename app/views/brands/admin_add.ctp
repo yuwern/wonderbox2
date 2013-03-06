@@ -15,17 +15,21 @@
 				foreach($this->request->data['BrandAddress'] as $key => $address):?>
 				<h3 style="padding-left:10px;"> <?php echo __l('Retail Outlet'); ?> <?php echo ($key +1); ?> </h3>
 				<?php echo $this->Form->input('BrandAddress.'.$key.'.location',array('type'=> 'textarea','label'=>__l('Retail Outlet'),'div'=>'input textarea required'));
+				echo $this->Form->input('Attachment.'.$key.'.filename', array('type' => 'file', 'label' => __l('Company Image'),'class'=>'required','div'=>'input file required','info'=>__('Image size for ex. 166 X 37')));
 				 echo $this->Form->input('BrandAddress.'.$key.'.telephone_no', array('label'=> __l('Telephone Number')));
 				 echo $this->Form->input('BrandAddress.'.$key.'.fax_no', array('label'=> __l('Fax Number')));
 				 echo $this->Form->input('BrandAddress.'.$key.'.email', array('label'=> __l('Email'),'div'=>'input text required'));
+				 echo $this->Form->input('BrandAddress.'.$key.'.website_url', array('label'=> __l('Retail Website URL'),'div'=>'input text required'));
 				endforeach;
 					$count = count($this->request->data['BrandAddress']);
 			else:?>
 			<h3 style="padding-left:10px;"> <?php echo __l('Retail Outlet'); ?> <?php echo 1; ?> </h3>
 			<?php	echo $this->Form->input('BrandAddress.0.location',array('type'=> 'textarea','label'=>__l('Retail Outlet'),'div'=>'input textarea required'));
+				echo $this->Form->input('Attachment.0.filename', array('type' => 'file', 'label' => __l('Company Image'),'class'=>'required','div'=>'input file required','info'=>__('Image size for ex. 166 X 37')));		
 				echo $this->Form->input('BrandAddress.0.telephone_no', array('label'=>__l('Telephone Number')));
 				echo $this->Form->input('BrandAddress.0.fax_no', array('label'=> __l('Fax Number')));
 				echo $this->Form->input('BrandAddress.0.email', array('label'=>__l('Email')));
+				echo $this->Form->input('BrandAddress.0.website_url', array('label'=>__l('Retail Website URL'),'div'=>'input text required'));
 				$count = 1;
 		endif; 
 		?>
@@ -37,6 +41,7 @@
 		echo $this->Form->input('web_url',array('label'=>__l('Website URL'),'div'=>'input text required'));
 		echo $this->Form->input('beauty_tip_url',array('label'=>__l('Beauty Tip URL'),'div'=>'input text required'));
 		echo $this->Form->input('promotion_url',array('label'=>__l('Promotion URL'),'div'=>'input text required'));
+		echo $this->Form->input('youtube_url',array('label'=>__l('Youtube URL'),'div'=>'input text required'));
 		echo $this->Form->input('is_active',array('type'=>'checkbox'));
 	?>
 	</fieldset>

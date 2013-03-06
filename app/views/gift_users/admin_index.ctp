@@ -55,7 +55,7 @@ foreach ($giftUsers as $giftUser):
 else:
 ?>
 	<tr>
-		<td colspan="7" class="notice"><p><?php echo __l('No Gift Users available');?></p></td>
+		<td colspan="9" class="notice"><p><?php echo __l('No Gift Users available');?></p></td>
 	</tr>
 <?php
 endif;

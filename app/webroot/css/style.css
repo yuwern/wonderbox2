@@ -896,4 +896,146 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .pro-red-box{ float:left;margin-bottom: 10px;}
 .pro-red-box.mrl{ margin:0 10px;}
 .pre-month h1{ background:#e3e3e3; color:#e88ea9; font-size:26px; text-align:center; padding:20px 5px; margin:3px 3px 10px 3px; font-weight:normal;}
+.coming-month h1{ background:#e885a8; color:#fff; font-size:26px; text-align:center; padding:20px 5px; margin:3px 3px 10px 3px; font-weight:normal;}
+
 .pro-red-box.pre-month .reddeem-box p{ text-align:center; padding-bottom:10px;}
+
+
+
+
+.feedback{ float:left; margin:0 7px 0 4px; width:143px; height:31px; border:0; background:url(../img/feedback.jpg) no-repeat; text-indent:-9999px; font-size:0; cursor:pointer;}
+.feedback:hover{background:url(../img/feedback_h.jpg) no-repeat;}
+.a-center{ text-align:center;}
+.a-right{ text-align:right !important;}
+
+.limit-unit{ overflow:hidden;}
+.limit-text{ width:53%; padding-right:2%; float:left; border-right:1px solid #CCC; text-transform:uppercase; color:#797979; text-align:right;}
+.limit-text span{ display:block; color:#e885a8; font-size: 0.47em;font-family: arial; }
+.limit-amt{width:38%; float:left;padding-left:2%;}
+
+
+.limit-amt .c2{ width:15%; float:left; font-family:Myriad Pro, arial; font-size:12px; font-weight:bold;}
+.limit-amt .c3{ width:40%; float:left; font-family:Myriad Pro, arial; font-size:40px; font-weight:bold;line-height: 28px;}
+.limit-amt .c4{ width:8%; float:left; font-family:Myriad Pro, arial; font-size:12px; font-weight:bold;}
+
+.pro-mon-img{ width:500px; float:left;}
+.pro-mon-dec{ width:420px; float:right;}
+.bor-bottom{ border-bottom:1px solid #ccc;}
+
+.pro-mon-box{ padding-top:25px;}
+.pro-mon-box ul{margin:0px; padding:0;overflow:hidden;}
+.pro-mon-box ul.all-products{margin:0px; padding:0;overflow:hidden;}
+.pro-mon-box ul.all-products li{margin:0px; padding:0 11px 16px 0; list-style:none;float:left; position:relative;}
+.pro-mon-box ul.all-products li a{margin:0px; padding:0; float:left; list-style:none;display:table-cell;border:1px solid #b5b5b5; width:179px; height:179px; text-align:center;vertical-align: middle;}
+.pro-mon-box ul.all-products li a:hover{ background:none;}
+
+.pro-mon-box ul.all-products li .shadow{ width:180px; height:180px; display:block; background:url(../img/por_img_shadow.png); position:absolute; top:0; left:0;}
+.pro-mon-box ul.all-products li .bg_box{width:182px; height:45px; display:block; background:url(../img/pro_box_bg.png); position:absolute; bottom:16px; left:-1px; text-align:center; line-height:18px; /* font-family:Tahoma, Geneva, sans-serif; */font-size:12px; color:#FFF;}
+.pro-mon-box ul.all-products li .bg_box span{/* font-family:Tahoma, Geneva, sans-serif; */font-size:12px; font-weight:bold; color:#f8c1d1; display:block; padding-top:5px;}
+.pro-mon-box ul.all-products li a:hover .bg_box span{ color:#FFF; text-decoration:underline;}
+
+
+.retail_out{ border:1px solid #bebebe;}
+.retail_out h1{ background:#ede8dc; padding:10px 10px; color:#585858; font-size:14px; font-weight:normal;}
+.retail_out_box{ padding:15px; margin-bottom:0px;}
+.retail_out_box ul{ margin:0; padding:0;}
+.retail_out_box ul li{ margin:0; padding:0; list-style:none; width:33%; float:left;}
+.retail_out_box ul li p{ min-height:50px;}
+.retail_out_box ul li span{ display:block; font-size:10px; color:#585858; padding-bottom:8px;}
+.retail_out_box ul li a {
+    border: 0px solid #B5B5B5 !important ;
+    display: table-cell;
+    height: auto !important;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: auto !important;
+	font-weight:bold;
+}
+.retail_out_box ul li a:hover { background:none; color:#000;}
+.mtop15{ margin-top:45px !important;}
+
+ul.social-icon{ margin:15px 0; padding:0;}
+ul.social-icon li{ margin:0; padding:0; list-style:none; float:left; width:50%;}
+ul.social-icon li a{ margin:0; padding:0px 0 0px 65px !important; border:0 !important; float:left !important; width:100% !important; text-align:left; height:56px !important; color:#000; font-size:16px; text-align:left !important; }
+ul.social-icon li a:hover{ text-decoration:none;}
+ul.social-icon li a:hover span{ color:#000;}
+ul.social-icon li a span{ color:#e88ea9; font-size:12px; font-weight:bold; display:block;}
+ul.social-icon li a.s-f{ background:url(../img/f_retail.jpg) left no-repeat;}
+ul.social-icon li a.s-y{ background:url(../img/y_retail.jpg) left no-repeat;}
+ul.social-icon li a.s-h{ background:url(../img/h_retail.jpg) left no-repeat;}
+ul.social-icon li a.s-g{ background:url(../img/g_retail.jpg) left no-repeat;}
+
+.reddeem-box .limit-amt .c2, .reddeem-box .limit-amt .c3, .reddeem-box .limit-amt .c4{ color:#666;}
+.reddeem-box .limit-text{ background:url(../img/unit_line.jpg) right center no-repeat; border:0;line-height: 15px;width:51%; padding-right:4%; font-size:18px; font-style:italic;}
+ .reddeem-box .limit-amt .c3{ line-height:30px;}
+
+  
+/*  infographic */
+ .infographic{ overflow:hidden; margin-top:30px;}
+ .point-no{}
+ .nu{ font-size:115px; color:#e886a9; float:left; line-height:86px; padding-right:20px; font-family:rawengulkregular; font-weight:bold; 	}
+ .t1{ font-size:28px; color:#585858; display:block; line-height:26px; text-transform:uppercase; font-family:rawengulkregular;font-weight:bold; }
+ .t2{ font-size:55px; color:#e886a9; display:block; line-height:66px;text-transform:uppercase; font-family:rawengulkregular;font-weight:bold; }
+ 
+.point-box{ border-top:5px dotted #e886a9; list-style:none; margin:35px 0 0px 0; padding:15px 0; background:url(../img/point_bg.jpg) ; overflow:hidden;} 
+.point-box li{ width:310px;border-right:5px dotted #e886a9; padding-bottom:20px; float:left;}
+.point-box li p{font-size:16px; font-family:rawengulkregular;min-height: 80px;}
+.point-coun{ padding-left:75px;}
+.point-coun span{ font-family:RawengulkUltralight; color:#de7298; font-size:90px; display:block; padding:20px 0 15px; min-height:45px;}
+
+.point-coun span sub{ font-size:30px; color:#de7298; font-family:Tahoma, Geneva, sans-serif; vertical-align:bottom; padding:0 6px;line-height: 0px; }
+
+.btn2{-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px; border:0px solid #efc3d3; background:#f7d4e1; text-align:center; font-family:rawengulkregular;font-weight:bold;  font-weight:bold; color:#7f7f7f;/* font-family:Tahoma, Geneva, sans-serif; */font-size:14px;text-transform: uppercase; padding:5px 25px; cursor: pointer;}
+.btn2:Hover{color:#e885a8; background:#e4e4e4; text-decoration:none;}
+
+.point-box li.pon-2{
+    border-right: 5px dotted #E886A9;
+    float: left;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 5px;
+    width: 290px;
+}
+.point-box li.pon-3 {
+    border-right: 0px dotted #E886A9;
+    float: left;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 5px;
+    width: 290px;
+}
+.point-box2{ border-bottom:5px dotted #e886a9;border-top:5px dotted #e886a9; list-style:none; margin:0px 0 35px 0; padding:15px 0; background:url(../img/point_bg.jpg) ; overflow:hidden;} 
+.point-box2 li{ width:310px;border-right:5px dotted #e886a9; padding-bottom:20px; float:left;}
+.point-box2 li p{font-size:16px; font-family:rawengulkregular;min-height: 80px;}
+.point-coun2{ padding-left:75px;}
+.point-coun2 span{ font-family:RawengulkUltralight; color:#de7298; font-size:90px; display:block; padding:20px 0 15px; min-height:45px;}
+
+.point-coun2 span sub{ font-size:30px; color:#de7298;  font-family:Tahoma, Geneva, sans-serif; vertical-align:bottom; padding:0 6px;line-height: 0px; }
+
+
+.point-box2 li.pon-2{
+    border-right: 5px dotted #E886A9;
+    float: left;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 5px;
+    width: 290px;
+}
+.point-box2 li.pon-3 {
+    border-right: 0px dotted #E886A9;
+    float: left;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 5px;
+    width: 290px;
+}
+
+.up{ font-size:16px; color:#de7298; }
+.red-email-box{ background:#e1e1e1; padding:10px; width:80%; margin:0 auto; }
+.red-email-box a{ color:#000; font-size:14px;}
+
+.red-email-box2{ background:#f7f5f0; padding:10px; overflow:hidden;}
+.red-email-box2 p{ padding:10px 0; font-size:14px; color:#302a2b;}

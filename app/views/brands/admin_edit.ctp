@@ -11,34 +11,32 @@
 		echo $this->Form->input('short_description', array('label' => __l('Short Description'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor' ,'div'=>'input text required'));
 		?>
-		<div class="js-brand-content">
-		<?php if(!empty($this->request->data['BrandAddress'])):
-				foreach($this->request->data['BrandAddress'] as $key => $address):?>
-				<div id="js-brand-<?php echo ($key +1); ?>">
-				<h3 style="padding-left:10px;"> <?php echo __l('Retail Outlet'); ?> <?php echo ($key +1); ?> </h3>
-				<?php echo $this->Form->input('BrandAddress.'.$key.'.location',array('type'=> 'textarea','label'=>__l('Retail Outlet')));
-				 echo $this->Form->input('BrandAddress.'.$key.'.telephone_no', array('label'=>__l( __l('Telephone Number'))));
-				 echo $this->Form->input('BrandAddress.'.$key.'.fax_no', array('label'=>__l( __l('Fax Number'))));
-				 echo $this->Form->input('BrandAddress.'.$key.'.email', array('label'=>__l( __l('Email')))); ?>
-			</div>
-			<?php	endforeach;
-					$count = count($this->request->data['BrandAddress']);
-			else:
-				echo $this->Form->input('BrandAddress.0.location',array('type'=> 'textarea','label'=>__l('Retail Outlet')));
-				echo $this->Form->input('BrandAddress.0.telephone_no', array('label'=>__l( __l('Telephone Number'))));
-				echo $this->Form->input('BrandAddress.0.fax_no', array('label'=>__l( __l('Fax Number'))));
-				echo $this->Form->input('BrandAddress.0.email', array('label'=>__l( __l('Email'))));
-				$count = 1;
-		endif; 
-		?>
-		</div>
-		<div class="f-right"><a href="#" class="add js-add-more-brand" title="Add More">Add More</a><a href="#" class="delete js-brand-delete" title="Delete">Delete</a></div>
-		<div class="hide">	<?php echo $this->Form->input('brandaddress_count',array('value'=> $count,'type'=>'text','class'=>'js-brand-count')); ?></div>
+		<?php echo $this->Html->link(__l('Add Retail Address'), array('controller'=>'brand_addresses','action'=>'add', $this->request->data['Brand']['id']), array('class' => 'add', 'title' => __l('Add Product')));?>
+	<br/>
+	<?php if(!empty($this->request->data['BrandAddress'])): ?>
+		<ul>
+		<?php 	foreach($this->request->data['BrandAddress'] as $brandAddress): ?>
+			<li style="float:left;padding:5px;border:1px solid #DE006D;margin:3px;">
+			<?php if(!empty($brandAddress['Attachment'][0])):
+			      echo $this->Html->showImage('BrandAddress',  $brandAddress['Attachment'][0], array('dimension' => 'retaillogo_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brandAddress['location'], false)), 'title' => $this->Html->cText($brandAddress['location'], false))); 
+				  else:
+					echo $this->Html->image('retail_img4.jpg');
+				  endif;
+			   
+			   ?>
+			<div style="padding-left:3px;">	<?php echo $this->Html->truncate($brandAddress['location'],20, array('ending' => '...')); ?></div>
+			<div class="actions"><?php echo $this->Html->link(__l('Edit'), array('controller'=>'brand_addresses','action'=>'edit', $brandAddress['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('controller'=>'brand_addresses','action'=>'delete',$brandAddress['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div>
+			</li>
+		<?php endforeach;  ?>
+		</ul>
+	<?php endif; ?>
+	<div class="clearfix"></div>
 		<?php 
 		echo $this->Form->input('facebook_url',array('label'=>__l('Facebook URL'),'div'=>'input text required'));
 		echo $this->Form->input('web_url',array('label'=>__l('Website URL'),'div'=>'input text required'));
 		echo $this->Form->input('beauty_tip_url',array('label'=>__l('Beauty Tip URL'),'div'=>'input text required'));
 		echo $this->Form->input('promotion_url',array('label'=>__l('Promotion URL'),'div'=>'input text required'));
+		echo $this->Form->input('youtube_url',array('label'=>__l('Youtube URL'),'div'=>'input text required'));
 		echo $this->Form->input('is_active',array('type'=>'checkbox'));
 	?>
 	</fieldset>

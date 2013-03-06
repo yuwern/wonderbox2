@@ -43,7 +43,9 @@ class BrandsController extends AppController
             ) ,
 			'contain'=> array(
 				'Attachment',
-				'BrandAddress',
+				'BrandAddress' => array(
+					'Attachment',
+				),
 			),
             'fields' => array(
                 'Brand.id',
@@ -59,10 +61,7 @@ class BrandsController extends AppController
                 'Brand.web_url',
                 'Brand.beauty_tip_url',
                 'Brand.promotion_url',
-		        'Brand.location1',
-                'Brand.telephone_no1',
-                'Brand.fax_no1',
-                'Brand.email1',
+                'Brand.youtube_url',
             ) ,
             'recursive' =>  2,
         ));
@@ -146,6 +145,7 @@ class BrandsController extends AppController
 								$data['BrandAddress']['telephone_no'] = $brandAddress['telephone_no'];
 								$data['BrandAddress']['fax_no'] = $brandAddress['fax_no'];
 								$data['BrandAddress']['email']= $brandAddress['email'];
+								$data['BrandAddress']['website_url']= $brandAddress['website_url'];
 								$this->Brand->BrandAddress->set($data);
 								if (!$this->Brand->BrandAddress->validates()) {
 									$brandValidationError[$key] = $this->Brand->BrandAddress->validationErrors;
@@ -172,17 +172,26 @@ class BrandsController extends AppController
 						$this->Brand->Attachment->save($this->request->data['Attachment']);
 				}
 				if(!empty($this->request->data['BrandAddress'])){
-					 foreach($this->request->data['BrandAddress'] as $brandAddress) {
+					 foreach($this->request->data['BrandAddress'] as $key => $brandAddress) {
 						$this->Brand->BrandAddress->create();
 						$BrandAddress['BrandAddress']['location'] = $brandAddress['location'];
 						$BrandAddress['BrandAddress']['telephone_no'] = $brandAddress['telephone_no'];
 						$BrandAddress['BrandAddress']['fax_no'] = $brandAddress['fax_no'];
 						$BrandAddress['BrandAddress']['email']= $brandAddress['email'];
 						$BrandAddress['BrandAddress']['brand_id']= $id;
+						$BrandAddress['BrandAddress']['website_url']= $brandAddress['website_url'];
 						$this->Brand->BrandAddress->save($BrandAddress,false);
+						$companylogoAttachment = array();
+						$brandaddress_id = $this->Brand->BrandAddress->id;
+						if(!empty($this->request->data['Attachment'][$key]['filename']['name'])){
+										$this->Brand->BrandAddress->Attachment->create();
+										$this->request->data['Attachment'][$key]['foreign_id'] = $brandaddress_id;
+										$this->request->data['Attachment'][$key]['class'] = 'BrandAddress';
+										$this->Brand->BrandAddress->Attachment->save($this->request->data['Attachment'][$key],false);
+						}
 					 }
 				}
-                $this->Session->setFlash(__l('brand has been added') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Brand has been added') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
@@ -216,6 +225,7 @@ class BrandsController extends AppController
 								$data['BrandAddress']['telephone_no'] = $brandAddress['telephone_no'];
 								$data['BrandAddress']['fax_no'] = $brandAddress['fax_no'];
 								$data['BrandAddress']['email']= $brandAddress['email'];
+								$data['BrandAddress']['website_url']= $brandAddress['website_url'];
 								$this->Brand->BrandAddress->set($data);
 								if (!$this->Brand->BrandAddress->validates()) {
 									$brandValidationError[$key] = $this->Brand->BrandAddress->validationErrors;
@@ -233,7 +243,7 @@ class BrandsController extends AppController
 			$this->Brand->set($this->request->data);
 			if($this->Brand->validates() && $is_brand_valid ) {
 				 if ($this->Brand->save($this->request->data)) {
-				 if(!empty($this->request->data['Attachment']['filename']['name'])){
+				 /*if(!empty($this->request->data['Attachment']['filename']['name'])){
 						$attachment1=$this->Brand->Attachment->find('first', array('conditions'=>array('Attachment.foreign_id'=>$this->request->data['Brand']['id'], 'Attachment.class'=>'Brand'), 'recursive'=>-1));
 						if(!empty($attachment1)){
 							$this->request->data['Attachment']['id'] = $attachment1['Attachment']['id'];
@@ -248,17 +258,25 @@ class BrandsController extends AppController
 					$this->Brand->BrandAddress->deleteAll(array(
 							'BrandAddress.brand_id' =>  $this->request->data['Brand']['id']
 					));	
-					 foreach($this->request->data['BrandAddress'] as $brandAddress) {
+					 foreach($this->request->data['BrandAddress'] as $key => $brandAddress) {
 						$BrandAddress = array();
 						$this->Brand->BrandAddress->create();
 						$BrandAddress['BrandAddress']['location'] = $brandAddress['location'];
 						$BrandAddress['BrandAddress']['telephone_no'] = $brandAddress['telephone_no'];
 						$BrandAddress['BrandAddress']['fax_no'] = $brandAddress['fax_no'];
 						$BrandAddress['BrandAddress']['email']= $brandAddress['email'];
+						$BrandAddress['BrandAddress']['website_url']= $brandAddress['website_url'];
 						$BrandAddress['BrandAddress']['brand_id']= $id;
 						$this->Brand->BrandAddress->save($BrandAddress,false);
+						$brandaddress_id = $this->Brand->BrandAddress->id;
+						if(!empty($this->request->data['Attachment'][$key]['filename']['name'])){
+										$this->Brand->BrandAddress->Attachment->create();
+										$this->request->data['Attachment'][$key]['foreign_id'] = $brandaddress_id;
+										$this->request->data['Attachment'][$key]['class'] = 'BrandAddress';
+										$this->Brand->BrandAddress->Attachment->save($this->request->data['Attachment'][$key],false);
+						}
 					 }
-				}
+				} */
                 $this->Session->setFlash(__l('Brand has been updated') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'index'
@@ -268,8 +286,20 @@ class BrandsController extends AppController
             }
 			}
         } else {
-            $this->data = $this->Brand->read(null, $id);
-            if (empty($this->data)) {
+           // $this->data = $this->Brand->read(null, $id);
+		    $this->data = $this->Brand->find('first', array(
+										'contain'=> array(
+											'Attachment',
+											'BrandAddress' => array(
+												'Attachment'
+											)
+										),
+										'conditions'=> array(
+											'Brand.id'=>$id
+										)
+									)
+									);
+		     if (empty($this->data)) {
                 throw new NotFoundException(__l('Invalid request'));
             }
         }
