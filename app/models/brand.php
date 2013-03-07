@@ -94,84 +94,89 @@ class Brand extends AppModel
                 ) 
             ) ,
             'facebook_url' => array(
-               'rule3' => array(
+               'rule2' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'url'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
                 ) ,
-                'rule2' => array(
+                'rule1' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'custom',
                         '/^http:\/\//'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
-                ),
-				 'rule1' => array(
-                    'rule' => 'notempty',
-                    'allowEmpty' => false,
-                    'message' => __l('Required') ,
-                ) ,
+                )
             ) ,
             'web_url' => array(
-                'rule3' => array(
+                'rule2' => array(
                     'rule' => array(
                         'url'
                     ) ,
+				    'allowEmpty' => true,
                     'message' => __l('Must be a valid URL, starting with http://') ,
                 ) ,
-                'rule2' => array(
+                'rule1' => array(
                     'rule' => array(
                         'custom',
                         '/^http:\/\//'
                     ) ,
+				    'allowEmpty' => true,
                     'message' => __l('Must be a valid URL, starting with http://') ,
-                ),
-				 'rule1' => array(
-                    'rule' => 'notempty',
-                    'allowEmpty' => false,
-                    'message' => __l('Required') ,
-                ) ,
+                )
             ) ,
             'beauty_tip_url' => array(
-               'rule3' => array(
+               'rule2' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'url'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
                 ) ,
-                'rule2' => array(
+                'rule1' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'custom',
                         '/^http:\/\//'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
-                ),
-				 'rule1' => array(
-                    'rule' => 'notempty',
-                    'allowEmpty' => false,
-                    'message' => __l('Required') ,
-                ) ,
+                )
             ) ,
             'promotion_url' => array(
                'rule3' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'url'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
                 ) ,
                 'rule2' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'custom',
                         '/^http:\/\//'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
                 ),
-				 'rule1' => array(
-                    'rule' => 'notempty',
-                    'allowEmpty' => false,
-                    'message' => __l('Required') ,
+            ) ,
+            'youtube_url' => array(
+               'rule3' => array(
+					'allowEmpty' => true,
+                    'rule' => array(
+                        'url'
+                    ) ,
+                    'message' => __l('Must be a valid URL, starting with http://') ,
                 ) ,
+                'rule2' => array(
+					'allowEmpty' => true,
+                    'rule' => array(
+                        'custom',
+                        '/^http:\/\//'
+                    ) ,
+                    'message' => __l('Must be a valid URL, starting with http://') ,
+                ),
             ) ,
          );
 	    $this->moreActions = array(

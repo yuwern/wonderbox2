@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/slides.min.jquery.js"></script>
 	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.countdown.js"></script>
 	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.anythingslider.js"></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.tinyscrollbar.min.js"></script>
 	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/chrome.js"></script>
 	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/frontend_common.js"></script>
 <?php

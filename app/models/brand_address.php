@@ -50,24 +50,21 @@ class BrandAddress extends AppModel
                 ) ,
             ) ,
          'website_url' => array(
-                'rule3' => array(
+                'rule2' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'url'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
                 ) ,
-                'rule2' => array(
+                'rule1' => array(
+					'allowEmpty' => true,
                     'rule' => array(
                         'custom',
                         '/^http:\/\//'
                     ) ,
                     'message' => __l('Must be a valid URL, starting with http://') ,
-                ),
-				 'rule1' => array(
-                    'rule' => 'notempty',
-                    'allowEmpty' => false,
-                    'message' => __l('Required') ,
-                ) ,
+                )
             ) ,
         );
     }

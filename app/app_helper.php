@@ -118,6 +118,28 @@ class AppHelper extends Helper
 		));
 		return $userShipping;
     }
+	function getProductList($edition_date)
+    {
+        App::import('Model', 'Product');
+        $this->Product = new Product();
+		$conditions = array();
+		date_default_timezone_set('UTC');
+		$conditions['Product.edition_date = '] = date('Y-m-15',strtotime($edition_date));
+		$conditions['Product.is_active = '] = 1;
+		$products = $this->Product->find('all',array(
+			'conditions'=> $conditions,
+			'fields' => array(
+                'Product.name',
+                'Product.slug',
+            ) ,
+			'order'=> array(
+				'Product.id' =>'desc'
+			),
+			'limit'=> 6,
+			'recursive' => -1
+		));
+		return $products;
+    }
 	function getWonderPointAvialable($user_id)
     {
         App::import('Model', 'User');

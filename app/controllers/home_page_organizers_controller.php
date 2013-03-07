@@ -28,6 +28,49 @@ class HomePageOrganizersController extends AppController
 		  );
         $this->set('homePageOrganizer', $homePageOrganizer);
     }
+	public function view($slug = null)
+    {
+        $this->pageTitle = __l('HomePageOrganizer');
+        $homePageOrganizer = $this->HomePageOrganizer->find('first', array(
+            'conditions' => array(
+                'HomePageOrganizer.slug = ' => $slug
+            ) ,
+			'contain' => array(
+				'Attachment'
+			),
+            'fields' => array(
+                'HomePageOrganizer.id',
+                'HomePageOrganizer.title',
+                'HomePageOrganizer.short_description',
+                'HomePageOrganizer.content',
+                'HomePageOrganizer.edition_date',
+              ) ,
+            'recursive' => 2,
+        ));
+		date_default_timezone_set('UTC');
+		$conditions['Product.edition_date = '] = date('Y-m-15',strtotime($homePageOrganizer['HomePageOrganizer']['edition_date']));
+		$conditions['Product.is_active = '] = 1;
+		$this->loadModel('Product');
+		$products = $this->Product->find('all', array(
+			  'conditions' => $conditions ,
+				'contain' => array(
+					'Attachment'
+				),
+				'fields' => array(
+					'Product.id',
+					'Product.name',
+					'Product.slug',
+					'Product.price',
+			  ) ,
+			  'recursive' => 2,	
+		));
+	    if (empty($homePageOrganizer)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }
+        $this->pageTitle.= ' - ' . $homePageOrganizer['HomePageOrganizer']['title'];
+        $this->set('homePageOrganizer', $homePageOrganizer);
+		 $this->set('products', $products);
+    }
     public function admin_index()
     {
         $this->pageTitle = __l('homePageOrganizers');
@@ -175,6 +218,30 @@ class HomePageOrganizersController extends AppController
         }
     }
 	public function previous_month(){
-
+	    date_default_timezone_set('UTC');
+		$fromDate = date("Y-m-1", strtotime("-2 months"));
+		$endDate = date("Y-m-t", strtotime("-1 months"));
+		$homePageOrganizers = $this->HomePageOrganizer->find('all',array(
+									'conditions' => array(
+											'HomePageOrganizer.edition_date >= '=> $fromDate,
+											'HomePageOrganizer.edition_date <= '=> $endDate,
+									),
+									'order'=> array(
+										'HomePageOrganizer.edition_date' =>'asc'
+									)
+		));
+		$this->loadModel('Package');
+	    $package = $this->Package->find('first',array(
+					'conditions'=> array(
+						'Package.package_type_id'=> 1
+					),
+					'fields' => array(
+						'Package.cost'
+					),
+					'recursive'=> -1
+			)
+		);
+	  $this->set('package',$package);
+		$this->set('homePageOrganizers',$homePageOrganizers);
 	}
 }

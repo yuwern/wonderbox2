@@ -35,6 +35,14 @@ jQuery(document).ready(function($) {
 	 $('form select.js-autosubmit').livequery('change', function() {
         $(this).parents('form').submit();
     });
+	
+	$('form select.js-autosubmit').livequery('change', function() {
+        $(this).parents('form').submit();
+    });
+	$('#js-retail-click').livequery('click', function() {
+		$(this).hide();
+		$("#js-retail-out").slideDown('slow');
+    });
 	$(' .js-tabs').livequery(function() {
         $(this).tabs();
 		ajaxOptions: {cache: false}

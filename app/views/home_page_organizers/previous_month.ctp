@@ -1,54 +1,73 @@
-	<div class="body">
+<script type="text/javascript">
+$(function(){
+	var month = <?php  echo Configure::read('header.month') - 1; ?>;
+	var year = <?php  echo Configure::read('header.year'); ?>;
+	var ts = (new Date(year, month, 15)).getTime();
+	$('#countdown').countdown({
+		timestamp : ts
+	});
+});
+</script>
+<div class="body">
 				  <div class="product_redeem">
                		<p><?php echo $this->Html->image('redeem_banner.jpg',array('width'=>'947','height'=>'95')); ?></p>
                     <h3><?php echo __l('Previous Month\'s WonderBox Edition'); ?> </h3>
-                    <div class="pro-red-box pre-month">
+					<?php if(!empty($homePageOrganizers)): ?>
+					<?php $i = 0; 
+						foreach($homePageOrganizers as $homePageOrganizer): 
+						 $class  = null;
+						 if($i == 1)
+						 $class = " mrl";
+						
+					?>
+                    <div class="pro-red-box pre-month <?php echo $class; ?>">
                     	<div class="reddeem-box">
-                        	<h1>JANUARY 2013 </h1>
-                            <p><?php echo $this->Html->image('pro_mo_img.jpg'); ?></p>
-                            <p><a href="#" class="feedback" title="Feedback">Feedback</a> <a href="#" class="what-inside" title="What's inside">What's inside</a></p>
-                        </div>
-                        <div class="set-box2">
-                        	<div>
-                                <label>WHAT'S <br />INSIDE</label>
-                                <span>Product x, Product x, Product z, Product g, Product h ... <a href="#" title="Read More">&raquo; Read more</a></span>
-    						</div>
-                        </div>
-                    </div>
-                    <div class="pro-red-box pre-month mrl">
-                    	<div class="reddeem-box">
-                        	<h1>FEBRUARY 2013</h1>
-                            <p><?php echo $this->Html->image('pro_mo_img.jpg'); ?></p>
-                            <p><a href="#" class="feedback" title="Feedback">Feedback</a> <a href="#" class="what-inside" title="What's inside">What's inside</a></p>
+                        	<h1><?php echo date("F Y",strtotime($homePageOrganizer['HomePageOrganizer']['edition_date'])); ?></h1>
+                            <p><?php echo $this->Html->showImage('HomePageOrganizer', (!empty($homePageOrganizer['Attachment']) ? $homePageOrganizer['Attachment'] : ''), array('dimension' => 'productredemption_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false)), 'title' => $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false))); ?></p>
+                            <p><?php echo $this->Html->link(__l('Feedback'), array('controller' => 'products', 'action' => 'survey'),array('class'=>'feedback','title' =>__l('Feedback'), 'escape' => false));	echo $this->Html->link(__l('What\'s inside'), array('controller' => 'home_page_organizers', 'action' => 'view', $homePageOrganizer['HomePageOrganizer']['slug']),array('title' =>__l('What\'s inside'),'class'=>'what-inside', 'escape' => false)); ?></p>
                         </div>
                         <div class="set-box2">
                         	<div>
                                 <label><?php echo __l('WHAT\'S'); ?> <br /><?php echo __l('INSIDE'); ?></label>
-                                <span>Product x, Product x, Product z, Product g, Product h ... <a href="#" title="Read More">&raquo; Read more</a></span>
+							   <span><?php $products = $this->Html->getProductList($homePageOrganizer['HomePageOrganizer']['edition_date']);
+								if(!empty($products)):
+								 foreach($products as $product):
+									echo $this->Html->cText($product['Product']['name'],false).', ';
+								 endforeach;
+								 if(count($products) > 5)
+									echo $this->Html->link(__l('&raquo; Read more'), array('controller' => 'home_page_organizers', 'action' => 'view', $homePageOrganizer['HomePageOrganizer']['slug']),array('title' =>__l('Read More'), 'escape' => false));
+								endif; 
+								?>
+							 </span>
     						</div>
                         </div>
                     </div>
-                    <div class="pro-red-box coming-month">
+					<?php $i++; endforeach; ?>
+					<?php endif; ?>
+                      <div class="pro-red-box coming-month">
                     	<div class="reddeem-box">
-                        	<h1>MARCH 2013</h1>
+                        	<h1><?php echo date("F Y",strtotime("now")); ?></h1>
                             <p><?php echo $this->Html->image('coming_mo_img.jpg'); ?></p>
                             <div class="rate-row"> 
                                 	 <div class="limit-unit">
-                            	<div class="limit-text">Limited Units<span>Delevery to your doorstep</span></div>
-                                <div class="limit-amt"><span class="c2">RM</span>
-                                    <span class="c3">39</span>
-                                    <span class="c4">90</span></div>
+                            	<div class="limit-text"><?php echo __l('Limited Units'); ?><span><?php echo __l('Delevery to your doorstep'); ?></span></div>
+                                <div class="limit-amt"><span class="c2"><?php echo  configure::read('site.currency'); ?></span>
+                                    <span class="c3"><?php $cost = explode('.',$package['Package']['cost']); echo  $cost[0]; ?></span>
+                                    <span class="c4"><?php echo  $cost[1]; ?></span></div>
                             </div>
                                     
                                 <div class="clear"></div>
-                                  <div class="a-center"><a href="#" title="Subscribe Now" class="rate-subs-now"></a></div>
+                                  <div class="a-center"> <?php if($this->Html->checkPackageAvialable() > 0): ?>
+								  <?php echo $this->Html->link(' ', array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('escape'=>false,'title' =>__l('Subscribe Now'),'class'=>'rate-subs-now')); ?>
+								    <?php endif; ?>
+								  </div>
                                 </div>
-                           
-                           
-                        </div>
+                          </div>
                         <div class="set-box2 a-center">
-                   	    <img src="images/time_slide.jpg" width="289" height="58" alt="img" /></div>
-                    </div>
+									<div id="countdown"></div>
+                           </div>
+                             
+                   	                      </div>
 				
           		</div>
             </div>

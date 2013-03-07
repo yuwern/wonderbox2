@@ -13,5 +13,8 @@
 		echo $this->Form->input('website_url', array('label'=> __l('Retail Website URL')));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__l('Update'));?>
+			<div class="submit-block">
+		<?php echo $this->Form->submit(__l('Update'));?>
+		</div>
+<?php echo $this->Form->end();?> 
 </div>

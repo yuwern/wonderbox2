@@ -6,7 +6,7 @@ RESET
 * {margin:0; padding:0;}
 html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {border:0; outline:0; vertical-align:baseline; background:transparent; font-family:rawengulkregular, Arial, Helvetica, sans-serif;}
 body{ color:#000; background:#fff; font-size:12px; line-height:17px;}
-a{ font-family:rawengulkregular,  Arial, Helvetica, sans-serif; font-size:12px; line-height:17px; color:#E88EA9; font-weight:normal; text-decoration:none; outline:none;}
+a{ font-family:rawengulkregular,tahoma,Arial, Helvetica, sans-serif; font-size:12px; line-height:17px; color:#E88EA9; font-weight:normal; text-decoration:none; outline:none;}
 a:hover{ color:#302A2B; text-decoration:underline}
 .clear{ clear:both;}
 .noscreen {display:none;}

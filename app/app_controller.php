@@ -447,6 +447,7 @@ class AppController extends Controller
             'countries/change_country',
             'pages/view',
             'pages/display',
+            'pages/beautytip',
             'pages/home',
             'subscriptions/add',
             'cities/index',
@@ -499,6 +500,8 @@ class AppController extends Controller
 			'brands/view',
 			'products/index',
 			'products/view',
+			'home_page_organizers/previous_month',
+			'home_page_organizers/view',
         );
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];
         if (!in_array($cur_page, $exception_array) && $this->request->params['action'] != 'flashupload') {
