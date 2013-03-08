@@ -63,8 +63,16 @@ $(function(){
 								  </div>
                                 </div>
                           </div>
-                        <div class="set-box2 a-center">
+                        <div class="set-box2 a-center inner-date">
+								<div class="inner-date-left">Time Leave to Buy</div>
+								<div class="inner-date-right">
+                            	<div class="date-row">
 									<div id="countdown"></div>
+                                	<p><?php echo __l('DAYS'); ?></p>
+                                    <p><?php echo __l('HOURS'); ?></p>
+                                    <p><?php echo __l('MINUTES'); ?></p>
+                                </div>
+								</div>
                            </div>
                              
                    	                      </div>

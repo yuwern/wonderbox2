@@ -8,16 +8,16 @@
 <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/jquery.countdown.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Router::url('/',true); ?>css/jquery-ui-1.7.1.custom.css" />
 <?php 	$this->Javascript->codeBlock('var cfg = ' . $this->Javascript->object($js_vars_for_layout) , array('inline' => false)); ?>
-<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.livequery.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.easing.min.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery-ui-1.7.2.custom.min.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/slides.min.jquery.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.countdown.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.anythingslider.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.tinyscrollbar.min.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/chrome.js"></script>
-	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/frontend_common.js"></script>
+<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.min.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.livequery.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.easing.min.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery-ui-1.7.2.custom.min.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/slides.min.jquery.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.countdown.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.anythingslider.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/jquery.tinyscrollbar.min.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/libs/chrome.js"  defer></script>
+	<script type="text/javascript" src="<?php echo Router::url('/',true); ?>js/frontend_common.js"  defer></script>
 <?php
 
 //	$this->Html->css('reset', null, array('inline' => false));
