@@ -22,7 +22,7 @@ $(function(){
 					   if($orgainzer_count == $i): ?>
 					 <div class="pro-red-box coming-month  <?php echo $class; ?>">
                     	<div class="reddeem-box">
-                        	<h1><?php echo date("F Y",strtotime("now")); ?></h1>
+                           <h1><?php echo date("F Y",strtotime($homePageOrganizer['HomePageOrganizer']['edition_date'])); ?></h1>
                             <p><?php echo $this->Html->showImage('HomePageOrganizer', (!empty($homePageOrganizer['Attachment']) ? $homePageOrganizer['Attachment'] : ''), array('dimension' => 'previousmonth_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false)), 'title' => $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false))); ?></p>
                             <div class="rate-row"> 
                                 	 <div class="limit-unit">
