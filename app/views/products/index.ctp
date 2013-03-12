@@ -20,7 +20,7 @@
 									$class = ' class="no-padl"';
 								}
 								?>
-                                <li <?php echo $class; ?>><?php     echo $this->Html->link($this->Html->showImage('Product',  $product['Attachment'][0], array('dimension' => 'product_normal', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Product']['name'], false)), 'title' => $this->Html->cText($product['Product']['name'], false))).'<span class="shadow"></span><span class="bg_box"><span>'.$this->Html->cText($product['Product']['name'], false).'</span>'.Configure::read('site.currency').number_format($product['Product']['price'], 2, '.', '').'</span>', array('controller' => 'products', 'action' => 'view', $product['Product']['slug']),array('title' =>sprintf(__l('%s'),$product['Product']['name']), 'escape' => false)); ?></li>
+                                <li <?php echo $class; ?>><?php     echo $this->Html->link($this->Html->showImage('Product',  $product['Attachment'][0], array('dimension' => 'product_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Product']['name'], false)), 'title' => $this->Html->cText($product['Product']['name'], false))).'<span class="shadow"></span><span class="bg_box"><span>'.$this->Html->cText($product['Product']['name'], false).'</span>'.Configure::read('site.currency').number_format($product['Product']['price'], 2, '.', '').'</span>', array('controller' => 'products', 'action' => 'view', $product['Product']['slug']),array('title' =>sprintf(__l('%s'),$product['Product']['name']), 'escape' => false)); ?></li>
 								<?php
 								endforeach;
 								else:

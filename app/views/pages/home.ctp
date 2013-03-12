@@ -1,5 +1,5 @@
 <script type="text/javascript">
-$(function(){
+$(document).ready(function(){
 	var month = <?php  echo Configure::read('header.month') - 1; ?>;
 	var year = <?php  echo Configure::read('header.year'); ?>;
 	var ts = (new Date(year, month, 15)).getTime();

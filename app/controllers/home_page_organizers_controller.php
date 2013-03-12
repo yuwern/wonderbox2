@@ -23,6 +23,9 @@ class HomePageOrganizersController extends AppController
 				'HomePageOrganizer.id',
 				'HomePageOrganizer.title',
 			 ),
+			 'order' => array(
+                'HomePageOrganizer.edition_date' => 'desc'
+			  ),
 			 'recursive'=> 2
 			)
 		  );
@@ -220,9 +223,10 @@ class HomePageOrganizersController extends AppController
 	public function previous_month(){
 	    date_default_timezone_set('UTC');
 		$fromDate = date("Y-m-1", strtotime("-2 months"));
-		$endDate = date("Y-m-t", strtotime("-1 months"));
+		$endDate = date("Y-m-t", strtotime("now"));
 		$homePageOrganizers = $this->HomePageOrganizer->find('all',array(
 									'conditions' => array(
+											'HomePageOrganizer.is_active'=> 1,
 											'HomePageOrganizer.edition_date >= '=> $fromDate,
 											'HomePageOrganizer.edition_date <= '=> $endDate,
 									),
@@ -230,6 +234,7 @@ class HomePageOrganizersController extends AppController
 										'HomePageOrganizer.edition_date' =>'asc'
 									)
 		));
+
 		$this->loadModel('Package');
 	    $package = $this->Package->find('first',array(
 					'conditions'=> array(
