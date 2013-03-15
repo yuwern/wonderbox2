@@ -652,6 +652,15 @@ class AppController extends Controller
 		$result_details['end_date'] = date('Y-m-d', $dateMonthAdded);
 		return $result_details;
 	}
+	function getGiftUserDurationPeriod($no_of_month,$user_id){
+		$month = Configure::read('header.month');
+		$year = Configure::read('header.year');
+		date_default_timezone_set('UTC');
+		$result_details['start_date'] = date('Y-m-d',mktime(0, 0, 0, $month , 15, $year));
+		$dateMonthAdded = strtotime(date("Y-m-d", strtotime($result_details['start_date'])) . "+".$no_of_month." month");
+		$result_details['end_date'] = date('Y-m-d', $dateMonthAdded);
+		return $result_details;
+	}
     function _unum()
     {
         $acceptedChars = '0123456789';

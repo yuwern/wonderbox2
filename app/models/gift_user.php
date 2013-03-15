@@ -27,7 +27,22 @@ class GiftUser extends AppModel
             'conditions' => '',
             'fields' => '',
             'order' => '',
-        )
+        ),
+		'State' => array(
+            'className' => 'State',
+            'foreignKey' => 'state_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ) ,
+        'Country' => array(
+            'className' => 'Country',
+            'foreignKey' => 'country_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ) ,
+       
     );
     function __construct($id = false, $table = null, $ds = null)
     {
@@ -88,6 +103,12 @@ class GiftUser extends AppModel
                 ) ,
             ) ,
             'friend_mail' => array(
+		       'rule3' => array(
+                    'rule' => array(
+                        '_checkEmailExistOrNot',
+                    ) ,
+                    'message' => __l('You could don\'t use the same email')
+                ) ,
                 'rule2' => array(
                     'rule' => 'email',
                     'message' => __l('Must be a valid email')
@@ -137,7 +158,15 @@ class GiftUser extends AppModel
             ) ,
         );
     }
-		// Send welcome mail to User how purchase the Gift Package
+	
+    function _checkEmailExistOrNot()
+    {
+	   if(trim($_SESSION['Auth']['User']['email']) == trim($this->data['GiftUser']['friend_mail']) )
+		  return false;
+	   else
+		  return true;
+    }
+	// Send welcome mail to User how purchase the Gift Package
 	function _sendWelcomeMailToGiftUser(){
 		App::import('Model', 'EmailTemplate');
 		$this->EmailTemplate = new EmailTemplate();

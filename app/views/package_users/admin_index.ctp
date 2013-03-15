@@ -47,6 +47,12 @@ foreach ($packageUsers as $packageUser):
 	$address  = ' <p> ';
 	if(!empty($packageUser['User']['UserShipping'][0]['address'])):
 	$address  .= $packageUser['User']['UserShipping'][0]['address'].', ';
+	endif; 	
+	if(!empty($packageUser['User']['UserShipping'][0]['address2'])):
+	$address  .= $packageUser['User']['UserShipping'][0]['address2'].', ';
+	endif; 		
+	if(!empty($packageUser['User']['UserShipping'][0]['address3'])):
+	$address  .= $packageUser['User']['UserShipping'][0]['address3'].', ';
 	endif; 
 	if(!empty($packageUser['User']['UserShipping'][0]['State']['name'])):
 	$address  .= $packageUser['User']['UserShipping'][0]['State']['name'] .', ';

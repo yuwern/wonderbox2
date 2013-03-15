@@ -4,7 +4,8 @@ class GiftUsersController extends AppController
     public $name = 'GiftUsers';
 	public $helpers = array(
         'Gateway',
-	);
+	    'Csv',
+    );
 	public $components = array(
         'Email',
     );
@@ -133,7 +134,9 @@ class GiftUsersController extends AppController
 				$personal_data = array();
 				$personal_data['personal_data']['contact_no'] = $this->request->data['GiftUser']['contact_no'];
 				$personal_data['personal_data']['contact_no1'] = $this->request->data['GiftUser']['contact_no1'];
-				$personal_data['shipping_data']['address'] = $this->request->data['GiftUser']['address'] .' '.$this->request->data['GiftUser']['address1'].' '.$this->request->data['GiftUser']['address2'];
+				$personal_data['shipping_data']['address'] = $this->request->data['GiftUser']['address'] ;
+				$personal_data['shipping_data']['address1'] = !empty($this->request->data['GiftUser']['address1'])?$this->request->data['GiftUser']['address1']:'';
+				$personal_data['shipping_data']['address2'] = !empty($this->request->data['GiftUser']['address2'])?$this->request->data['GiftUser']['address2']:'';
 				$personal_data['shipping_data']['zip_code'] = $this->request->data['GiftUser']['zip_code'];
 				$personal_data['shipping_data']['state_id'] = $this->request->data['GiftUser']['state_id'];
 				$personal_data['shipping_data']['country_id'] = $this->request->data['GiftUser']['country_id'];
@@ -265,6 +268,14 @@ class GiftUsersController extends AppController
 							$data['GiftUser']['from'] = $tempPaymentLog['TempPaymentLog']['gift_from'] ;
 							$data['GiftUser']['friend_mail'] = $tempPaymentLog['TempPaymentLog']['gift_email'] ;
 							$data['GiftUser']['message'] = $tempPaymentLog['TempPaymentLog']['message'] ;
+							$data['GiftUser']['address'] = $personal_data['shipping_data']['address'];
+							$data['GiftUser']['zip_code'] = $personal_data['shipping_data']['zip_code'];
+							$data['GiftUser']['state_id'] = $personal_data['shipping_data']['state_id'];
+							$data['GiftUser']['country_id'] = $personal_data['shipping_data']['country_id'];
+							$data['GiftUser']['contact_no'] = $personal_data['personal_data']['contact_no'];
+							$data['GiftUser']['contact_no1'] = $personal_data['personal_data']['contact_no1'];
+							$data['GiftUser']['address1'] = $personal_data['shipping_data']['address1'];
+							$data['GiftUser']['address2'] = $personal_data['shipping_data']['address2'];
 							$data['GiftUser']['is_paid'] = 1 ;
 							if ($this->GiftUser->save($data)) {							
 								$gift_user_id = $this->GiftUser->id;
@@ -310,6 +321,8 @@ class GiftUsersController extends AppController
 										$this->request->data['UserShipping']['country_id'] = $personal_data['shipping_data']['country_id'];
 										$this->request->data['UserShipping']['contact_no'] = $personal_data['personal_data']['contact_no'];
 										$this->request->data['UserShipping']['contact_no1'] = $personal_data['personal_data']['contact_no1'];
+										$this->request->data['UserShipping']['address1'] = $personal_data['shipping_data']['address1'];
+										$this->request->data['UserShipping']['address2'] = $personal_data['shipping_data']['address2'];
 										$this->GiftUser->User->UserShipping->create();
 										$this->GiftUser->User->UserShipping->save($this->request->data['UserShipping'],false);
 								} else {
@@ -339,7 +352,7 @@ class GiftUsersController extends AppController
 											'recursive' => 1
 										));
 										$referred_by_user_id = 0;
-										$duration = $this->getDurationPeriod($package['PackageType']['no_of_months'],$create_user_id);
+										$duration = $this->getGiftUserDurationPeriod($package['PackageType']['no_of_months'],$create_user_id);
 										$this->GiftUser->Package->PackageUser->savePackageUser($package['PackageType']['no_of_months'],$create_user_id,$package['Package']['id'],	$referred_by_user_id);
 										$start_date = $duration['start_date'];	
 										$end_date =  $duration['end_date'];	
@@ -460,23 +473,103 @@ class GiftUsersController extends AppController
     }
     public function admin_index()
     {
+		  $this->_redirectGET2Named(array(
+            'q',
+			'month',
+			'year',
+			'email',
+        ));
+		
         $this->pageTitle = __l('giftUsers');
-        $this->GiftUser->recursive = 0;
-		$this->paginate = array(
+		$conditions = array();
+		if(!empty($this->request->params['named']['month']) &&!empty($this->request->params['named']['year']))
+		{
+			$start_date =$this->request->params['named']['year'].'-'.$this->request->params['named']['month'].'-15';
+			$conditions['GiftUser.start_date'] = $start_date;
+			$this->request->data['GiftUser']['year'] = $this->request->params['named']['year'];
+			$this->request->data['GiftUser']['month'] = $this->request->params['named']['month'];
 
-			);
-		 $this->paginate = array(
+		}
+		if(!empty($this->request->params['named']['email']))
+		{
+			$this->request->data['GiftUser']['email'] = $this->request->params['named']['email'];
+			$conditions['User.email'] = $this->request->params['named']['email'];
+
+		}
+		if ($this->RequestHandler->prefers('pdf')) {
+		 	$giftUsers = $this->GiftUser->find('all', array(
+						'conditions' => $conditions,
+						'contain' => array(
+							'State' => array(
+								'fields' => array(
+									'State.name'
+								)
+							),
+							'Country' => array(
+								'fields' => array(
+									'Country.name'
+								)
+							),
+							'User' => array(
+								'UserProfile'=> array(
+									'fields'=> array(
+										'UserProfile.first_name',
+										'UserProfile.last_name',
+									)	
+								),
+								'fields' => array(
+									'User.id',
+									'User.email',
+									'User.username',
+								),
+								'UserShipping' => array(
+									'fields'=> array(
+										'UserShipping.id',
+										'UserShipping.address',
+										'UserShipping.address2',
+										'UserShipping.address3',
+									)
+								)
+							),
+						),
+						'fields' => array(
+							'GiftUser.id',
+							'GiftUser.user_id',
+							'GiftUser.from',
+							'GiftUser.friend_name',
+							'GiftUser.friend_mail',
+							'GiftUser.address',
+							'GiftUser.address1',
+							'GiftUser.contact_no',
+							'GiftUser.zip_code',
+							'GiftUser.address2',
+						)
+					)
+				);
+		} else {
+		$this->GiftUser->recursive = 0;
+		$this->paginate = array(
+				'conditions' => $conditions,
 				'contain'=> array(
 					'User' => array(
 						'fields' => array(
 							'User.id',
 							'User.email',
 							'User.username',
-						)					
+						),
+						'UserShipping' => array(
+							'fields'=> array(
+								'UserShipping.id',
+								'UserShipping.address',
+								'UserShipping.address2',
+								'UserShipping.address3',
+							)
+						)
 					),
 					'Package' => array(
 						'fields' => array(
 							'Package.id',
+							'Package.name',
 							'Package.cost'
 						)	
 					),
@@ -492,8 +585,107 @@ class GiftUsersController extends AppController
 					'GiftUser.id'=> 'desc'
 				)
 		);
-        $this->set('giftUsers', $this->paginate());
+		$giftUsers = $this->paginate();
+		}
+		$this->set('giftUsers', $giftUsers);
     }
+	public function admin_export(){
+		Configure::write('debug', 0);
+		$this->_redirectGET2Named(array(
+            'q',
+			'month',
+			'year',
+			'email',
+        ));
+		
+        $this->pageTitle = __l('giftUsers');
+		$conditions = array();
+		if(!empty($this->request->params['named']['month']) &&!empty($this->request->params['named']['year']))
+		{
+			$start_date =$this->request->params['named']['year'].'-'.$this->request->params['named']['month'].'-15';
+			$conditions['GiftUser.start_date'] = $start_date;
+			$this->request->data['GiftUser']['year'] = $this->request->params['named']['year'];
+			$this->request->data['GiftUser']['month'] = $this->request->params['named']['month'];
+
+		}
+		if(!empty($this->request->params['named']['email']))
+		{
+			$this->request->data['GiftUser']['email'] = $this->request->params['named']['email'];
+			$conditions['User.email'] = $this->request->params['named']['email'];
+
+		}
+	 	$giftUsers = $this->GiftUser->find('all', array(
+						'conditions' => $conditions,
+						'contain' => array(
+							'State' => array(
+								'fields' => array(
+									'State.name'
+								)
+							),
+							'Country' => array(
+								'fields' => array(
+									'Country.name'
+								)
+							),
+							'User' => array(
+								'UserProfile'=> array(
+									'fields'=> array(
+										'UserProfile.first_name',
+										'UserProfile.last_name',
+									)	
+								),
+								'fields' => array(
+									'User.id',
+									'User.email',
+									'User.username',
+								),
+								'UserShipping' => array(
+									'fields'=> array(
+										'UserShipping.id',
+										'UserShipping.address',
+										'UserShipping.address2',
+										'UserShipping.address3',
+									)
+								)
+							),
+						),
+						'fields' => array(
+							'GiftUser.id',
+							'GiftUser.user_id',
+							'GiftUser.from',
+							'GiftUser.friend_name',
+							'GiftUser.friend_mail',
+							'GiftUser.address',
+							'GiftUser.address1',
+							'GiftUser.contact_no',
+							'GiftUser.zip_code',
+							'GiftUser.address2',
+						)
+					)
+				);
+		 if (!empty($giftUsers)) {
+            foreach($giftUsers as $giftUser) {
+				$user_name = $giftUser['User']['UserProfile']['first_name'] .' '. $giftUser['User']['UserProfile']['last_name'];
+                $data[]['GiftUser'] = array(
+					__l('HQ') => ' ',
+		            __l('ACC') => ' ',
+					__l('SORT') => ' ',
+					__l('User Name') => $user_name,
+					__l('Friend Name') => !empty($giftUser['GiftUser']['friend_name'])?$giftUser['GiftUser']['friend_name']:'',
+					__l('Friend Email') => !empty($giftUser['GiftUser']['friend_mail'])?$giftUser['GiftUser']['friend_mail']:'',
+					__l('ADD1') => !empty($giftUser['GiftUser']['address'])?$giftUser['GiftUser']['address']:$giftUser['User']['UserShipping'][0]['address'],
+					__l('ADD2') => !empty($giftUser['GiftUser']['address1'])?$giftUser['GiftUser']['address1']:$giftUser['User']['UserShipping'][0]['address1'],
+					__l('ADD3') => !empty($giftUser['GiftUser']['address2'])?$giftUser['GiftUser']['address2']:$giftUser['User']['UserShipping'][0]['address2'],
+					__l('POSCODE') => !empty($giftUser['GiftUser']['zip_code'])?$giftUser['GiftUser']['zip_code']:$giftUser['User']['UserShipping'][0]['zip_code'],
+					__l('STATE') => !empty($giftUser['State']['name'])?$giftUser['State']['name']:$giftUser['User']['UserShipping'][0]['State']['name'],
+					__l('RECEIVER TEL (MOBILE)') => !empty($giftUser['GiftUser']['contact_no'])?$giftUser['GiftUser']['contact_no']:$giftUser['User']['UserShipping'][0]['contact_no'],
+					__l('RECEIVER TEL (HOME)') => !empty($giftUser['GiftUser']['contact_no1'])?$giftUser['GiftUser']['contact_no']:$giftUser['User']['UserShipping'][0]['contact_no1'],
+					__l('DEST') => ' ',
+                );
+            }
+        }
+        $this->set('data', $data);
+	}
 	public function admin_import(){
 		if(!empty($this->request->data)){
 			if(!empty($this->request->data['Attachment']['filename']['name']) && !empty($this->request->data['GiftUser']['year']) &&  !empty($this->request->data['GiftUser']['month'])){

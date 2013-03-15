@@ -2,7 +2,7 @@
                 	<div class="submis-left"><?php echo $this->Html->image('submission_ad.jpg'); ?></div>
                     <div class="submis-right">
                     	<div class="head">
-                        	<h1><?php echo __l('Gift a');?> <?php echo Configure::read('site.name');?>  ?></h1>
+                        	<h1><?php echo __l('Gift a');?> <?php echo Configure::read('site.name');?>  </h1>
                             <p><?php echo __l('Submission copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
                         </div>
 						  <div class="shipp-left">
