@@ -222,13 +222,11 @@ class HomePageOrganizersController extends AppController
     }
 	public function previous_month(){
 	    date_default_timezone_set('UTC');
-		$fromDate = date("Y-m-1", strtotime("-2 months"));
-		$endDate = date("Y-m-t", strtotime("now"));
 		$homePageOrganizers = $this->HomePageOrganizer->find('all',array(
 									'conditions' => array(
 											'HomePageOrganizer.is_active'=> 1,
-											'HomePageOrganizer.edition_date >= '=> $fromDate,
-											'HomePageOrganizer.edition_date <= '=> $endDate,
+										//	'HomePageOrganizer.edition_date >= '=> $fromDate,
+									//		'HomePageOrganizer.edition_date <= '=> $endDate,
 									),
 									'order'=> array(
 										'HomePageOrganizer.edition_date' =>'asc'
