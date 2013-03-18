@@ -165,7 +165,7 @@ class HomePageOrganizersController extends AppController
             if ($this->request->data['Attachment']['filename']['error'] == 1) {
                 $ini_upload_error = 0;
             }
-		    $this->request->data['HomePageOrganizer']['edition_date']['day'] = 1;
+		    $this->request->data['HomePageOrganizer']['edition_date']['day'] = 15;
 		    date_default_timezone_set('UTC');
 			if ($this->HomePageOrganizer->validates() && (empty($this->request->data['Attachment']['filename']['name']) || $this->HomePageOrganizer->Attachment->validates()) && $ini_upload_error) {
 	        if ($this->HomePageOrganizer->save($this->request->data)) {

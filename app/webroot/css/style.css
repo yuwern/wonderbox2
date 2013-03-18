@@ -1072,10 +1072,10 @@ font-size: 12px;
 font-weight: bold;
 margin: 0;
 min-height: 64px;
-padding: 30px 0 0;
+padding: 37px 0 0;
 text-transform: uppercase;
 width: 30%;}
-.inner-date .inner-date-right{width:68%; float:left;margin:0px;padding:17px 0 17px;}
+.inner-date .inner-date-right{width:68%; float:left;margin:0px;padding:24px 0 17px;}
 .inner-date .countdownHolder{ width:208px;padding:0px; }
 .inner-date .date-row{padding:0px; border-bottom:0px;}
 
