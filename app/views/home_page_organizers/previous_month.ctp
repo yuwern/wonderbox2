@@ -20,7 +20,7 @@ $(function(){
 						 if($i == 1)
 						 $class = " mrl";
 					   if($orgainzer_count == $i): ?>
-					 <div class="pro-red-box coming-month  <?php echo $class; ?>">
+					 <div class="pro-red-box coming-month">
                     	<div class="reddeem-box">
                            <h1><?php echo date("F Y",strtotime($homePageOrganizer['HomePageOrganizer']['edition_date'])); ?></h1>
                             <p><?php echo $this->Html->showImage('HomePageOrganizer', (!empty($homePageOrganizer['Attachment']) ? $homePageOrganizer['Attachment'] : ''), array('dimension' => 'previousmonth_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false)), 'title' => $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false))); ?></p>
@@ -53,7 +53,7 @@ $(function(){
                             </div>
 
 					<?php else:  ?>
-                    <div class="pro-red-box pre-month <?php echo $class; ?>">
+                    <div class="pro-red-box pre-month">
                     	<div class="reddeem-box">
                         	<h1><?php echo date("F Y",strtotime($homePageOrganizer['HomePageOrganizer']['edition_date'])); ?></h1>
                             <p><?php echo $this->Html->showImage('HomePageOrganizer', (!empty($homePageOrganizer['Attachment']) ? $homePageOrganizer['Attachment'] : ''), array('dimension' => 'productredemption_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false)), 'title' => $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false))); ?></p>
@@ -64,10 +64,13 @@ $(function(){
                                 <label><?php echo __l('WHAT\'S'); ?> <br /><?php echo __l('INSIDE'); ?></label>
 							   <span><?php $products = $this->Html->getProductList($homePageOrganizer['HomePageOrganizer']['edition_date']);
 								if(!empty($products)):
+								 $total_product_count = count($products);
 								 foreach($products as $product):
-									echo $this->Html->cText($product['Product']['name'],false).', ';
+									if($total_product_count >= 5):
+										echo $this->Html->truncate($product['Product']['name'],7, array('ending' => ' ')).', ';
+									endif;
 								 endforeach;
-								 if(count($products) > 5)
+								 if($total_product_count > 5)
 									echo $this->Html->link(__l('&raquo; Read more'), array('controller' => 'home_page_organizers', 'action' => 'view', $homePageOrganizer['HomePageOrganizer']['slug']),array('title' =>__l('Read More'), 'escape' => false));
 								endif; 
 								?>

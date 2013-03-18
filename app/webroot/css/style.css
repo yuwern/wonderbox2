@@ -907,7 +907,7 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .pre-month .set-box2 span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;min-height: 34px;font-family:tahoma}
 .set-box2 div{ padding:10px 10px; margin:0 5px; background:#ede8dc;}
 .set-box span a{color:#d3557b;}
-.pro-red-box{ float:left;margin-bottom: 10px;}
+.pro-red-box{ float:left;margin-bottom: 10px;  padding-left: 6px;}
 .pro-red-box.mrl{ margin:0 10px;}
 .pre-month h1{ background:#e3e3e3; color:#e88ea9; font-size:26px; text-align:center; padding:20px 5px; margin:3px 3px 10px 3px; font-weight:normal;font-family: tahoma;}
 .coming-month h1{ background:#e885a8; color:#fff; font-size:26px; text-align:center; padding:20px 5px; margin:3px 3px 10px 3px; font-weight:normal;font-family: tahoma;}
@@ -990,7 +990,7 @@ ul.social-icon li a.s-g{ background:url(../img/g_retail.jpg) left no-repeat;}
 
 .reddeem-box .limit-amt .c2, .reddeem-box .limit-amt .c3, .reddeem-box .limit-amt .c4{ color:#666;}
 .reddeem-box .limit-text{ background:url(../img/unit_line.jpg) right center no-repeat; border:0;line-height: 15px;width:51%; padding-right:4%; font-size:18px; font-style:italic;}
- .reddeem-box .limit-amt .c3{ line-height:30px;}
+ .reddeem-box .limit-amt .c3{ line-height:33px;}
 
   
 /*  infographic */
