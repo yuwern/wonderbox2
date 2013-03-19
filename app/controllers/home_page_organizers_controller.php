@@ -6,6 +6,7 @@ class HomePageOrganizersController extends AppController
     {
         $this->Security->disabledFields = array(
             'Attachment.filename',
+            'Attachment1.filename',
         );
         parent::beforeFilter();
     }
@@ -97,16 +98,20 @@ class HomePageOrganizersController extends AppController
             if (!empty($this->request->data['Attachment']['filename']['name'])) {
                   $this->HomePageOrganizer->Attachment->set($this->request->data);
             }
-		    $this->request->data['HomePageOrganizer']['edition_date']['day'] = 1;
+		    $this->request->data['HomePageOrganizer']['edition_date']['day'] = 15;
 		    date_default_timezone_set('UTC');
 		    $this->HomePageOrganizer->set($this->request->data);
 			 $ini_upload_error = 1;
-            if (!empty($this->request->data['Attachment']['filename']) && $this->request->data['Attachment']['filename']['error'] == 1) {
+            if ((!empty($this->request->data['Attachment']['filename']) && $this->request->data['Attachment']['filename']['error'] == 1) || (!empty($this->request->data['Attachment1']['filename']) && $this->request->data['Attachment1']['filename']['error'] == 1) ) {
                 $ini_upload_error = 0;
             }
 			if (empty($this->request->data['Attachment']['filename']['name'])) {
 			        $ini_upload_error = 0;
 					$this->HomePageOrganizer->Attachment->validationErrors['filename'] = __l('Required');
+            }
+			if (empty($this->request->data['Attachment1']['filename']['name'])) {
+			        $ini_upload_error = 0;
+					$this->HomePageOrganizer->Attachment1->validationErrors['filename'] = __l('Required');
             }
 			if($this->HomePageOrganizer->validates()&& $ini_upload_error){
             $this->HomePageOrganizer->create();
@@ -117,6 +122,12 @@ class HomePageOrganizersController extends AppController
                         $this->request->data['Attachment']['foreign_id'] = $this->HomePageOrganizer->id;
                         $this->HomePageOrganizer->Attachment->save($this->request->data['Attachment']);
                 }
+				if (!empty($this->request->data['Attachment1']['filename']['name'])) {
+                        $this->HomePageOrganizer->Attachment->create();
+                        $this->request->data['Attachment1']['class'] = 'HomePageOrganizerThumb';
+                        $this->request->data['Attachment1']['foreign_id'] = $this->HomePageOrganizer->id;
+                        $this->HomePageOrganizer->Attachment->save($this->request->data['Attachment1']);
+                }
 				$this->Session->setFlash(__l('Home page organizer has been added') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'index'
@@ -125,6 +136,9 @@ class HomePageOrganizersController extends AppController
 			 else {
                 if (!empty($this->request->data['Attachment']['filename']) && $this->request->data['Attachment']['filename']['error'] == 1) {
                     $this->HomePageOrganizer->Attachment->validationErrors['filename'] = sprintf(__l('The file uploaded is too big, only files less than %s permitted') , ini_get('upload_max_filesize'));
+                }
+				if (!empty($this->request->data['Attachment1']['filename']) && $this->request->data['Attachment1']['filename']['error'] == 1) {
+                    $this->HomePageOrganizer->Attachment1->validationErrors['filename'] = sprintf(__l('The file uploaded is too big, only files less than %s permitted') , ini_get('upload_max_filesize'));
                 }
                 $this->Session->setFlash(__l('Home page organizer could not be updated. Please, try again.') , 'default', null, 'error');
             }
@@ -146,7 +160,7 @@ class HomePageOrganizersController extends AppController
             throw new NotFoundException(__l('Invalid home page organizer'));
         }
          if (!empty($this->request->data)) {
-			 if (!empty($this->request->data['Attachment']['filename']['name'])) {
+			/* if (!empty($this->request->data['Attachment']['filename']['name'])) {
                 $this->HomePageOrganizer->Attachment->Behaviors->attach('ImageUpload', Configure::read('image.file'));
             }
             if (!empty($this->request->data['Attachment']['id'])) {
@@ -160,6 +174,20 @@ class HomePageOrganizersController extends AppController
                 $this->HomePageOrganizer->Attachment->create();
                 $this->HomePageOrganizer->Attachment->set($this->request->data);
             }
+			if (!empty($this->request->data['Attachment1']['filename']['name'])) {
+                $this->HomePageOrganizer->Attachment1->Behaviors->attach('ImageUpload', Configure::read('image.file'));
+            }
+            if (!empty($this->request->data['Attachment1']['id'])) {
+                $this->HomePageOrganizer->Attachment1->delete($this->request->data['Attachment1']['id']);
+            }
+            if (!empty($this->request->data['Attachment1']['filename']['name'])) {
+                $this->request->data['Attachment1']['filename']['type'] = get_mime($this->request->data['Attachment1']['filename']['tmp_name']);
+            }
+            if (!empty($this->request->data['Attachment1']['filename']['name']) || (!Configure::read('image.file.allowEmpty') && empty($this->request->data['Attachment1']['id']))) {
+                $this->request->data['Attachment1']['class'] = 'HomePageOrganizerThumb';
+                $this->HomePageOrganizer->Attachment1->create();
+                $this->HomePageOrganizer->Attachment1->set($this->request->data);
+            } */
             $this->HomePageOrganizer->set($this->request->data);
 			 $ini_upload_error = 1;
             if ($this->request->data['Attachment']['filename']['error'] == 1) {
@@ -170,6 +198,7 @@ class HomePageOrganizersController extends AppController
 			if ($this->HomePageOrganizer->validates() && (empty($this->request->data['Attachment']['filename']['name']) || $this->HomePageOrganizer->Attachment->validates()) && $ini_upload_error) {
 	        if ($this->HomePageOrganizer->save($this->request->data)) {
 				  $id = $foreign_id = $this->request->data['HomePageOrganizer']['id'];
+				   if (!(empty($this->request->data['Attachment']['filename']['name']))) {
 					$attach = $this->HomePageOrganizer->Attachment->find('first', array(
 						'conditions' => array(
 							'Attachment.foreign_id = ' => $foreign_id,
@@ -180,7 +209,7 @@ class HomePageOrganizersController extends AppController
 						) ,
 						'recursive' => - 1,
 					));
-				    if (!(empty($this->request->data['Attachment']['filename']['name']))) {
+					if(!empty($attach['Attachment']['id']))
 			        $this->HomePageOrganizer->Attachment->delete($attach['Attachment']['id']);
 				    $this->HomePageOrganizer->Attachment->create();
                     $this->request->data['Attachment']['class'] = 'HomePageOrganizer';
@@ -189,6 +218,25 @@ class HomePageOrganizersController extends AppController
                     $data['Attachment']['filename'] = $this->request->data['Attachment']['filename'];
                     $this->HomePageOrganizer->Attachment->Behaviors->attach('ImageUpload', Configure::read('image.file'));
                     $this->HomePageOrganizer->Attachment->save($this->request->data['Attachment']);
+                  }
+				    if (!(empty($this->request->data['Attachment1']['filename']['name']))) {
+				  	$attach1 = $this->HomePageOrganizer->Attachment1->find('first', array(
+						'conditions' => array(
+							'Attachment1.foreign_id = ' => $foreign_id,
+							'Attachment1.class = ' => 'HomePageOrganizerThumb'
+						) ,
+						'fields' => array(
+							'Attachment1.id'
+						) ,
+						'recursive' => - 1,
+					));
+					if(!empty($attach1['Attachment1']['id']))
+			        $this->HomePageOrganizer->Attachment->delete($attach1['Attachment1']['id']);
+				    $this->HomePageOrganizer->Attachment->create();
+                    $this->request->data['Attachment1']['class'] = 'HomePageOrganizerThumb';
+                    $this->request->data['Attachment1']['description'] = 'Home page organizer Image thumb';
+                    $this->request->data['Attachment1']['foreign_id'] = $this->request->data['HomePageOrganizer']['id'];
+                    $this->HomePageOrganizer->Attachment->save($this->request->data['Attachment1']);
                   }
                 $this->Session->setFlash(__l('Home page organizer has been updated') , 'default', null, 'success');
                 $this->redirect(array(
@@ -221,18 +269,14 @@ class HomePageOrganizersController extends AppController
         }
     }
 	public function previous_month(){
-	    date_default_timezone_set('UTC');
 		$homePageOrganizers = $this->HomePageOrganizer->find('all',array(
 									'conditions' => array(
 											'HomePageOrganizer.is_active'=> 1,
-										//	'HomePageOrganizer.edition_date >= '=> $fromDate,
-									//		'HomePageOrganizer.edition_date <= '=> $endDate,
 									),
 									'order'=> array(
 										'HomePageOrganizer.edition_date' =>'asc'
 									)
 		));
-
 		$this->loadModel('Package');
 	    $package = $this->Package->find('first',array(
 					'conditions'=> array(
@@ -245,6 +289,6 @@ class HomePageOrganizersController extends AppController
 			)
 		);
 	  $this->set('package',$package);
-		$this->set('homePageOrganizers',$homePageOrganizers);
+	  $this->set('homePageOrganizers',$homePageOrganizers);
 	}
 }

@@ -23,7 +23,7 @@ $(function(){
 					 <div class="pro-red-box coming-month">
                     	<div class="reddeem-box">
                            <h1><?php echo date("F Y",strtotime($homePageOrganizer['HomePageOrganizer']['edition_date'])); ?></h1>
-                            <p><?php echo $this->Html->showImage('HomePageOrganizer', (!empty($homePageOrganizer['Attachment']) ? $homePageOrganizer['Attachment'] : ''), array('dimension' => 'previousmonth_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false)), 'title' => $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false))); ?></p>
+                            <p><?php echo $this->Html->showImage('HomePageOrganizerThumb', (!empty($homePageOrganizer['Attachment1']) ? $homePageOrganizer['Attachment1'] : ''), array('dimension' => 'previousmonth_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false)), 'title' => $this->Html->cText($homePageOrganizer['HomePageOrganizer']['title'], false))); ?></p>
                             <div class="rate-row"> 
                                 	 <div class="limit-unit">
                             	<div class="limit-text"><?php echo __l('Limited Units'); ?><span><?php echo __l('Delevery to your doorstep'); ?></span></div>

@@ -108,7 +108,7 @@
 .f-c2 ul li{ color:#e885a8; list-style:none; font-size:13px; font-weight:bold; padding:1px 0;}
 .f-c2  p{color:#e885a8; }
 .f-c1 a, .f-c2 a, .f-c3 a{ color:#e885a8; font-weight:bold; font-family:rawengulkregular;}
-.f-c1 a:hover, .f-c2 a:hover, .f-c3 a:hover{ color:#302a2b;}
+.f-c1 a:hover, .f-c2 a:hover, .f-c3 a:hover,.f-c1 a.active, .f-c2 a.active, .f-c3 a.active{ color:#302a2b;}
 .f-c3{ width:33%; float:right;font-family:rawengulkregular }
 .f-c3 p{ padding:10px 0 25px 0;}
 .f-c3 ul{ list-style:none;}

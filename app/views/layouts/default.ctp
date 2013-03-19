@@ -195,7 +195,8 @@ endif;
 				<ul>
 				 <?php if(!empty($beautyTipsPages)): 
 						 foreach($beautyTipsPages as $beautyTipsPage): ?>
-						   <li><?php echo $this->Html->link($beautyTipsPage['Page']['title'], array('controller' => 'pages', 'action' => 'view', $beautyTipsPage['Page']['slug'], 'admin' => false), array('title' =>$beautyTipsPage['Page']['title']));?></li>
+							<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == $beautyTipsPage['Page']['slug'] ) ?  'active': null; ?>
+						   <li><?php echo $this->Html->link($beautyTipsPage['Page']['title'], array('controller' => 'pages', 'action' => 'view', $beautyTipsPage['Page']['slug'], 'admin' => false), array('title' =>$beautyTipsPage['Page']['title'],'class'=>$active_class));?></li>
 					<?php 
 						  endforeach; 	
 					   else: ?>
@@ -205,19 +206,30 @@ endif;
             </div>
             <div class="f-c2">
             	<h3><?php echo __l('Customer Service'); ?></h3>
-                <ul>
-                	<li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ')));?></li>
-                    <li><?php echo $this->Html->link(__l('Shipping & Returns'), array('controller' => 'pages', 'action' => 'view', 'shipping-return', 'admin' => false), array('title' => __l('Shipping & Returns')));?></li>
-                    <li><?php echo $this->Html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact Us')));?></li>
-				   <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions')));?></li>
-                    <li><?php echo $this->Html->link(__l('Privacy Policy'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policy')));?></li>
+                <ul>	
+					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'help_faq') ?  'active': null; ?>
+                    <li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ'),'class'=>$active_class));?></li>
+					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'shipping-return') ?  'active': null; ?>
+                    <li><?php echo $this->Html->link(__l('Shipping & Returns'), array('controller' => 'pages', 'action' => 'view', 'shipping-return', 'admin' => false), array('title' => __l('Shipping & Returns'),'class'=>$active_class));?></li>
+					<?php $active_class = ($this->request->params['controller'] == 'contacts' && $this->request->params['action'] == 'add' ) ?  'active': null; ?>
+                    <li><?php echo $this->Html->link(__l('Contact Us'), array('controller' => 'contacts', 'action' => 'add', 'admin' => false), array('title' => __l('Contact Us'),'class'=>$active_class));?></li>
+					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'term-and-conditions' ) ?  'active': null; ?>
+                   <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions'),'class'=>$active_class));?></li>
+				  <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'privacy_policy' ) ?  'active': null; ?>
+                    <li><?php echo $this->Html->link(__l('Privacy Policy'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policy'),'class'=>$active_class));?></li>
                 </ul>
                 <h3><?php echo __l('Browse'); ?></h3>
                 <p><?php if (!$this->Auth->sessionValid()): echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?> /
-				<?php endif; ?>				
-				<?php echo $this->Html->link(__l('ABOUT'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' =>__l('ABOUT')));?> /<?php echo $this->Html->link(__l('HOW IT WORKS'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('HOW IT WORKS'),'class'=> 'howit'));?> / <?php echo $this->Html->link(__l('GIFT A WONDERBOX'), array('controller' => 'gift_users', 'action' => 'add', 'admin' => false), array('title' =>__l('GIFT A WONDERBOX'),'class'=> 'gift'));?></p>
+				<?php endif; ?>		
+				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'about') ?  'active': null; ?>
+				<?php echo $this->Html->link(__l('ABOUT'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' =>__l('ABOUT'),'class'=>$active_class));?> /
+				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'active': null; ?>
+				<?php echo $this->Html->link(__l('HOW IT WORKS'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('HOW IT WORKS'),'class'=> 'howit '.$active_class));?> / 
+				<?php $active_class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'add' ) ?  'active': null; ?>
+				<?php echo $this->Html->link(__l('GIFT A WONDERBOX'), array('controller' => 'gift_users', 'action' => 'add', 'admin' => false), array('title' =>__l('GIFT A WONDERBOX'),'class'=> 'gift '.$active_class));?></p>
                 <h3><?php echo __l('Partners'); ?></h3>
-                <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners')));?>
+				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'affiliatepartners') ?  'active': null; ?>
+                <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners'),'class'=>$active_class));?>
             </div>
             <div class="f-c3">
 	           	<h3><?php echo __l('Wonderbox'); ?></h3>

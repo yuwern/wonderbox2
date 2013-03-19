@@ -26,6 +26,21 @@ class HomePageOrganizer extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+		'Attachment1' => array(
+            'className' => 'Attachment',
+            'foreignKey' => 'foreign_id',
+            'dependent' => false,
+            'conditions' => array(
+                'Attachment1.class' => 'HomePageOrganizerThumb',
+            ) ,
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
     );
     //$validate set in __construct for multi-language support
     function __construct($id = false, $table = null, $ds = null)
