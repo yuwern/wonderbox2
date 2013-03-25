@@ -22,7 +22,7 @@
                                     <div class="clear"></div>
                                 </li>
 								<?php
-									if (!empty($products)):
+									if (!empty($months) && !empty($products)):
 
 									$i = 0;
 									foreach ($products as $product):
@@ -62,7 +62,7 @@
 					?>
                             </ul>
 							<?php
-							if (!empty($products)) {
+							if (!empty($months) &&!empty($products)) {
 								echo $this->element('paging_links');
 							}
 							?>

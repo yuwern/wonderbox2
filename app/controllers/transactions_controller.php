@@ -136,7 +136,6 @@ class TransactionsController extends AppController
                 ));
                 $this->pageTitle.= ' - ' . $transaction_type['TransactionType']['name'];
             }
-  
             $this->paginate = array(
                 'conditions' => $conditions,
                 'contain' => array(
@@ -151,11 +150,17 @@ class TransactionsController extends AppController
                         )
                     ) ,
 					'Package' => array(
+						'PackageType'=> array(
+							'fields'=> array(
+								'PackageType.name'
+							)
+					 ),
 					 'fields'=> array(
 						'Package.name',
 						'Package.description',
 						'Package.cost',
 						'Package.no_of_wonderpoints',
+						'Package.package_type_id',
 					)
 				)   
                 ) ,

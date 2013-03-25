@@ -1,7 +1,7 @@
 <div class="body">
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#scrollbar1').tinyscrollbar();	
+			$('#scrollbar1').tinyscrollbar({ size: 275,sizethumb: 70 });	
 		});
 	</script>	
     

@@ -1,9 +1,16 @@
-<div class="products index">
+	<?php 
+		if(!empty($this->request->params['isAjax'])):
+			echo $this->element('flash_message');
+		endif;
+	?>
+	<div class="products index ">
+<?php	if(empty($this->request->params['isAjax'])): ?>
 <h2><?php echo __l('Products');?></h2>
   <div class="add-block">
       <?php echo $this->Html->link(__l('Add'),array('controller'=>'products','action'=>'add'),array('class' => 'add', 'title' => __l('Add New Category')));?>
    </div>
-	    <div> 
+   <?php endif; ?>
+	    <div class="js-response"> 
             <?php echo $this->Form->create('Product' , array('action' => 'update','class'=>'normal'));?>
             <?php echo $this->Form->input('r', array('type' => 'hidden', 'value' => $this->request->url)); ?>
             <?php echo $this->element('paging_counter');?>

@@ -67,10 +67,9 @@ $(function(){
 								 $total_product_count = count($products);
 								 foreach($products as $product):
 									if($total_product_count >= 5):
-										echo $this->Html->truncate($product['Product']['name'],7, array('ending' => ' ')).', ';
+										echo $product['Product']['name'].', ';
 									endif;
 								 endforeach;
-								 if($total_product_count > 5)
 									echo $this->Html->link(__l('&raquo; Read more'), array('controller' => 'home_page_organizers', 'action' => 'view', $homePageOrganizer['HomePageOrganizer']['slug']),array('title' =>__l('Read More'), 'escape' => false));
 								endif; 
 								?>

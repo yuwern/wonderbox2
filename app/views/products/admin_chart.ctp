@@ -278,16 +278,6 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
                     text: ' '
                 }
             },
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
-            },
             tooltip: {
                 formatter: function() {
                     return ''+
@@ -443,16 +433,6 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
                 title: {
                     text: ' '
                 }
-            },
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
             },
             tooltip: {
                 formatter: function() {
@@ -612,16 +592,6 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);</script>
                 title: {
                     text: ' '
                 }
-            },
-            legend: {
-                layout: 'vertical',
-                backgroundColor: '#FFFFFF',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                shadow: true
             },
             tooltip: {
                 formatter: function() {

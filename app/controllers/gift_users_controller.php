@@ -321,8 +321,8 @@ class GiftUsersController extends AppController
 										$this->request->data['UserShipping']['country_id'] = $personal_data['shipping_data']['country_id'];
 										$this->request->data['UserShipping']['contact_no'] = $personal_data['personal_data']['contact_no'];
 										$this->request->data['UserShipping']['contact_no1'] = $personal_data['personal_data']['contact_no1'];
-										$this->request->data['UserShipping']['address1'] = $personal_data['shipping_data']['address1'];
-										$this->request->data['UserShipping']['address2'] = $personal_data['shipping_data']['address2'];
+										$this->request->data['UserShipping']['address2'] = $personal_data['shipping_data']['address1'];
+										$this->request->data['UserShipping']['address3'] = $personal_data['shipping_data']['address2'];
 										$this->GiftUser->User->UserShipping->create();
 										$this->GiftUser->User->UserShipping->save($this->request->data['UserShipping'],false);
 								} else {
@@ -543,6 +543,9 @@ class GiftUsersController extends AppController
 							'GiftUser.contact_no',
 							'GiftUser.zip_code',
 							'GiftUser.address2',
+						),
+						'order'=> array(
+							'GiftUser.id'=> 'desc'
 						)
 					)
 				);
@@ -586,6 +589,7 @@ class GiftUsersController extends AppController
 				)
 		);
 		$giftUsers = $this->paginate();
+
 		}
 		$this->set('giftUsers', $giftUsers);
     }

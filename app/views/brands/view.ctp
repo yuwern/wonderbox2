@@ -17,7 +17,7 @@
 					     <div class="retail-click" id="js-retail-click"><a><span>RETAIL OUTLETS</span>Click to view all retail outlets</a></div>
 						 <br />
                         <div class="retail_out hide" id="js-retail-out">
-                       	  <h1><?php echo __l('RETAIL OUTLETS'); ?></h1>
+                       	  <h1 id="js-retail-tab"><?php echo __l('RETAIL OUTLETS'); ?></h1>
 						    <div class="retail_out_box">
                             	<ul>
 									 <?php  $i = 0; 

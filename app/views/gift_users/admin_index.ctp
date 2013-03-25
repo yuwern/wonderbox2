@@ -47,6 +47,7 @@ foreach ($giftUsers as $giftUser):
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
 	}
+	
 ?>	<tr<?php echo $class;?>>
 		 <td><div class="actions"><span><?php echo $this->Html->link(__l('Tracking No'), array('action'=>'edit',$giftUser['GiftUser']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?></span></div>	  </td>
 		<td><?php echo $this->Html->cText($giftUser['GiftUser']['from']);?></td>		
@@ -69,7 +70,7 @@ foreach ($giftUsers as $giftUser):
 				endif;				
 				if(!empty($giftUser['GiftUser']['address2'])):
 					echo "<br/>";
-					echo !empty($giftUser['User']['UserShipping'][0]['address2'])? $this->Html->cText($giftUser['GiftUser']['address2']):'';
+					echo $this->Html->cText($giftUser['GiftUser']['address2']);
 				else:
 					echo "<br/>";
 					echo !empty($giftUser['User']['UserShipping'][0]['address3'])? $this->Html->cText($giftUser['User']['UserShipping'][0]['address3']):'';

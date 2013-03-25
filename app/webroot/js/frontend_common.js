@@ -43,6 +43,10 @@ jQuery(document).ready(function($) {
 		$(this).hide();
 		$("#js-retail-out").slideDown('slow');
     });
+	$('#js-retail-tab').livequery('click', function() {
+		$("#js-retail-out").hide();
+		$("#js-retail-click").slideDown('slow');
+    });
 	$(' .js-tabs').livequery(function() {
         $(this).tabs();
 		ajaxOptions: {cache: false}

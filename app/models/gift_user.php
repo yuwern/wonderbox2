@@ -107,7 +107,7 @@ class GiftUser extends AppModel
                     'rule' => array(
                         '_checkEmailExistOrNot',
                     ) ,
-                    'message' => __l('You could don\'t use the same email')
+                    'message' => __l('Please use your friend\'s email')
                 ) ,
                 'rule2' => array(
                     'rule' => 'email',
