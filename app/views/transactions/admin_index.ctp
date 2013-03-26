@@ -5,8 +5,9 @@
 		endif;
 	?>
 <div class="transactions index js-responses">
-
+<?php if(empty($this->request->params['isAjax'])): ?>
 		<h2><?php echo $this->pageTitle ; ?></h2>
+<?php endif; ?>
 	<div class="js-response">
 	<?php echo $this->element('paging_counter');?>
     <table class="list">
@@ -36,10 +37,15 @@
 					</td>
 	            <?php endif; ?>
 				<td class="dl">
-
-				<?php  if($transaction['Transaction']['transaction_type_id'] != ConstTransactionTypes::ReferralWonderPoint  ):
-				echo $this->Html->cText($transaction['Package']['name']);
-				endif;
+				<?php   if ($transaction['Transaction']['class'] == 'ProductSurvey'): 
+						echo $this->Html->cText('WonderPoints redemption');
+						endif;
+						if ($transaction['Transaction']['class'] == 'GiftUser'): 
+						echo $this->Html->cText('GiftUser Package');
+						endif;
+						if ($transaction['Transaction']['class'] == 'Package'): 
+						echo $this->Html->cText('Subscribe Package');
+						endif;
 				?>
             </td>
 			   <td class="dl">

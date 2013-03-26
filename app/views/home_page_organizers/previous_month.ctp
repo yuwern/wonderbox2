@@ -65,9 +65,9 @@ $(function(){
 							   <span><?php $products = $this->Html->getProductList($homePageOrganizer['HomePageOrganizer']['edition_date']);
 								if(!empty($products)):
 								 $total_product_count = count($products);
-								 foreach($products as $product):
-									if($total_product_count >= 5):
-										echo $product['Product']['name'].', ';
+									 foreach($products as $product):
+									if($total_product_count >= 4 || $total_product_count <= 4):
+										echo $product['Brand']['name'].', ';
 									endif;
 								 endforeach;
 									echo $this->Html->link(__l('&raquo; Read more'), array('controller' => 'home_page_organizers', 'action' => 'view', $homePageOrganizer['HomePageOrganizer']['slug']),array('title' =>__l('Read More'), 'escape' => false));

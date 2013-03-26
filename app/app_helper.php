@@ -128,15 +128,22 @@ class AppHelper extends Helper
 		$conditions['Product.is_active = '] = 1;
 		$products = $this->Product->find('all',array(
 			'conditions'=> $conditions,
+			'contain'=> array(
+				'Brand' => array(
+					'fields' => array(
+						'Brand.name'
+					)
+				)
+			),
 			'fields' => array(
                 'Product.name',
-                'Product.slug',
+                'Product.slug',			
             ) ,
-			'order'=> array(
-				'Product.id' =>'desc'
+			'group'=> array(
+				'Product.brand_id'
 			),
-			'limit'=> 6,
-			'recursive' => -1
+			'limit'=> 5,
+			'recursive' => 1
 		));
 		return $products;
     }
