@@ -137,25 +137,13 @@
 .btn1:Hover{color:#e885a8; background:#e4e4e4; text-decoration:none;}
 .mb40{ margin-bottom:40px;}
 .no-pad{padding:0px !important;}
-
-.forget-box-left {
-    float: left;
-    padding: 0 25px 0 15px;
-    width: 324px;
-}
-
+.forget-box-left {float: left;padding: 0 25px 0 15px;width: 324px;}
 .signup-box-right{ width:305px; float:right; padding-left:20px;padding-top: 95px;}
 .signup-box-right.login-r-img{ width:305px; float:right; padding-left:20px;padding-top: 35px;}
-
 .signup-box-left .input b{font-family:tahoma; font-size:10px; color:#cd6987; font-weight:normal}
 .signup-box-left .input.login-link a{font-family:tahoma; font-size:10px; color:#585858; font-weight:bold}
-
-.signup-box-left .input.checkbox label strong{color: #CD6987;
-    font-family: tahoma;
-    font-size: 9px;
-    font-weight: normal;line-height: 15px;text-transform: none;padding-left: 5px;}
+.signup-box-left .input.checkbox label strong{color: #CD6987;font-family: tahoma;font-size: 9px;font-weight: normal;line-height: 15px;text-transform: none;padding-left: 5px;}
 div.submit{ padding-left: 41%;padding-top: 10px;}
-
 .input.checkbox{ padding-left:40%;}
 .input.checkbox input[type="checkbox"]{float:left}
 .input.checkbox label{display:inline-block; width:auto;font-family:rawengulkbold; font-size:9px; font-weight:bold; text-transform: uppercase;}
@@ -170,18 +158,8 @@ div.submit{ padding-left: 41%;padding-top: 10px;}
 .date select#UserProfileDobYear{ width:59px;}
 .gender span{display:inline-block; width:41%;font-family:rawengulkbold; font-size:11px; font-weight:bold; text-transform: uppercase;}
 .gender .input.radio{display:inline-block;}
-.contact-box .input textarea,.gift-wonder .input textarea {
-    border: 1px solid #A8A8A8;
-    display: inline-block;
-    font-family: rawengulkbold;
-    padding: 3px;
-    width: 175px;
-}
-
-.contact-box  .error-message{
-    color: red;
-    padding-left: 100px;
-}
+.contact-box .input textarea,.gift-wonder .input textarea {border: 1px solid #A8A8A8;display: inline-block;font-family: rawengulkbold;padding: 3px;width: 175px;}
+.contact-box  .error-message{color: red;padding-left: 100px;}
 .contact-box  .input.textarea label,.gift-wonder  .input.textarea label{vertical-align: top;}
 /* About Us css */
 .about{ overflow:hidden; padding-top:30px;}
@@ -761,11 +739,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c00256', end
 .slider .slider-right{background: url(../img/sliderbtn.png) no-repeat top left; width: 41px; height: 41px; display: inline-block}
 .slider .slider-right:hover{background: url(../img/sliderbtn.png) no-repeat top right; width: 41px; height: 41px; display: inline-block}
 
-.hide {
-	display:none;
-}
-
-
+.hide {display:none;}
 sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical-align:top; padding:0 1px;line-height: 10px; }
 .brand-sl{}
 .brand-sl-left{ min-height:380px; min-width:380px; border:1px solid #b5b5b5; float:left;}
@@ -840,16 +814,9 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .step-bor.end2 { background: url("../img/step_end2.jpg") no-repeat scroll right center transparent !important;    margin: 20px 0 25px; padding-right: 19px; width: 455px;}
 .step-bor.end2 ul li.select {padding-right: 39px; background: right top no-repeat #F7D4E1;}
 .contact-box #UserShareFriendForm .error-message{padding-left:0px; }
-.gift-wonder .normal span.info {
-	margin:5px 0px 0px 138px;
-}
-.normal-form span.info {
-	margin:5px 0px 0px 41%;
-}
-.refer_friend h1.refer-head {
-    color: #E88EA9;
-    font-size: 15px;
-}
+.gift-wonder .normal span.info {margin:5px 0px 0px 138px;}
+.normal-form span.info {margin:5px 0px 0px 41%;}
+.refer_friend h1.refer-head {color: #E88EA9;font-size: 15px;}
 
 /* Starting developer css */
 .purchase-conf { min-height: 340px;padding-top: 30px; }
@@ -905,7 +872,7 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .set-box span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;}
 .set-box2 label{ float:left;width:24%; padding-right:1%; text-align:right; font-size:14px;font-family:tahoma}
 .pre-month .set-box2 span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;min-height: 34px;font-family:tahoma}
-.set-box2 div{ padding:10px 10px; margin:0 5px; background:#ede8dc;}
+.set-box2 div{ padding:10px 10px; margin:0 5px; background:#ede8dc;min-height:40px;}
 .set-box span a{color:#d3557b;}
 .pro-red-box{ float:left;margin-bottom: 10px;  padding-left: 6px;}
 .pro-red-box.mrl{ margin:0 10px;}
@@ -913,10 +880,6 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .coming-month h1{ background:#e885a8; color:#fff; font-size:26px; text-align:center; padding:20px 5px; margin:3px 3px 10px 3px; font-weight:normal;font-family: tahoma;}
 
 .pro-red-box.pre-month .reddeem-box p{ text-align:center; padding-bottom:10px;}
-
-
-
-
 .feedback{ float:left; margin:0 7px 0 4px; width:143px; height:31px; border:0; background:url(../img/feedback.jpg) no-repeat; text-indent:-9999px; font-size:0; cursor:pointer;}
 .feedback:hover{background:url(../img/feedback_h.jpg) no-repeat;}
 .a-center{ text-align:center;}
@@ -962,18 +925,7 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .retail_out_box ul li{ margin:0; padding:0; list-style:none; width:33%; float:left;min-height: 195px;}
 .retail_out_box ul li p{ min-height:50px;}
 .retail_out_box ul li span{ display:block; font-size:10px; color:#585858; padding-bottom:8px;}
-.retail_out_box ul li a {
-    border: 0px solid #B5B5B5 !important ;
-    display: table-cell;
-    height: auto !important;
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    vertical-align: middle;
-    width: auto !important;
-	font-weight:bold;
-}
+.retail_out_box ul li a {border: 0px solid #B5B5B5 !important ;display: table-cell;height: auto !important;list-style: none outside none;margin: 0;padding: 0;text-align: center;vertical-align: middle;width: auto !important;	font-weight:bold;}
 .retail_out_box ul li a:hover { background:none; color:#000;}
 .mtop15{ margin-top:45px !important;}
 
@@ -1011,47 +963,16 @@ ul.social-icon li a.s-g{ background:url(../img/g_retail.jpg) left no-repeat;}
 .btn2{-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px; border:0px solid #efc3d3; background:#f7d4e1; text-align:center; font-family:rawengulkregular;font-weight:bold;  font-weight:bold; color:#7f7f7f;/* font-family:Tahoma, Geneva, sans-serif; */font-size:14px;text-transform: uppercase; padding:5px 25px; cursor: pointer;}
 .btn2:Hover{color:#e885a8; background:#e4e4e4; text-decoration:none;}
 
-.point-box li.pon-2{
-    border-right: 5px dotted #E886A9;
-    float: left;
-    padding-bottom: 20px;
-    padding-left: 15px;
-    padding-right: 5px;
-    width: 290px;
-}
-.point-box li.pon-3 {
-    border-right: 0px dotted #E886A9;
-    float: left;
-    padding-bottom: 20px;
-    padding-left: 15px;
-    padding-right: 5px;
-    width: 290px;
-}
+.point-box li.pon-2{border-right: 5px dotted #E886A9;float: left;padding-bottom: 20px;padding-left: 15px;padding-right: 5px;width: 290px;}
+.point-box li.pon-3 {border-right: 0px dotted #E886A9;float: left;padding-bottom: 20px;padding-left: 15px;padding-right: 5px;width: 290px;}
 .point-box2{ border-bottom:5px dotted #e886a9;border-top:5px dotted #e886a9; list-style:none; margin:0px 0 35px 0; padding:15px 0; background:url(../img/point_bg.jpg) ; overflow:hidden;} 
 .point-box2 li{ width:310px;border-right:5px dotted #e886a9; padding-bottom:20px; float:left;}
 .point-box2 li p{font-size:16px; font-family:rawengulkregular;min-height: 80px;}
 .point-coun2{ padding-left:75px;}
 .point-coun2 span{ font-family:RawengulkUltralight; color:#de7298; font-size:90px; display:block; padding:20px 0 15px; min-height:45px;}
-
 .point-coun2 span sub{ font-size:30px; color:#de7298;  font-family:Tahoma, Geneva, sans-serif; vertical-align:bottom; padding:0 6px;line-height: 0px; }
-
-
-.point-box2 li.pon-2{
-    border-right: 5px dotted #E886A9;
-    float: left;
-    padding-bottom: 20px;
-    padding-left: 15px;
-    padding-right: 5px;
-    width: 290px;
-}
-.point-box2 li.pon-3 {
-    border-right: 0px dotted #E886A9;
-    float: left;
-    padding-bottom: 20px;
-    padding-left: 15px;
-    padding-right: 5px;
-    width: 290px;
-}
+.point-box2 li.pon-2{border-right: 5px dotted #E886A9;float: left;padding-bottom: 20px;padding-left: 15px;padding-right: 5px;width: 290px;}
+.point-box2 li.pon-3 {border-right: 0px dotted #E886A9;float: left;padding-bottom: 20px;padding-left: 15px;padding-right: 5px;width: 290px;}
 
 .up{ font-size:16px; color:#de7298; }
 .red-email-box{ background:#e1e1e1; padding:10px; width:80%; margin:0 auto; }
@@ -1062,19 +983,11 @@ ul.social-icon li a.s-g{ background:url(../img/g_retail.jpg) left no-repeat;}
 .how-sign-up{ display:block; background:url(../img/sign_up.jpg); width:408px; height:36px; text-indent:-99999px;}
 .how-sign-up:hover{ display:block; background:url(../img/sign_up_1.jpg); width:408px; height:36px; text-indent:-99999px;}
 
-
 .point-head h1{font-size:32px; font-family:rawengulkregular; font-weight:bold; text-align:center; margin:40px 0 20px 0;}
 .point-head p{ text-align:center;}
 
 .inner-date{ overflow:hidden}
-.inner-date .inner-date-left{float: left;
-font-size: 12px;
-font-weight: bold;
-margin: 0;
-min-height: 64px;
-padding: 37px 0 0;
-text-transform: uppercase;
-width: 30%;}
+.inner-date .inner-date-left{float: left;font-size: 12px;font-weight: bold;margin: 0;min-height: 64px;padding: 37px 0 0;text-transform: uppercase;width: 30%;}
 .inner-date .inner-date-right{width:68%; float:left;margin:0px;padding:24px 0 17px;}
 .inner-date .countdownHolder{ width:208px;padding:0px; }
 .inner-date .date-row{padding:0px; border-bottom:0px;}
@@ -1088,20 +1001,8 @@ width: 30%;}
 
 .inner-date .countDays .position .digit,
 .inner-date .countHours .position .digit,
-.inner-date .countMinutes .position .digit {background-color: #444444;
-border-radius: 0.1em 0.1em 0.1em 0.1em;
-color: #FFFFFF;
-display: block;
-font-family: arial;
-font-size: 28px;
-font-weight: bold;
-height: 40px;
-letter-spacing: -1px;
-line-height: 43px;
-position: absolute;
-text-align: center;
+.inner-date .countMinutes .position .digit {background-color: #444444;border-radius: 0.1em 0.1em 0.1em 0.1em;color: #FFFFFF;display: block;font-family: arial;font-size: 28px;font-weight: bold;height: 40px;letter-spacing: -1px;line-height: 43px;position: absolute;text-align: center;
 width: 25px;}
-
 .inner-date .date-row p{float: left; line-height: 20px;text-align: center;width: 64px;}
 
 .inner-date-right .date-row{ border-bottom:0px;} 

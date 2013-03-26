@@ -58,14 +58,23 @@ class HomePageOrganizersController extends AppController
 		$products = $this->Product->find('all', array(
 			  'conditions' => $conditions ,
 				'contain' => array(
-					'Attachment'
+					'Brand' => array(
+						'Attachment',
+						'fields' => array(
+							'Brand.id',
+							'Brand.name',
+							'Brand.slug',
+						)
+					)
 				),
 				'fields' => array(
 					'Product.id',
 					'Product.name',
-					'Product.slug',
-					'Product.price',
-			  ) ,
+					'Product.brand_id',
+				 ) ,
+			 'group'=> array(
+				'Product.brand_id'
+			  ),
 			  'recursive' => 2,	
 		));
 	    if (empty($homePageOrganizer)) {

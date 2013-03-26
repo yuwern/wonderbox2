@@ -66,7 +66,7 @@ $(function(){
 								if(!empty($products)):
 								 $total_product_count = count($products);
 									 foreach($products as $product):
-									if($total_product_count >= 4 || $total_product_count <= 4):
+									if($total_product_count >= 3 || $total_product_count <= 3):
 										echo $product['Brand']['name'].', ';
 									endif;
 								 endforeach;

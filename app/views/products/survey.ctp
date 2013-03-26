@@ -62,10 +62,10 @@
 					?>
                             </ul>
 							<?php
-							if (!empty($months) &&!empty($products)) {
+						/*	if (!empty($months) &&!empty($products)) {
 								echo $this->element('paging_links');
 							}
-							?>
+						*/	?>
                          </div>
                         </div>
                     </div>
