@@ -38,7 +38,7 @@
 								}
 								$i++;
 							?>
-                             <li <?php echo $class; ?>><?php echo $this->Html->link($this->Html->showImage('Brand',  $product['Brand']['Attachment'], array('dimension' => 'product_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Brand']['name'], false)), 'title' => $this->Html->cText($product['Brand']['name'], false))).'<span class="shadow"></span><span class="bg_box"><span>'.$this->Html->cText($product['Brand']['name'],false).'</span></span>', array('controller' => 'brands', 'action' => 'view', $product['Brand']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$product['Brand']['name']), 'escape' => false));?></li>
+                             <li <?php echo $class; ?>><?php echo $this->Html->link($this->Html->showImage('Product',  $product['Attachment'][0], array('dimension' => 'product_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Product']['name'], false)), 'title' => $this->Html->cText($product['Product']['name'], false))).'<span class="shadow"></span><span class="bg_box"><span>'.$this->Html->cText($product['Product']['name'],false).'</span>'.Configure::read('site.currency').number_format($product['Product']['price'], 2, '.', '').'</span>', array('controller' => 'products', 'action' => 'view', $product['Product']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$product['Product']['name']), 'escape' => false));?></li>
 						<?php
 							endforeach;
 						else:
