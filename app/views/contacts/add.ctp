@@ -30,9 +30,11 @@
 
                         </div>
                         <div class="contact-box">
-							<strong><?php echo __l('If you have any questions, please submit a customer support ticket through the link below?'); ?><br /></strong>
+                        <div class="shipp-box font-tahoma">
+							<span><?php echo __l('Still need help? Contact our friendly customer service staff through the link below:'); ?><br /></span>
                                                         <br></br>
 							<a href="https://wonderbox.zendesk.com/anonymous_requests/new"><img src="http://cdn.zendesk.com/images/zendesk-logo.png" alt="Help Desk Software by Zendesk"/></a>
+                           </div>
                            </div>
                     </div>
                 </div>
