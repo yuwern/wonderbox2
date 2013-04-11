@@ -27,18 +27,12 @@
                             	<strong><?php echo __l('HAVE A QUESTION?'); ?></strong><br />
                                 <?php echo __l('Contact our friendly customer service staff or visit our'); ?> <?php echo $this->Html->link(__l('FAQ section'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('FAQ section'),'class'=>'font-tahoma'));?> <?php echo __l('to learn more.'); ?> 
                             </div>
-                            
+
                         </div>
                         <div class="contact-box">
-							<?php echo $this->Form->create('Contact', array('class' => 'normal js-contact-form'));
-								  echo $this->Form->input('first_name', array('label' => __l('Name')));	
-								  echo $this->Form->input('email',array('label' => __l('Email')));
-								  echo $this->Form->input('telephone',array('label' => __l('HANDPHONE')));	
-								  echo $this->Form->input('message', array('label' => __l('Message'),'type' => 'textarea'));
-								  echo $this->Form->submit(__l('Send'),array('class'=>'btn1'));
-								  echo $this->Form->end();
-							
-							?>
+							<strong><?php echo __l('If you have any questions, please submit a customer support ticket through the link below?'); ?><br /></strong>
+                                                        <br></br>
+							<a href="https://wonderbox.zendesk.com/anonymous_requests/new"><img src="http://cdn.zendesk.com/images/zendesk-logo.png" alt="Help Desk Software by Zendesk"/></a>
                            </div>
                     </div>
                 </div>
