@@ -10,6 +10,7 @@
 		echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Master Image'),'class'=>'required','div'=>'input file required'));
 		echo $this->Form->input('short_description');
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor'));
+		echo $this->Form->input('quantity');
 		echo $this->Form->input('redeem_wonder_point');
 		echo $this->Form->input('is_active');
 	?>

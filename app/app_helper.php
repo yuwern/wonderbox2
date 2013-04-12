@@ -217,6 +217,13 @@ class AppHelper extends Helper
 		else
 		  return 'StartRedemption';	
 	}
+	function checkProductRedeemProductQuantity($productRedemption_id,$quantity){
+		App::import('Model', 'ProductRedemptionUser');
+        $this->ProductRedemptionUser = new ProductRedemptionUser();
+		$productRedeemCount = $this->ProductRedemptionUser->find('count',array('conditions'=>array('ProductRedemptionUser.product_redemption_id'=>$productRedemption_id)));
+		$total_quantity = $quantity  - $productRedeemCount;
+		return ( $total_quantity > 0) ?  $total_quantity: 0;
+	}
 	function checkUserActive($user_id){
 		App::import('Model', 'PackageUser');
 		date_default_timezone_set('UTC');

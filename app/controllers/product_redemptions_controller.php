@@ -36,6 +36,8 @@ class ProductRedemptionsController extends AppController
 						'ProductRedemption.id',
 						'ProductRedemption.name',
 						'ProductRedemption.slug',
+						'ProductRedemption.redeem_wonder_point',
+						'ProductRedemption.quantity'
 					),
 					'order' => array(
 						'ProductRedemption.id'=>'desc'
@@ -103,14 +105,24 @@ class ProductRedemptionsController extends AppController
 				'conditions'=> array(
 					'User.id'=> $this->Auth->user('id')
 				),
+				'contain'=> array(
+					'UserShipping'
+				),
 				'fields'=> array(
 					'User.id',
 					'User.username',
 					'User.email',
 					'User.available_wonder_points'
 				),
-				'recursive' => -1,
+				'recursive' => 2,
 			));
+		if(empty($user['UserShipping'])){
+			 $this->Session->setFlash(__l('Please updated Shipping Information before Product Redemption') , 'default', null, 'success');
+             $this->redirect(array(
+					'controller'=>'user_shippings',
+                    'action' => 'index'
+                ));
+		}
 		if (!empty($user)){
 			if ($user['User']['available_wonder_points'] >= $productRedemption['ProductRedemption']['redeem_wonder_point']){
 				$this->ProductRedemption->ProductRedemptionUser->create();

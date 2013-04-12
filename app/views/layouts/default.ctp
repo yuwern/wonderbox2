@@ -102,8 +102,11 @@ endif;
 							<li><?php echo $this->Html->link(__l('My Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('My Beauty Profile')));?></li>
 							<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
 							<li><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>		
+							<?php endif; ?>
 							<li><?php echo $this->Html->link(__l('Product Redemption'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('Product Redemption')));?></li>
-							<?php endif; ?></ul>
+							<li><?php echo $this->Html->link(__l('Product Redemption List'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('Product Redemption List')));?></li>
+							
+							</ul>
 							<?php endif; ?>
 						</div>
                         <script type="text/javascript">cssdropdown.startchrome("chromemenu")</script>

@@ -94,6 +94,22 @@ class ProductRedemption extends AppModel
                     'message' => __l('Required') ,
                 ) ,
             ) ,
+		    'quantity' => array(
+                 'rule2' => array(
+                    'rule' => array(
+                        'comparison',
+                        '>',
+                        0
+                    ) ,
+                    'allowEmpty' => false,
+                    'message' => __l('Should be greater than 0')
+                ) ,
+                'rule1' => array(
+                    'rule' => 'numeric',
+                    'allowEmpty' => false,
+                    'message' => __l('Required')
+                ) ,
+            ) ,
             'is_active' => array(
                 'rule1' => array(
                     'rule' => 'boolean',
