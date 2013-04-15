@@ -209,7 +209,9 @@ endif;
             </div>
             <div class="f-c2">
             	<h3><?php echo __l('Customer Service'); ?></h3>
-                <ul>	
+                <ul>
+                                        <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'wonderbox_promise') ?  'active': null; ?>
+                    <li><?php echo $this->Html->link(__l('Our Promise'), array('controller' => 'pages', 'action' => 'view', 'wonderbox_promise', 'admin' => false), array('title' => __l('Our Promise'),'class'=>$active_class));?></li>
 					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'help_faq') ?  'active': null; ?>
                     <li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ'),'class'=>$active_class));?></li>
 					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'shipping-return') ?  'active': null; ?>
