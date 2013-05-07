@@ -110,6 +110,7 @@ class ProductsController extends AppController
 			'Product.name',
 			'Product.wonder_point',
 			'Product.product_redeem_count',
+			'Product.product_view_count',
 			'Product.is_active'
 		   ),
 		  'order' => array(
@@ -709,6 +710,28 @@ class ProductsController extends AppController
 		$this->set('beautyQuestionProductCategorys', $beautyQuestionProductCategorys);
 		$this->set('productQuestionCategorys', $productQuestionCategorys);
 	  }
+	}
+	public function clicked(){
+		$this->autoRender = false;
+			$product = $this->Product->find('first',array(
+								'conditions' => array(
+									'Product.slug' => $_REQUEST['product_slug']
+								),
+								'fields' => array(
+									'Product.id'
+								),
+								'recursive'=> -1
+				)
+			);
+		  if(!empty($product)) {
+			  $this->Product->ProductView->create();
+			  $data['ProductView']['user_id'] = $this->Auth->user('id');
+			  $data['ProductView']['product_id'] = $product['Product']['id'];
+			  $data['ProductView']['ip'] = $this->RequestHandler->getClientIP();
+			  $this->Product->ProductView->save($data,false);
+		  }
+		  echo "success";
+		  exit;
 	}
 }
 ?>

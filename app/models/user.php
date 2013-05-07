@@ -48,6 +48,19 @@ class User extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+	    'BeautyTip' => array(
+            'className' => 'BeautyTip',
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
         'UserLogin' => array(
             'className' => 'UserLogin',
             'foreignKey' => 'user_id',
@@ -292,7 +305,13 @@ class User extends AppModel
                     'allowEmpty' => false,
                     'message' => __l('Required')
                 ) ,
-            )
+            ),  
+			'transaction_type' => array(
+                'rule1' => array(
+                    'rule' => 'numeric',
+                    'message' => __l('Required')
+                )
+            ) ,
         );
         $this->validateCreditCard = array(
             'firstName' => array(

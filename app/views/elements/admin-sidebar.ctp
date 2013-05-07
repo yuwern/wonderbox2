@@ -1,6 +1,7 @@
 <ul class="admin-links">
 	<li class="no-bor">
 		<ul class="admin-sub-links">
+		<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):  ?>
 		<?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'admin_stats') ? ' class="active"' : null; ?>
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Site Stats'), array('controller' => 'users', 'action' => 'stats'),array('title' => __l('Site Stats'))); ?></li>			<?php $class = (($this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] != 'admin_chart' )||  ($this->request->params['controller'] == 'users'  && ($this->request->params['action'] == 'admin_index' || $this->request->params['action'] == 'change_password' || $this->request->params['action'] == 'admin_add' )) ) ? ' class="active"' : null; ?>            
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Users'), array('controller' => 'users', 'action' => 'index'),array('title' => __l('Users'))); ?></li>
@@ -14,8 +15,13 @@
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Subscriptions'), array('controller' => 'subscriptions', 'action' => 'index'),array('title' => __l('Subscriptions'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'categories') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Categories'), array('controller' => 'categories', 'action' => 'index'),array('title' => __l('Categories'))); ?></li>
+			<?php endif; ?>
 			<?php $class = ($this->request->params['controller'] == 'brands') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Brands'), array('controller' => 'brands', 'action' => 'index'),array('title' => __l('Brands'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'beauty_tips' ) ? ' class="active"' : null;
+			?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l(' Beauty Content Page'), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' => __l('Beauty Content Page'))); ?></li>
+			<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):  ?>
 			<?php $class = ($this->request->params['controller'] == 'products') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Products'), array('controller' => 'products', 'action' => 'index'),array('title' => __l('Products'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'product_redemptions') ? ' class="active"' : null; ?>
@@ -53,6 +59,7 @@
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Countries'), array('controller' => 'countries', 'action' => 'index'),array('title' => __l('Countries'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'paypal_transaction_logs') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Paypal Transaction logs'), array('controller' => 'paypal_transaction_logs', 'action' => 'index'),array('title' => __l('Paypal Transaction logs'))); ?></li>
+			<?php endif; ?>
         </ul>
 	</li>
    

@@ -1287,10 +1287,16 @@ class UsersController extends AppController
                             
                                     $this->redirect(Router::url('/', true) . $this->request->data['User']['f']);
                              
-                            } else if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin) {
+                            } else if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin)  {
                                 $this->redirect(array(
                                     'controller' => 'users',
                                     'action' => 'stats',
+                                    'admin' => true
+                                ));
+                            } else if ($this->Auth->user('user_type_id') == ConstUserTypes::ContentAdmin)  {
+                                $this->redirect(array(
+                                    'controller' => 'brands',
+                                    'action' => 'index',
                                     'admin' => true
                                 ));
                             } elseif ($this->Auth->user('user_type_id') == ConstUserTypes::User) {
@@ -1333,7 +1339,10 @@ class UsersController extends AppController
             $this->redirect(Router::url('/', true));
         }
         $this->request->data['User']['passwd'] = '';
-     	
+		if ($this->RequestHandler->isAjax()) {
+			$this->layout = 'ajax';
+			$this->render('login_popup');
+		}
     }
 	public function fs_oauth_callback()
     {
@@ -1537,7 +1546,8 @@ class UsersController extends AppController
 				}
 			}
 			$this->redirect(Router::url('/', true));
-		}	
+		}
+	
     }
     public function oauth_callback()
     {
@@ -2158,7 +2168,7 @@ class UsersController extends AppController
             $this->request->data['Transaction']['class'] = 'SecondUser';
 	        $this->request->data['Transaction']['amount'] = 0 ;
 			$this->request->data['Transaction']['wonder_points'] = $this->request->data['User']['available_wonder_points'];
-            $this->request->data['Transaction']['transaction_type_id'] = ConstTransactionTypes::ReferralWonderPoint;
+            $this->request->data['Transaction']['transaction_type_id'] = $this->request->data['User']['transaction_type'];
 				if ($this->Transaction->save($this->request->data['Transaction'])) {
 					$this->User->updateAll(array(
 						'User.available_wonder_points' => 'User.available_wonder_points +' . $this->request->data['User']['available_wonder_points'],
@@ -2353,6 +2363,10 @@ class UsersController extends AppController
 				$conditions['User.user_type_id !='] = ConstUserTypes::Admin;
 				$conditions['User.subscription_expire_date >'] = _formatDate('Y-m-d', date('Y-m-d') , true) ;
                 $this->pageTitle.= __l(' - Paid User ');
+            }
+			else if ($this->request->params['named']['main_filter_id'] == ConstUserTypes::ContentAdmin) {
+                $conditions['User.user_type_id'] = ConstUserTypes::ContentAdmin;
+                $this->pageTitle.= __l(' - ContentAdmin ');
             }
 			else if ($this->request->params['named']['main_filter_id'] == ConstUserTypes::Admin) {
                 $conditions['User.user_type_id'] = ConstUserTypes::Admin;
@@ -3039,6 +3053,8 @@ class UsersController extends AppController
         $this->Email->sendAs = ($email_message['is_html']) ? 'html' : 'text';
         $this->Email->send(strtr($email_message['email_content'], $email_replace));
     }
+   public function test(){
 
-}
+   }
+ }
 ?>

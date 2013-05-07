@@ -27,6 +27,23 @@ class Category extends AppModel
             'counterQuery' => ''
         )
     );
+	 public $hasAndBelongsToMany = array(
+        'BeautyTip' => array(
+            'className' => 'BeautyTip',
+            'joinTable' => 'beauty_tips_categories',
+            'foreignKey' => 'category_id',
+            'associationForeignKey' => 'beauty_tip_id',
+            'unique' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'finderQuery' => '',
+            'deleteQuery' => '',
+            'insertQuery' => ''
+        )
+    );
     function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
@@ -38,11 +55,23 @@ class Category extends AppModel
                     'message' => __l('Required') ,
                 ) ,
             ) ,
+	        'Category' => array(
+                'rule' => 'is_check',
+                'message' => __l('Required') ,
+                'allowEmpty' => false
+            ) ,
          );
 		 $this->moreActions = array(
             ConstMoreAction::Inactive => __l('Inactive') ,
             ConstMoreAction::Active => __l('Active') ,
             ConstMoreAction::Delete => __l('Delete') ,
         );
+    }
+	function is_check()
+    {
+	     if (empty($this->data['Category']['Category'])) {
+            return false;
+        }
+        return true;
     }
 }

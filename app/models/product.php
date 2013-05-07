@@ -80,6 +80,19 @@ class Product extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+	   'ProductView' => array(
+            'className' => 'ProductView',
+            'foreignKey' => 'product_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
     );
     function __construct($id = false, $table = null, $ds = null)
     {
@@ -144,6 +157,23 @@ class Product extends AppModel
                     'allowEmpty' => false,
                     'message' => __l('Required') ,
                 ) ,
+            ) ,
+           'buy_url' => array(
+                'rule2' => array(
+                    'rule' => array(
+                        'url'
+                    ) ,
+				    'allowEmpty' => true,
+                    'message' => __l('Must be a valid URL, starting with http://') ,
+                ) ,
+                'rule1' => array(
+                    'rule' => array(
+                        'custom',
+                        '/^http:\/\//'
+                    ) ,
+				    'allowEmpty' => true,
+                    'message' => __l('Must be a valid URL, starting with http://') ,
+                )
             ) ,
         );
 	    $this->moreActions = array(

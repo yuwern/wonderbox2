@@ -11,7 +11,17 @@
                       	<p class="back-link"><?php echo $this->Html->link('&raquo;'.__l('Back To Brand Page'), array('controller' => 'brands', 'action' => 'view',$product['Brand']['slug']),array('title' =>__l('Back To Brand Page'), 'escape' => false)); ?></p>
                         <h1><?php echo $this->Html->cText($product['Product']['name'],false);?></h1>
                         <h2><?php  echo Configure::read('site.currency').number_format($product['Product']['price'], 2, '.', ''); ?> </h2>
+						<div>
+					<p style="padding:10px;"> I have used this product before <span class="js-used-product-yes" style="background:red;color:#fff"> Yes </span> <span class="js-used-product-no" > No </span> </p>
+							<p class="hide js-current-product"  style="padding:10px;"> I am currently using this product. <span class="js-current-product-yes"> Yes </span> <span class="js-current-product-no"> No </span> </p>
+							<p  style="padding:10px;"> I want to try or buy this product <span class="js-buy-product-yes"> Yes </span> <span class="js-buy-product-no"> No </span> </p>
+							<p class="hide js-buy-url"  style="padding:10px;"> Buy now at <a href="http://www.google.com" class="js-link-redirect">Logo</a> </p>
+						</div>
+						<div class="js-loading-img hide"><?php echo $this->Html->image('loading.gif'); ?></div>
+ 
                        <?php echo $this->Html->cHtml($product['Product']['description']);?>
+						<input type="hidden" name="slug" value="<?php echo $product['Product']['slug']; ?>" class="js-product-slug"/>
+
                       </div>
                     </div>
                 </div>

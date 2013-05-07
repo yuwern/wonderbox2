@@ -184,7 +184,7 @@ class AppController extends Controller
 		if ($this->request->params['action'] != 'flashupload') {
 			$cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];
 			$admin_demomode_updation_not_allowed_array = Configure::read('site.admin_demomode_updation_not_allowed_array');
-			if ($this->Auth->user('user_type_id') && $this->Auth->user('user_type_id') == ConstUserTypes::Admin && !Configure::read('site.is_admin_settings_enabled') && (!empty($this->request->data) || $this->request->params['action'] == 'admin_delete' || $this->request->params['action'] == 'admin_update') && in_array($cur_page, $admin_demomode_updation_not_allowed_array)) {
+			if ($this->Auth->user('user_type_id') && ($this->Auth->user('user_type_id') == ConstUserTypes::Admin || $this->Auth->user('user_type_id') == ConstUserTypes::ContentAdmin) && !Configure::read('site.is_admin_settings_enabled') && (!empty($this->request->data) || $this->request->params['action'] == 'admin_delete' || $this->request->params['action'] == 'admin_update') && in_array($cur_page, $admin_demomode_updation_not_allowed_array)) {
 				$this->Session->setFlash(__l('Sorry. You cannot update or delete in demo mode') , 'default', null, 'error');
                 if($cur_page == 'subscriptions/admin_subscription_customise')
 				{
@@ -336,7 +336,7 @@ class AppController extends Controller
 
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];
         // check site is under maintenance mode or not. admin can set in settings page and then we will display maintenance message, but admin side will work.
-        if (empty($this->request->params['requested']) and $cur_page != 'images/view' and $cur_page != 'devs/robots' and Configure::read('site.maintenance_mode') && (($this->Auth->user('user_type_id') && $this->Auth->user('user_type_id') != ConstUserTypes::Admin) or (empty($this->request->params['prefix']) or ($this->request->params['prefix'] != 'admin' and $cur_page != 'users/admin_login')))) {
+        if (empty($this->request->params['requested']) and $cur_page != 'images/view' and $cur_page != 'devs/robots' and Configure::read('site.maintenance_mode') && (($this->Auth->user('user_type_id') && $this->Auth->user('user_type_id') != ConstUserTypes::Admin && $this->Auth->user('user_type_id') != ConstUserTypes::ContentAdmin) or (empty($this->request->params['prefix']) or ($this->request->params['prefix'] != 'admin' and $cur_page != 'users/admin_login')))) {
             throw new InternalErrorException(__l('Invalid request'));
         }
         //Fix to upload the file through the flash multiple uploader
@@ -502,6 +502,8 @@ class AppController extends Controller
 			'products/view',
 			'home_page_organizers/previous_month',
 			'home_page_organizers/view',
+			'beauty_tips/index',
+			//'beauty_tips/view',
         );
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];
         if (!in_array($cur_page, $exception_array) && $this->request->params['action'] != 'flashupload') {
@@ -545,7 +547,7 @@ class AppController extends Controller
                     '?f=' . $this->request->url
                 ));
             }
-            if (isset($this->request->params['prefix']) and $this->request->params['prefix'] == 'admin' and $this->Auth->user('user_type_id') != ConstUserTypes::Admin) {
+            if (isset($this->request->params['prefix']) and $this->request->params['prefix'] == 'admin' and $this->Auth->user('user_type_id') != ConstUserTypes::Admin and $this->Auth->user('user_type_id') != ConstUserTypes::ContentAdmin ) {
                 $this->redirect(Router::url('/', true));
             }
         } else {
@@ -562,6 +564,9 @@ class AppController extends Controller
         $this->layout = 'default';
 	
         if ($this->Auth->user('user_type_id') == ConstUserTypes::Admin && (isset($this->request->params['prefix']) and $this->request->params['prefix'] == 'admin')) {
+            $this->layout = 'admin';
+        }
+		if ($this->Auth->user('user_type_id') == ConstUserTypes::ContentAdmin && (isset($this->request->params['prefix']) and $this->request->params['prefix'] == 'admin')) {
             $this->layout = 'admin';
         }
         if (!empty($this->request->query['api_key']) && !empty($this->request->query['api_token'])) {

@@ -30,6 +30,6 @@ if ($this->Session->check('Message.success')):
 endif;
 if ($this->Session->check('Message.flash')):
 		echo $this->Session->flash();
-endif;
+endif; 
 echo $content_for_layout;
 ?>

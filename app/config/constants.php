@@ -33,6 +33,7 @@ class ConstUserTypes
     const Admin = 1;
     const User = 2;
     const Company = 3;
+    const ContentAdmin = 4;
 }
 class ConstUserIds
 {
@@ -136,6 +137,9 @@ class ConstTransactionTypes
     const ProductSurveryWonderPoint = 40;
     const GiftSent = 4;
     const GiftReceived = 5;
+	const ShareExperience = 81;
+	const ProductDamage = 82;
+	const Refund = 83;
 
 }
 // Setting for privacy setting

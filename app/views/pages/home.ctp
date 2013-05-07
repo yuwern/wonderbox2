@@ -25,7 +25,7 @@ $(document).ready(function(){
                 <!-- ADD SEC -->
                 <div class="ad_sec">
                 	<div class="ad1"><?php echo $this->element('home-page-organizers-index'); ?></div>
-                    <div class="ad2"><?php echo $this->Html->image('ad2.jpg',array('width'=>'209','height'=>'193')); ?></div>
+                    <div class="ad2"><?php echo $this->Html->link($this->Html->image('ad2.jpg',array('width'=>'209','height'=>'193')), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' =>'Beauty Tips', 'escape' => false));?></div>
                     <div class="ad3">
                     	<div class="sub_box">
                        	  <div class="s-box-left">

@@ -1390,3 +1390,5 @@ a.add-fund {
 	background:url(../img/add-fund.png)  no-repeat scroll left top transparent;
     padding: 0 2px 3px 20px;
 }
+form.normal div.select select#CategoryCategory{height:130px;padding: 5px;}
+form.normal div.select select#CategoryCategory option{padding: 5px;}

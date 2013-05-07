@@ -13,7 +13,7 @@ if (!defined('DEBUG')) {
 	// cookie variable name for site language
 	define('PERMANENT_CACHE_COOKIE', '');
 	// sub admin is available in site or not
-	define('PERMANENT_CACHE_HAVE_SUB_ADMIN', false);
+	define('PERMANENT_CACHE_HAVE_SUB_ADMIN', true);
 	define('IS_ENABLE_HASHBANG_URL', false);
 	$_is_hashbang_supported_bot = (strpos($_SERVER['HTTP_USER_AGENT'], 'Googlebot') !== false);
 	define('IS_HASHBANG_SUPPORTED_BOT', $_is_hashbang_supported_bot);

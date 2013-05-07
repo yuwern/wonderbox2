@@ -116,9 +116,12 @@ endif;
 					<?php if($this->Auth->sessionValid() && $this->Auth->user('user_type_id') == ConstUserTypes::Admin): ?>
 					<div class="c5"><?php echo $this->Html->link(__l('Admin panel'), array('controller' => 'users' , 'action' => 'stats' , 'admin' => true), array('title' => __l('Admin panel'), 'escape' => false)); ?></div> 
 					<?php endif; ?>
+					<?php if($this->Auth->sessionValid() && $this->Auth->user('user_type_id') == ConstUserTypes::ContentAdmin): ?>
+					<div class="c5"><?php echo $this->Html->link(__l('Admin panel'), array('controller' => 'brands' , 'action' => 'index' , 'admin' => true), array('title' => __l('Admin panel'), 'escape' => false)); ?></div> 
+					<?php endif; ?>
 					<?php else: ?>
 					<div class="c2">&nbsp;<fb:like href="<?php echo Router::url('/', true);?>" layout="button_count" font="tahoma"></fb:like></div>
-                 	   <div class="c3"><?php echo $this->Html->link('<strong>'.__l('Login').'</strong>', array('controller' => 'users', 'action' => 'login'), array('title' => __l('Login'),'escape'=>false));?>&nbsp;&nbsp; |&nbsp;&nbsp; <?php echo $this->Html->link('<strong>'.__l('Register').'</strong>', array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Register'),'escape'=>false));?>  </div>
+                 	   <div class="c3"><?php echo $this->Html->link('<strong>'.__l('Login').'</strong>', array('controller' => 'users', 'action' => 'login'), array('title' => __l('Login'),'escape'=>false,'class'=>'js-thickbox'));?>&nbsp;&nbsp; |&nbsp;&nbsp; <?php echo $this->Html->link('<strong>'.__l('Register').'</strong>', array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Register'),'escape'=>false));?>  </div>
 					<?php endif; ?>
 					<div class="clear"></div>
                 </div>
@@ -194,12 +197,12 @@ endif;
     	<div class="footer">
         	<div class="f-c1">
             	<h3><?php echo __l('BeauTy Tips'); ?></h3>
-				<?php $beautyTipsPages = $this->Html->getBeautyTips(); ?>
+				<?php $beautyTips = $this->Html->getBeautyTips(); ?>
 				<ul>
-				 <?php if(!empty($beautyTipsPages)): 
-						 foreach($beautyTipsPages as $beautyTipsPage): ?>
-							<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == $beautyTipsPage['Page']['slug'] ) ?  'active': null; ?>
-						   <li><?php echo $this->Html->link($beautyTipsPage['Page']['title'], array('controller' => 'pages', 'action' => 'view', $beautyTipsPage['Page']['slug'], 'admin' => false), array('title' =>$beautyTipsPage['Page']['title'],'class'=>$active_class));?></li>
+				 <?php if(!empty($beautyTips)): 
+				 		 foreach($beautyTips as $beautyTip): ?>
+							<?php $active_class = ($this->request->params['controller'] == 'beauty_tips' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == $beautyTip['BeautyTip']['slug'] ) ?  'active': null; ?>
+						   <li><?php echo $this->Html->link($beautyTip['BeautyTip']['name'], array('controller' => 'beauty_tips', 'action' => 'view', $beautyTip['BeautyTip']['slug'], 'admin' => false), array('title' =>$beautyTip['BeautyTip']['name'],'class'=>$active_class));?></li>
 					<?php 
 						  endforeach; 	
 					   else: ?>
@@ -209,9 +212,7 @@ endif;
             </div>
             <div class="f-c2">
             	<h3><?php echo __l('Customer Service'); ?></h3>
-                <ul>
-                                        <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'wonderbox_promise') ?  'active': null; ?>
-                    <li><?php echo $this->Html->link(__l('Our Promise'), array('controller' => 'pages', 'action' => 'view', 'wonderbox_promise', 'admin' => false), array('title' => __l('Our Promise'),'class'=>$active_class));?></li>
+                <ul>	
 					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'help_faq') ?  'active': null; ?>
                     <li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ'),'class'=>$active_class));?></li>
 					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'shipping-return') ?  'active': null; ?>

@@ -21,7 +21,8 @@
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Category Name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Brand Name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Wonder point');?></div></th>
-			 <th class="dl"><div class="js-pagination"><?php echo __l('Active');?></div></th>	
+			 <th class="dl"><div class="js-pagination"><?php echo __l('Active');?></div></th>
+			 <th class="dl"><div class="js-pagination"><?php echo __l('Product clicked count');?></div></th>	
             </tr>
 <?php
 if (!empty($products)):
@@ -46,6 +47,7 @@ foreach ($products as $product):
 		<td><?php echo $this->Html->cText($product['Brand']['name']);?></td>
 		<td><?php echo $this->Html->cInt($product['Product']['wonder_point']);?></td>
 		<td><?php echo $this->Html->cBool($product['Product']['is_active']);?></td>
+		<td><?php echo $this->Html->cInt($product['Product']['product_view_count']);?></td>
 
 	</tr>
 <?php

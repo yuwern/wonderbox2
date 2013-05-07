@@ -12,6 +12,8 @@
                 <li><?php echo $this->Html->link(__l('Facebook Users'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => ConstMoreAction::FaceBook),array('title' => __l('FaceBook Users')));?></li>
 			<?php endif; ?>
                <li><?php echo $this->Html->link(__l('Admin'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => ConstUserTypes::Admin),array('title' => __l('Admin')));?></li>
+			     <li><?php echo $this->Html->link(__l('Content Admin'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => ConstUserTypes::ContentAdmin),array('title' => __l('Content Admin')));?></li>
+           
             <li><?php echo $this->Html->link(__l('All'), array('controller' => 'users', 'action' => 'index', 'main_filter_id' => 'all'),array('title' => __l('All')));?></li>
        </ul>       
     </div>

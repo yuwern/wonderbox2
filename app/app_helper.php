@@ -55,6 +55,41 @@ class AppHelper extends Helper
         ));
         return $user['UserAvatar'];
     }
+	function getPaginateLinks($modelName ,$value = 1,$prevLabel = 'Previous',$nextLabel = 'Next' ){
+		App::import('Model', "$modelName");
+		$this->$modelName = new $modelName();
+		$neighbors = $this->$modelName->find('neighbors', array('field' => 'id', 'value' => $value,
+			'conditions' => array(
+				$modelName.'.is_active' => 1
+			),
+			'fields'=> array(
+				$modelName.'.name',	
+				$modelName.'.slug',	
+			))
+		);
+		$output =' ';
+		if(!empty($neighbors)):
+		$output ="<ul>";
+		foreach($neighbors as $key => $neighbor):
+			if(!empty($neighbor)){
+				$label = ($key == 'prev') ? $prevLabel : $nextLabel;
+				$output .='<li>'.$this->link($label, array(
+                'controller' => 'beauty_tips',
+                'action' => 'view',
+                $neighbor[$modelName]['slug'],
+                'admin' => false
+            ) , array(
+                'title' => $this->cText($label, false) ,
+                'escape' => false,
+            )).'</li>' ;
+			 if($key == 'prev' && !empty($neighbors['next']))
+			  $output .='<li>|</li>';
+			}
+		endforeach;
+		$output .= "</ul>";
+		endif;
+		return $output;
+    }
 	function getMonthLists()
     {
        return  array(
@@ -93,20 +128,38 @@ class AppHelper extends Helper
     }
 	function getBeautyTips()
     {
-        App::import('Model', 'Page');
-        $this->Page = new Page();
+        App::import('Model', 'BeautyTip');
+        $this->BeautyTip = new BeautyTip();
 		$conditions = array();
-		$conditions['Page.beauty_tips'] = 1;
-		$pages = $this->Page->find('all',array(
+		$conditions['BeautyTip.is_active'] = 1;
+		$beautyTips = $this->BeautyTip->find('all',array(
 			'conditions'=> $conditions,
 			'fields' => array(
-				'Page.title',
-				'Page.slug',
+				'BeautyTip.name',
+				'BeautyTip.slug',
 			),
 			'recursive'=> -1
 		));
-		return $pages;
+		return $beautyTips;
     }
+	function getCategoriesLists(){
+		App::import('Model', 'Category');
+        $this->Category = new Category();
+		$conditions = array();
+		$conditions['Category.is_active'] = 1;
+		$categories = $this->Category->find('all',array(
+			'conditions'=> $conditions,
+			'fields' => array(
+				'Category.name',
+				'Category.slug',
+			),
+			'order'=> array(
+				'Category.name'=>'asc'
+			),
+			'recursive'=> -1
+		));
+		return $categories;
+	}
 	function getShippingReport($state_id)
     {
         App::import('Model', 'UserShipping');
@@ -656,7 +709,7 @@ class AppHelper extends Helper
     }
     function getUserLink($user_details,$front_end = false)
     {
-        if ($user_details['user_type_id'] == ConstUserTypes::Admin || $user_details['user_type_id'] == ConstUserTypes::User) {
+        if ($user_details['user_type_id'] == ConstUserTypes::Admin || $user_details['user_type_id'] == ConstUserTypes::ContentAdmin||$user_details['user_type_id'] == ConstUserTypes::User) {
 			App::import('Model', 'UserProfile');
 	        $this->UserProfile = new UserProfile();
 			$user_profile = $this->UserProfile->find('first', array(
@@ -726,7 +779,7 @@ class AppHelper extends Helper
             ) ,
             'recursive' => 0
         ));
-        if ($user_details['user_type_id'] == ConstUserTypes::Admin || $user_details['user_type_id'] == ConstUserTypes::User ) {
+        if ($user_details['user_type_id'] == ConstUserTypes::Admin|| $user_details['user_type_id'] == ConstUserTypes::ContentAdmin||$user_details['user_type_id'] == ConstUserTypes::User ) {
 			$user_image = '';
 			// Setting Default Profile Image //
 			$width = $this->Setting->find('first', array('conditions' => array('Setting.name' => 'thumb_size.'.$dimension.'.width'),'fields'=> array('Setting.value'), 'recursive' => -1));
