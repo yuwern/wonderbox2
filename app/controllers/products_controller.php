@@ -64,6 +64,7 @@ class ProductsController extends AppController
                 'Product.name',
                 'Product.description',
                 'Product.price',
+                'Product.buy_url',
                 'Product.is_active',
                 'Category.id',
                 'Category.name',

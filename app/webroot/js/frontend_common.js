@@ -90,24 +90,36 @@ jQuery(document).ready(function($) {
 		$("#js-retail-click").slideDown('slow');
     });
 	$('.js-used-product-yes').livequery('click', function() {
+		$('.js-used-product-no').removeClass('active');
+		$(this).addClass('active');
 		$(".js-current-product").show();
 		productVote($(".js-product-slug").val(),1,1);
     });	
 	$('.js-used-product-no').livequery('click', function() {
+		$('.js-used-product-yes').removeClass('active');
+		$(this).addClass('active');
 		$(".js-current-product").hide();
 		productVote($(".js-product-slug").val(),1,0);
     });
 	$('.js-current-product-yes').livequery('click', function() {
+		$('.js-current-product-no').removeClass('active');
+		$(this).addClass('active');
 		productVote($(".js-product-slug").val(),2,1);
     });
 	$('.js-current-product-no').livequery('click', function() {
+		$('.js-current-product-yes').removeClass('active');
+		$(this).addClass('active');
 		productVote($(".js-product-slug").val(),2,0);
     });	
 	$('.js-buy-product-yes').livequery('click', function() {
+		$('.js-buy-product-no').removeClass('active');
+		$(this).addClass('active');
 		productVote($(".js-product-slug").val(),3,1);
 		$(".js-buy-url").show();		
     });
 	$('.js-buy-product-no').livequery('click', function() {
+		$('.js-buy-product-yes').removeClass('active');
+		$(this).addClass('active');
 		productVote($(".js-product-slug").val(),3,0);
 		$(".js-buy-url").hide();
     });

@@ -1094,10 +1094,33 @@ width: 25px;}
 .beauty-left1 .tips_detail .head1 .user_msg .comments p.about{font-style:italic; font-size:10px; border:0 none; line-height:12px; padding-top:10px;}
 .video_player{width:640px;}
 
+.brand-sl-right1{width:540px;}
+.brand-sl-right1 .head{padding:10px 15px; margin-bottom:15px;}
+.brand-sl-right1 h1{font-size:24px; padding-bottom:5px; font-weight:normal; font-family:tahoma;}
+.brand-sl-right1 h2{font-weight:normal; padding:0;font-family:tahoma;}
+.review_details{}
+.brand-sl-right1 .review_cont{padding:10px 0 5px; float:left;}
+.brand-sl-right1 .review_cont .review{padding-bottom:3px; width:300px; border-bottom:1px dotted #cccccc; float:left;}
+.brand-sl-right1 .review_cont .review p{border-left:5px solid #e88ea9; padding:0 0 2px 5px;  color:#e88ea9; font-weight:bold; float:left;}
+.brand-sl-right1 .review_cont .review p b{float:left; min-width:220px;}
+.brand-sl-right1 .review_cont .review span{border-radius:3px; background-color:#b1b1b1; border:1px solid #878787; width:25px; margin-left:8px; cursor:pointer; color:#fff; text-align:center; float:right; font-size:10px; line-height:13px; height:15px; font-weight:normal;}
+.brand-sl-right1 .review_cont .review span:hover,.brand-sl-right1 .review_cont .review span.active{background-color:#e88ea9;}
+.brand-sl-right1 .review_cont .current {color:#585858; font-size:10px; width:300px; padding-top:3px; line-height:14px; text-align:center; float:left;}
+.brand-sl-right1 .review_cont .current span{background-color:#B1B1B1; border-radius:3px; border:1px solid #878787; width:22px; margin-left:10px; cursor:pointer; color:#fff; float:right; font-size:9px; line-height:12px; height:12px; font-weight:normal;}
+.brand-sl-right1 .review_cont .current span:hover,.brand-sl-right1 .review_cont .current span.active{background-color:#e88ea9;}
+.brand-sl-right1 .review_cont .current img{float:right;}
+.brand-sl-right1 .review_cont .current b{font-weight:normal; float:left; text-align:center; min-width:220px;}
+.brand-sl-right1 .review_cont .current b.wid1{min-width:150px !important; text-align:center;}
 
 
+.pad_none{padding:0 !important;}
+.pad_bot5{padding-bottom:5px !important;}
 .clr{clear:both;}
+
+
 /* Design integration css code form suresh */
 
 .beauty-right1 .input input[type="text"]{border: 1px solid #D1D1D1;color: #A0A0A0;font-size: 10px;font-style: italic;margin-top: 7px;padding: 5px 3px;width: 232px;}
 .beauty-left1 .beauty_detail .head1 h1 a:hover{color: #302A2B;text-decoration:none;}
+
+.js-loading-img {padding-left:320px}
