@@ -132,6 +132,7 @@ class AppHelper extends Helper
         $this->BeautyTip = new BeautyTip();
 		$conditions = array();
 		$conditions['BeautyTip.is_active'] = 1;
+		$conditions['BeautyTip.is_main_page_footer'] = 1;
 		$beautyTips = $this->BeautyTip->find('all',array(
 			'conditions'=> $conditions,
 			'fields' => array(

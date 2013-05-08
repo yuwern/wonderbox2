@@ -14,6 +14,7 @@
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('about_us', array('label' => __l('About us'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('video_url');
+		echo $this->Form->input('is_main_page_footer');
 		echo $this->Form->input('is_active');
 		
 	?>

@@ -44,7 +44,7 @@ foreach ($beautyTips as $beautyTip):
 	  	<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $beautyTip['BeautyTip']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $beautyTip['BeautyTip']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div></td>
 		 <td><?php    echo $this->Html->link($this->Html->showImage('BeautyTip',  $beautyTip['Attachment'], array('dimension' => 'medium_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($beautyTip['BeautyTip']['name'], false)), 'title' => $this->Html->cText($beautyTip['BeautyTip']['name'], false))), array('controller' => 'beauty_tips', 'action' => 'view', $beautyTip['BeautyTip']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$beautyTip['BeautyTip']['name']), 'escape' => false));?>  <?php echo $this->Html->link($this->Html->cText($beautyTip['BeautyTip']['name']), array('controller' => 'beauty_tips', 'action' => 'view', $beautyTip['BeautyTip']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$beautyTip['BeautyTip']['name']), 'escape' => false));?></td>
 		<td><?php echo $this->Html->cBool($beautyTip['BeautyTip']['is_active']);?></td>
-		<td><?php echo $this->Html->cInt($beautyTip['BeautyTip']['beauty_tip_view_count']);?></td>
+		<td><?php echo $this->Html->link($this->Html->cInt($beautyTip['BeautyTip']['beauty_tip_view_count']), array('controller' => 'beauty_tip_views', 'action' => 'index', $beautyTip['BeautyTip']['slug']),array('title' =>$beautyTip['BeautyTip']['beauty_tip_view_count'], 'escape' => false));?></td>
 	
 	</tr>
 <?php

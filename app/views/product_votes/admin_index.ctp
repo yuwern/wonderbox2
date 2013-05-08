@@ -1,4 +1,3 @@
-<?php /* SVN: $Id: index_list.ctp 99 2008-07-09 09:33:42Z rajesh_04ag02 $ */ ?>
 <div class="productVotes index">
 <h2><?php echo __l('Product Votes');?></h2>
 <?php echo $this->element('paging_counter');?>

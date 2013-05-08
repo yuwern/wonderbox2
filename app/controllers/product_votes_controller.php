@@ -45,10 +45,80 @@ class ProductVotesController extends AppController
 		}
 		exit;
     }
-    public function admin_index()
+    public function admin_index($slug= null)
     {
+		$conditions = array();
+		if(!empty($slug)) {
+			$product = $this->ProductVote->Product->find('first', array(
+						'conditions' => array(
+							'Product.slug'=> $slug
+						),
+						'fields' => array(
+							'Product.id'
+						),
+						'recursive' => -1
+				)
+				);
+			$conditions['ProductVote.product_id'] = $product['Product']['id'];
+			
+		}
         $this->pageTitle = __l('productVotes');
         $this->ProductVote->recursive = 0;
         $this->set('productVotes', $this->paginate());
+    }
+    public function admin_chart($slug = null)
+    {
+		$conditions = array();
+		  if (is_null($slug)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }
+		if(!empty($slug)) {
+			$product = $this->ProductVote->Product->find('first', array(
+						'conditions' => array(
+							'Product.slug'=> $slug
+						),
+						'fields' => array(
+							'Product.id',
+							'Product.name',
+						),
+						'recursive' => -1
+				)
+				);
+			$conditions['ProductVote.product_id'] = $product['Product']['id'];
+			$this->set('product',$product);
+		}
+		$productQuestions = $this->ProductVote->ProductQuestion->find('all', array(
+										'fields' => array(
+											'ProductQuestion.name',
+											'ProductQuestion.id'
+										),
+										'recursive' => -1
+			)
+		);
+	    $productVotes = array();
+		foreach($productQuestions as $key => $productQuestion){
+			$productVotes[$key]['Question'] = $productQuestion['ProductQuestion']['name'];
+			$productVotes[$key]['Answer']['yes'] = $this->ProductVote->find('count', array(
+							'conditions' => array(
+								'ProductVote.product_id' => $product['Product']['id'],
+								'ProductVote.product_question_id' => $productQuestion['ProductQuestion']['id'],
+								'ProductVote.answer' => 1,
+								
+							),
+							'recursive' => - 1
+					)
+			);
+			$productVotes[$key]['Answer']['no'] = $this->ProductVote->find('count', array(
+							'conditions' => array(
+								'ProductVote.product_id' => $product['Product']['id'],
+								'ProductVote.product_question_id' => $productQuestion['ProductQuestion']['id'],
+								'ProductVote.answer' => 0,
+								
+							),
+							'recursive' => - 1
+					)
+			);
+		}
+        $this->set('productVotes', $productVotes);
     }
 }
