@@ -25,7 +25,7 @@
 <?php endif; ?>
 			 <div class="head">
 							<h1><?php echo __l('Login to have a better experience!');?></h1>
-							<h2><?php  echo __l('Login copywriting text, temporary text, layout format, copywriting text, temporary text, layout format, copywriting text.') ?></h2>
+							<h2><?php  echo __l('') ?></h2>
 						</div>
               
                <div class="signin-box-left">
@@ -66,8 +66,9 @@
 						<?php echo $this->Html->image('pop1.jpg'); ?>
 						<?php echo $this->Html->image('pop2.jpg'); ?>
 						<h4>Member's Update</h4>
-						<p><?php echo __l('Login copywriting text, temporary text, layout format, copywriting text, temporary text, layout format, copywriting text.');  ?> </p>
-							<p><?php echo __l('Login copywriting text, temporary text, layout format, copywriting text, temporary text, layout format, copywriting text.');  ?> </p>
+                                                         <p><?php echo __l('Your lovely May WonderBox edition will be ship out on the 25th of May.');  ?> </p>
+						         <p><?php echo __l('We are proud to announce that WonderBox Malaysia has just release a new subscription reward structure in conjunction with our latest price update to bring you the best experience in beauty discovery. ');  ?> </p>
+							<p><?php echo __l('Share your experience and complete your product survey today to earn more WonderPoints! ');  ?> </p>
 					 </div>
 <?php if(empty($this->request->data['User']['is_requested'])):?>
 </div>
