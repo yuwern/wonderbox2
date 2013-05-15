@@ -34,6 +34,21 @@ class BrandsController extends AppController
         );
 	     $this->set('brands', $this->paginate());
     }
+	public function listing(){
+
+	}
+	public function benefits(){
+
+		$facebook_fans = file_get_contents('https://graph.facebook.com/WonderBoxMalaysia');
+		$result = json_decode($facebook_fans);
+		$this->set('total_fan_count',$result->likes);
+		$this->loadModel('User');
+		$total_no_of_users = $this->User->find('count',array(
+			'recursive'=> -1
+		));
+		$this->set('total_no_of_users',$total_no_of_users);
+
+	}
     public function view($slug = null)
     {
         $this->pageTitle = __l('Brand');
@@ -78,6 +93,11 @@ class BrandsController extends AppController
 		 $this->paginate = array(
 			'contain'=> array(
 				'Attachment',
+				'User'=> array(
+					'fields'=> array(
+						'User.email'
+					)
+				)
   			 ),
             'order' => array(
                 'Brand.id' => 'desc'

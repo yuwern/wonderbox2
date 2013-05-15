@@ -20,14 +20,19 @@
             return false;
         });
 </script>
-<div class="signup js-responses">
-               <div class="signup-box-left ">
-                        	<?php echo $this->Form->create('User', array('action' => 'login', 'class' => 'normal js-ajax-login'));?>
+<?php if(empty($this->request->data['User']['is_requested'])):?>
+<div class="signin js-responses">
+<?php endif; ?>
+			 <div class="head">
+							<h1><?php echo __l('Login to have a better experience!');?></h1>
+							<h2><?php  echo __l('Login copywriting text, temporary text, layout format, copywriting text, temporary text, layout format, copywriting text.') ?></h2>
+						</div>
+              
+               <div class="signin-box-left">
+			            	<?php echo $this->Form->create('User', array('action' => 'login', 'class' => 'normal js-ajax-login'));?>
 							<?php echo $this->Form->input(Configure::read('user.using_to_login'),array('label'=>ucwords(Configure::read('user.using_to_login')))); ?>
 							<?php 	echo $this->Form->input('passwd', array('label' => __l('Password')));
-									if(!empty($this->request->data['User']['is_requested'])) {
-										echo $this->Form->input('is_requested', array('type' => 'hidden'));
-									}
+								echo $this->Form->input('is_requested', array('type' => 'hidden','value'=> 1));
 							?>	
 							<?php echo $this->Form->input('User.is_remember', array('type' => 'checkbox', 'label' =>' '. __l(' Remember me on this computer.'),'class'=>'remember')); ?>
 							<?php
@@ -50,8 +55,20 @@
                               </div>
 							  <?php echo $this->Form->submit(__l('Login'),array('class'=>'btn1')); ?>
 						      <?php echo $this->Form->end(); ?>
-                        </div>
-		   			 <?php if(Configure::read('facebook.is_enabled_facebook_connect')):  ?>
-                        <div class="signup-box-right login-r-img"><?php echo $this->Html->link( $this->Html->image('facebook_join.jpg',array('width'=>'306','height'=>'68')), array('controller' => 'users', 'action' => 'login','type'=>'facebook'), array('title' => __l('Sign in with Facebook'), 'escape' => false)); ?></div>
+							  <?php if(Configure::read('facebook.is_enabled_facebook_connect')):  ?>
+							  <div class="fb">
+								<?php echo $this->Html->link( $this->Html->image('facebook_join.jpg',array('width'=>'306','height'=>'68')), array('controller' => 'users', 'action' => 'login','type'=>'facebook'), array('title' => __l('Sign in with Facebook'), 'escape' => false)); ?>
+								</div>
 						 <?php endif; ?>
+                        </div>
+		   			 <div class="signin-box-right">
+						
+						<?php echo $this->Html->image('pop1.jpg'); ?>
+						<?php echo $this->Html->image('pop2.jpg'); ?>
+						<h4>Member's Update</h4>
+						<p><?php echo __l('Login copywriting text, temporary text, layout format, copywriting text, temporary text, layout format, copywriting text.');  ?> </p>
+							<p><?php echo __l('Login copywriting text, temporary text, layout format, copywriting text, temporary text, layout format, copywriting text.');  ?> </p>
+					 </div>
+<?php if(empty($this->request->data['User']['is_requested'])):?>
 </div>
+<?php endif; ?>

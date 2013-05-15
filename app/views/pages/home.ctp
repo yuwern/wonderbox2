@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 </script>
 <!-- Brand Logo Sec  -->
-          		<div class="brand_logo">
+          		<div class="brand_logo <?php if (!$this->Auth->sessionValid()): ?>	js-home-sign-pop-up <?php endif; ?>">
                   	  <h3><?php echo __l('Brands that we intend to bring to you in your next').' '.Configure::read('site.name'); ?></h3>
                       <ul>
 						<li><?php echo $this->Html->image('b_logo1.jpg',array('width'=>'114','height'=>'49')); ?></li>

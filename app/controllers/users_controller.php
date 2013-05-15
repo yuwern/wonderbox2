@@ -2021,6 +2021,97 @@ class UsersController extends AppController
             $this->request->data['User']['hash'] = $hash;
         }
     }
+	public function referral_points(){
+		
+		$referral_points = array();
+		$this->loadModel('Transaction');
+		date_default_timezone_set('UTC');
+		$start_date = date('Y-m-01');
+		$end_date = date('Y-m-t');
+		$months_referral_friends = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.transaction_type_id' => ConstTransactionTypes::ReferralWonderPoint,
+					'Transaction.created >=' => $start_date,
+					'Transaction.created <=' => $end_date,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+					'COUNT(Transaction.user_id) as total_no_users'
+				),
+				'recursive' => -1
+			));
+		$total_referral_friends = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.transaction_type_id' => ConstTransactionTypes::ReferralWonderPoint,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+					'COUNT(Transaction.user_id) as total_no_users'
+				),
+				'recursive' => -1
+			));
+		$month_surveys = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.transaction_type_id' => ConstTransactionTypes::ProductSurveryWonderPoint,
+					'Transaction.created >=' => $start_date,
+					'Transaction.created <=' => $end_date,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+					'COUNT(Transaction.user_id) as no_of_survey'
+				),
+				'recursive' => -1
+			));
+		$total_surveys = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.transaction_type_id' => ConstTransactionTypes::ProductSurveryWonderPoint,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+					'COUNT(Transaction.user_id) as no_of_survey'
+				),
+				'recursive' => -1
+			));
+		$month_experience_shared = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.transaction_type_id' => ConstTransactionTypes::ShareExperience,
+					'Transaction.created >=' => $start_date,
+					'Transaction.created <=' => $end_date,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+					'COUNT(Transaction.user_id) as no_of_survey'
+				),
+				'recursive' => -1
+			));
+		$total_experience_shared = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.transaction_type_id' => ConstTransactionTypes::ShareExperience,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+					'COUNT(Transaction.user_id) as no_of_survey'
+				),
+				'recursive' => -1
+			));
+		
+		
+		$referral_points['TotalReferralFriend']['Month']  = !empty($months_referral_friends[0][0])? $months_referral_friends[0][0] : 0;
+		$referral_points['TotalReferralFriend']['All']  = !empty($total_referral_friends[0][0])? $total_referral_friends[0][0] : 0;
+		$referral_points['TotalSurvey']['Month']  = !empty($month_surveys[0][0])? $month_surveys[0][0] : 0;
+		$referral_points['TotalSurvey']['All']  = !empty($total_surveys[0][0])? $total_surveys[0][0] : 0;
+		$referral_points['TotalExperienceShared']['Month']  = !empty($month_experience_shared[0][0])? $month_experience_shared[0][0] : 0;
+		$referral_points['TotalExperienceShared']['All']  = !empty($total_experience_shared[0][0])? $total_experience_shared[0][0] : 0;
+		$referral_points['TotalPoints']['All']  = $referral_points['TotalReferralFriend']['All']['wonderpoint'] + $referral_points['TotalSurvey']['All']['wonderpoint'] + $referral_points['TotalExperienceShared']['All']['wonderpoint'];
+		$referral_points['TotalPoints']['Month']  = $referral_points['TotalReferralFriend']['Month']['wonderpoint'] + $referral_points['TotalSurvey']['Month']['wonderpoint'] + $referral_points['TotalExperienceShared']['Month']['wonderpoint'];
+		$this->set('referral_points',$referral_points);
+	}
 	public function redemption(){
 			 if (!Configure::read('wonderpoint.is_system_enabled')) {
 				throw new NotFoundException(__l('Invalid request'));

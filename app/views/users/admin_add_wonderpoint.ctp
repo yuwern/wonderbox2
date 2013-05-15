@@ -6,7 +6,7 @@
  	<?php
         echo $this->Form->input('id');
 		echo $this->Form->input('transaction_type',array('label' => __l('Transaction Type'),'empty'=>__l('Please Select'),'options'=> array(
-		ConstTransactionTypes::ShareExperience  => __l('Share Experience'),
+		ConstTransactionTypes::ShareExperience  => __l('Experience shared'),
 		ConstTransactionTypes::ProductDamage  => __('Product damage'),
 		ConstTransactionTypes::Refund  => __('Refund'),
 		)));

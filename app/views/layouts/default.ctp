@@ -99,6 +99,7 @@ endif;
 							 <?php if(Configure::read('wonderpoint.is_system_enabled') && $this->Html->checkPackageAvialable()): ?>
 							 <li><?php echo $this->Html->link(__l('My Redemption'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('My Redemption')));?></li>
 							<?php endif; ?>
+							<li><?php echo $this->Html->link(__l('Referral Points'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('Referral Points')));?></li>
 							<li><?php echo $this->Html->link(__l('My Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('My Beauty Profile')));?></li>
 							<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
 							<li><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>		
@@ -213,6 +214,8 @@ endif;
             <div class="f-c2">
             	<h3><?php echo __l('Customer Service'); ?></h3>
                 <ul>	
+					<?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'listing' ) ?  'active': null; ?>
+                    <li><?php echo $this->Html->link(__l('Selling Products'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Selling Products'),'class'=>$active_class));?></li>
 					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'help_faq') ?  'active': null; ?>
                     <li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ'),'class'=>$active_class));?></li>
 					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'shipping-return') ?  'active': null; ?>

@@ -12,6 +12,16 @@ class Brand extends AppModel
     );
     //$validate set in __construct for multi-language support
     //The Associations below have been created with all possible keys, those that are not needed can be removed
+  public $belongsTo = array(
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ) ,
+ 	
+     );
     public $hasMany = array(
         'Product' => array(
             'className' => 'Product',

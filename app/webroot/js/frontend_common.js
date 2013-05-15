@@ -59,6 +59,16 @@ jQuery(document).ready(function($) {
 						hoverPause: true
 		});
 	$('a.js-thickbox').fcolorbox();
+	$('a.js-sign-pop-up').colorbox( {
+                opacity: 0.30,
+				height: "440px"
+            });
+	$('.js-home-sign-pop-up').colorbox({
+                opacity: 0.30,
+				height: "440px",
+				href : __cfg('path_absolute')+"malaysia/users/login",
+				open : true
+            });
 	$('form.js-ajax-login').fajaxlogin();
   	$('a.js-payment-plan').livequery('click',function(){
 	 	$(".js-payment-plan").addClass("select-off");

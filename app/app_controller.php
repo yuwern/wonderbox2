@@ -503,6 +503,8 @@ class AppController extends Controller
 			'home_page_organizers/previous_month',
 			'home_page_organizers/view',
 			'beauty_tips/index',
+			'brands/listing',
+			'brands/benefits',
 			//'beauty_tips/view',
         );
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];

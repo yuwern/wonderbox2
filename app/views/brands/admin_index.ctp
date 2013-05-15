@@ -1,5 +1,5 @@
 <?php /* SVN: $Id: index_list.ctp 99 2008-07-09 09:33:42Z rajesh_04ag02 $ */ ?>
-<div class="brands index">
+<div class="brands index js-response">
 <h2><?php echo __l('Brands');?></h2>
      <div class="add-block">
                 <?php echo $this->Html->link(__l('Add'),array('controller'=>'brands','action'=>'add'),array('class' => 'add', 'title' => __l('Add New Brand')));?>
@@ -12,6 +12,9 @@
         <tr>
 		   <th class="dl"><?php echo __l('Select'); ?></th>
 			 <th class="dl"><?php echo __l('Action');?></th>
+			 <th class="dl"><?php echo __l('Created');?></th>
+			 <th class="dl"><?php echo __l('Modified');?></th>
+			 <th class="dl"><?php echo __l('Created by');?></th>
 			 <th class="dl"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Name'),'name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Active');?></div></th>	
             </tr>
@@ -34,6 +37,9 @@ foreach ($brands as $brand):
 	    <td><?php  echo $this->Form->input('Brand.'.$brand['Brand']['id'].'.id',array('type' => 'checkbox', 'id' => "admin_checkbox_".$brand['Brand']['id'],'label' => false , 'class' =>  $status_class.' js-checkbox-list'));
                                 ?></td>
 	  	<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $brand['Brand']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $brand['Brand']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div></td>
+		<td><?php echo $this->Html->cDateTime($brand['Brand']['created']);?></td>
+		<td><?php echo $this->Html->cBool($brand['Brand']['modified']);?></td>
+		<td><?php echo $this->Html->cBool($brand['User']['email']);?></td>
 		 <td><?php    echo $this->Html->link($this->Html->showImage('Brand',  $brand['Attachment'], array('dimension' => 'medium_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($brand['Brand']['name'], false)), 'title' => $this->Html->cText($brand['Brand']['name'], false))), array('controller' => 'brands', 'action' => 'view', $brand['Brand']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$brand['Brand']['name']), 'escape' => false));?>  <?php echo $this->Html->link($this->Html->cText($brand['Brand']['name']), array('controller' => 'brands', 'action' => 'view', $brand['Brand']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$brand['Brand']['name']), 'escape' => false));?></td>
 		<td><?php echo $this->Html->cBool($brand['Brand']['is_active']);?></td>
 	

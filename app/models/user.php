@@ -61,6 +61,19 @@ class User extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+	    'Brand' => array(
+            'className' => 'Brand',
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
         'UserLogin' => array(
             'className' => 'UserLogin',
             'foreignKey' => 'user_id',

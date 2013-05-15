@@ -172,14 +172,22 @@ class BeautyTipsController extends AppController
 			$this->request->data['BeautyTip']['month'] = $this->request->params['named']['month'];
 
 		}
-        $this->BeautyTip->recursive = 0;
+        $this->BeautyTip->recursive = 2;
 		$this->paginate = array(
 				'conditions'=> $conditions,
+				'contain' => array(
+					'Attachment',
+					'User'=> array(
+						'fields' => array(
+							'User.email',
+						)
+					)
+				),
 				'order'=> array(
 					'BeautyTip.id'=>'desc'
-				)
-			);
-	 	$moreActions = $this->BeautyTip->moreActions;
+				),
+		);
+		$moreActions = $this->BeautyTip->moreActions;
 		$this->set(compact('moreActions')); 
         $this->set('beautyTips', $this->paginate());
     }
