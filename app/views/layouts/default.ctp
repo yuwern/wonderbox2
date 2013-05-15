@@ -239,7 +239,7 @@ endif;
 				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'affiliatepartners') ?  'active': null; ?>
                 <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners'),'class'=>$active_class));?>
                 <?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'listing' ) ?  'active': null; ?>
-                    <li><?php echo $this->Html->link(__l('Brand Partners'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Brand Partners'),'class'=>$active_class));?></li>
+                <?php echo $this->Html->link(__l('Brand Partners'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Brand Partners'),'class'=>$active_class));?>
             </div>
             <div class="f-c3">
 	           	<h3><?php echo __l('Wonderbox'); ?></h3>
