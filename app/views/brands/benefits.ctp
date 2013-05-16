@@ -27,9 +27,9 @@
 							<?php echo $this->Html->image('reach_box_img3.jpg',array('width'=>294,'height'=>164)); ?>
                    	  		 <div class="head"><h1> SOCIAL SEEDING </h1></div>
                             <p>With a vibrant and passionate community, WonderBox members blog, create YouTube videos and share pictures about their experiences with the new and exciting products and brands shared with them each month. </p>
-                            <p class="bold">Youtube Sample : <a href="#">URL 1</a> | <a href="#">URL 2 </a> | <a href="#">URL 3</a> </p>
-                            <p class="bold">Blog Sample : <a href="#">URL 1</a> | <a href="#">URL 2 </a> | <a href="#">URL 3</a></p>
-                            <p class="bold">Facebook Sample : <a href="#">URL 1</a> | <a href="#">URL 2 </a> | <a href="#">URL 3</a></p>
+                            <p class="bold">Youtube Sample : <a href="https://www.youtube.com/watch?v=CcAVOagEdpk">Video 1</a> | <a href="https://www.youtube.com/watch?v=OJslzww5zxo&list=PLit_u_wMzux4g4V57efVVGPZD7yL2jtwJ">Video 2 </a> | <a href="http://vimeo.com/63022764">Video 3</a> </p>
+                            <p class="bold">Blog Sample : <a href="http://mabelebamwrites.wordpress.com/2013/01/22/little-wonders-january-2013-wonderbox/">Blog 1</a> | <a href="https://trello.com/card/http-mylovelybluesky-com-2013-02-beauty-box-wonderbox-february-2013/50d300094140f3cf0f005329/84">Blog 2 </a> | <a href="http://www.street-love.net/2012/12/wonderbox-december-2012-christmas-edition-review.html">Blog 3</a></p>
+                            <p class="bold">Facebook Sample : <a href="http://sphotos-d.ak.fbcdn.net/hphotos-ak-snc6/602537_3751391111248_1442874169_n.jpg">Picture 1</a> | <a href="https://www.facebook.com/photo.php?fbid=396291157122747&set=p.396291157122747&type=1&ref=nf">Picture 2 </a> | <a href="http://www.facebook.com/photo.php?fbid=10200548585504279&set=o.286344731457250&type=1&theater">Picture 3</a></p>
                             
                             <p class="w-members">  <?php echo __l('Facebook fans :'); ?> <?php echo !empty($total_fan_count)? $total_fan_count: 0; ?></p>
                         </div>
