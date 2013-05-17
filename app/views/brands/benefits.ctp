@@ -42,7 +42,7 @@
                         <div class="wreach-box">
                    	  		<?php echo $this->Html->image('reach_box_img5.jpg',array('width'=>294,'height'=>164)); ?>
                    	       <div class="head"><h1> TARGET MARKETING </h1></div>
-                            <p> Our interactive survey platform allows us to collect valuable customer feedback on key metrics ranging from brand affinity, product suitability to consumer retail behaviour. This consumer feedback will provide the capability to perform critical trending analysis over time to surface valuable marketing information. </p>
+                            <p> A well-defined target market is the first element of a successful marketing strategy. We provide deep and rich segmentation options which include beauty profiles, as well as geographical, social economic and behavioural aspects.  And we are going to keep innovating and advancing the target marketing spectrum. It's just what we do.  </p>
                         </div>
                         <div class="wreach-box m-none">
                    	  		<?php echo $this->Html->image('reach_box_img6.jpg',array('width'=>294,'height'=>164)); ?>
