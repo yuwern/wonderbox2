@@ -110,7 +110,9 @@ endif;
 							</ul>
 							<?php endif; ?>
 						</div>
+						<?php if ($this->Auth->sessionValid()): ?>	
                         <script type="text/javascript">cssdropdown.startchrome("chromemenu")</script>
+						<?php endif; ?>
                     </div>
 					<div class="c4"> 
 					<?php echo __l('WonderPoints :'); ?> <span><?php echo $this->Html->getWonderPointAvialable($current_user_details['id']);?></span></div>
@@ -122,7 +124,7 @@ endif;
 					<?php endif; ?>
 					<?php else: ?>
 					<div class="c2">&nbsp;<fb:like href="<?php echo Router::url('/', true);?>" layout="button_count" font="tahoma"></fb:like></div>
-                 	   <div class="c3"><?php echo $this->Html->link('<strong>'.__l('Login').'</strong>', array('controller' => 'users', 'action' => 'login'), array('title' => __l('Login'),'escape'=>false,'class'=>'js-thickbox'));?>&nbsp;&nbsp; |&nbsp;&nbsp; <?php echo $this->Html->link('<strong>'.__l('Register').'</strong>', array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Register'),'escape'=>false));?>  </div>
+                 	   <div class="c3"><?php echo $this->Html->link('<strong>'.__l('Login').'</strong>', array('controller' => 'users', 'action' => 'login'), array('title' => __l('Login'),'escape'=>false,'class'=>'js-sign-pop-up'));?>&nbsp;&nbsp; |&nbsp;&nbsp; <?php echo $this->Html->link('<strong>'.__l('Register').'</strong>', array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Register'),'escape'=>false));?>  </div>
 					<?php endif; ?>
 					<div class="clear"></div>
                 </div>
@@ -236,10 +238,12 @@ endif;
 				<?php $active_class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'add' ) ?  'active': null; ?>
 				<?php echo $this->Html->link(__l('GIFT A WONDERBOX'), array('controller' => 'gift_users', 'action' => 'add', 'admin' => false), array('title' =>__l('GIFT A WONDERBOX'),'class'=> 'gift '.$active_class));?></p>
                 <h3><?php echo __l('Partners'); ?></h3>
+				<ul>
 				<li><?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'affiliatepartners') ?  'active': null; ?>
                            <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners'),'class'=>$active_class));?></li>
                            <li><?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'listing' ) ?  'active': null; ?>
                            <?php echo $this->Html->link(__l('Brand Partners'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Brand Partners'),'class'=>$active_class));?></li>
+				</ul>
             </div>
             <div class="f-c3">
 	           	<h3><?php echo __l('Wonderbox'); ?></h3>
