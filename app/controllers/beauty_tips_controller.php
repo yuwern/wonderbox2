@@ -97,28 +97,8 @@ class BeautyTipsController extends AppController
                 'BeautyTip.slug = ' => $slug
             ) ,
 			'contain'=> array(
-				'User' => array(
-					'UserProfile' => array(
-						'fields' => array(
-							'UserProfile.first_name',
-							'UserProfile.last_name',
-						)
-					),
-					'UserAvatar' => array(
-						'fields' => array(
-							'UserAvatar.id',
-							'UserAvatar.dir',
-							'UserAvatar.filename',
-							'UserAvatar.width',
-							'UserAvatar.height'
-						)
-					 ),
-					'fields' => array(
-						'User.id',
-						'User.email'
-					)
-				),
-				'Attachment',
+				'Attachment1',
+				'Attachment2',
 				'Category' => array(
 						'fields' => array(
 							'Category.name',
@@ -233,7 +213,12 @@ class BeautyTipsController extends AppController
                         $this->request->data['Attachment1']['foreign_id'] = $this->BeautyTip->id;
                         $this->BeautyTip->Attachment->save($this->request->data['Attachment1']);
                 }
-
+				if (!empty($this->request->data['Attachment2']['filename']['name'])) {
+                        $this->BeautyTip->Attachment->create();
+                        $this->request->data['Attachment2']['class'] = 'ContributorImage';
+                        $this->request->data['Attachment2']['foreign_id'] = $this->BeautyTip->id;
+                        $this->BeautyTip->Attachment->save($this->request->data['Attachment2']);
+                }
                 $this->Session->setFlash(__l('Beauty Content Page has been added') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'index'
@@ -315,6 +300,25 @@ class BeautyTipsController extends AppController
                     $this->request->data['Attachment1']['description'] = 'BeautyTipSlider Image thumb';
                     $this->request->data['Attachment1']['foreign_id'] = $this->request->data['BeautyTip']['id'];
                     $this->BeautyTip->Attachment->save($this->request->data['Attachment1']);
+                  }
+			    if (!(empty($this->request->data['Attachment2']['filename']['name']))) {
+				  	$attach1 = $this->BeautyTip->Attachment2->find('first', array(
+						'conditions' => array(
+							'Attachment2.foreign_id = ' => $foreign_id,
+							'Attachment2.class = ' => 'ContributorImage'
+						) ,
+						'fields' => array(
+							'Attachment2.id'
+						) ,
+						'recursive' => - 1,
+					));
+					if(!empty($attach1['Attachment2']['id']))
+			        $this->BeautyTip->Attachment->delete($attach1['Attachment2']['id']);
+				    $this->BeautyTip->Attachment->create();
+                    $this->request->data['Attachment2']['class'] = 'ContributorImage';
+                    $this->request->data['Attachment2']['description'] = 'ContributorImage Image thumb';
+                    $this->request->data['Attachment2']['foreign_id'] = $this->request->data['BeautyTip']['id'];
+                    $this->BeautyTip->Attachment->save($this->request->data['Attachment2']);
                   }
                 $this->Session->setFlash(__l('Beauty Content Page has been updated') , 'default', null, 'success');
                 $this->redirect(array(

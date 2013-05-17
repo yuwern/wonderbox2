@@ -13,6 +13,7 @@
 		echo $this->Form->input('Category');
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('about_us', array('label' => __l('About us'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
+		echo $this->Form->input('Attachment2.filename', array('type' => 'file','size' => '20', 'label' => __l('Upload contributors / writers picture'),'class' =>'browse-field','info'=>__('Upload contributors / writers picture size should be 100 X 100 ,200 X 200,etc ')));
 		echo $this->Form->input('video_url');
 		echo $this->Form->input('is_main_page_footer');
 		echo $this->Form->input('is_active');

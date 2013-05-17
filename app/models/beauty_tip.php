@@ -101,6 +101,21 @@ class BeautyTip extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+		'Attachment2' => array(
+            'className' => 'Attachment',
+            'foreignKey' => 'foreign_id',
+            'dependent' => false,
+            'conditions' => array(
+                'Attachment2.class' => 'ContributorImage',
+            ) ,
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
     );
     function __construct($id = false, $table = null, $ds = null)
     {
