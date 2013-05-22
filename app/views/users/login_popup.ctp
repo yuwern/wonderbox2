@@ -66,7 +66,7 @@
 						<?php echo $this->Html->image('pop1.jpg'); ?>
 						<?php echo $this->Html->image('pop2.jpg'); ?>
 						<h4>Member's Update</h4>
-                                                         <p><?php echo __l('Your May Edition WonderBox will ship on the 22th of May');  ?> </p>
+                                                         <p><?php echo __l('Your May Edition WonderBox will ship on the 22nd of May');  ?> </p>
 						         <p><?php echo __l('WonderBox Malaysia has released a new subscription reward structure in conjunction with our latest price update.');  ?> </p>
 					 </div>
 <?php if(empty($this->request->data['User']['is_requested'])):?>
