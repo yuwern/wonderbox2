@@ -1005,7 +1005,7 @@ ul.social-icon li a.s-g{ background:url(../img/g_retail.jpg) left no-repeat;}
 .red-email-box strong {font-family: tahoma;}
 
 .red-email-box2{ background:#f7f5f0; padding:10px; overflow:hidden;}
-.red-email-box2 p{ padding:10px 0; font-size:14px; color:#302a2b;}
+.red-email-box2 p{ padding:10px 0; font-size:14px; color:#302a2b;   font-family: tahoma;}
 .how-sign-up{ display:block; background:url(../img/sign_up.jpg); width:408px; height:36px; text-indent:-99999px;}
 .how-sign-up:hover{ display:block; background:url(../img/sign_up_1.jpg); width:408px; height:36px; text-indent:-99999px;}
 
