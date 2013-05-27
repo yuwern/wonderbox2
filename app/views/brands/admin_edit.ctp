@@ -25,7 +25,12 @@
 			   
 			   ?>
 			<div style="padding-left:3px;">	<?php echo $this->Html->truncate($brandAddress['location'],20, array('ending' => '...')); ?></div>
-			<div class="actions"><?php echo $this->Html->link(__l('Edit'), array('controller'=>'brand_addresses','action'=>'edit', $brandAddress['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('controller'=>'brand_addresses','action'=>'delete',$brandAddress['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div>
+			<div class="actions"><?php echo $this->Html->link(__l('Edit'), array('controller'=>'brand_addresses','action'=>'edit', $brandAddress['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?>
+			<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin): ?>
+			<?php echo $this->Html->link(__l('Delete'), array('controller'=>'brand_addresses','action'=>'delete',$brandAddress['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?>
+			<?php endif; ?>
+			</div>
+
 			</li>
 		<?php endforeach;  ?>
 		</ul>
