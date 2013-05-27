@@ -55,6 +55,24 @@ class ProductsController extends AppController
             'conditions' => array(
                 'Product.slug = ' => $slug
             ) ,
+			'contain' => array(
+				'Brand' => array(
+					'fields' => array(
+						'Brand.id',
+						'Brand.name',
+						'Brand.short_description',
+						'Brand.slug',
+					)
+				),
+				'Category' => array(
+					'fields' => array(
+						'Category.id',
+						'Category.name',
+					)
+				),
+				'Attachment',
+				'Attachment1',
+			),
             'fields' => array(
                 'Product.id',
                 'Product.category_id',
@@ -66,12 +84,6 @@ class ProductsController extends AppController
                 'Product.price',
                 'Product.buy_url',
                 'Product.is_active',
-                'Category.id',
-                'Category.name',
-                'Brand.id',
-                'Brand.name',
-                'Brand.short_description',
-                'Brand.slug',
               ) ,
             'recursive' => 1,
         ));
@@ -151,6 +163,12 @@ class ProductsController extends AppController
 						$this->request->data['Attachment']['class'] = 'Product';
 						$this->Product->Attachment->save($this->request->data['Attachment']);
 					}
+					if(!empty($this->request->data['Attachment1']['filename']['name'])){
+						$this->Product->Attachment->create();
+						$this->request->data['Attachment1']['foreign_id'] = $id;
+						$this->request->data['Attachment1']['class'] = 'BuySiteLogo';
+						$this->Product->Attachment->save($this->request->data['Attachment1']);
+					}
 					$this->Session->setFlash(__l('Product has been added') , 'default', null, 'success');
 					$this->redirect(array(
 						'action' => 'index'
@@ -209,6 +227,17 @@ class ProductsController extends AppController
 						$this->request->data['Attachment']['foreign_id'] = $this->request->data['Product']['id'];
 						$this->request->data['Attachment']['class'] = 'Product';
 						$this->Product->Attachment->save($this->request->data['Attachment']);
+				}
+				if(!empty($this->request->data['Attachment1']['filename']['name'])){
+						$attachment2=$this->Product->Attachment->find('first', array('conditions'=>array('Attachment.foreign_id'=>$this->request->data['Product']['id'], 'Attachment.class'=>'BuySiteLogo'), 'recursive'=>-1));
+						if(!empty($attachment2)){
+							$this->request->data['Attachment1']['id'] = $attachment2['Attachment']['id'];
+						}else{
+							$this->Product->Attachment->create();
+						}
+						$this->request->data['Attachment1']['foreign_id'] = $this->request->data['Product']['id'];
+						$this->request->data['Attachment1']['class'] = 'BuySiteLogo';
+						$this->Product->Attachment->save($this->request->data['Attachment1']);
 				}
                 $this->Session->setFlash(__l('Product has been updated') , 'default', null, 'success');
                 $this->redirect(array(
