@@ -105,6 +105,8 @@ class BrandsController extends AppController
         );
 	     $this->set('brands', $this->paginate());
 	 	$moreActions = $this->Brand->moreActions;
+		if($this->Auth->user('user_type_id') != ConstUserTypes::Admin)
+			unset($moreActions[3]);
 	    $this->set(compact('moreActions'));   
     }
     public function admin_view($slug = null)

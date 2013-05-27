@@ -44,7 +44,11 @@ foreach ($beautyTips as $beautyTip):
 	  <tr<?php echo $class;?>>
 	    <td><?php  echo $this->Form->input('BeautyTip.'.$beautyTip['BeautyTip']['id'].'.id',array('type' => 'checkbox', 'id' => "admin_checkbox_".$beautyTip['BeautyTip']['id'],'label' => false , 'class' =>  $status_class.' js-checkbox-list'));
                                 ?></td>
-	  	<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $beautyTip['BeautyTip']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $beautyTip['BeautyTip']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div></td>
+	  	<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $beautyTip['BeautyTip']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?>
+		<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin): ?>
+		<?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $beautyTip['BeautyTip']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?>
+		<?php endif; ?>
+		</div></td>
 		<td><?php echo $this->Html->cDateTime($beautyTip['BeautyTip']['created']);?></td>
 		<td><?php echo $this->Html->cDateTime($beautyTip['BeautyTip']['modified']);?></td>
 		<td><?php echo $this->Html->cText($beautyTip['User']['email']);?></td>
