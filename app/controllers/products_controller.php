@@ -131,6 +131,8 @@ class ProductsController extends AppController
             )
         );
 		$moreActions = $this->Product->moreActions;
+		if($this->Auth->user('user_type_id') != ConstUserTypes::Admin)
+			unset($moreActions[3]);
 	    $this->set(compact('moreActions'));   
         $this->set('products', $this->paginate());
     }

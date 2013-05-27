@@ -21,9 +21,9 @@
 			<?php $class = ($this->request->params['controller'] == 'beauty_tips' ) ? ' class="active"' : null;
 			?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l(' Beauty Content Page'), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' => __l('Beauty Content Page'))); ?></li>
-			<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):  ?>
 			<?php $class = ($this->request->params['controller'] == 'products') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Products'), array('controller' => 'products', 'action' => 'index'),array('title' => __l('Products'))); ?></li>
+			<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):  ?>
 			<?php $class = ($this->request->params['controller'] == 'product_redemptions') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemptions'), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' => __l('Product Redemptions'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'product_redemption_users') ? ' class="active"' : null; ?>
