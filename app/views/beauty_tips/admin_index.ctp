@@ -19,6 +19,9 @@
         <tr>
 		   <th class="dl"><?php echo __l('Select'); ?></th>
 			 <th class="dl"><?php echo __l('Action');?></th>
+			 <th class="dl"><?php echo __l('Created');?></th>
+			 <th class="dl"><?php echo __l('Modified');?></th>
+			 <th class="dl"><?php echo __l('Created by');?></th>
 			 <th class="dl"><div class="js-pagination"><?php echo $this->Paginator->sort(__l('Name'),'name');?></div></th>
 			 <th class="dl"><div class="js-pagination"><?php echo __l('Active');?></div></th>	
 			 <th class="dl"><div class="js-pagination"><?php echo __l('User view count');?></div></th>	
@@ -42,6 +45,9 @@ foreach ($beautyTips as $beautyTip):
 	    <td><?php  echo $this->Form->input('BeautyTip.'.$beautyTip['BeautyTip']['id'].'.id',array('type' => 'checkbox', 'id' => "admin_checkbox_".$beautyTip['BeautyTip']['id'],'label' => false , 'class' =>  $status_class.' js-checkbox-list'));
                                 ?></td>
 	  	<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $beautyTip['BeautyTip']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $beautyTip['BeautyTip']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div></td>
+		<td><?php echo $this->Html->cDateTime($beautyTip['BeautyTip']['created']);?></td>
+		<td><?php echo $this->Html->cDateTime($beautyTip['BeautyTip']['modified']);?></td>
+		<td><?php echo $this->Html->cText($beautyTip['User']['email']);?></td>
 		 <td><?php    echo $this->Html->link($this->Html->showImage('BeautyTip',  $beautyTip['Attachment'], array('dimension' => 'medium_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($beautyTip['BeautyTip']['name'], false)), 'title' => $this->Html->cText($beautyTip['BeautyTip']['name'], false))), array('controller' => 'beauty_tips', 'action' => 'view', $beautyTip['BeautyTip']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$beautyTip['BeautyTip']['name']), 'escape' => false));?>  <?php echo $this->Html->link($this->Html->cText($beautyTip['BeautyTip']['name']), array('controller' => 'beauty_tips', 'action' => 'view', $beautyTip['BeautyTip']['slug'],'admin'=>false),array('title' =>sprintf(__l('%s'),$beautyTip['BeautyTip']['name']), 'escape' => false));?></td>
 		<td><?php echo $this->Html->cBool($beautyTip['BeautyTip']['is_active']);?></td>
 		<td><?php echo $this->Html->link($this->Html->cInt($beautyTip['BeautyTip']['beauty_tip_view_count']), array('controller' => 'beauty_tip_views', 'action' => 'index', $beautyTip['BeautyTip']['slug']),array('title' =>$beautyTip['BeautyTip']['beauty_tip_view_count'], 'escape' => false));?></td>
