@@ -32,7 +32,7 @@
 						<?php endif; ?>
 						 <li class="bor"></li>
 						  <?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'referral_points') ? ' class="active"' : null; ?>
-                        <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Referral Points'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('Referral Points')));?></li>
+                        <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Referral Points'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('My Referral Points')));?></li>
 						 <?php $class = ($this->request->params['controller'] == 'beauty_profiles' && $this->request->params['action'] == 'my_beauty_profile') ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('My Beauty Profile')));?></li>
 						<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>			
