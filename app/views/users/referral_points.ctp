@@ -53,7 +53,7 @@
                             <div class="p-box mr-none">
                             	<h1><?php echo __l('Experience shared'); ?></h1>
                            		<p class="rpoint-img"><?php echo $this->Html->image('refer_pro_img3.jpg'); ?></p> 
-                                <p><?php echo __l('No of unknown'); ?></p>
+                                <p><?php echo __l('Shared Experience'); ?></p>
                             	<p><label><?php echo __l('This month'); ?> 	</label><span>: <strong><?php echo $referral_points['TotalExperienceShared']['Month']['no_of_survey']; ?></strong></span></p>
                                 <p><label><?php echo __l('Total'); ?>  	</label><span>: <strong><?php echo $referral_points['TotalExperienceShared']['All']['no_of_survey']; ?></strong></span></p> 
                                 <div class="total-point">
@@ -81,6 +81,8 @@ There is no expiry date for your WonderPoints. Awesome right? </p>
                             <p></p>
                             <ol>
                                 <li>WonderPoints are only valid for subscription and product gift redemption </li>
+                                <li>WonderPoints earned in this programme have no cash or monetary value and cannot be exchanged for cash.</li>
+
                             </ol>
                         </div>
                     </div>
