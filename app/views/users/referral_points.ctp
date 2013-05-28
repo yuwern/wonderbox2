@@ -24,7 +24,7 @@
                         	<div class="p-box">
 							  	<h1><?php echo __l('Friends Referral Program'); ?></h1>
                            		<p class="rpoint-img"><?php echo $this->Html->image('refer_pro_img.jpg'); ?></p> 
-                                <p><?php echo __l('No. of friends joined'); ?></p>
+                                <p><?php echo __l('Number of Friends Joined'); ?></p>
                             	<p><label><?php echo __l('This month'); ?> 	</label><span>: <strong><?php echo $referral_points['TotalReferralFriend']['Month']['total_no_users']; ?></strong></span></p>
                                 <p><label><?php echo __l('Total'); ?>  	</label><span>: <strong><?php echo $referral_points['TotalReferralFriend']['All']['total_no_users']; ?></strong></span></p> 
                                 <div class="total-point">
@@ -39,7 +39,7 @@
                             <div class="p-box">
                             	<h1><?php echo __l('Survey'); ?></h1>
                            		<p class="rpoint-img"><?php echo $this->Html->image('refer_pro_img2.jpg'); ?></p> 
-                                <p><?php echo __l('No of survey completed'); ?></p>
+                                <p><?php echo __l('Number of Survey Completed'); ?></p>
                             	<p><label><?php echo __l('This month '); ?>	</label><span>: <strong><?php echo $referral_points['TotalSurvey']['Month']['no_of_survey']; ?></strong></span></p>
                                 <p><label><?php echo __l('Total'); ?>  	</label><span>: <strong><?php echo $referral_points['TotalSurvey']['All']['no_of_survey']; ?></strong></span></p> 
                                 <div class="total-point">
@@ -53,7 +53,7 @@
                             <div class="p-box mr-none">
                             	<h1><?php echo __l('Experience shared'); ?></h1>
                            		<p class="rpoint-img"><?php echo $this->Html->image('refer_pro_img3.jpg'); ?></p> 
-                                <p><?php echo __l('Shared Experience'); ?></p>
+                                <p><?php echo __l('Nnumber of Shared Experience'); ?></p>
                             	<p><label><?php echo __l('This month'); ?> 	</label><span>: <strong><?php echo $referral_points['TotalExperienceShared']['Month']['no_of_survey']; ?></strong></span></p>
                                 <p><label><?php echo __l('Total'); ?>  	</label><span>: <strong><?php echo $referral_points['TotalExperienceShared']['All']['no_of_survey']; ?></strong></span></p> 
                                 <div class="total-point">
@@ -69,10 +69,10 @@
                         	<p><strong>What is WonderBoxPoints (WP)?</strong>
 WonderPoints are reward points all WonderBox members can earn by sharing their experience and contributing to the enrichment of the WonderBox community </p>
 
-<p><strong>How can i redeem?</strong>
+<p><strong>What and how do I make a redemption using my WonderPoints?</strong>
 You can redeem a complimentary WonderBox monthly subscription by navigating to the option "My Subscription" or you can redeem a wonderful gift sets by navigating to the option "Product Redemption"</p>
 
-<p><strong>Will my WonderBox Point (WP) expired?</strong>
+<p><strong>Will my WonderBoxPoints (WP) expired?</strong>
 There is no expiry date for your WonderPoints. Awesome right? </p>
 
                         </div>
