@@ -22,9 +22,9 @@
                         </div>
                         <div class="poin-box">
                         	<div class="p-box">
-							  	<h1><?php echo __l('Friends Referral Program'); ?></h1>
+							  	<h1><?php echo __l('Referral Program'); ?></h1>
                            		<p class="rpoint-img"><?php echo $this->Html->image('refer_pro_img.jpg'); ?></p> 
-                                <p><?php echo __l('Number of Friends Joined'); ?></p>
+                                <p><?php echo __l('Number of Referrals'); ?></p>
                             	<p><label><?php echo __l('This month'); ?> 	</label><span>: <strong><?php echo $referral_points['TotalReferralFriend']['Month']['total_no_users']; ?></strong></span></p>
                                 <p><label><?php echo __l('Total'); ?>  	</label><span>: <strong><?php echo $referral_points['TotalReferralFriend']['All']['total_no_users']; ?></strong></span></p> 
                                 <div class="total-point">
@@ -37,7 +37,7 @@
                           </div>
                             
                             <div class="p-box">
-                            	<h1><?php echo __l('Survey'); ?></h1>
+                            	<h1><?php echo __l('Product Survey'); ?></h1>
                            		<p class="rpoint-img"><?php echo $this->Html->image('refer_pro_img2.jpg'); ?></p> 
                                 <p><?php echo __l('Number of Survey Completed'); ?></p>
                             	<p><label><?php echo __l('This month '); ?>	</label><span>: <strong><?php echo $referral_points['TotalSurvey']['Month']['no_of_survey']; ?></strong></span></p>
