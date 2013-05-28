@@ -54,6 +54,21 @@ class Product extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+		'Attachment1' => array(
+            'className' => 'Attachment',
+            'foreignKey' => 'foreign_id',
+            'dependent' => true,
+            'conditions' => array(
+                'Attachment1.class' => 'BuySiteLogo',
+            ) ,
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
 	   'ProductSurvey' => array(
             'className' => 'ProductSurvey',
             'foreignKey' => 'product_id',

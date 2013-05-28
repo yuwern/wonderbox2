@@ -15,6 +15,7 @@
 		echo $this->Form->input('wonder_point');
 		echo $this->Form->input('end_date',array('label'=>__l('Survey End date')));
 		echo $this->Form->input('buy_url',array('label'=>__l('Buy Site URL')));
+		echo $this->Form->input('Attachment1.filename', array('type' => 'file', 'label' => __l('Buy Site Logo'),'info'=> __l('Image size should be 143X29'),'class'=>'required','div'=>'input file required'));
 		echo $this->Form->input('edition_date', array( 'label' => __l('Wonder Edition'), 'dateFormat' => 'MY', 'minYear' => date('Y')+1, 'maxYear' => date('Y')));
 		echo $this->Form->input('is_active',array('type'=>'checkbox'));
 	?>

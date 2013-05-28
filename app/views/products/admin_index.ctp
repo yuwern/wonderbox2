@@ -41,7 +41,15 @@ foreach ($products as $product):
 ?>
 	<tr<?php echo $class;?>>
 		    <td><?php  echo $this->Form->input('Product.'. $product['Product']['id'].'.id',array('type' => 'checkbox', 'id' => "admin_checkbox_". $product['Product']['id'],'label' => false , 'class' =>  $status_class.' js-checkbox-list'));   ?></td>
-		<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $product['Product']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?><?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $product['Product']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?></div><div class="actions"><?php echo $this->Html->link(__l('Chart'), array('action'=>'chart', $product['Product']['slug']), array('class' => 'chart js-edit', 'title' => __l('Chart')));?></div><div class="actions"><?php echo $this->Html->link(__l('Product Votes Chart'), array('controller'=>'product_votes','action'=>'chart', $product['Product']['slug']), array('class' => 'chart js-edit', 'title' => __l('Product Votes Chart')));?></div></td>
+		<td><div class="actions"><?php echo $this->Html->link(__l('Edit'), array('action'=>'edit', $product['Product']['id']), array('class' => 'edit js-edit', 'title' => __l('Edit')));?>
+		<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):  ?>
+		<?php echo $this->Html->link(__l('Delete'), array('action'=>'delete', $product['Product']['id']), array('class' => 'delete js-delete', 'title' => __l('Delete')));?>
+		<?php endif; ?>
+		</div>
+		<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):  ?>
+		<div class="actions"><?php echo $this->Html->link(__l('Chart'), array('action'=>'chart', $product['Product']['slug']), array('class' => 'chart js-edit', 'title' => __l('Chart')));?></div>
+		<div class="actions"><?php echo $this->Html->link(__l('Product Votes Chart'), array('controller'=>'product_votes','action'=>'chart', $product['Product']['slug']), array('class' => 'chart js-edit', 'title' => __l('Product Votes Chart')));?></div>
+		<?php endif; ?></td>
 		<td> <?php echo $this->Html->showImage('Product',  $product['Attachment'][0], array('dimension' => 'medium_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($product['Product']['name'], false)), 'title' => $this->Html->cText($product['Product']['name'], false)));?> <?php echo $this->Html->cText($product['Product']['name']);?></td>
 		<td><?php echo $this->Html->cText($product['Category']['name']);?></td>
 		<td><?php echo $this->Html->cText($product['Brand']['name']);?></td>
