@@ -4,8 +4,8 @@
                  <?php endif; ?>
                     <div class="acc-right">
                    	<div class="head">
-                        	<h1><?php echo __l('Referral Points'); ?></h1>
-                            <p><?php echo __l('Account copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                        	<h1><?php echo __l('My WonderPoints'); ?></h1>
+                            <p><?php echo __l(''); ?></p>
                         </div>
                        	<div class="referral_point-banner">
                         	<h1><?php echo __l('Start refer'); ?> &amp; <?php echo __l('EARN'); ?> <br /><?php echo __l('text draft'); ?></h1>
@@ -66,34 +66,21 @@
                           </div>
                         </div>
                         <div class="refer-text">
-                        	<p><strong>What is WonderBox Point (WP)?</strong>
-WP is text copywriting draft temp text copy words copy text draft copy temp.</p>
+                        	<p><strong>What is WonderBoxPoints (WP)?</strong>
+WonderPoints are reward points all WonderBox members can earn by sharing their experience and contributing to the enrichment of the WonderBox community </p>
 
 <p><strong>How can i redeem?</strong>
-By visiting text copywriting draft temp text copy words copy text draft copy temp.</p>
+You can redeem a complimentary WonderBox monthly subscription by navigating to the option "My Subscription" or you can redeem a wonderful gift sets by navigating to the option "Product Redemption"</p>
 
 <p><strong>Will my WonderBox Point (WP) expired?</strong>
-Text copywriting draft temp text copy words copy text draft copy temp.</p>
+There is no expiry date for your WonderPoints. Awesome right? </p>
 
-<p><strong>Text X</strong>
-WP is text copywriting draft temp text copy words copy text draft copy temp.</p>
-
-<p><strong>Text Y</strong>
-By visiting text copywriting draft temp text copy words copy text draft copy temp.</p>
-
-<p><strong>Text C</strong>
-Text copywriting draft temp text copy words copy text draft copy temp.</p>
                         </div>
                         <div class="refer-copy">
                         	<p><strong>Terms & Conditions</strong></p>
-                            <p>Copywriting temp draft temp text copy words copywriting temp draft temp text copy words draft temp text copy words copywriting temp draft temp text copy words </p>
+                            <p></p>
                             <ol>
-                                <li>draft temp text copy words copywriting temp draft temp text copy words  draft temp text copy words copywriting temp draft temp text copy words </li>
-                                <li>draft draft temp text copy words copywriting temp draft temp text copy words </li>
-                                <li>draft temp text copy words copywriting temp draft temp text copy words text word copy</li>
-                                <li>draft temp text copy words copywriting temp draft temp text copy words </li>
-                                <li>draft temp text copy words copywriting temp draft temp text copy words  draft temp text copy words copywriting temp draft temp</li>
-                                <li>draft draft temp text copy words copywriting temp draft temp text copy words </li>
+                                <li>WonderPoints are only valid for subscription and product gift redemption </li>
                             </ol>
                         </div>
                     </div>
