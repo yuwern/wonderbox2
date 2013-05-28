@@ -70,7 +70,9 @@
 WonderPoints are reward points all WonderBox members can earn by sharing their experience and contributing to the enrichment of the WonderBox community </p>
 
 <p><strong>What and how do I make a redemption using my WonderPoints?</strong>
-You can redeem a complimentary WonderBox monthly subscription by navigating to the option "My Subscription" or you can redeem a wonderful gift sets by navigating to the option "Product Redemption"</p>
+You can redeem a complimentary WonderBox monthly subscription by navigating to the option "My Subscription Redemption" or you can redeem a wonderful gift sets by navigating to the option "My Product Redemption"</p>
+
+
 
 <p><strong>Will my WonderBoxPoints (WP) expired?</strong>
 There is no expiry date for your WonderPoints. Awesome right? </p>
