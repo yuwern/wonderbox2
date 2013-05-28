@@ -28,7 +28,7 @@
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Transaction'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('My Transaction')));?></li>
 						<?php if(Configure::read('wonderpoint.is_system_enabled') && $this->Html->checkPackageAvialable()): ?>
 						<?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'redemption') ? ' class="active"' : null; ?>
-                        <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Subscription Redemption'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('My Redemption')));?></li>
+                        <li <?php echo $class;?>><?php echo $this->Html->link(__l('WonderPoints Subscription Redemption'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('My Redemption')));?></li>
 						<?php endif; ?>
 						 <li class="bor"></li>
 						  <?php $class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'referral_points') ? ' class="active"' : null; ?>
@@ -40,7 +40,7 @@
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>
 						<?php endif; ?>
 						<?php $class = ($this->request->params['controller'] == 'product_redemptions' && ($this->request->params['action'] == 'index')) ? ' class="active"' : null; ?>
-					    <li <?php echo $class;?>><?php echo $this->Html->link(__l('Products Redemption'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('Product Redemption')));?></li>
+					    <li <?php echo $class;?>><?php echo $this->Html->link(__l('WonderPoints Products Redemption'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('Product Redemption')));?></li>
 						<?php $class = ($this->request->params['controller'] == 'product_redemption_users' && ($this->request->params['action'] == 'index')) ? ' class="active"' : null; ?>
 						<li  <?php echo $class;?>><?php echo $this->Html->link(__l('My Product Redemption'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('Product Redemption List')));?></li>
 					   </ul>
