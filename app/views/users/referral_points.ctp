@@ -8,7 +8,7 @@
                             <p><?php echo __l(''); ?></p>
                         </div>
                        	<div class="referral_point-banner">
-                        	<h1><?php echo __l('Your WonderPoints Overview'); ?> &amp; <?php echo __l(''); ?> <br /><?php echo __l(''); ?></h1>
+                        	<h1><?php echo __l('Your WonderPoints Overview');?></h1>
                             <div class="refer-point">
                             	<div class="poin-left">
                                 	<p><?php echo __l('Your total points'); ?></p>
