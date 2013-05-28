@@ -8,7 +8,7 @@
                             <p><?php echo __l(''); ?></p>
                         </div>
                        	<div class="referral_point-banner">
-                        	<h1><?php echo __l('Start refer'); ?> &amp; <?php echo __l('EARN'); ?> <br /><?php echo __l('text draft'); ?></h1>
+                        	<h1><?php echo __l('Your WonderPoints Overview'); ?> &amp; <?php echo __l(''); ?> <br /><?php echo __l('Start Earning WonderPoints Today'); ?></h1>
                             <div class="refer-point">
                             	<div class="poin-left">
                                 	<p><?php echo __l('Your total points'); ?></p>
@@ -53,7 +53,7 @@
                             <div class="p-box mr-none">
                             	<h1><?php echo __l('Experience shared'); ?></h1>
                            		<p class="rpoint-img"><?php echo $this->Html->image('refer_pro_img3.jpg'); ?></p> 
-                                <p><?php echo __l('Nnumber of Shared Experience'); ?></p>
+                                <p><?php echo __l('Number of Shared Experience'); ?></p>
                             	<p><label><?php echo __l('This month'); ?> 	</label><span>: <strong><?php echo $referral_points['TotalExperienceShared']['Month']['no_of_survey']; ?></strong></span></p>
                                 <p><label><?php echo __l('Total'); ?>  	</label><span>: <strong><?php echo $referral_points['TotalExperienceShared']['All']['no_of_survey']; ?></strong></span></p> 
                                 <div class="total-point">
