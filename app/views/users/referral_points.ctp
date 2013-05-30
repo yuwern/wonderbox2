@@ -12,7 +12,7 @@
                             <div class="refer-point">
                             	<div class="poin-left">
                                 	<p><?php echo __l('Your total points'); ?></p>
-                                    <span><?php echo $this->Html->cInt($referral_points['TotalPoints']['All'],false); ?></span>
+                                    <span><?php echo $this->Html->getWonderPointAvialable($this->Auth->user('id'));?></span>
                                 </div>
                                 <div class="poin-right">
                                 	<p><?php echo __l('This month'); ?></p>

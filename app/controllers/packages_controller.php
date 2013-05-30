@@ -487,6 +487,7 @@ class PackagesController extends AppController
 				$data['Transaction']['foreign_id'] = $package['Package']['id'];
 				$data['Transaction']['class'] = 'Package';
 				$data['Transaction']['amount'] = $amount ;
+				$data['Transaction']['wonder_points'] = $package['Package']['no_of_wonderpoints'] ;
 				$data['Transaction']['payment_gateway_id'] = ConstPaymentGateways::PayPal;
 				$data['Transaction']['description'] = 'Payment Success';
 				$data['Transaction']['gateway_fees'] = 0;
@@ -698,18 +699,7 @@ class PackagesController extends AppController
 								)
 							));
 						if(!empty($tempPaymentLog)){		
-							    $user_id  = $tempPaymentLog['TempPaymentLog']['user_id'];
-								$data['Transaction']['user_id'] = $user_id;
-								$data['Transaction']['foreign_id'] = $tempPaymentLog['TempPaymentLog']['package_id'];
-								$data['Transaction']['class'] = 'Package';
-								$data['Transaction']['amount'] = $amount;
-								$data['Transaction']['payment_gateway_id'] = $paymentGateway['PaymentGateway']['id'];
-								$data['Transaction']['description'] = 'Payment Success';
-								$data['Transaction']['gateway_fees'] = 0;
-								$data['Transaction']['transaction_type_id'] = ConstTransactionTypes::PaidlAmountToCompany;
-								$transaction_id = $this->Transaction->log($data);
-									if (!empty($transaction_id)) {
-										$package=$this->Package->find('first',array(
+								$package=$this->Package->find('first',array(
 											'conditions'=> array(
 												'Package.id'=> $tempPaymentLog['TempPaymentLog']['package_id']
 											),
@@ -721,7 +711,20 @@ class PackagesController extends AppController
 												)
 											),
 											'recursive' => 1
-										));
+								));
+							    $user_id  = $tempPaymentLog['TempPaymentLog']['user_id'];
+								$data['Transaction']['user_id'] = $user_id;
+								$data['Transaction']['foreign_id'] = $tempPaymentLog['TempPaymentLog']['package_id'];
+								$data['Transaction']['class'] = 'Package';
+								$data['Transaction']['amount'] = $amount;
+								$data['Transaction']['wonder_points'] = $package['Package']['no_of_wonderpoints'];
+								$data['Transaction']['payment_gateway_id'] = $paymentGateway['PaymentGateway']['id'];
+								$data['Transaction']['description'] = 'Payment Success';
+								$data['Transaction']['gateway_fees'] = 0;
+								$data['Transaction']['transaction_type_id'] = ConstTransactionTypes::PaidlAmountToCompany;
+								$transaction_id = $this->Transaction->log($data);
+									if (!empty($transaction_id)) {
+									
 									//$start_date = date('Y-m-d');
 									// Referral friend code 
 									$referred_by_user_id = 0;

@@ -2101,7 +2101,33 @@ class UsersController extends AppController
 				'recursive' => -1
 			));
 		
+		$total_subscription_wonderpoints = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.wonder_points !=' => 0 ,
+					'Transaction.class' => 'Package',
+					'Transaction.created >=' => $start_date,
+					'Transaction.created <=' => $end_date,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+				),
+				'recursive' => -1
+			));
 		
+		$total_giftsubscription_wonderpoints = $this->Transaction->find('all',array(
+				'conditions' => array(
+					'Transaction.user_id' => $this->Auth->user('id'),
+					'Transaction.wonder_points !=' => 0 ,
+					'Transaction.class' => 'GiftUser',
+					'Transaction.created >=' => $start_date,
+					'Transaction.created <=' => $end_date,
+				),
+				'fields' => array(
+					'SUM(Transaction.wonder_points) as wonderpoint',
+				),
+				'recursive' => -1
+			));		
 		$referral_points['TotalReferralFriend']['Month']  = !empty($months_referral_friends[0][0])? $months_referral_friends[0][0] : 0;
 		$referral_points['TotalReferralFriend']['All']  = !empty($total_referral_friends[0][0])? $total_referral_friends[0][0] : 0;
 		$referral_points['TotalSurvey']['Month']  = !empty($month_surveys[0][0])? $month_surveys[0][0] : 0;
@@ -2109,7 +2135,7 @@ class UsersController extends AppController
 		$referral_points['TotalExperienceShared']['Month']  = !empty($month_experience_shared[0][0])? $month_experience_shared[0][0] : 0;
 		$referral_points['TotalExperienceShared']['All']  = !empty($total_experience_shared[0][0])? $total_experience_shared[0][0] : 0;
 		$referral_points['TotalPoints']['All']  = $referral_points['TotalReferralFriend']['All']['wonderpoint'] + $referral_points['TotalSurvey']['All']['wonderpoint'] + $referral_points['TotalExperienceShared']['All']['wonderpoint'];
-		$referral_points['TotalPoints']['Month']  = $referral_points['TotalReferralFriend']['Month']['wonderpoint'] + $referral_points['TotalSurvey']['Month']['wonderpoint'] + $referral_points['TotalExperienceShared']['Month']['wonderpoint'];
+		$referral_points['TotalPoints']['Month']  = $referral_points['TotalReferralFriend']['Month']['wonderpoint'] + $referral_points['TotalSurvey']['Month']['wonderpoint'] + $referral_points['TotalExperienceShared']['Month']['wonderpoint']+$total_subscription_wonderpoints[0][0]['wonderpoint']+$total_giftsubscription_wonderpoints[0][0]['wonderpoint'];
 		$this->set('referral_points',$referral_points);
 	}
 	public function redemption(){
@@ -3146,6 +3172,55 @@ class UsersController extends AppController
     }
    public function test(){
 
+   }
+   public function admin_listing($userIdBase64Decode = null) {
+	 if(!empty($userIdBase64Decode)){
+		$userIdbase64encode = base64_decode($userIdBase64Decode);
+		$userIds = explode('-',$userIdbase64encode);
+		
+	 }
+	 if ($this->RequestHandler->prefers('csv')) {
+	  $users = $this->User->find('all', array(
+            'conditions' => array(
+				'User.id'=>	$userIds		  
+			),
+			'fields' => array(
+				'User.id',
+				'User.email',
+				'User.created',
+			),
+			 'recursive' => -1
+        ));
+			
+        if (!empty($users)) {
+            foreach($users as $user) {
+				$address = $this->User->getShippingAddress($user['User']['id']);
+                $data[]['User'] = array(
+                    __l('Email') => $user['User']['email'],
+					__l('Address') => $address,
+                    __l('Created on') => $user['User']['created'],
+                );
+            }
+        }
+        $this->set('data', $data);
+	 } else {
+		 $this->paginate = array(
+				'conditions' => array(
+						'User.id'=> $userIds,
+				),
+				'contain' => array(
+					'UserProfile',
+				),
+				'fields' => array(
+					'User.id',
+					'User.email',
+					'User.created',
+				),
+				'limit' => 10,
+				'recursive'=> -1
+		);
+		$this->set('users',$this->paginate());
+	 }
    }
  }
 ?>
