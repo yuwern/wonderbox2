@@ -66,6 +66,7 @@
 						<?php echo $this->Html->image('pop1.jpg'); ?>
 						<?php echo $this->Html->image('pop2.jpg'); ?>
 						<h4>Member's Update</h4>
+                                                         <p><?php echo __l('The May edition product survey is now OPEN! Share your feedback with us to earn more WonderPoints');  ?> </p>
                                                          <p><?php echo __l('Share your unique experience with your May WonderBox with us today to earn more WonderPoints!');  ?> </p>
 						         <p><?php echo __l('WonderBox Malaysia has released a new subscription reward structure in conjunction with our latest price update.');  ?> </p>
 					 </div>
