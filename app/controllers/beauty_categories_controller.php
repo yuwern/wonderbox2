@@ -96,7 +96,7 @@ class BeautyCategoriesController extends AppController
 										array('contain'=> array(
 											'BeautyQuestion'=> array(
 												'conditions'=> array(
-													'BeautyQuestion.id <='=> 15		
+													'BeautyQuestion.survey_type_id ='=> ConstSurveyType::BeautySurvey
 												),
 												'BeautyAnswer'=> array(
 													'fields'=> array(

@@ -87,7 +87,7 @@ class ProductsController extends AppController
               ) ,
             'recursive' => 1,
         ));
-        if (empty($product)) {
+		if (empty($product)) {
             throw new NotFoundException(__l('Invalid request'));
         }
         $this->pageTitle.= ' - ' . $product['Product']['name'];
@@ -612,10 +612,7 @@ class ProductsController extends AppController
         }	
 		$productQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
 						'conditions' => array(
-								'BeautyQuestion.id BETWEEN ? AND ?' => array(
-						            16,
-									23,
-							),
+								'BeautyQuestion.survey_type_id ='=> ConstSurveyType::ProductSurvey
 						),
 						'contain'=> array(
 							'BeautyCategory'=> array(
@@ -638,10 +635,7 @@ class ProductsController extends AppController
 		$beautyQuestions = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
 						'conditions' => array(
 							'BeautyQuestion.beauty_category_id'=> $product['Product']['beauty_category_id'],
-							'BeautyQuestion.id BETWEEN ? AND ?' => array(
-						            1,
-									15,
-							),
+							'BeautyQuestion.survey_type_id ='=> ConstSurveyType::BeautySurvey
 						),
 						'contain'=> array(
 							'BeautyCategory'=> array(
@@ -664,10 +658,7 @@ class ProductsController extends AppController
 		$beautyQuestionProductCategorys = $this->Product->BeautyCategory->BeautyQuestion->find('all',array(
 						'conditions' => array(
 							'BeautyQuestion.beauty_category_id'=> 3,
-							'BeautyQuestion.id BETWEEN ? AND ? ' => array(
-						            1,
-									15,
-							),
+							'BeautyQuestion.survey_type_id ='=> ConstSurveyType::BeautySurvey
 						),
 						'contain'=> array(
 							'BeautyCategory'=> array(

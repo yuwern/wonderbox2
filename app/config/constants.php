@@ -51,6 +51,11 @@ class ConstFriendRequestStatus
     const Approved = 2;
     const Reject = 3;
 }
+class ConstSurveyType
+{
+    const BeautySurvey = 1;
+    const ProductSurvey = 2;
+}
 class ConstMoreAction
 {
     const Inactive = 1;
@@ -126,7 +131,7 @@ class ConstTransactionTypes
     const ReferralAmountPaid = 11;
     const AcceptCashWithdrawRequest = 13;
     const DeductedAmountForOfflineCompany = 14;
-     const UserWithdrawalRequest = 17;
+    const UserWithdrawalRequest = 17;
     const AdminApprovedWithdrawalRequest = 18;
     const AdminRejecetedWithdrawalRequest = 19;
 	const AddFundToWallet = 25;
@@ -140,6 +145,9 @@ class ConstTransactionTypes
 	const ShareExperience = 81;
 	const ProductDamage = 82;
 	const Refund = 83;
+	const ExperiencePhoto = 84;
+	const ExperienceBlog = 85;
+	const ExperienceVideo = 86;
 
 }
 // Setting for privacy setting

@@ -91,21 +91,21 @@ endif;
 						  <?php if ($this->Auth->sessionValid()): ?>	<ul>
 							<li><?php echo $this->Html->link(__l('My Account'), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => __l('My Account')));?></li>
 							<li><?php echo $this->Html->link(__l('Shipping Info'), array('controller' => 'user_shippings', 'action' => 'index'),array('title' => __l('Shipping Info'))); ?></li>
-						    <li><?php echo $this->Html->link(__l('Profile Image'), array('controller' => 'users', 'action' => 'profile_image', $this->Auth->user('id')), array('title' => 'Profile Image')); ?></li>
+						    <li><?php echo $this->Html->link(__l('My Profile Image'), array('controller' => 'users', 'action' => 'profile_image', $this->Auth->user('id')), array('title' => 'My Profile Image')); ?></li>
 				             <li><?php echo $this->Html->link(__l('Change Password'), array('controller' => 'users', 'action' => 'change_password'), array('title' => __l('Change password')));?></li>
 							 <li><?php echo $this->Html->link(__l('My Subscription'), array('controller' => 'package_users', 'action' => 'index'), array('title' => __l('My Subscription')));?></li>
 							 <li><?php echo $this->Html->link(__l('My Gift Subscription'), array('controller' => 'gift_users', 'action' => 'mygift'), array('title' => __l('My Gift Subscription')));?></li>
 							 <li><?php echo $this->Html->link(__l('My Transaction'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('My Transaction')));?></li>
 							 <?php if(Configure::read('wonderpoint.is_system_enabled') && $this->Html->checkPackageAvialable()): ?>
-							 <li><?php echo $this->Html->link(__l('WonderPoints Subscription Redemption'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('WonderPoints Subscription Redemption')));?></li>
+							 <li><?php echo $this->Html->link(__l('My Redemption'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('My Redemption')));?></li>
 							<?php endif; ?>
-							<li><?php echo $this->Html->link(__l('My WonderPoints'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('My WonderPoints')));?></li>
+							<li><?php echo $this->Html->link(__l('Referral Points'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('Referral Points')));?></li>
 							<li><?php echo $this->Html->link(__l('My Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('My Beauty Profile')));?></li>
 							<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
 							<li><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>		
 							<?php endif; ?>
-							<li><?php echo $this->Html->link(__l('WonderPoints Products Redemption'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('WonderPoints Products Redemption')));?></li>
-							<li><?php echo $this->Html->link(__l('My Product Redemption'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('My Product Redemption')));?></li>
+							<li><?php echo $this->Html->link(__l('Product Redemption'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('Product Redemption')));?></li>
+							<li><?php echo $this->Html->link(__l('Product Redemption List'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('Product Redemption List')));?></li>
 							
 							</ul>
 							<?php endif; ?>
@@ -243,8 +243,6 @@ endif;
                            <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners'),'class'=>$active_class));?></li>
                            <li><?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'listing' ) ?  'active': null; ?>
                            <?php echo $this->Html->link(__l('Brand Partners'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Brand Partners'),'class'=>$active_class));?></li>
-                           <li><?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'ContentContributorPartners') ?  'active': null; ?>
-                           <?php echo $this->Html->link(__l('Content Contributor Partners'), array('controller' => 'pages', 'action' => 'view', 'ContentContributorPartners', 'admin' => false), array('title' => __l('Content Contributor Partners'),'class'=>$active_class));?></li>
 				</ul>
             </div>
             <div class="f-c3">

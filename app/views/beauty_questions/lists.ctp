@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('BeautyQuestion.question_id', array('label' => __l('Questions'),'empty'=>__l('Please select'),'options'=> $beautyQuestions)); ?>

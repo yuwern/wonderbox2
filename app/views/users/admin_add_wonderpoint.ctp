@@ -6,9 +6,12 @@
  	<?php
         echo $this->Form->input('id');
 		echo $this->Form->input('transaction_type',array('label' => __l('Transaction Type'),'empty'=>__l('Please Select'),'options'=> array(
-		ConstTransactionTypes::ShareExperience  => __l('Experience shared'),
-		ConstTransactionTypes::ProductDamage  => __('Product damage'),
-		ConstTransactionTypes::Refund  => __('Refund'),
+			ConstTransactionTypes::ShareExperience  => __l('Experience shared'),
+			ConstTransactionTypes::ProductDamage  => __l('Product damage'),
+			ConstTransactionTypes::Refund  => 'Refund',
+			ConstTransactionTypes::ExperiencePhoto  => 'Experienced shared Picture',
+			ConstTransactionTypes::ExperienceBlog  => 'Experienced shared Blog',
+			ConstTransactionTypes::ExperienceVideo  =>'Experienced shared video'
 		)));
 		echo $this->Form->input('available_wonder_points',array('label' => __l('Wonder Point')));
 

@@ -266,7 +266,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 	<?php endforeach; ?>
 <?php endforeach; 
 
-print_r($chart_arr);
+//print_r($chart_arr);
 ?>
 	<script type="text/javascript">
 	 $(document).ready(function() {

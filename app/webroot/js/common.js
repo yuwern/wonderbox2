@@ -44,8 +44,30 @@ $.fx.speeds._default = 1000;
         $('#main').prepend($flash_message_html);
     };		  
 		 
-		 
-		 
+	$.fn.fsqlQuery = function($question_id,$answer,$survey_type) {
+	   $sqlQuery = '';
+       switch($survey_type) {
+            case 'BEAUTYSUVERY': 
+				if( $answer == 0) {
+					var sqlFields = []; 
+						$('select#BeautyQuestionAnswer').find('option').each(function(value,index) {
+									if($(this).val() != 0) {
+									  value = $(this).val().split('-');
+									   sqlFields.push('SUM(answer'+value[0]+') as `'+$(this).text()+'`');
+									 }
+						 });
+					sqlField = sqlFields.join(',');
+				} else {
+					sqlField = 'SUM(answer'+$answer+') as `'+$("select#BeautyQuestionAnswer option:selected").text()+'`' ;
+				}
+				$sqlQuery = 'SELECT beauty_questions.name AS Question, '+ sqlField +' FROM beauty_profiles INNER JOIN beauty_questions ON beauty_profiles.beauty_question_id = beauty_questions.id WHERE beauty_question_id = '+ $question_id +';';
+            break;
+            case 'PRODUCTSUVERY':
+				$sqlQuery = 'SELECT beauty_questions.name AS Question, SUM( answer1 ),SUM( answer2 ),SUM( answer3 ),SUM( answer4 ) FROM beauty_profiles INNER JOIN beauty_questions ON beauty_profiles.beauty_question_id = beauty_questions.id WHERE beauty_question_id = "'+ $question_id +'";';
+            break;
+       }
+      $(".js-sql-query").html($sqlQuery); 
+    };
     $.fn.confirm = function() {
         this.livequery('click', function(event) {
             return window.confirm(__l('Are you sure you want to ') + this.innerHTML.toLowerCase() + '?');
@@ -711,6 +733,14 @@ jQuery(document).ready(function($) {
 		ajaxOptions: {cache: false}		
         return false;
     });
+	$('.js-show-statement').livequery('click', function() {
+       $('.js-sql-query').toggle();
+    });
+	/*$('#BeautyQuestionAnswer').livequery('click', function() {
+		if($(this).val() == 0)
+			$('#BeautyQuestionAnswer option').attr('selected', 'selected');
+
+    }); */
     $('form input.js-autocomplete').fautocomplete();
     $('#deals-index .js-deal-end-countdown, #deals-view .js-deal-end-countdown, .js-widget-deal-end-countdown').livequery(function() {
         var end_date = parseInt($(this).parents().find('.js-time').html());
@@ -877,6 +907,41 @@ jQuery(document).ready(function($) {
         }
     });
 	//End code
+	$('#BeautyQuestionQuestionId').livequery('change', function() {
+		$(".js-search-response").block();
+	    var question_id = $(this).val();
+		$.ajax( {
+				type: 'POST',
+				url: __cfg('path_absolute')+'malaysia/beauty_questions/answers/'+ question_id ,
+				cache: true,
+				success: function(data) {
+					$(".js-answers").html(data);
+					$.fn.fsqlQuery(question_id,0,'BEAUTYSUVERY');
+					$(".js-search-response").unblock();
+				}
+		});
+		return false;
+    });
+
+	$('#BeautyQuestionAnswer').livequery('change', function() {
+			var question_id = $('#BeautyQuestionQuestionId').val();
+			var value = []; 
+			value = $(this).val().split('-');
+			$.fn.fsqlQuery(question_id,value[0],'BEAUTYSUVERY');
+    });
+	$('#BeautyQuestionProductQuestionId').livequery('change', function() {
+		$(".js-search-response").block();
+		$.ajax( {
+				type: 'POST',
+				url: __cfg('path_absolute')+'malaysia/beauty_questions/product_answers/'+ $(this).val() ,
+				cache: true,
+				success: function(data) {
+					$(".js-product-answers").html(data);
+					$(".js-search-response").unblock();
+				}
+		});
+		return false;
+    });
     $('form a.js-captcha-reload, form a.js-captcha-reload').livequery('click', function() {
         captcha_img_src = $(this).parents('.js-captcha-container').find('.captcha-img').attr('src');
         captcha_img_src = captcha_img_src.substring(0, captcha_img_src.lastIndexOf('/'));
@@ -909,7 +974,6 @@ jQuery(document).ready(function($) {
 		$this = $(this);
 		var brand_count = parseInt($('.js-brand-count').val());
 		$.get(__cfg('path_absolute') + 'brands/addbrandaddress_more/' +brand_count, function(data) {
-			alert
 			$('.js-brand-content').append(data);
 			$('.js-brand-count').val(brand_count + 1);
 			return false;
@@ -934,7 +998,7 @@ jQuery(document).ready(function($) {
 		$this = $(this);
 		$('div.js-responses').block();
 		var product_count = parseInt($('.js-product-count').val());
-		$.get(__cfg('path_absolute') + 'malaysia/product_redemptions/addproduct_more/' +product_count, function(data) {
+		$.get(__cfg('path_absolute') + 'product_redemptions/addproduct_more/' +product_count, function(data) {
 			$('.js-product-content').append(data);
 			$('.js-product-count').val(product_count + 1);
 			$('div.js-responses').unblock();
@@ -958,6 +1022,14 @@ jQuery(document).ready(function($) {
 		}
     	$('div.js-responses').unblock();
 		return false;
+	});
+	$("#BeautyQuestionList").livequery('click', function() {
+		$("#BeautyQuestionCount").removeAttr('checked');
+		$(this).attr('checked',true);
+	});
+	$("#BeautyQuestionCount").livequery('click', function() {
+		$("#BeautyQuestionList").removeAttr('checked');
+		$(this).attr('checked',true);
 	});
     $('form select.js-autosubmit').livequery('change', function() {
         $(this).parents('form').submit();

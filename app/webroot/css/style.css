@@ -124,7 +124,7 @@
 .singup-left{ width:230px; float:left;}
 
 .head{ background:#f5f5f5; border-bottom:1px solid #bebebe;border-top:1px solid #bebebe; padding:15px;}
-.head h1{ font-size:25px; font-weight:bold; color:#e88ea9; font-family:rawengulkbold; line-height:18px; padding-bottom:10px;}
+.head h1{ font-size:25px; font-weight:bold; color:#e88ea9; font-family:rawengulkbold; line-height:25px; padding-bottom:10px;}
 .head p{ font-family:Tahoma, Geneva, sans-serif; font-size:12px; color:#585858;}
 
 .singup-right{ width:690px; float:right;}
@@ -462,7 +462,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c00256', end
 .get-slide2-left img{ padding-top:300px; }
 .get-slide2-right{ float:right; width:600px;}
 .get-slide2-right .choose-box{ padding:90px 0 0 100px;}
-.get-slide2-right h1{ font-size:22px; font-weight:normal; color:#FFF; line-height:22px; margin-bottom:15px; padding-right: 50px;}
+.get-slide2-right h1{ font-size:22px; font-weight:normal; color:#FFF; line-height:22px; margin-bottom:15px; /* padding-right: 50px;*/}
 .get-slide2-right .choose-box ul.checkbox{ margin:0; padding:0 75px 0 0;}
 .get-slide2-right .choose-box ul.checkbox li{ margin:0 5px 5px 0; padding:0; width:105px; height:86px; list-style:none; float:left; cursor:pointer;}
 
@@ -721,6 +721,279 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c00256', end
 .banner-thank p{ font-size:16px; color:#fff; padding-right:20px; padding:10px 55px 10px 0;}
 
 .acc-banner .slide14 ul li{ margin:0 5px 5px 0; padding:0; width:145px; height:120px; list-style:none; float:left; cursor:pointer;}
+
+
+/*Slide 17a*/
+.slide14 ul li.s17a-img1{ background: url(../img/BeautyQuiz17a_img1.jpg);}
+.slide14 ul li.s17a-img1:hover, .slide14 ul li.s17a-img1.active{ background: url(../img/BeautyQuiz17a_img1h.jpg);}
+
+.slide14 ul li.s17a-img2{ background: url(../img/BeautyQuiz17a_img2.jpg);}
+.slide14 ul li.s17a-img2:hover,.slide14 ul li.s17a-img2.active{ background: url(../img/BeautyQuiz17a_img2h.jpg);}
+
+.slide14 ul li.s17a-img3{ background: url(../img/BeautyQuiz17a_img3.jpg);}
+.slide14 ul li.s17a-img3:hover,.slide14 ul li.s17a-img3.active{ background: url(../img/BeautyQuiz17a_img3h.jpg);}
+
+.slide14 ul li.s17a-img4{ background: url(../img/BeautyQuiz17a_img4.jpg);}
+.slide14 ul li.s17a-img4:hover,.slide14 ul li.s17a-img4.active{ background: url(../img/BeautyQuiz17a_img4h.jpg);}
+
+.slide14 ul li.s17a-img5{ background: url(../img/BeautyQuiz17a_img5.jpg);}
+.slide14 ul li.s17a-img5:hover,.slide14 ul li.s17a-img5.active{ background: url(../img/BeautyQuiz17a_img5h.jpg);}
+
+/* slide 19 */
+.slide19{padding:60px 0 0 25px;}
+.slide19 ul{ padding:0px 0 0 0px;}
+.slide19 ul li{ margin:0 5px 5px 0; padding:0; width:105px; height:86px; list-style:none; float:left; cursor:pointer;}
+.slide19 ul li:hover a,.slide19 ul li.active a{ background:#e43385; color:#FFF; text-decoration:none;}
+.slide19 ul li a{ display:block; background:#e3e3e3; color:#000; font-size:12px; text-align:center; height:22px; margin-top:64px; line-height:22px;}
+
+.slide19 ul li.s7-img1{ background: url(../img/BeautyQuiz19_img1.jpg);}
+.slide19 ul li.s7-img1:hover,.slide19 ul li.s7-img1.active{ background: url(../img/BeautyQuiz19_img1h.jpg);}
+
+.slide19 ul li.s7-img2{ background: url(../img/BeautyQuiz19_img2.jpg);}
+.slide19 ul li.s7-img2:hover,.slide19 ul li.s7-img2.active{ background: url(../img/BeautyQuiz19_img2h.jpg);}
+
+.slide19 ul li.s7-img3{ background: url(../img/BeautyQuiz19_img3.jpg);}
+.slide19 ul li.s7-img3:hover,.slide19 ul li.s7-img3.active{ background: url(../img/BeautyQuiz19_img3h.jpg);}
+
+.slide19 ul li.s7-img4{ background: url(../img/BeautyQuiz19_img4.jpg);}
+.slide19 ul li.s7-img4:hover,.slide19 ul li.s7-img4.active{ background: url(../img/BeautyQuiz19_img4h.jpg);}
+
+.slide19 ul li.s7-img5{ background: url(../img/BeautyQuiz19_img5.jpg);}
+.slide19 ul li.s7-img5:hover,.slide19 ul li.s7-img5.active{ background: url(../img/BeautyQuiz19_img5h.jpg);}
+
+.slide19 ul li.s7-img6{ background: url(../img/BeautyQuiz19_img6.jpg);}
+.slide19 ul li.s7-img6:hover,.slide19 ul li.s7-img6.active{ background: url(../img/BeautyQuiz19_img6h.jpg);}
+
+.slide19 ul li.s7-img7{ background: url(../img/BeautyQuiz19_img7.jpg);}
+.slide19 ul li.s7-img7:hover,.slide19 ul li.s7-img7.active{ background: url(../img/BeautyQuiz19_img7h.jpg);}
+
+.slide19 ul li.s7-img8{ background: url(../img/BeautyQuiz19_img8.jpg);}
+.slide19 ul li.s7-img8:hover,.slide19 ul li.s7-img8.active{ background: url(../img/BeautyQuiz19_img8h.jpg);}
+
+.slide19 ul li.s7-img9{ background: url(../img/BeautyQuiz19_img9.jpg);}
+.slide19 ul li.s7-img9:hover,.slide19 ul li.s7-img9.active{ background: url(../img/BeautyQuiz19_img9h.jpg);}
+
+.slide19 ul li.s7-img10{ background: url(../img/BeautyQuiz19_img10.jpg);}
+.slide19 ul li.s7-img10:hover,.slide19 ul li.s7-img10.active{ background: url(../img/BeautyQuiz19_img10h.jpg);}
+
+.slide19 ul li.s7-img11{ background: url(../img/BeautyQuiz19_img11.jpg);}
+.slide19 ul li.s7-img11:hover,.slide19 ul li.s7-img11.active{ background: url(../img/BeautyQuiz19_img11h.jpg);}
+
+.slide19 ul li.s7-img12{ background: url(../img/BeautyQuiz19_img12.jpg);}
+.slide19 ul li.s7-img12:hover,.slide19 ul li.s7-img12.active{ background: url(../img/BeautyQuiz19_img12h.jpg);}
+
+.slide19 ul li.s7-img13{ background: url(../img/BeautyQuiz19_img13.jpg);}
+.slide19 ul li.s7-img13:hover,.slide19 ul li.s7-img13.active{ background: url(../img/BeautyQuiz19_img13h.jpg);}
+
+/* slide 20 */
+.slide20{padding:90px 0 0 25px;}
+.slide20 ul{ padding:0px 0 0 0px;}
+.slide20 ul li{ margin:0 5px 5px 0; padding:0; width:105px; height:86px; list-style:none; float:left; cursor:pointer;}
+.slide20 ul li:hover a,.slide20 ul li.active a{ background:#e43385; color:#FFF; text-decoration:none;}
+.slide20 ul li a{ display:block; background:#e3e3e3; color:#000; font-size:12px; text-align:center; height:22px; margin-top:64px; line-height:22px;}
+
+.slide20 ul li.s7-img1{ background: url(../img/BeautyQuiz20_img1.jpg);}
+.slide20 ul li.s7-img1:hover,.slide20 ul li.s7-img1.active{ background: url(../img/BeautyQuiz20_img1h.jpg);}
+
+.slide20 ul li.s7-img2{ background: url(../img/BeautyQuiz20_img2.jpg);}
+.slide20 ul li.s7-img2:hover,.slide20 ul li.s7-img2.active{ background: url(../img/BeautyQuiz20_img2h.jpg);}
+
+.slide20 ul li.s7-img3{ background: url(../img/BeautyQuiz20_img3.jpg);}
+.slide20 ul li.s7-img3:hover,.slide20 ul li.s7-img3.active{ background: url(../img/BeautyQuiz20_img3h.jpg);}
+
+.slide20 ul li.s7-img4{ background: url(../img/BeautyQuiz20_img4.jpg);}
+.slide20 ul li.s7-img4:hover,.slide20 ul li.s7-img4.active{ background: url(../img/BeautyQuiz20_img4h.jpg);}
+
+.slide20 ul li.s7-img5{ background: url(../img/BeautyQuiz20_img5.jpg);}
+.slide20 ul li.s7-img5:hover,.slide20 ul li.s7-img5.active{ background: url(../img/BeautyQuiz20_img5h.jpg);}
+
+.slide20 ul li.s7-img6{ background: url(../img/BeautyQuiz20_img6.jpg);}
+.slide20 ul li.s7-img6:hover,.slide20 ul li.s7-img6.active{ background: url(../img/BeautyQuiz20_img6h.jpg);}
+
+.slide20 ul li.s7-img7{ background: url(../img/BeautyQuiz20_img7.jpg);}
+.slide20 ul li.s7-img7:hover,.slide20 ul li.s7-img7.active{ background: url(../img/BeautyQuiz20_img7h.jpg);}
+
+.slide20 ul li.s7-img8{ background: url(../img/BeautyQuiz20_img8.jpg);}
+.slide20 ul li.s7-img8:hover,.slide20 ul li.s7-img8.active{ background: url(../img/BeautyQuiz20_img8h.jpg);}
+
+.slide20 ul li.s7-img9{ background: url(../img/BeautyQuiz20_img9.jpg);}
+.slide20 ul li.s7-img9:hover,.slide20 ul li.s7-img9.active{ background: url(../img/BeautyQuiz20_img9h.jpg);}
+
+.slide20 ul li.s7-img10{ background: url(../img/BeautyQuiz20_img10.jpg);}
+.slide20 ul li.s7-img10:hover,.slide20 ul li.s7-img10.active{ background: url(../img/BeautyQuiz20_img10h.jpg);}
+
+.slide20 ul li.s7-img11{ background: url(../img/BeautyQuiz20_img11.jpg);}
+.slide20 ul li.s7-img11:hover,.slide20 ul li.s7-img11.active{ background: url(../img/BeautyQuiz20_img11h.jpg);}
+
+.slide20 ul li.s7-img12{ background: url(../img/BeautyQuiz20_img12.jpg);}
+.slide20 ul li.s7-img12:hover,.slide20 ul li.s7-img12.active{ background: url(../img/BeautyQuiz20_img12h.jpg);}
+
+/* slide 21 */
+.slide21{padding:60px 0 0 25px;}
+.slide21 ul{ padding:0px 0 0 0px;}
+.slide21 ul li{ margin:0 5px 5px 0; padding:0; width:105px; height:86px; list-style:none; float:left; cursor:pointer;}
+.slide21 ul li:hover a,.slide21 ul li.active a{ background:#e43385; color:#FFF; text-decoration:none;}
+.slide21 ul li a{ display:block; background:#e3e3e3; color:#000; font-size:12px; text-align:center; height:22px; margin-top:64px; line-height:22px;}
+
+.slide21 ul li.s7-img1{ background: url(../img/BeautyQuiz21_img1.jpg);}
+.slide21 ul li.s7-img1:hover,.slide21 ul li.s7-img1.active{ background: url(../img/BeautyQuiz21_img1h.jpg);}
+
+.slide21 ul li.s7-img2{ background: url(../img/BeautyQuiz21_img2.jpg);}
+.slide21 ul li.s7-img2:hover,.slide21 ul li.s7-img2.active { background: url(../img/BeautyQuiz21_img2h.jpg);}
+
+.slide21 ul li.s7-img3{ background: url(../img/BeautyQuiz21_img3.jpg);}
+.slide21 ul li.s7-img3:hover,.slide21 ul li.s7-img3.active{ background: url(../img/BeautyQuiz21_img3h.jpg);}
+
+.slide21 ul li.s7-img4{ background: url(../img/BeautyQuiz21_img4.jpg);}
+.slide21 ul li.s7-img4:hover,.slide21 ul li.s7-img4.active{ background: url(../img/BeautyQuiz21_img4h.jpg);}
+
+.slide21 ul li.s7-img5{ background: url(../img/BeautyQuiz21_img5.jpg);}
+.slide21 ul li.s7-img5:hover,.slide21 ul li.s7-img5.active{ background: url(../img/BeautyQuiz21_img5h.jpg);}
+
+.slide21 ul li.s7-img6{ background: url(../img/BeautyQuiz21_img6.jpg);}
+.slide21 ul li.s7-img6:hover,.slide21 ul li.s7-img6.active{ background: url(../img/BeautyQuiz21_img6h.jpg);}
+
+.slide21 ul li.s7-img7{ background: url(../img/BeautyQuiz21_img7.jpg);}
+.slide21 ul li.s7-img7:hover,.slide21 ul li.s7-img7.active{ background: url(../img/BeautyQuiz21_img7h.jpg);}
+
+.slide21 ul li.s7-img8{ background: url(../img/BeautyQuiz21_img8.jpg);}
+.slide21 ul li.s7-img8:hover,.slide21 ul li.s7-img8.active{ background: url(../img/BeautyQuiz21_img8h.jpg);}
+
+.slide21 ul li.s7-img9{ background: url(../img/BeautyQuiz21_img9.jpg);}
+.slide21 ul li.s7-img9:hover,.slide21 ul li.s7-img9.active{ background: url(../img/BeautyQuiz21_img9h.jpg);}
+
+.slide21 ul li.s7-img10{ background: url(../img/BeautyQuiz21_img10.jpg);}
+.slide21 ul li.s7-img10:hover,.slide21 ul li.s7-img10.active{ background: url(../img/BeautyQuiz21_img10h.jpg);}
+
+.slide21 ul li.s7-img11{ background: url(../img/BeautyQuiz21_img11.jpg);}
+.slide21 ul li.s7-img11:hover,.slide21 ul li.s7-img11.active{ background: url(../img/BeautyQuiz21_img11h.jpg);}
+
+.slide21 ul li.s7-img12{ background: url(../img/BeautyQuiz21_img12.jpg);}
+.slide21 ul li.s7-img12:hover,.slide21 ul li.s7-img12.active{ background: url(../img/BeautyQuiz21_img12h.jpg);}
+
+.slide21 ul li.s7-img13{ background: url(../img/BeautyQuiz20_img12.jpg);}
+.slide21 ul li.s7-img13:hover,.slide21 ul li.s7-img13.active{ background: url(../img/BeautyQuiz20_img12h.jpg);}
+
+
+
+/* slide 22 */
+.slide22{padding:60px 0 0 25px;}
+.slide22 ul{ padding:0px 0 0 0px;}
+.slide22 ul li{ margin:0 5px 5px 0; padding:0; width:105px; height:68px; list-style:none; float:left; cursor:pointer;}
+.slide22 ul li:hover a,.slide22 ul li.active a{ background:#e43385; color:#FFF; text-decoration:none;}
+.slide22 ul li a{ display:block; background:#e3e3e3; color:#000; font-size:12px; text-align:center; height:22px; margin-top:46px; line-height:22px;}
+
+.slide22 ul li.s7-img1{ background: url(../img/BeautyQuiz22_img1.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img1:hover,.slide22 ul li.s7-img1.active{ background: url(../img/BeautyQuiz22_img1h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img2{ background: url(../img/BeautyQuiz22_img2.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img2:hover,.slide22 ul li.s7-img2.active{ background: url(../img/BeautyQuiz22_img2h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img3{ background: url(../img/BeautyQuiz22_img3.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img3:hover,.slide22 ul li.s7-img3.active{ background: url(../img/BeautyQuiz22_img3h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img4{ background: url(../img/BeautyQuiz22_img4.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img4:hover,.slide22 ul li.s7-img4.active{ background: url(../img/BeautyQuiz22_img4h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img5{ background: url(../img/BeautyQuiz22_img5.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img5:hover,.slide22 ul li.s7-img5.active{ background: url(../img/BeautyQuiz22_img5h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img6{ background: url(../img/BeautyQuiz22_img6.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img6:hover,.slide22 ul li.s7-img6.active{ background: url(../img/BeautyQuiz22_img6h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img7{ background: url(../img/BeautyQuiz22_img7.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img7:hover,.slide22 ul li.s7-img7.active{ background: url(../img/BeautyQuiz22_img7h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img8{ background: url(../img/BeautyQuiz22_img8.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img8:hover,.slide22 ul li.s7-img8.active{ background: url(../img/BeautyQuiz22_img8h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img9{ background: url(../img/BeautyQuiz22_img9.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img9:hover,.slide22 ul li.s7-img9.active{ background: url(../img/BeautyQuiz22_img9h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img10{ background: url(../img/BeautyQuiz22_img10.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img10:hover,.slide22 ul li.s7-img10.active{ background: url(../img/BeautyQuiz22_img10h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img11{ background: url(../img/BeautyQuiz22_img11.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img11:hover,.slide22 ul li.s7-img11.active{ background: url(../img/BeautyQuiz22_img11h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img12{ background: url(../img/BeautyQuiz22_img12.jpg) ;}
+.slide22 ul li.s7-img12:hover,.slide22 ul li.s7-img12.active{ background: url(../img/BeautyQuiz22_img12h.jpg);}
+
+.slide22 ul li.s7-img13{ background: url(../img/BeautyQuiz22_img13.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img13:hover,.slide22 ul li.s7-img13.active{ background: url(../img/BeautyQuiz22_img13h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img14{ background: url(../img/BeautyQuiz22_img14.jpg) 0 -10px no-repeat;}
+.slide22 ul li.s7-img14:hover,.slide22 ul li.s7-img14.active{ background: url(../img/BeautyQuiz22_img14h.jpg) 0 -10px no-repeat;}
+
+.slide22 ul li.s7-img15{ background: url(../img/BeautyQuiz22_img15.jpg) 0 -10px no-repeat;}
+.slide22 ul li.s7-img15:hover,.slide22 ul li.s7-img15.active{ background: url(../img/BeautyQuiz22_img15h.jpg) 0 -10px no-repeat;}
+
+.slide22 ul li.s7-img16{ background: url(../img/BeautyQuiz22_img16.jpg) 0 -14px no-repeat;}
+.slide22 ul li.s7-img16:hover,.slide22 ul li.s7-img16.active{ background: url(../img/BeautyQuiz22_img16h.jpg) 0 -14px no-repeat;}
+
+.slide22 ul li.s7-img17{ background: url(../img/BeautyQuiz22_img17.jpg) 0 -10px no-repeat;}
+.slide22 ul li.s7-img17:hover,.slide22 ul li.s7-img17.active{ background: url(../img/BeautyQuiz22_img17h.jpg) 0 -10px no-repeat;}
+
+.slide22 ul li.s7-img18{ background: url(../img/BeautyQuiz22_img18.jpg) 0 -10px no-repeat;}
+.slide22 ul li.s7-img18:hover,.slide22 ul li.s7-img18.active{ background: url(../img/BeautyQuiz22_img18h.jpg) 0 -10px no-repeat;}
+
+
+/* slide 23 */
+.slide23{padding:60px 0 0 50px;}
+.slide23 ul{ padding:0px 60px 0 0px;}
+.slide23 ul li{ margin:0 5px 5px 0; padding:0; width:105px; height:86px; list-style:none; float:left; cursor:pointer;}
+.slide23 ul li:hover a,.slide23 ul li.active a{ background:#e43385; color:#FFF; text-decoration:none;}
+.slide23 ul li a{ display:block; background:#e3e3e3; color:#000; font-size:12px; text-align:center; height:22px; margin-top:64px; line-height:22px;}
+
+.slide23 ul li.s7-img1{ background: url(../img/BeautyQuiz23_img1.jpg);}
+.slide23 ul li.s7-img1:hover,.slide23 ul li.s7-img1.active{ background: url(../img/BeautyQuiz23_img1h.jpg);}
+
+.slide23 ul li.s7-img2{ background: url(../img/BeautyQuiz23_img2.jpg);}
+.slide23 ul li.s7-img2:hover,.slide23 ul li.s7-img2.active{ background: url(../img/BeautyQuiz23_img2h.jpg);}
+
+.slide23 ul li.s7-img3{ background: url(../img/BeautyQuiz23_img3.jpg);}
+.slide23 ul li.s7-img3:hover,.slide23 ul li.s7-img3.active{ background: url(../img/BeautyQuiz23_img3h.jpg);}
+
+.slide23 ul li.s7-img4{ background: url(../img/BeautyQuiz23_img4.jpg);}
+.slide23 ul li.s7-img4:hover,.slide23 ul li.s7-img4.active{ background: url(../img/BeautyQuiz23_img4h.jpg);}
+
+.slide23 ul li.s7-img5{ background: url(../img/BeautyQuiz23_img5.jpg);}
+.slide23 ul li.s7-img5:hover,.slide23 ul li.s7-img5.active{ background: url(../img/BeautyQuiz23_img5h.jpg);}
+
+.slide23 ul li.s7-img6{ background: url(../img/BeautyQuiz23_img6.jpg);}
+.slide23 ul li.s7-img6:hover,.slide23 ul li.s7-img6.active{ background: url(../img/BeautyQuiz23_img6h.jpg);}
+
+.slide23 ul li.s7-img7{ background: url(../img/BeautyQuiz23_img7.jpg);}
+.slide23 ul li.s7-img7:hover,.slide23 ul li.s7-img7.active{ background: url(../img/BeautyQuiz23_img7h.jpg);}
+
+.slide23 ul li.s7-img8{ background: url(../img/BeautyQuiz20_img12.jpg);}
+.slide23 ul li.s7-img8:hover,.slide23 ul li.s7-img8.active{ background: url(../img/BeautyQuiz20_img12h.jpg);}
+
+
+/* slide 24 */
+.slide24{padding:60px 0 0 50px;}
+.slide24 ul{ padding:0px 60px 0 0px;}
+.slide24 ul li{ margin:0 5px 5px 0; padding:0; width:105px; height:86px; list-style:none; float:left; cursor:pointer;}
+.slide24 ul li:hover a,.slide24 ul li.active a{ background:#e43385; color:#FFF; text-decoration:none;}
+.slide24 ul li a{ display:block; background:#e3e3e3; color:#000; font-size:12px; text-align:center; height:22px; margin-top:64px; line-height:22px;}
+
+.slide24 ul li.s7-img1{ background: url(../img/BeautyQuiz24_img1.jpg);}
+.slide24 ul li.s7-img1:hover,.slide24 ul li.s7-img1.active{ background: url(../img/BeautyQuiz24_img1h.jpg);}
+
+.slide24 ul li.s7-img2{ background: url(../img/BeautyQuiz24_img2.jpg);}
+.slide24 ul li.s7-img2:hover,.slide24 ul li.s7-img2.active{ background: url(../img/BeautyQuiz24_img2h.jpg);}
+
+.slide24 ul li.s7-img3{ background: url(../img/BeautyQuiz24_img3.jpg);}
+.slide24 ul li.s7-img3:hover,.slide24 ul li.s7-img3.active{ background: url(../img/BeautyQuiz24_img3h.jpg);}
+
+.slide24 ul li.s7-img4{ background: url(../img/BeautyQuiz24_img4.jpg);}
+.slide24 ul li.s7-img4:hover,.slide24 ul li.s7-img4.active{ background: url(../img/BeautyQuiz24_img4h.jpg);}
+
+.slide24 ul li.s7-img5{ background: url(../img/BeautyQuiz24_img5.jpg);}
+.slide24 ul li.s7-img5:hover,.slide24 ul li.s7-img5.active{ background: url(../img/BeautyQuiz24_img5h.jpg);}
+
+.slide24 ul li.s7-img6{ background: url(../img/BeautyQuiz24_img6.jpg);}
+.slide24 ul li.s7-img6:hover,.slide24 ul li.s7-img6.active{ background: url(../img/BeautyQuiz24_img6h.jpg);}
 
 
 /* Updated on Sep 26 2012 */
@@ -1005,7 +1278,7 @@ ul.social-icon li a.s-g{ background:url(../img/g_retail.jpg) left no-repeat;}
 .red-email-box strong {font-family: tahoma;}
 
 .red-email-box2{ background:#f7f5f0; padding:10px; overflow:hidden;}
-.red-email-box2 p{ padding:10px 0; font-size:14px; color:#302a2b;   font-family: tahoma;}
+.red-email-box2 p{ padding:10px 0; font-size:14px; color:#302a2b; font-family: tahoma;}
 .how-sign-up{ display:block; background:url(../img/sign_up.jpg); width:408px; height:36px; text-indent:-99999px;}
 .how-sign-up:hover{ display:block; background:url(../img/sign_up_1.jpg); width:408px; height:36px; text-indent:-99999px;}
 
@@ -1253,4 +1526,33 @@ padding-bottom: 40px; font-family:rawengulkregular;
 .static p {
     font-size: 12px;
     padding: 8px 0;
+}
+
+.acc-banner .banner-nav ul li a{ padding:6px 7px 6px 7px;margin: 0 3px 0 0;}
+.mr0{ margin-right:0px !important;}
+.pr0{ padding-right:0px !important;}
+
+.slide13.slide15a ul li a {height: 55px; padding-top: 15px;}
+
+.comp-survey-td.beauty-ser .t-data {
+    border-bottom: 1px solid #D0D0D0;
+    padding: 4px 5px;
+}
+
+
+.comp-survey-td.beauty-ser .t-data .t-c5 {
+    padding-top: 7px;
+}
+
+.comp-survey-td.beauty-ser .t-data .t-c2 .js-caggs20{ border: 1px solid #CCCCCC; margin-left: 25px; padding: 2px 0;}
+
+
+.comp-survey-td.beauty-ser .table-data {
+    color: #000000;
+    margin: 25px 0 0;
+    width: 90%;
+}
+
+.tips_detail a {
+    font-family: tahoma;
 }

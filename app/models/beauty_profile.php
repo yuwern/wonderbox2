@@ -12,6 +12,14 @@ class BeautyProfile extends AppModel
             'fields' => '',
             'order' => '',
             'counterCache' => false
+        ),
+       'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'user_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'counterCache' => false
         )
     );
     function __construct($id = false, $table = null, $ds = null)

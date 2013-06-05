@@ -31,6 +31,7 @@
 									else:
 									echo $this->Html->link($this->Html->image('cart.jpg'), $product['Product']['buy_url'] ,array('class'=>'js-link-redirect','escape'=>false));
 									endif;
+
 									endif; ?> 
 								<input type="hidden" name="slug" value="<?php echo $product['Product']['slug']; ?>" class="js-product-slug"/>
 								</p>

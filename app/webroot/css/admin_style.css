@@ -1392,3 +1392,25 @@ a.add-fund {
 }
 form.normal div.select select#CategoryCategory{height:130px;padding: 5px;}
 form.normal div.select select#CategoryCategory option{padding: 5px;}
+.search-box-left{ width:45%; float:left; }
+.search-box-right{ width:45%; float:right}
+
+.search-box-left input, .search-box-right input{ margin: 0 0 0 0px;}
+.search-box-left .input.checkbox, .search-box-right .input.checkbox{ float:left}
+
+.search-box-left .input.checkbox input, .search-box-left div.select select,
+.search-box-right .input.checkbox input, .search-box-right div.select select, .search-box-right div.input input{margin: 0 0 0 0px !important;}
+.search-bg-box{-webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; background:#f2f2f2;padding:15px;}
+
+.search-box-left div.input label, .search-box-right div.input label{ width:100% !important; position: inherit !important; display:block; text-align:left !important; color:#DE006D !important; font-size:12px !important;}
+.bor-bot{border-bottom:1px solid #ccc;}
+.pad-none{padding:0px !important;}
+.lig-hei{line-height:22px; padding-left: 10px;
+    text-transform: uppercase;}
+.js-show-statement{float:right; padding:5px 0; font-size:13px;}
+.js-sql-query{padding:10px; border:1px solid #ccc; background:#f2f2f2;margin: 25px 0 10px;}
+.js-search-response .submit{ float:right !important; margin-right:0px !important;}
+
+form.normal div.select select#BeautyQuestionAnswer,form.normal div.select select#BeautyQuestionProductAnswer {
+    height: 100px;
+}

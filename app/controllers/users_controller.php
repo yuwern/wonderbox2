@@ -2079,7 +2079,14 @@ class UsersController extends AppController
 		$month_experience_shared = $this->Transaction->find('all',array(
 				'conditions' => array(
 					'Transaction.user_id' => $this->Auth->user('id'),
-					'Transaction.transaction_type_id' => ConstTransactionTypes::ShareExperience,
+					'OR' => array (
+						'Transaction.transaction_type_id' => array(
+							 ConstTransactionTypes::ShareExperience,
+							 ConstTransactionTypes::ExperiencePhoto,
+							 ConstTransactionTypes::ExperienceBlog,
+							 ConstTransactionTypes::ExperienceVideo
+						)
+					),
 					'Transaction.created >=' => $start_date,
 					'Transaction.created <=' => $end_date,
 				),
@@ -2092,7 +2099,14 @@ class UsersController extends AppController
 		$total_experience_shared = $this->Transaction->find('all',array(
 				'conditions' => array(
 					'Transaction.user_id' => $this->Auth->user('id'),
-					'Transaction.transaction_type_id' => ConstTransactionTypes::ShareExperience,
+					'OR' => array (
+						'Transaction.transaction_type_id' => array(
+							 ConstTransactionTypes::ShareExperience,
+							 ConstTransactionTypes::ExperiencePhoto,
+							 ConstTransactionTypes::ExperienceBlog,
+							 ConstTransactionTypes::ExperienceVideo
+						)
+					),
 				),
 				'fields' => array(
 					'SUM(Transaction.wonder_points) as wonderpoint',
@@ -2100,7 +2114,6 @@ class UsersController extends AppController
 				),
 				'recursive' => -1
 			));
-		
 		$total_subscription_wonderpoints = $this->Transaction->find('all',array(
 				'conditions' => array(
 					'Transaction.user_id' => $this->Auth->user('id'),

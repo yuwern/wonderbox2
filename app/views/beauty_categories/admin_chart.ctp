@@ -90,16 +90,15 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 <?php  $chart_arr = array(); 
 		foreach($beautyCategories['BeautyQuestion'] as $qkey => $beautyQuestion): ?>
 			<?php
-			if($beautyQuestion['id'] <= 15)
+				$fields = '';
 				$data =  $this->Html->beautyProfileDetails($beautyQuestion['id']);
-				else
-				$data =  $this->Html->productSuveryDetails($beautyQuestion['id']);
 				$response_data = array();
+
 				if(!empty($beautyQuestion['BeautyAnswer'])):
 					foreach($beautyQuestion['BeautyAnswer'] as $key => $Answer):
 						$fields = 'Answer'.($key+1);
 							$response_data[$Answer['answer']] = $data[0][$fields]	;					
-
+		
 					endforeach;
 				endif;
 				?>

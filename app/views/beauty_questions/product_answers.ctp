@@ -1,0 +1,1 @@
+<?php echo $this->Form->input('BeautyQuestion.product_answer', array('label' => __l('Answers'),'options'=> $answers,'type'=>'select','multiple' => true)); ?>

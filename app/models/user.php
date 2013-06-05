@@ -113,6 +113,19 @@ class User extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+     'BeautyProfile' => array(
+            'className' => 'BeautyProfile',
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
 	
     );
     public $hasOne = array(
@@ -842,6 +855,24 @@ class User extends AppModel
             'User.is_verified_user'=> 1,
 			'User.subscription_expire_date <' => _formatDate('Y-m-d', date('Y-m-d') , true) 
         ));
+	}
+	public function getShippingAddress($user_id = null){
+		$userShipping = $this->UserShipping->find('first', array(
+            'conditions' => array(
+                'UserShipping.user_id' => $user_id,
+            ) ,
+            'fields' => array(
+                'UserShipping.id',
+                	'UserShipping.address',
+					'UserShipping.address2',
+					'UserShipping.address3',
+					'UserShipping.contact_no',
+					'UserShipping.contact_no1',
+					'UserShipping.zip_code',
+            ) ,
+            'recursive' => -1
+        ));
+		return $userShipping['UserShipping']['address'].','.$userShipping['UserShipping']['address2'].','.$userShipping['UserShipping']['address3'].','.$userShipping['UserShipping']['contact_no'].','.$userShipping['UserShipping']['contact_no1'].','.$userShipping['UserShipping']['zip_code'];
 	}
 }
 ?>
