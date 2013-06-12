@@ -2930,8 +2930,6 @@
 			// SLIDE 29
 			$("#js-smartphone1").click(
 				function(){		
-					$('#js-smartphone2,#js-smartphone3,#js-smartphone4, #js-smartphone5,#js-smartphone6,#js-smartphone7').removeClass('active');
-					$('#js-slide37_2,#js-slide37_3,#js-slide37_4,#js-slide37_5,#js-slide37_6,#js-slide37_7').val(0) ;
 					if($('#js-slide37_1').val()  == 0){
 						$('#js-slide37_1').val(1) ;
 						$(this).addClass('active');
@@ -2944,8 +2942,6 @@
 			});
 			$("#js-smartphone2").click(
 				function(){		
-					$('#js-smartphone1,#js-smartphone3,#js-smartphone4, #js-smartphone5,#js-smartphone6,#js-smartphone7').removeClass('active');
-					$('#js-slide37_1,#js-slide37_3,#js-slide37_4,#js-slide37_5,#js-slide37_6,#js-slide37_7').val(0) ;
 					if($('#js-slide37_2').val()  == 0){
 						$('#js-slide37_2').val(1) ;
 						$(this).addClass('active');
@@ -2958,8 +2954,6 @@
 			});
 			$("#js-smartphone3").click(
 				function(){		
-					$('#js-smartphone1,#js-smartphone2,#js-smartphone4, #js-smartphone5,#js-smartphone6,#js-smartphone7').removeClass('active');
-					$('#js-slide37_1,#js-slide37_2,#js-slide37_4,#js-slide37_5,#js-slide37_6,#js-slide37_7').val(0) ;
 					if($('#js-slide37_3').val()  == 0){
 						$('#js-slide37_3').val(1) ;
 						$(this).addClass('active');
@@ -2972,8 +2966,6 @@
 			});
 			$("#js-smartphone4").click(
 				function(){		
-					$('#js-smartphone1,#js-smartphone2,#js-smartphone3, #js-smartphone5,#js-smartphone6,#js-smartphone7').removeClass('active');
-					$('#js-slide37_1,#js-slide37_2,#js-slide37_3,#js-slide37_5,#js-slide37_6,#js-slide37_7').val(0) ;
 					if($('#js-slide37_4').val()  == 0){
 						$('#js-slide37_4').val(1) ;
 						$(this).addClass('active');
@@ -2986,8 +2978,6 @@
 			});
 			$("#js-smartphone5").click(
 				function(){		
-					$('#js-smartphone1,#js-smartphone2,#js-smartphone3, #js-smartphone4,#js-smartphone6,#js-smartphone7').removeClass('active');
-					$('#js-slide37_1,#js-slide37_2,#js-slide37_3,#js-slide37_4,#js-slide37_6,#js-slide37_7').val(0) ;
 					if($('#js-slide37_5').val()  == 0){
 						$('#js-slide37_5').val(1) ;
 						$(this).addClass('active');
@@ -3000,8 +2990,6 @@
 			});
 			$("#js-smartphone6").click(
 				function(){		
-					$('#js-smartphone1,#js-smartphone2,#js-smartphone3, #js-smartphone4,#js-smartphone5,#js-smartphone7').removeClass('active');
-					$('#js-slide37_1,#js-slide37_2,#js-slide37_3,#js-slide37_4,#js-slide37_5,#js-slide37_7').val(0) ;
 					if($('#js-slide37_6').val()  == 0){
 						$('#js-slide37_6').val(1) ;
 						$(this).addClass('active');
@@ -3014,8 +3002,6 @@
 			});
 			$("#js-smartphone7").click(
 				function(){		
-					$('#js-smartphone1,#js-smartphone2,#js-smartphone3, #js-smartphone4,#js-smartphone5,#js-smartphone6').removeClass('active');
-					$('#js-slide37_1,#js-slide37_2,#js-slide37_3,#js-slide37_4,#js-slide37_5,#js-slide37_6').val(0) ;
 					if($('#js-slide37_7').val()  == 0){
 						$('#js-slide37_7').val(1) ;
 						$(this).addClass('active');
@@ -3034,8 +3020,6 @@
 			// SLIDE 30
 			$("#js-mobile-network1").click(
 				function(){		
-					$('#js-mobile-network2,#js-mobile-network3,#js-mobile-network4,#js-mobile-network5,#js-mobile-network6').removeClass('active');
-					$('#js-slide38_2,#js-slide38_3,#js-slide38_4,#js-slide38_5,#js-slide38_6').val(0) ;
 					if($('#js-slide38_1').val()  == 0){
 						$('#js-slide38_1').val(1) ;
 						$(this).addClass('active');
@@ -3048,8 +3032,6 @@
 			});
 			$("#js-mobile-network2").click(
 				function(){		
-					$('#js-mobile-network1,#js-mobile-network3,#js-mobile-network4,#js-mobile-network5,#js-mobile-network6').removeClass('active');
-					$('#js-slide38_1,#js-slide38_3,#js-slide38_4,#js-slide38_5,#js-slide38_6').val(0) ;
 					if($('#js-slide38_2').val()  == 0){
 						$('#js-slide38_2').val(1) ;
 						$(this).addClass('active');
@@ -3062,8 +3044,6 @@
 			});
 			$("#js-mobile-network3").click(
 				function(){		
-					$('#js-mobile-network1,#js-mobile-network2,#js-mobile-network4,#js-mobile-network5,#js-mobile-network6').removeClass('active');
-					$('#js-slide38_1,#js-slide38_2,#js-slide38_4,#js-slide38_5,#js-slide38_6').val(0) ;
 					if($('#js-slide38_3').val()  == 0){
 						$('#js-slide38_3').val(1) ;
 						$(this).addClass('active');
@@ -3076,8 +3056,6 @@
 			});
 			$("#js-mobile-network4").click(
 				function(){		
-					$('#js-mobile-network1,#js-mobile-network2,#js-mobile-network3,#js-mobile-network5,#js-mobile-network6').removeClass('active');
-					$('#js-slide38_1,#js-slide38_2,#js-slide38_3,#js-slide38_5,#js-slide38_6').val(0) ;
 					if($('#js-slide38_4').val()  == 0){
 						$('#js-slide38_4').val(1) ;
 						$(this).addClass('active');
@@ -3090,8 +3068,6 @@
 			});
 			$("#js-mobile-network5").click(
 				function(){		
-					$('#js-mobile-network1,#js-mobile-network2,#js-mobile-network3,#js-mobile-network4,#js-mobile-network6').removeClass('active');
-					$('#js-slide38_1,#js-slide38_2,#js-slide38_3,#js-slide38_4,#js-slide38_6').val(0) ;
 					if($('#js-slide38_5').val()  == 0){
 						$('#js-slide38_5').val(1) ;
 						$(this).addClass('active');
@@ -3104,8 +3080,6 @@
 			});
 			$("#js-mobile-network6").click(
 				function(){		
-					$('#js-mobile-network1,#js-mobile-network2,#js-mobile-network3,#js-mobile-network4,#js-mobile-network5').removeClass('active');
-					$('#js-slide38_1,#js-slide38_2,#js-slide38_3,#js-slide38_4,#js-slide38_5').val(0) ;
 					if($('#js-slide38_6').val()  == 0){
 						$('#js-slide38_6').val(1) ;
 						$(this).addClass('active');
@@ -3549,7 +3523,7 @@
 					   <p><?php echo __l('Please choose one!'); ?></p></div>
                           <div class="get-slide2-right">
                             	<div class="slide4">
-                                	<h1><?php echo __l('Do you consume alcoholic beverages ?'); ?></h1>
+                                	<h1><?php echo __l('Your lifestyle choices has an impact on your skin condition and by understanding further of you lifestyle, we will be able to recommend the best skincare product for your skin ?'); ?></h1>
                       			    <ul>
                                         <li><a id="js-do-you-alcoholic1" title="Yes"><?php echo __l('Yes');?></a></li>
                                         <li><a id="js-do-you-alcoholic2" title="No"><?php echo __l('No');?></a></li>
@@ -4021,7 +3995,7 @@
 														else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 														endif; ?>
-					   <p><?php echo __l('Please choose one!'); ?></p></div>
+					   <p><?php echo __l('More than 1 choice!'); ?></p></div>
                           <div class="get-slide2-right">
                             	<div class="slide23">
                                 	<h1><?php echo __l('What model of smartphone are you using?'); ?></h1>
@@ -4044,7 +4018,7 @@
 														else:
 															echo $this->Html->image('getstarted_describ.png',array('width'=> 366,'height'=>132));
 														endif; ?>
-					   <p><?php echo __l('Please choose one!'); ?></p></div>
+					   <p><?php echo __l('More than 1 choice!'); ?></p></div>
                           <div class="get-slide2-right">
                             	<div class="slide24">
                                 	<h1><?php echo __l('Which mobile network are you using ?'); ?></h1>

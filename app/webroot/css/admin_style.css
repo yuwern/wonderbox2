@@ -1408,9 +1408,10 @@ form.normal div.select select#CategoryCategory option{padding: 5px;}
 .lig-hei{line-height:22px; padding-left: 10px;
     text-transform: uppercase;}
 .js-show-statement{float:right; padding:5px 0; font-size:13px;}
-.js-sql-query{padding:10px; border:1px solid #ccc; background:#f2f2f2;margin: 25px 0 10px;}
+.js-sql-query,.js-sql-query1{padding:10px; border:1px solid #ccc; background:#f2f2f2;margin: 25px 0 10px;}
 .js-search-response .submit{ float:right !important; margin-right:0px !important;}
 
-form.normal div.select select#BeautyQuestionAnswer,form.normal div.select select#BeautyQuestionProductAnswer {
+form.normal div.select select#BeautyQuestionAnswer,form.normal div.select select#BeautyQuestionProductAnswer,
+form.normal div.select select#BeautyQuestionAnswer1 {
     height: 100px;
 }

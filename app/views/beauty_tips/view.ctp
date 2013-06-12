@@ -49,3 +49,8 @@
 						<?php echo $this->element('beautytips-siderbar'); ?>
                     </div>
            </div>
+		     <div class="clear"></div>
+            <div class="pagenation">
+					<?php echo $this->Html->getPaginateBottomLinks('BeautyTip',$beautyTip['BeautyTip']['id']); ?>
+           </div>
+		   

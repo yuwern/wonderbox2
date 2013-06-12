@@ -58,15 +58,47 @@ $.fx.speeds._default = 1000;
 						 });
 					sqlField = sqlFields.join(',');
 				} else {
-					sqlField = 'SUM(answer'+$answer+') as `'+$("select#BeautyQuestionAnswer option:selected").text()+'`' ;
+					var sqlFields = []; 
+					$('select#BeautyQuestionAnswer').find('option:selected').each(function(value,index) {
+									if($(this).val() != 0) {
+									  value = $(this).val().split('-');
+									   sqlFields.push('SUM(answer'+value[0]+') as `'+$(this).text()+'`');
+									 }
+					});
+					sqlField = sqlFields.join(',');
 				}
 				$sqlQuery = 'SELECT beauty_questions.name AS Question, '+ sqlField +' FROM beauty_profiles INNER JOIN beauty_questions ON beauty_profiles.beauty_question_id = beauty_questions.id WHERE beauty_question_id = '+ $question_id +';';
+				 $(".js-sql-query").html($sqlQuery); 
+            break;
+			case 'BEAUTYSUVERY1': 
+				if( $answer == 0) {
+					var sqlFields = []; 
+						$('select#BeautyQuestionAnswer1').find('option').each(function(value,index) {
+									if($(this).val() != 0) {
+									  value = $(this).val().split('-');
+									   sqlFields.push('SUM(answer'+value[0]+') as `'+$(this).text()+'`');
+									 }
+						 });
+					sqlField = sqlFields.join(',');
+				} else {
+					var sqlFields = []; 
+					$('select#BeautyQuestionAnswer1').find('option:selected').each(function(value,index) {
+									if($(this).val() != 0) {
+									  value = $(this).val().split('-');
+									   sqlFields.push('SUM(answer'+value[0]+') as `'+$(this).text()+'`');
+									 }
+					});
+					sqlField = sqlFields.join(',');
+				}
+				$sqlQuery1 = 'SELECT beauty_questions.name AS Question, '+ sqlField +' FROM beauty_profiles INNER JOIN beauty_questions ON beauty_profiles.beauty_question_id = beauty_questions.id WHERE beauty_question_id = '+ $question_id +';';
+				$("#js-sql-query1").addClass('js-sql-query');
+				$("#js-sql-query1").html($sqlQuery1); 
             break;
             case 'PRODUCTSUVERY':
 				$sqlQuery = 'SELECT beauty_questions.name AS Question, SUM( answer1 ),SUM( answer2 ),SUM( answer3 ),SUM( answer4 ) FROM beauty_profiles INNER JOIN beauty_questions ON beauty_profiles.beauty_question_id = beauty_questions.id WHERE beauty_question_id = "'+ $question_id +'";';
             break;
        }
-      $(".js-sql-query").html($sqlQuery); 
+     
     };
     $.fn.confirm = function() {
         this.livequery('click', function(event) {
@@ -734,7 +766,7 @@ jQuery(document).ready(function($) {
         return false;
     });
 	$('.js-show-statement').livequery('click', function() {
-       $('.js-sql-query').toggle();
+       $('.js-statment-query').toggle();
     });
 	/*$('#BeautyQuestionAnswer').livequery('click', function() {
 		if($(this).val() == 0)
@@ -922,12 +954,38 @@ jQuery(document).ready(function($) {
 		});
 		return false;
     });
-
 	$('#BeautyQuestionAnswer').livequery('change', function() {
 			var question_id = $('#BeautyQuestionQuestionId').val();
-			var value = []; 
-			value = $(this).val().split('-');
-			$.fn.fsqlQuery(question_id,value[0],'BEAUTYSUVERY');
+			if($(this).val() == 0){
+			  $.fn.fsqlQuery(question_id,0,'BEAUTYSUVERY');		
+			  $(this).find('option').attr('selected','selected');
+			}
+			else
+			 $.fn.fsqlQuery(question_id,1,'BEAUTYSUVERY');		
+    });
+	$('#BeautyQuestionAnswer1').livequery('change', function() {
+			var question_id = $('#BeautyQuestionQuestionId1').val();
+			if($(this).val() == 0){
+			  $.fn.fsqlQuery(question_id,0,'BEAUTYSUVERY1');		
+			  $(this).find('option').attr('selected','selected');
+			}
+			else
+			 $.fn.fsqlQuery(question_id,1,'BEAUTYSUVERY1');		
+    });
+	$('#BeautyQuestionQuestionId1').livequery('change', function() {
+		$(".js-search-response").block();
+	    var question_id = $(this).val();
+		$.ajax( {
+				type: 'POST',
+				url: __cfg('path_absolute')+'malaysia/beauty_questions/answers/'+ question_id +'/1',
+				cache: true,
+				success: function(data) {
+					$(".js-answer1s").html(data);
+					$.fn.fsqlQuery(question_id,0,'BEAUTYSUVERY1');
+					$(".js-search-response").unblock();
+				}
+		});
+		return false;
     });
 	$('#BeautyQuestionProductQuestionId').livequery('change', function() {
 		$(".js-search-response").block();

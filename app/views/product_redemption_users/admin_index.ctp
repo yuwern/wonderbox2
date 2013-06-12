@@ -41,8 +41,12 @@ foreach ($productRedemptionUsers as $productRedemptionUser):
 	$address  = '' ;
 	if(!empty($productRedemptionUser['User']['UserShipping'][0]['address']))
 	 $address .= $productRedemptionUser['User']['UserShipping'][0]['address'];
+	if(!empty($productRedemptionUser['User']['UserShipping'][0]['address2']))
+	 $address .= ', '.$productRedemptionUser['User']['UserShipping'][0]['address2'];
+	if(!empty($productRedemptionUser['User']['UserShipping'][0]['address3']))
+	 $address .= ', '.$productRedemptionUser['User']['UserShipping'][0]['address3'];
 	if(!empty($productRedemptionUser['User']['UserShipping'][0]['zip_code']))
-	 $address .= $productRedemptionUser['User']['UserShipping'][0]['zip_code'];
+	 $address .= ', '.$productRedemptionUser['User']['UserShipping'][0]['zip_code'];
 	?>
 	<tr<?php echo $class;?>>
 		<td><div class="actions"><span><?php echo $this->Html->link(__l('Tracking No'), array('action'=>'edit',$productRedemptionUser['ProductRedemptionUser']['id']), array('class' => 'edit js-edit', 'title' => __l('Tracking No')));?></span></div></td>
@@ -74,7 +78,7 @@ foreach ($productRedemptionUsers as $productRedemptionUser):
 else:
 ?>
 	<tr>
-		<td colspan="10"><p ><?php echo __l('No Product Redemption Users available');?></p></td>
+		<td colspan="7"><p ><?php echo __l('No Product Redemption Users available');?></p></td>
 	</tr>
 <?php
 endif;

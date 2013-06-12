@@ -13,6 +13,8 @@ class UserShippingsController extends AppController
 				'fields' => array(
 					'UserShipping.id',
 					'UserShipping.address',
+					'UserShipping.address2',
+					'UserShipping.address3',
 					'UserShipping.zip_code',
 					'Country.name',
 					'State.name',

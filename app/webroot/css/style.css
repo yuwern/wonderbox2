@@ -444,7 +444,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c00256', end
 
 .banner-nav{ margin:0 auto; overflow:hidden; margin-top:10px;}
 .banner-nav ul li { float:left;list-style: none;}
-.banner-nav ul li a{float:left;text-decoration: none;padding: 6px 10px;margin: 0 5px 0 0;text-align: center;font-size:12px;outline: 0;background: #fff;border:1px solid #CCC; color:#999; }
+.banner-nav ul li a{float:left;text-decoration: none;padding: 6px 9px;margin: 0 5px 0 0;text-align: center;font-size:12px;outline: 0;background: #fff;border:1px solid #CCC; color:#999; }
 .banner-nav ul li a:hover{background: #e43385;border:1px solid #e43385; color:#fff; }
 .banner-nav ul li a.cur{background: #e43385 !important;border:1px solid #e43385; color:#fff; }
 .banner-nav ul li span{float:left;text-decoration: none;padding: 6px 10px;margin: 0 5px 0 0;text-align: center;font-size:12px;outline: 0;background: #fff;border:1px solid #CCC; color:#999; }
@@ -1137,7 +1137,7 @@ sup{ font-size:8px; color:#000; font-family:Tahoma, Geneva, sans-serif; vertical
 .set-box span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;}
 .set-box2 label{ float:left;width:24%; padding-right:1%; text-align:right; font-size:14px;font-family:tahoma}
 .pre-month .set-box2 span{color:#d3557b;display:inline-block; width:69%; padding-left:5%; font-size:11px;min-height: 34px;font-family:tahoma}
-.set-box2 div{ padding:10px 10px; margin:0 5px; background:#ede8dc;min-height:40px;}
+.set-box2 div{ padding:10px 10px; margin:0 5px; background:#ede8dc;min-height:50px;}
 .set-box span a{color:#d3557b;}
 .pro-red-box{ float:left;margin-bottom: 10px;  padding-left: 6px;}
 .pro-red-box.mrl{ margin:0 10px;}
@@ -1286,8 +1286,8 @@ ul.social-icon li a.s-g{ background:url(../img/g_retail.jpg) left no-repeat;}
 .point-head p{ text-align:center;}
 
 .inner-date{ overflow:hidden}
-.inner-date .inner-date-left{float: left;font-size: 12px;font-weight: bold;margin: 0;min-height: 64px;padding: 37px 0 0;text-transform: uppercase;width: 30%;}
-.inner-date .inner-date-right{width:68%; float:left;margin:0px;padding:24px 0 17px;}
+.inner-date .inner-date-left{float: left;font-size: 12px;font-weight: bold;margin: 0;min-height: 80px;padding: 37px 0 0;text-transform: uppercase;width: 30%;}
+.inner-date .inner-date-right{width:68%; float:left;margin:0px;padding:30px 0 17px;}
 .inner-date .countdownHolder{ width:208px;padding:0px; }
 .inner-date .date-row{padding:0px; border-bottom:0px;}
 
@@ -1446,8 +1446,9 @@ padding-bottom: 40px; font-family:rawengulkregular;
 .pagenation{ border-bottom:1px solid #ececec; border-top:1px solid #ececec; padding:15px 0;font-size:16px; color:#e0e0e0; font-weight:normal; overflow:hidden; margin-top:10px;}
 .pagenation a{font-size:16px; color:#e88ea9; font-weight:normal;font-family:tahoma;}
 .pagenation a:hover{ color:#302A2B}
-.pagenation .page-link-l{ width:45%; float:left;}
-.pagenation .page-link-r{ width:45%; float:right; text-align:right;}
+.pagenation .page-link-l{ width:40%; float:left;}
+.pagenation .page-link-m{ width:10%; float:left;}
+.pagenation .page-link-r{ width:35%; float:right; text-align:right;}
 
 .referral_point-banner{ background:url(../img/referral_point.jpg) no-repeat; min-height:170px; padding-left:345px;}
 .refer-point{ width:366px; height:68px; background:url(../img/referral_point_bg.jpg) no-repeat}
@@ -1555,4 +1556,24 @@ padding-bottom: 40px; font-family:rawengulkregular;
 
 .tips_detail a {
     font-family: tahoma;
+}
+#beauty_profiles-quiz .anythingWindow .slide4,
+#beauty_profiles-quiz .anythingWindow .slide20{
+    padding: 90px 55px 0 20px;
+}
+#beauty_profiles-quiz .anythingWindow .slide7{
+    padding: 90px 120px 0 20px;
+}
+#beauty_profiles-quiz .anythingWindow .slide14{
+    padding: 90px 85px 0 20px;
+}
+#beauty_profiles-quiz .anythingWindow .slide19,
+#beauty_profiles-quiz .anythingWindow .slide21,
+#beauty_profiles-quiz .anythingWindow .slide22{
+    padding: 60px 85px 0 20px;
+}
+#beauty_profiles-quiz .comp-survey-td.beauty-ser .table-data {
+    color: #000000;
+    margin: 25px 0 0;
+    width: 85%;
 }

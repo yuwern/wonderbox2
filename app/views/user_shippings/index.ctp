@@ -28,7 +28,7 @@
 								?>
 								<li class="t-data">
 									<div class="t-c1"><?php echo $this->Html->cText($userShipping['Country']['name'],false); ?></div>
-                                    <div class="t-c2"><?php echo $this->Html->cText($userShipping['UserShipping']['address'],false); ?><?php echo $this->Html->cText($userShipping['State']['name'],false); ?>, <?php echo $this->Html->cText($userShipping['Country']['name'],false); ?> <?php echo $this->Html->cText($userShipping['UserShipping']['zip_code'],false); ?> </div>
+                                    <div class="t-c2"><?php echo $this->Html->cText($userShipping['UserShipping']['address'],false); ?>, <?php echo $this->Html->cText($userShipping['UserShipping']['address2'],false); ?>, <?php echo $this->Html->cText($userShipping['UserShipping']['address3'],false); ?>, <?php echo $this->Html->cText($userShipping['State']['name'],false); ?>, <?php echo $this->Html->cText($userShipping['Country']['name'],false); ?> <?php echo $this->Html->cText($userShipping['UserShipping']['zip_code'],false); ?> </div>
                                     <div class="t-c3"><span><?php echo $this->Html->link(__l('Edit'), array('controller' => 'user_shippings', 'action' => 'edit',$userShipping['UserShipping']['id']),array('title' => __l('Edit'),'class'=>'btn1')); ?></span></div>
                                   <div class="clear"></div>
 								  </li>
