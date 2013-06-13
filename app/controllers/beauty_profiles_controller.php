@@ -45,6 +45,11 @@ class BeautyProfilesController extends AppController
 						}
 				}
 			}
+			$this->BeautyProfile->User->updateAll(array(
+                'User.is_beauty_survery' => 1,
+            ) , array(
+                'User.id' => $this->Auth->user('id') ,
+            ));
 			echo "Success";
 			exit;
         }

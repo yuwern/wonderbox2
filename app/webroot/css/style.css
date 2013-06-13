@@ -1524,6 +1524,9 @@ padding-bottom: 40px; font-family:rawengulkregular;
 .signin .signin-box-left .error-message{padding-left: 30%; }
 .js-loading-img {padding-left:320px}
 
+.beauty-popup{ overflow:hidden; padding:30px; width:720px; background:url(../img/popup_bg.jpg) repeat 0 0;}
+.beauty-popup .descripition{padding:20px;}
+
 .static p {
     font-size: 12px;
     padding: 8px 0;

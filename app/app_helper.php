@@ -111,6 +111,61 @@ class AppHelper extends Helper
 		endif;
 		return $output;
     }
+	function getPaginateBottomLinks($modelName ,$value = 1,$prevLabel = 'Previous',$nextLabel = 'Next' ){
+		App::import('Model', "$modelName");
+		$this->$modelName = new $modelName();
+		$neighbors = $this->$modelName->find('neighbors', array('field' => 'id', 'value' => $value,
+			'conditions' => array(
+				$modelName.'.is_active' => 1
+			),
+			'fields'=> array(
+				$modelName.'.name',	
+				$modelName.'.slug',	
+			))
+		);
+		$output = '<div class="page-link-l">';
+			if(!empty($neighbors['prev'])):
+				$output .= $this->link('<< PREVIOUS PAGE', array(
+						'controller' => 'beauty_tips',
+						'action' => 'view',
+						$neighbors['prev']['BeautyTip']['slug'],
+						'admin' => false
+						) , array(
+						'title' => $this->cText('<< PREVIOUS PAGE', false) ,
+						'escape' => false,
+					 ));
+			else:
+				 $output .='<< PREVIOUS PAGE';
+			endif;
+
+			$output .= '</div>';
+			$output .= '<div class="page-link-m">';
+			$output .= $this->link('HOME', array(
+                'controller' => 'beauty_tips',
+                'action' => 'index',
+                 'admin' => false
+				) , array(
+                'title' => $this->cText(__l('HOME'), false) ,
+                'escape' => false,
+             ));
+			$output .= '</div>';
+			$output .= '<div class="page-link-r">';
+			if(!empty($neighbors['next'])):
+					$output .= $this->link('NEXT PAGE >>', array(
+						'controller' => 'beauty_tips',
+						'action' => 'view',
+						 $neighbors['next']['BeautyTip']['slug'],
+						 'admin' => false
+						) , array(
+						'title' => $this->cText(__l('NEXT PAGE >>'), false) ,
+						'escape' => false,
+					 ));
+			else:
+				 $output .='NEXT PAGE >>';
+			endif;
+		 $output .= '</div>';
+		 echo $output;
+    }
 	function getMonthLists()
     {
        return  array(
@@ -324,6 +379,20 @@ class AppHelper extends Helper
 				return 0;
 		} else
 			return 0;
+	}
+	function checkBeautySurveyComplete($user_id){
+		App::import('Model', 'User');
+	    $this->User = new User();
+		$user = $this->User->find('first',array(
+				'conditions'=>array(
+					'User.id' => $user_id,
+				),
+				'fields' => array(
+					'User.is_beauty_survery'
+				),
+				'recursive'=> -1
+			));
+		return $user['User']['is_beauty_survery'];
 	}
 	function beautyProfileDetails($question_id,$participantUserIds = array()){
 		$beautyprofies = array();

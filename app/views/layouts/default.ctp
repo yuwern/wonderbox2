@@ -263,6 +263,23 @@ endif;
     </div>
 	  <!-- FACEBOOK PLUGIN -->
   <div id="fb-root"></div>
+  <?php  if ($this->Auth->sessionValid() && !  $this->Html->checkBeautySurveyComplete($this->Auth->user('id')) && $this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home'): 
+  ?>
+  <script type="text/javascript">
+	  $(document).ready(function(){
+		 $.colorbox({inline:true, href:"#beauty-pop"});
+	  });
+  </script>
+  <div class="hide">
+	<div class="beauty-popup" id="beauty-pop" >
+		<div class="head"><h1>New title</h1></div>
+		<div class="descripition" style="padding:10px"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+		<br/>
+		<p><?php echo $this->Html->link(__l('Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile', 'admin' => false), array('title' => __l('Beauty Profile'),'class'=>'btn1'));?></p>
+		</div>
+	</div>
+  </div>
+  <?php endif; ?>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
