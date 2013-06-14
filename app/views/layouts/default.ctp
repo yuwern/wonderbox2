@@ -227,6 +227,8 @@ endif;
                    <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions'),'class'=>$active_class));?></li>
 				  <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'privacy_policy' ) ?  'active': null; ?>
                     <li><?php echo $this->Html->link(__l('Privacy Policy'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policy'),'class'=>$active_class));?></li>
+                    <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'wonderbox_promise' ) ?  'active': null; ?>
+                    <li><?php echo $this->Html->link(__l('Our Promise'), array('controller' => 'pages', 'action' => 'view', 'wonderbox_promise', 'admin' => false), array('title' => __l('Our Promise'),'class'=>$active_class));?></li>
                 </ul>
                 <h3><?php echo __l('Browse'); ?></h3>
                 <p><?php if (!$this->Auth->sessionValid()): echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?> /
@@ -243,12 +245,17 @@ endif;
                            <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners'),'class'=>$active_class));?></li>
                            <li><?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'listing' ) ?  'active': null; ?>
                            <?php echo $this->Html->link(__l('Brand Partners'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Brand Partners'),'class'=>$active_class));?></li>
+                           <li><?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'ContentContributorPartners') ?  'active': null; ?>
+                           <?php echo $this->Html->link(__l('Content Contributor Partners'), array('controller' => 'pages', 'action' => 'view', 'ContentContributorPartners', 'admin' => false), array('title' => __l('Content Contributor Partners'),'class'=>$active_class));?></li>
+
 				</ul>
             </div>
             <div class="f-c3">
 	           	<h3><?php echo __l('Wonderbox'); ?></h3>
               <span class="pink"><?php echo Configure::read('site.address'); ?></span>
-			  <p><?php echo __l('Email:'); ?> <a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a></p>
+			  <p><?php echo __l('Email:'); ?> <a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a><br>
+			  <?php echo __l('Career:'); ?> <a href="http://wonderbox.com.my/page/Career">Join The WonderTeam</a></p>
+
                 <ul>
                 	<li><a href="https://www.facebook.com/WonderBoxMalaysia?ref=hl" title="Facebook" target="_blank"><?php echo $this->Html->image('f.jpg',array('width'=>'28','height'=>'31')); ?></a></li>
                     <li><a href="https://www.youtube.com/user/wonderboxmy" title="Youtube" target="_blank"><?php echo $this->Html->image('y.jpg',array('width'=>'28','height'=>'31')); ?></a></li>
@@ -273,7 +280,7 @@ endif;
   <div class="hide">
 	<div class="beauty-popup" id="beauty-pop" >
 		<div class="head"><h1>New title</h1></div>
-		<div class="descripition" style="padding:10px"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+		<div class="descripition" style="padding:10px"><p>Please complete your beauty profile today  to ensure that we are able to curate the best beauty experience for you! </p>
 		<br/>
 		<p><?php echo $this->Html->link(__l('Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile', 'admin' => false), array('title' => __l('Beauty Profile'),'class'=>'btn1'));?></p>
 		</div>
