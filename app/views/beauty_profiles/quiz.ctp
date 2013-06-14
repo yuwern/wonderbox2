@@ -3523,7 +3523,7 @@
 					   <p><?php echo __l('Please choose one!'); ?></p></div>
                           <div class="get-slide2-right">
                             	<div class="slide4">
-                                	<h1><?php echo __l('Your lifestyle choices has an impact on your skin condition and by understanding further of you lifestyle, we will be able to recommend the best skincare product for your skin ?'); ?></h1>
+                                	<h1><?php echo __l('Do you consume alcoholic drinks ? (Your lifestyle choices has an impact on your skin condition and by understanding further of you lifestyle, we will be able to recommend the best skincare product for your skin)'); ?></h1>
                       			    <ul>
                                         <li><a id="js-do-you-alcoholic1" title="Yes"><?php echo __l('Yes');?></a></li>
                                         <li><a id="js-do-you-alcoholic2" title="No"><?php echo __l('No');?></a></li>
@@ -3560,7 +3560,7 @@
 					   <p><?php echo __l('Please choose one!'); ?></p></div>
                           <div class="get-slide2-right">
                             	<div class="slide12">
-                                	<h1 class="pr0"><?php echo __l('7b) How frequent do you have a drink?'); ?></h1>
+                                	<h1 class="pr0"><?php echo __l('7b) How much do you drink?'); ?></h1>
                       			    <ul>
                                         <li id="js-3drinks-per-occation"><a title=">3 drinks per occation"><?php echo __l('>3 drinks per occation');?></a></li>
                                         <li id="js-13drinks-per-occation"><a  title="1-3 drinks per occation"><?php echo __l('1-3 drinks per occation');?></a></li>
@@ -3604,7 +3604,7 @@
 					<p><?php echo __l('Choose up to 3 products!'); ?></p></div>
                             <div class="get-slide2-right">
                             	<div class="slide7">
-                                	<h1><?php echo __l('If you\'re going to splurge on beauty product, it\'s going to be on:'); ?></h1>
+                                	<h1><?php echo __l('What beauty products are you interested in?'); ?></h1>
                                     <ul>
                                     	<li class="s7-img1" id="js-beauty-product-cleanser"><a title="Cleanser"><?php echo __l('Cleanser'); ?></a></li>
                                         <li class="s7-img2" id="js-beauty-product-hair-care"><a title="Hair Care"><?php echo __l('Hair Care'); ?></a></li>
