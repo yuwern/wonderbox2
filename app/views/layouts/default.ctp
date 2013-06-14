@@ -280,7 +280,7 @@ endif;
   <div class="hide">
 	<div class="beauty-popup" id="beauty-pop" >
 		<div class="head"><h1>Update Your Beauty Profile Today</h1></div>
-		<div class="descripition" style="padding:10px"><p>Please complete your beauty profile today  to ensure that we are able to curate the best beauty experience for you! </p>
+		<div class="descripition" style="padding:10px"><p>Please complete your beauty profile today for the best beauty journey experience! </p>
 		<br/>
 		<p><?php echo $this->Html->link(__l('Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile', 'admin' => false), array('title' => __l('Beauty Profile'),'class'=>'btn1'));?></p>
 		</div>
