@@ -18,7 +18,7 @@
 								<?php echo $this->Form->input('UserProfile.last_name', array( 'label' => __l('Last Name')));?>
 								<div class="gender"><span><strong><?php echo __l('Gender'); ?></strong></span><?php echo $this->Form->input('UserProfile.gender_id', array('type'=>'radio', 'label' => __l('Gender'),'options'=> array(2=>__('Female')),'default'=>2)); ?></div>								
 								<?php echo $this->Form->input('UserProfile.age_group_id', array('label' => __l('Age Group'),'empty' => __l('Please select'))); ?>
-								<?php echo $this->Form->input('UserProfile.dob', array('label' => __l('Date of Birth'),'empty' => __l('--'), 'minYear' => date('Y') - 100, 'maxYear' => date('Y'), 'orderYear' => 'asc')); ?>
+								<?php echo $this->Form->input('UserProfile.dob', array('label' => __l('Date of Birth'),'empty' => __l('--'), 'minYear' => date('Y') - 50, 'maxYear' => date('Y'), 'orderYear' => 'asc')); ?>
 								 <?php
 									echo $this->Form->input('type',array('type' => 'hidden', 'value' => ''));
 									if(!empty($this->request->data['User']['openid_url'])):
@@ -44,7 +44,7 @@
 									   <?php echo $this->Html->image(Router::url(array('controller' => 'users', 'action' => 'show_captcha', md5(uniqid(time()))), true), array('alt' => __l('[Image: CAPTCHA image. You will need to recognize the text in it; audible CAPTCHA available too.]'), 'title' => __l('CAPTCHA image'), 'class' => 'captcha-img'));?>
 									</div>
 									<div class="captcha-right">
-										<?php //echo $this->Html->link(__l('Reload CAPTCHA'), '#', array('class' => 'js-captcha-reload captcha-reload', 'title' => __l('Reload CAPTCHA')));?>
+										<?php echo $this->Html->link(__l('Reload CAPTCHA'), '#', array('class' => 'js-captcha-reload captcha-reload', 'title' => __l('Reload CAPTCHA')));?>
 										<div>
 										  <?php //echo $this->Html->link(__l('Click to play'), Router::url('/', true)."flash/securimage/play.swf?audio=". $this->Html->url(array('controller' => 'users', 'action'=>'captcha_play'), true) ."&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5&height=19&width=19&wmode=transparent", array('class' => 'js-captcha-play')); ?>
 									  </div>
