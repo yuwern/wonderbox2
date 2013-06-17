@@ -39,22 +39,22 @@
 										echo $this->Form->input('referer_name', array('type' => 'hidden'));
 									}
 								?>
-							<!--	<div class="input captcha-block clearfix js-captcha-container">
+								<div class="input captcha-block clearfix js-captcha-container">
 									<div class="captcha-left">
-									   <?php //echo $this->Html->image(Router::url(array('controller' => 'users', 'action' => 'show_captcha', md5(uniqid(time()))), true), array('alt' => __l('[Image: CAPTCHA image. You will need to recognize the text in it; audible CAPTCHA available too.]'), 'title' => __l('CAPTCHA image'), 'class' => 'captcha-img'));?>
+									   <?php echo $this->Html->image(Router::url(array('controller' => 'users', 'action' => 'show_captcha', md5(uniqid(time()))), true), array('alt' => __l('[Image: CAPTCHA image. You will need to recognize the text in it; audible CAPTCHA available too.]'), 'title' => __l('CAPTCHA image'), 'class' => 'captcha-img'));?>
 									</div>
 									<div class="captcha-right">
-										<?php echo $this->Html->link(__l('Reload CAPTCHA'), '#', array('class' => 'js-captcha-reload captcha-reload', 'title' => __l('Reload CAPTCHA')));?>
+										<?php //echo $this->Html->link(__l('Reload CAPTCHA'), '#', array('class' => 'js-captcha-reload captcha-reload', 'title' => __l('Reload CAPTCHA')));?>
 										<div>
 										  <?php //echo $this->Html->link(__l('Click to play'), Router::url('/', true)."flash/securimage/play.swf?audio=". $this->Html->url(array('controller' => 'users', 'action'=>'captcha_play'), true) ."&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5&height=19&width=19&wmode=transparent", array('class' => 'js-captcha-play')); ?>
 									  </div>
 									</div>
-								</div> -->
+								</div>
 							 	<?php 
-								/*	echo $this->Form->input('captcha', array('label' => __l('Security Code'), 'class' => 'js-captcha-input'));
-									$terms = $this->Html->link(__l('terms and condition'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions'), array('target' => '_blank')); */
+									echo $this->Form->input('captcha', array('label' => __l('Security Code'), 'class' => 'js-captcha-input'));
+									$terms = $this->Html->link(__l('terms and condition'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions'), array('target' => '_blank'));
 								?>
-								<?php // echo $this->Form->input('is_agree_terms_conditions', array('label' => __l('I agree to the') .' ' . $terms)); ?>
+								<?php echo $this->Form->input('is_agree_terms_conditions', array('label' => __l('I agree to the') .' ' . $terms)); ?>
 								<?php
 									if(!empty($this->request->data['User']['fb_user_id'])):
 										echo $this->Form->input('fb_user_id', array('type' => 'hidden', 'value' => $this->request->data['User']['fb_user_id']));
