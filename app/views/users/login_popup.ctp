@@ -67,8 +67,7 @@
 						<?php echo $this->Html->image('pop2.jpg'); ?>
 						<h4>Member's Update</h4>
                                                          <p><?php echo __l('BREAKING NEWS: Your lovely June WonderBox will be ship out on Monday (24th of June). Woohoo!');  ?> </p>
-');  ?> </p>
-						         <p><?php echo __l('The May edition product survey is now OPEN! Share your feedback with us to earn more WonderPoints');  ?> </p>
+						         <p><?php echo __l('The May edition product survey is now OPEN! Share your feedback with us to earn more WonderPoints');?> </p>
 					 </div>
 <?php if(empty($this->request->data['User']['is_requested'])):?>
 </div>
