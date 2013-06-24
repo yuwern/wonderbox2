@@ -12,6 +12,8 @@
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor'));
 		echo $this->Form->input('quantity');
 		echo $this->Form->input('redeem_wonder_point');
+		echo $this->Form->input('is_purchase');
+		echo $this->Form->input('purchase_amount',array('label'=>__l('Purchase price')));
 		echo $this->Form->input('is_active');
 	?>
 	</fieldset>

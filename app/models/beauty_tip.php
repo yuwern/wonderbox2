@@ -52,6 +52,19 @@ class BeautyTip extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+        'WonderTreat' => array(
+            'className' => 'WonderTreat',
+            'foreignKey' => 'beauty_tip_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
 	);
     public $hasAndBelongsToMany = array(
         'Category' => array(
@@ -142,11 +155,84 @@ class BeautyTip extends AppModel
                     'message' => __l('Required') ,
                 ) ,
             ) ,
+			'purchase_amount' => array(
+                'rule2' => array(
+                    'rule' => array(
+                        'comparison',
+                        '>',
+                        0
+                    ) ,
+                    'allowEmpty' => true,
+                    'message' => __l('Should be greater than 0')
+                ),
+				'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ),
+			'quantity' => array(
+                 'rule2' => array(
+                    'rule' => array(
+                        'comparison',
+                        '>',
+                        0
+                    ) ,
+                    'allowEmpty' => true,
+                    'message' => __l('Should be greater than 0')
+                ),
+				'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ),
+			'voucher_code' => array(
+			      'rule2' => array(
+                    'rule' => 'isUnique',
+                    'message' => __l('Voucher Code is already exist')
+				  ) ,
+                  'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ),
+			'redemption_start_date' => array(
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ) ,
+            'redemption_end_date' => array(
+                'rule2' => array(
+                    'rule' => '_isValidEndDate',
+                    'message' => __l('End date should be greater than start date') ,
+                    'allowEmpty' => false
+                ) ,
+                'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ) ,
 	      );
 		$this->moreActions = array(
 			ConstMoreAction::Inactive => __l('Inactive') ,
             ConstMoreAction::Active => __l('Active') ,
             ConstMoreAction::Delete => __l('Delete') ,
         );
+    }
+	  //beauty Tip add page validation
+    function _isValidStartDate()
+    {
+        if (strtotime($this->data[$this->name]['redemption_start_date']) >= strtotime(date('Y-m-d'))) {
+            return true;
+        }
+        return false;
+    }
+    //Beauty tip add page validation
+    function _isValidEndDate()
+    {
+        if (strtotime($this->data[$this->name]['redemption_end_date']) > strtotime($this->data[$this->name]['redemption_start_date'])) {
+            return true;
+        }
+        return false;
     }
 }

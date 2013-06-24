@@ -117,6 +117,21 @@ class ProductRedemption extends AppModel
                     'message' => __l('Required') ,
                 ) ,
             ) ,
+			'purchase_amount' => array(
+                'rule2' => array(
+                    'rule' => array(
+                        'comparison',
+                        '>',
+                        0
+                    ) ,
+                    'allowEmpty' => false,
+                    'message' => __l('Should be greater than 0')
+                ),
+				'rule1' => array(
+                    'rule' => 'notempty',
+                    'message' => __l('Required')
+                )
+            ),
         );
 	    $this->moreActions = array(
             ConstMoreAction::Inactive => __l('Inactive') ,

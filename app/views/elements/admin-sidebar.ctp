@@ -8,9 +8,10 @@
 		  <?php $class = ($this->request->params['controller'] == 'package_users' && ($this->request->params['action'] == 'admin_index' ||$this->request->params['action'] == 'admin_import' )) ? ' class="active"' : null; 
 		  ?>
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('List of active users'), array('controller' => 'package_users', 'action' => 'admin_index'),array('title' => __l('List of active users'))); ?></li>
-		  <?php $class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'admin_index') ? ' class="active"' : null; 
+		 <?php $class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'admin_index') ? ' class="active"' : null; 
 		  ?>
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Gift users'), array('controller' => 'gift_users', 'action' => 'admin_index'),array('title' => __l('Gift users'))); ?></li>
+		
 		  <?php $class = ($this->request->params['controller'] == 'subscriptions' && $this->request->params['action'] == 'index') ? ' class="active"' : null; ?>
 		<li <?php echo $class;?>><?php echo $this->Html->link(__l('Subscriptions'), array('controller' => 'subscriptions', 'action' => 'index'),array('title' => __l('Subscriptions'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'categories') ? ' class="active"' : null; ?>
@@ -21,13 +22,16 @@
 			<?php $class = ($this->request->params['controller'] == 'beauty_tips' ) ? ' class="active"' : null;
 			?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l(' Beauty Content Page'), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' => __l('Beauty Content Page'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'wonder_treats' ) ? ' class="active"' : null;
+			?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Wonder treats'), array('controller' => 'wonder_treats', 'action' => 'index'),array('title' => __l('Wonder treats'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'products') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Products'), array('controller' => 'products', 'action' => 'index'),array('title' => __l('Products'))); ?></li>
 			<?php if($this->Auth->user('user_type_id') == ConstUserTypes::Admin):  ?>
 			<?php $class = ($this->request->params['controller'] == 'product_redemptions') ? ' class="active"' : null; ?>
-			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemptions'), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' => __l('Product Redemptions'))); ?></li>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemptions & Sales'), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' => __l('Product Redemptions & Sales'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'product_redemption_users') ? ' class="active"' : null; ?>
-			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemption Users'), array('controller' => 'product_redemption_users', 'action' => 'index'),array('title' => __l('Product Redemption Users'))); ?></li>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Product Redemptions and Sales Users'), array('controller' => 'product_redemption_users', 'action' => 'index'),array('title' => __l('Product Redemptions and Sales Users'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'beauty_categories' || $this->request->params['controller'] == 'user_profiles' && $this->request->params['action'] == 'admin_chart' || $this->request->params['controller'] == 'user_shippings' && $this->request->params['action'] == 'admin_chart' ) ? ' class="active"' : null;
 			?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Beauty and Demographic categories'), array('controller' => 'beauty_categories', 'action' => 'index'),array('title' => __l('Beauty and Demographic categories'))); ?></li>

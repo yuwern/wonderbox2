@@ -25,7 +25,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-<link href='http://fonts.googleapis.com/css?family=Linden+Hill:400,400italic' rel='stylesheet' type='text/css'>
 	<?php echo $this->Html->charset(), "\n";?>
 	<title><?php echo Configure::read('site.name');?> | <?php echo $this->Html->cText($title_for_layout, false);?></title>
 	<?php
@@ -90,23 +89,24 @@ endif;
 					<div id="dropmenu1" class="dropmenudiv">
 					
 						  <?php if ($this->Auth->sessionValid()): ?>	<ul>
-							<li><?php echo $this->Html->link(__l('MY ACCOUNT'), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => __l('MY ACCOUNT')));?></li>
-							<li><?php echo $this->Html->link(__l('SHIPPING INFO'), array('controller' => 'user_shippings', 'action' => 'index'),array('title' => __l('SHIPPING INFO'))); ?></li>
-						    <li><?php echo $this->Html->link(__l('PROFILE IMAGE'), array('controller' => 'users', 'action' => 'profile_image', $this->Auth->user('id')), array('title' => 'My Profile Image')); ?></li>
-				             <li><?php echo $this->Html->link(__l('CHANGE PASSWORD'), array('controller' => 'users', 'action' => 'change_password'), array('title' => __l('CHANGE PASSWORD')));?></li>
-							 <li><?php echo $this->Html->link(__l('MY SUBSCRIPTION'), array('controller' => 'package_users', 'action' => 'index'), array('title' => __l('MY SUBSCRIPTION')));?></li>
-							 <li><?php echo $this->Html->link(__l('MY GIFT SUBSCRIPTION'), array('controller' => 'gift_users', 'action' => 'mygift'), array('title' => __l('MY GIFT SUBSCRIPTION')));?></li>
-							 <li><?php echo $this->Html->link(__l('MY TRANSACTION'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('MY TRANSACTION')));?></li>
+							<li><?php echo $this->Html->link(__l('My Account'), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => __l('My Account')));?></li>
+							<li><?php echo $this->Html->link(__l('Shipping Info'), array('controller' => 'user_shippings', 'action' => 'index'),array('title' => __l('Shipping Info'))); ?></li>
+						    <li><?php echo $this->Html->link(__l('My Profile Image'), array('controller' => 'users', 'action' => 'profile_image', $this->Auth->user('id')), array('title' => 'My Profile Image')); ?></li>
+				             <li><?php echo $this->Html->link(__l('Change Password'), array('controller' => 'users', 'action' => 'change_password'), array('title' => __l('Change password')));?></li>
+							 <li><?php echo $this->Html->link(__l('My Subscription'), array('controller' => 'package_users', 'action' => 'index'), array('title' => __l('My Subscription')));?></li>
+							 <li><?php echo $this->Html->link(__l('My Gift Subscription'), array('controller' => 'gift_users', 'action' => 'mygift'), array('title' => __l('My Gift Subscription')));?></li>
+							 <li><?php echo $this->Html->link(__l('My Transaction'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('My Transaction')));?></li>
 							 <?php if(Configure::read('wonderpoint.is_system_enabled') && $this->Html->checkPackageAvialable()): ?>
-							 <li><?php echo $this->Html->link(__l('WONDERPOINTS SUBSCRIPTION REDEMPTION'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('WONDERPOINTS SUBSCRIPTION REDEMPTION')));?></li>
+							 <li><?php echo $this->Html->link(__l('My Redemption'), array('controller' => 'users', 'action' => 'redemption'), array('title' => __l('My Redemption')));?></li>
 							<?php endif; ?>
-							<li><?php echo $this->Html->link(__l('MY WONDERPOINTS'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('MY WONDERPOINTS')));?></li>
-							<li><?php echo $this->Html->link(__l('MY BEAUTY PROFILE'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('MY BEAUTY PROFILE')));?></li>
+							<li><?php echo $this->Html->link(__l('Referral Points'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('Referral Points')));?></li>
+							<li><?php echo $this->Html->link(__l('My Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('My Beauty Profile')));?></li>
 							<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
-							<li><?php echo $this->Html->link(__l('MY PRODUCT SURVEY'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('MY PRODUCT SURVEY')));?></li>		
+							<li><?php echo $this->Html->link(__l('My Product Survey'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('My Product Survey')));?></li>		
 							<?php endif; ?>
-							<li><?php echo $this->Html->link(__l('WONDERPOINTS PRODUCTS REDEMPTION'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('WONDERPOINTS PRODUCTS REDEMPTION')));?></li>
-							<li><?php echo $this->Html->link(__l('MY PRODUCT REDEMPTION'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('MY PRODUCT REDEMPTION')));?></li>
+							<li><?php echo $this->Html->link(__l('Product Redemptions & Sales'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('Product Redemptions & Sales')));?></li>
+							<li><?php echo $this->Html->link(__l('Product Redemption List'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('Product Redemption List')));?></li>
+							<li><?php echo $this->Html->link(__l('My WonderTreats'), array('controller' => 'wonder_treats', 'action' => 'index'), array('title' => __l('My WonderTreats')));?></li>
 							
 							</ul>
 							<?php endif; ?>
@@ -228,8 +228,6 @@ endif;
                    <li><?php echo $this->Html->link(__l('Terms and Conditions'), array('controller' => 'pages', 'action' => 'view', 'term-and-conditions', 'admin' => false), array('title' => __l('Terms and Conditions'),'class'=>$active_class));?></li>
 				  <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'privacy_policy' ) ?  'active': null; ?>
                     <li><?php echo $this->Html->link(__l('Privacy Policy'), array('controller' => 'pages', 'action' => 'view', 'privacy_policy', 'admin' => false), array('title' => __l('Privacy Policy'),'class'=>$active_class));?></li>
-                    <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'wonderbox_promise' ) ?  'active': null; ?>
-                    <li><?php echo $this->Html->link(__l('Our Promise'), array('controller' => 'pages', 'action' => 'view', 'wonderbox_promise', 'admin' => false), array('title' => __l('Our Promise'),'class'=>$active_class));?></li>
                 </ul>
                 <h3><?php echo __l('Browse'); ?></h3>
                 <p><?php if (!$this->Auth->sessionValid()): echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?> /
@@ -246,17 +244,12 @@ endif;
                            <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners'),'class'=>$active_class));?></li>
                            <li><?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'listing' ) ?  'active': null; ?>
                            <?php echo $this->Html->link(__l('Brand Partners'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Brand Partners'),'class'=>$active_class));?></li>
-                           <li><?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'ContentContributorPartners') ?  'active': null; ?>
-                           <?php echo $this->Html->link(__l('Content Contributor Partners'), array('controller' => 'pages', 'action' => 'view', 'ContentContributorPartners', 'admin' => false), array('title' => __l('Content Contributor Partners'),'class'=>$active_class));?></li>
-
 				</ul>
             </div>
             <div class="f-c3">
 	           	<h3><?php echo __l('Wonderbox'); ?></h3>
               <span class="pink"><?php echo Configure::read('site.address'); ?></span>
-			  <p><?php echo __l('Email:'); ?> <a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a><br>
-			  <?php echo __l('Career:'); ?> <a href="http://wonderbox.com.my/page/Career">Join The WonderTeam</a></p>
-
+			  <p><?php echo __l('Email:'); ?> <a href="mailto: info@wonderbox.com.my" title="info@wonderbox.com.my">info@wonderbox.com.my</a></p>
                 <ul>
                 	<li><a href="https://www.facebook.com/WonderBoxMalaysia?ref=hl" title="Facebook" target="_blank"><?php echo $this->Html->image('f.jpg',array('width'=>'28','height'=>'31')); ?></a></li>
                     <li><a href="https://www.youtube.com/user/wonderboxmy" title="Youtube" target="_blank"><?php echo $this->Html->image('y.jpg',array('width'=>'28','height'=>'31')); ?></a></li>
@@ -280,8 +273,8 @@ endif;
   </script>
   <div class="hide">
 	<div class="beauty-popup" id="beauty-pop" >
-		<div class="head"><h1>Update Your Beauty Profile Today</h1></div>
-		<div class="descripition" style="padding:10px"><p>Please complete your beauty profile today for the best beauty journey experience! </p>
+		<div class="head"><h1>New title</h1></div>
+		<div class="descripition" style="padding:10px"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
 		<br/>
 		<p><?php echo $this->Html->link(__l('Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile', 'admin' => false), array('title' => __l('Beauty Profile'),'class'=>'btn1'));?></p>
 		</div>

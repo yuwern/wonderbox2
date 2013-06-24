@@ -21,6 +21,11 @@
 								<div class="beauty-tip-content">
 								<?php echo $this->Html->cHtml($beautyTip['BeautyTip']['description']);?>
 								</div>
+								<?php if(!empty($beautyTip['BeautyTip']['is_purchase']) && !empty($beautyTip['BeautyTip']['purchase_amount']) && $remaining_quantity >= 1): ?>
+								<div class="buy-button">
+										<?php echo $this->Html->link(__l('Buy Now'), array('controller' => 'beauty_tips', 'action' => 'buy',$beautyTip['BeautyTip']['slug'], 'admin' => false), array('class'=>'buy-now','title' => __l('Buy Now')));?>
+								</div>
+								<?php endif; ?>
 								<?php if(!empty($beautyTip['BeautyTip']['video_url'])): ?>
 								<div class="video_player">
 									<iframe width="670" height="390" src="<?php echo $beautyTip['BeautyTip']['video_url']; ?>" frameborder="0" allowfullscreen></iframe>

@@ -14,8 +14,15 @@
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('about_us', array('label' => __l('About us'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text required'));
 		echo $this->Form->input('Attachment2.filename', array('type' => 'file','size' => '20', 'label' => __l('Upload contributors / writers picture'),'class' =>'browse-field','info'=>__('Upload contributors / writers picture size should be 100 X 100 ,200 X 200,etc ')));
-		
+			
 		echo $this->Form->input('video_url');
+		echo $this->Form->input('team_description', array('label' => __l('Terms and Condition'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text'));
+		echo $this->Form->input('is_purchase');
+		echo $this->Form->input('purchase_amount',array('label'=>__l('Price')));
+		echo $this->Form->input('voucher_code',array('label'=>__l('Voucher Code')));
+		echo $this->Form->input('quantity',array('label'=>__l('Quantity')));
+		echo $this->Form->input('redemption_start_date',array('label'=>__l('Redemption Start Date')));
+		echo $this->Form->input('redemption_end_date',array('label'=>__l('Redemption End Date')));
 		echo $this->Form->input('is_main_page_footer');
 		echo $this->Form->input('is_active');
 		

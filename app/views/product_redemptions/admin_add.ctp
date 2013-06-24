@@ -18,7 +18,10 @@
 		echo $this->Form->input('short_description');
 		echo $this->Form->input('description', array('label' => __l('Description'),'type' =>'textarea', 'class' => 'js-editor'));
 		echo $this->Form->input('quantity');
-		echo $this->Form->input('redeem_wonder_point');?>
+		echo $this->Form->input('redeem_wonder_point');
+		echo $this->Form->input('is_purchase');
+		echo $this->Form->input('purchase_amount',array('label'=>__l('Purchase Price')));
+		?>
 		<div class="js-product-content">
 		<?php if(!empty($this->request->data['RelatedProduct'])): 
 				foreach($this->request->data['RelatedProduct'] as $key => $relatedProduct): ?>
@@ -61,8 +64,8 @@
 		</div>
 		<div class="f-right"><a href="#" class="add js-add-more-product" title="Add More">Add More</a><a href="#" class="delete js-product-delete" title="Delete">Delete</a></div>
 		<div class="hide"><?php echo $this->Form->input('relatedproduct_count',array('value'=> $count,'type'=>'text','class'=>'js-product-count'));?> </div>
-	
-		<?php	echo $this->Form->input('is_active');
+		<?php	
+		echo $this->Form->input('is_active');
 		?>
 	</fieldset>
 		<div class="submit-block">

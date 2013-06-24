@@ -43,7 +43,7 @@ class AppController extends Controller
         'XAjax',
         //'DebugKit.Toolbar',
         'Cookie',
-        'Pdf'
+    //    'Pdf'
     );
     public $helpers = array(
         'Html','Session',

@@ -313,7 +313,13 @@ class PackagesController extends AppController
 							}
 							if($key == 'address'){
 								if($uservalidation == 'Required')
-								$err_message .= '<br/>Please enter the address';
+								$err_message .= '<br/>Please enter the Address 1';
+								else
+								$err_message .= '<br/>Address - '.$uservalidation;
+							}
+							if($key == 'address2'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Address 2';
 								else
 								$err_message .= '<br/>Address - '.$uservalidation;
 							}

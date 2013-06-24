@@ -2,7 +2,7 @@
 				<!-- Brand Logo Sec  -->
                 <div class="product_redeem">
                		<p><?php echo $this->Html->image('redeem_banner.jpg',array('width'=>'947','height'=>'95')); ?></p>
-                    <h3><?php echo __l('Product Redemption'); ?></h3>
+                    <h3><?php echo __l('Product Redemptions & Sales'); ?></h3>
 					<?php
 					if (!empty($productRedemptions)):
 					$i = 1;
@@ -44,6 +44,19 @@
                             <label><?php echo __l('REDEEM WITH'); ?></label>
                             <span class="wonder-points"><?php echo __l('WonderPoints :'); ?> <?php echo $this->Html->cInt($productRedemption['ProductRedemption']['redeem_wonder_point'],false);?> </span>
                         </div>
+					    <div class="set-box-purchase bor-top-none">
+						<?php if(!empty($productRedemption['ProductRedemption']['is_purchase'])):
+								if($total_quantity > 0 ) :
+									echo $this->Html->link(__l('Purchase Now For').' '. configure::read('site.currency').'  '.$productRedemption['ProductRedemption']['purchase_amount'], array('controller' => 'product_redemptions', 'action' => 'buy', $productRedemption['ProductRedemption']['slug']),array('title' =>__l('Purchase Now For').' '. configure::read('site.currency').'  '.$productRedemption['ProductRedemption']['purchase_amount'],'class'=> 'btn1 d-block', 'escape' => false));
+								else:
+									echo '<p class="no-purchase-option">No longer avialable</p>';
+								endif;
+							 else:?>
+								<p class="no-purchase-option"><?php 	echo __l('No Purchase Option is available'); 	 ?></p>
+							<?php 
+							 endif;
+								?>
+						</div>
                     </div>
 					<?php
 					$i++;

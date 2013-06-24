@@ -46,10 +46,16 @@
 						if ($transaction['Transaction']['class'] == 'Package'): 
 						echo $this->Html->cText('Subscribe Package');
 						endif;
+						if ($transaction['Transaction']['class'] == 'ProductRedemption'): 
+						echo $this->Html->cText('Product Redemption Package');
+						endif;
+						if ($transaction['Transaction']['class'] == 'BeautyTip'): 
+						echo $this->Html->cText('Beauty Tip Package');
+						endif;
 				?>
             </td>
 			   <td class="dl">
-				<?php 	 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ShareExperience || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductDamage   || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::Refund      || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperiencePhoto || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperienceBlog || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ExperienceVideo     ):
+				<?php 	 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ShareExperience || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductDamage   || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::Refund      || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperiencePhoto || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperienceBlog || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ExperienceVideo  || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::BeautyTipAmountPaid   || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ProductRedemptionAmountPaid   ):
 					echo $this->Html->cText($transaction['TransactionType']['name']);
 				else:
 				echo $this->Html->cText($transaction['Package']['name']);
@@ -57,14 +63,18 @@
 				?>
             </td>
 			 <td class="dl">
-				<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint|| $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ShareExperience || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductDamage   || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::Refund    || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperiencePhoto || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperienceBlog || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ExperienceVideo       ):
+				<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint|| $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ShareExperience || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductDamage   || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::Refund    || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperiencePhoto || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperienceBlog || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ExperienceVideo      ):
 					echo ' -- ';
 				else:
+					if($transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::BeautyTipAmountPaid || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ProductRedemptionAmountPaid ):
+					echo Configure::read('site.currency'). ' '. $this->Html->cInt($transaction['Transaction']['amount']);
+					else:
 					echo Configure::read('site.currency'). ' '. $this->Html->cInt($transaction['Package']['cost']);
+					endif;
 				endif;?>
             </td>
 			 <td class="dl">
-			<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ShareExperience || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductDamage   || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::Refund       || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperiencePhoto || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperienceBlog || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ExperienceVideo    ):
+			<?php if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ShareExperience || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductDamage   || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::Refund       || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperiencePhoto || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperienceBlog || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ExperienceVideo  || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::BeautyTipAmountPaid  || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ProductRedemptionAmountPaid   ):
 				   echo $this->Html->cText($transaction['Transaction']['wonder_points']);
 				else:
 			      echo $this->Html->cText($transaction['Package']['no_of_wonderpoints']);

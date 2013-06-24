@@ -5,6 +5,9 @@ class ProductRedemptionsController extends AppController
 	public $components = array(
         'Email',
     );
+	public $helpers = array(
+        'Gateway',
+    );
     public function beforeFilter()
     {
         $this->Security->disabledFields = array(
@@ -37,6 +40,8 @@ class ProductRedemptionsController extends AppController
 						'ProductRedemption.name',
 						'ProductRedemption.slug',
 						'ProductRedemption.redeem_wonder_point',
+						'ProductRedemption.is_purchase',
+						'ProductRedemption.purchase_amount',
 						'ProductRedemption.quantity'
 					),
 					'order' => array(
@@ -82,6 +87,401 @@ class ProductRedemptionsController extends AppController
         $this->pageTitle.= ' - ' . $productRedemption['ProductRedemption']['name'];
         $this->set('productRedemption', $productRedemption);
     }
+	public function buy($slug = null ){
+		$this->pageTitle = __l('Product Redemption & Sales');
+        $productRedemption = $this->ProductRedemption->find('first', array(
+            'conditions' => array(
+                'ProductRedemption.slug = ' => $slug
+            ) ,
+			'fields' => array(
+                'ProductRedemption.id',
+                'ProductRedemption.name',
+                'ProductRedemption.slug',
+				'ProductRedemption.purchase_amount',
+				) ,
+            'recursive' => -1,
+        ));
+		 if (empty($productRedemption)) {
+            throw new NotFoundException(__l('Invalid request'));
+        }
+		$user_id = $this->Auth->user('id');
+		$this->loadModel('UserShipping');
+		$usershipping = $this->UserShipping->find('first',array(
+					'conditions'=> array(
+						'UserShipping.user_id'=> $user_id
+					),
+					'contain'=> array(
+						'User'=> array(
+							'UserProfile'=> array(
+								'fields'=> array(
+									'UserProfile.first_name',
+									'UserProfile.last_name',
+								)
+							),
+							'fields'=> array(
+									'User.email',
+									'User.id'
+								)
+						),
+						'Country'=> array(
+								'fields'=> array(
+									'Country.name',
+									'Country.id'
+								)
+						),
+						'State'=> array(
+								'fields'=> array(
+									'State.id',
+									'State.name'
+								)
+						)
+					)
+			 )
+		 );
+		$states = $this->UserShipping->State->find('list');	
+		$countries = $this->UserShipping->Country->find('list');	
+		$this->set(compact('countries', 'states'));
+		$this->request->data = $usershipping;
+	    $this->set('productRedemption', $productRedemption);
+	}
+	public function checkout(){
+		if(!empty($this->request->data)){
+			$this->loadModel('UserShipping');
+			$this->UserShipping->set($this->request->data['UserShipping']);
+			$this->UserShipping->User->UserProfile->set($this->request->data['UserProfile']);
+			if($this->UserShipping->validates()&$this->UserShipping->User->UserProfile->validates()){
+			     $productRedemption = $this->ProductRedemption->find('first', array(
+					'conditions' => array(
+						'ProductRedemption.slug = ' => $this->request->data['ProductRedemption']['slug']
+					) ,
+					'fields' => array(
+						'ProductRedemption.id',
+						'ProductRedemption.name',
+						'ProductRedemption.slug',
+						'ProductRedemption.purchase_amount',
+						) ,
+					'recursive' => -1,
+				));
+				$this->request->data['UserShipping']['user_id']= $this->Auth->user('id');
+				if(empty($this->request->data['UserShipping']['id']))
+				$this->UserShipping->create();
+				$this->UserShipping->save($this->request->data,false);
+				if (empty($productRedemption)) {
+					 throw new NotFoundException(__l('Invalid request'));
+				}
+				$this->loadModel('PaymentGateway');
+				$paymentGateway = $this->PaymentGateway->find('first',array(
+						'conditions'=> array(
+							'PaymentGateway.id'=> ConstPaymentGateways::MOLPay
+						)
+				));
+				if (empty($paymentGateway)) {
+					 throw new NotFoundException(__l('Invalid request'));
+				}
+				$this->pageTitle.= sprintf(__l('Buy %s Subcribed') , $productRedemption['ProductRedemption']['name']);
+				$action = strtolower(str_replace(' ', '', $paymentGateway['PaymentGateway']['name']));
+				 if ($paymentGateway['PaymentGateway']['name'] == 'MolPAY') {
+					 Configure::write('molpay.is_testmode', $paymentGateway['PaymentGateway']['is_test_mode']);
+					  if (!empty($paymentGateway['PaymentGatewaySetting'])) {
+								foreach($paymentGateway['PaymentGatewaySetting'] as $paymentGatewaySetting) {
+									if ($paymentGatewaySetting['key'] == 'merchant_id') {
+										Configure::write('molpay.merchant_id', $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value']);
+									}
+									if ($paymentGatewaySetting['key'] == 'verify_key') {
+										Configure::write('molpay.verify_key', $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value']);
+									}
+								}
+					  }
+		    	 }
+			 	$orderID = $this->Auth->user('id').time();
+				$amount = number_format($productRedemption['ProductRedemption']['purchase_amount'],2);
+				$vcode = md5($amount.Configure::read('molpay.merchant_id').$orderID.Configure::read('molpay.verify_key'));
+				$country = 'MY';
+				$gateway_options = array(
+						'is_testmode'=> Configure::read('molpay.is_testmode'),
+						'orderID'=> $orderID,
+						'description'=> $productRedemption['ProductRedemption']['name'] ,
+						'amount'=> $amount,
+						'cur'=>'RM',
+						'returnUrl'=>  Router::url(array(
+											'controller' => 'product_redemptions',
+											'action' => 'processpayment','molpay',
+											'city' => $this->request->params['named']['city'],
+											'admin' => false
+										) , true),
+						'country'=> $country,
+						'vcode'=> $vcode
+
+					);
+				$this->loadModel('TempPaymentLog');
+				$transaction_data['TempPaymentLog'] = array(
+								'order_id' => $orderID,
+								'payment_type' => 'ProductRedemption',
+								'user_id' => $this->Auth->user('id') ,
+								'product_redemption_id' => $productRedemption['ProductRedemption']['id'],
+								'quantity' => 1,
+								'payment_gateway_id' => ConstPaymentGateways::MOLPay,
+								'ip' => $this->RequestHandler->getClientIP() ,
+								'amount_needed' => $amount,
+								'message' => $productRedemption['ProductRedemption']['name'],
+				); 
+				$this->TempPaymentLog->save($transaction_data);
+	            $this->set('gateway_options', $gateway_options);
+				$this->set('productRedemption', $productRedemption);
+				$this->set('action', $action);
+			} else {
+					$err_message  = ' ';
+				$err_message  .= "<div  style='text-align:left;padding-left:300px;'>";
+				if(!empty($this->UserShipping->User->UserProfile->validationErrors)){
+						foreach($this->UserShipping->User->UserProfile->validationErrors as $key => $uservalidation){
+							if($key == 'first_name'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the First number';
+								else
+								$err_message .= '<br/>First number - '.$uservalidation;
+							}
+							if($key == 'last_name'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Last number';
+								else
+								$err_message .= '<br/>Last number - '.$uservalidation;
+							}
+						}
+				}
+				if(!empty($this->UserShipping->validationErrors)){
+						foreach($this->UserShipping->validationErrors as $key => $uservalidation){
+							if($key == 'contact_no'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Mobile number';
+								else
+								$err_message .= '<br/>Mobile Number - '.$uservalidation;
+							}
+							if($key == 'contact_no1'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Home number';
+								else
+								$err_message .= '<br/>Home Number - '.$uservalidation;
+							}
+							if($key == 'address'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Unit/House Number Address';
+								else
+								$err_message .= '<br/>Address - '.$uservalidation;
+							}
+							if($key == 'address2'){
+								if($uservalidation == 'Required')
+								$err_message .= '<br/>Please enter the Street Name/Residential Name Address';
+								else
+								$err_message .= '<br/>Address - '.$uservalidation;
+							}
+							if($key == 'zip_code'){
+								if($uservalidation == 'Required')
+									$err_message .= '<br/>Please enter the zipcode';
+								else
+								$err_message .= '<br/>Zipcode - '.$uservalidation;
+						
+							}
+					
+						}
+				}
+				$err_message  .=  "</div>";
+				$this->Session->setFlash( $err_message, 'default', null, 'error');
+				$this->redirect(array(
+							'controller' => 'product_redemptions',
+							'action' => 'buy',
+							$this->request->data['ProductRedemption']['slug'],
+				));
+			}
+		}
+	}
+	public function processpayment($gateway_name){
+		$gateway = array(
+            'paypal' => ConstPaymentGateways::PayPal,
+            'molpay' => ConstPaymentGateways::MOLPay
+        );
+	   $gateway_id = (!empty($gateway[$gateway_name])) ? $gateway[$gateway_name] : 0;
+	   $this->loadModel('PaymentGateway');
+       $paymentGateway = $this->PaymentGateway->find('first', array(
+            'conditions' => array(
+                'PaymentGateway.id' => $gateway_id
+            ) ,
+            'contain' => array(
+                'PaymentGatewaySetting' => array(
+                    'fields' => array(
+                        'PaymentGatewaySetting.key',
+                        'PaymentGatewaySetting.test_mode_value',
+                        'PaymentGatewaySetting.live_mode_value',
+                    )
+                )
+            ) ,
+            'recursive' => 1
+        ));
+	     switch ($gateway_name) {
+			case 'molpay':
+				$molpay_is_testmode = $paymentGateway['PaymentGateway']['is_test_mode'];
+				if (!empty($paymentGateway['PaymentGatewaySetting'])) {
+                            foreach($paymentGateway['PaymentGatewaySetting'] as $paymentGatewaySetting) {
+                                if ($paymentGatewaySetting['key'] == 'merchant_id') {
+                                    $molpay_merchant_id  =  $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value'];
+                                }
+                                if ($paymentGatewaySetting['key'] == 'verify_key') {
+                                    $molpay_verify_key = $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value'];
+                                }
+                            }
+                  }
+				 $tranID =$_POST['tranID'];
+ 				 $orderid =$_POST['orderid'];
+				 $status =$_POST['status'];
+				 $domain =$_POST['domain'];
+				 $amount =$_POST['amount'];
+				 $currency =$_POST['currency'];
+				 $appcode =$_POST['appcode'];
+				 $paydate =$_POST['paydate'];
+				 $skey =$_POST['skey'];
+				 $key0 = md5( $tranID.$orderid.$status.$domain.$amount.$currency );
+				 $key1 = md5( $paydate.$domain.$key0.$appcode.$molpay_verify_key );
+				if( $skey != $key1 ) $status= -1; // invalid transaction
+				if($status == -1)
+				{
+   				 $this->Session->setFlash(__l('Invalid transaction.') , 'default', null, 'error');
+                 $this->redirect(array(
+                    'controller' => 'pages',
+                    'action' => 'home',
+                    'admin' => false
+                 ));
+				}
+				if ( $status == "00" ) {					
+				    $this->loadModel('TempPaymentLog');
+						$tempPaymentLog = $this->TempPaymentLog->find('first',array(
+								'conditions' => array(
+									'TempPaymentLog.order_id'=> $orderid,
+									'TempPaymentLog.is_paid'=> 0
+								)
+							));
+						if(!empty($tempPaymentLog)){		
+						     $productRedemption = $this->ProductRedemption->find('first', array(
+									'conditions' => array(
+										'ProductRedemption.id = ' => $tempPaymentLog['TempPaymentLog']['product_redemption_id']
+									) ,
+									'fields' => array(
+										'ProductRedemption.id',
+										'ProductRedemption.name',
+										'ProductRedemption.slug',
+										'ProductRedemption.purchase_amount',
+										) ,
+									'recursive' => -1,
+								));
+								$this->loadModel('Transaction');					
+							    $user_id  = $tempPaymentLog['TempPaymentLog']['user_id'];
+								$data['Transaction']['user_id'] = $user_id;
+								$data['Transaction']['foreign_id'] = $tempPaymentLog['TempPaymentLog']['product_redemption_id'];
+								$data['Transaction']['class'] = 'ProductRedemption';
+								$data['Transaction']['amount'] = $amount;
+								$data['Transaction']['wonder_points'] = 0;
+								$data['Transaction']['payment_gateway_id'] = $paymentGateway['PaymentGateway']['id'];
+								$data['Transaction']['description'] = 'Payment Success';
+								$data['Transaction']['gateway_fees'] = 0;
+								$data['Transaction']['transaction_type_id'] = ConstTransactionTypes::ProductRedemptionAmountPaid;
+								$transaction_id = $this->Transaction->log($data);
+								if (!empty($transaction_id)) {
+									$this->ProductRedemption->ProductRedemptionUser->create();
+									$productredeem['ProductRedemptionUser']['user_id'] = $this->Auth->user('id');
+									$productredeem['ProductRedemptionUser']['is_paid'] = 1;
+									$productredeem['ProductRedemptionUser']['product_redemption_id'] = $productRedemption['ProductRedemption']['id'];
+									$this->ProductRedemption->ProductRedemptionUser->save($productredeem,false);
+									$user = $this->ProductRedemption->ProductRedemptionUser->User->find('first', array(
+										'conditions'=> array(
+											'User.id'=> $user_id
+										),
+										'contain'=> array(
+											'UserProfile'=> array(
+												'fields'=> array(
+													'UserProfile.first_name',
+													'UserProfile.last_name',
+												)
+											)
+										),
+										'fields'=> array(
+											'User.id',
+											'User.created',
+											'User.username',
+											'User.referred_by_user_id',
+											'User.email',
+										)
+										)
+									);
+									$this->loadModel('EmailTemplate');
+									$email = $this->EmailTemplate->selectTemplate('Product Redemption Subscription');
+									$emailFindReplace = array(
+											'##SITE_LINK##' => Router::url('/', true) ,
+											'##USERNAME##' => $user['UserProfile']['first_name'].' '.$user['UserProfile']['last_name'],
+											'##SITE_NAME##' => Configure::read('site.name') ,
+											'##SIGNUP_IP##' => $this->RequestHandler->getClientIP() ,
+											'##PRODUCT_NAME##' => $productRedemption['ProductRedemption']['name'],
+											'##AMOUNT##' => $amount,
+											'##EMAIL##' => $user['User']['email'],
+											'##CONTACT_URL##' => Router::url(array(
+												'controller' => 'contacts',
+												'action' => 'add',
+												'city' => $this->request->params['named']['city'],
+												'admin' => false
+											) , true) ,
+											'##FROM_EMAIL##' => $this->ProductRedemption->ProductRedemptionUser->changeFromEmail(($email['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email['from']) ,
+											'##SITE_LOGO##' => Router::url(array(
+												'controller' => 'img',
+												'action' => 'blue-theme',
+												'logo-email.png',
+												'admin' => false
+											) , true) ,
+										);
+										// Send e-mail to users
+										$this->Email->from = ($email['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email['from'];
+										$this->Email->replyTo = ($email['reply_to'] == '##REPLY_TO_EMAIL##') ? Configure::read('EmailTemplate.reply_to_email') : $email['reply_to'];
+										$this->Email->to = $user['User']['email'];
+										$this->Email->subject = strtr($email['subject'], $emailFindReplace);
+										$this->Email->sendAs = ($email['is_html']) ? 'html' : 'text';
+										$this->Email->send(strtr($email['email_content'], $emailFindReplace));	
+										$this->Session->setFlash(__l('Your product redemption completed successfully...') , 'default', null, 'success');
+										$this->TempPaymentLog->updateAll(array(
+											'TempPaymentLog.is_paid' => 1
+										) , array(
+											'TempPaymentLog.order_id' => $orderid 
+										));
+										$this->redirect(array(
+											'controller' => 'transactions',
+											'action' => 'index',
+											'admin' => false
+										));
+							}
+
+						} else{
+							 $this->redirect(array(
+										'controller' => 'transactions',
+										'action' => 'index',
+										'admin' => false
+								));
+						}
+						
+					
+				} else {
+				// failure action
+				  $this->Session->setFlash(__l('Failure transaction.') , 'default', null, 'error');
+				  $this->redirect(array(
+						'controller' => 'pages',
+						'action' => 'home',
+						'admin' => false
+					));
+
+				}			
+			break;
+			case 'paypal':
+
+
+			break;
+	
+		 }
+	     $this->autoRender = false;
+	}
     public function redeem($slug)
 	{
 		$this->autoRender = false;
@@ -210,6 +610,9 @@ class ProductRedemptionsController extends AppController
 					$this->request->data['Attachment']['class'] = 'Product';
 					$this->ProductRedemption->Attachment->set($this->request->data);
 			 }
+			 if(empty($this->request->data['ProductRedemption']['is_purchase'])){
+				unset($this->ProductRedemption->validate['purchase_amount']);
+			 }
 			 $ini_upload_error = 1;
 			 if ($this->request->data['Attachment']['filename']['error'] == 4) {
 					$ini_upload_error = 0;
@@ -299,7 +702,10 @@ class ProductRedemptionsController extends AppController
         if (!$this->ProductRedemption->exists()) {
             throw new NotFoundException(__l('Invalid product redemption'));
         }
-        if ($this->request->is('post') || $this->request->is('put')) {
+		if(empty($this->request->data['ProductRedemption']['is_purchase'])){
+				unset($this->ProductRedemption->validate['purchase_amount']);
+		}
+	    if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->ProductRedemption->save($this->request->data)) {
 				if(!empty($this->request->data['Attachment']['filename']['name'])){
 						$attachment1=$this->ProductRedemption->Attachment->find('first', array('conditions'=>array('Attachment.foreign_id'=>$this->request->data['ProductRedemption']['id'], 'Attachment.class'=>'ProductRedemption'), 'recursive'=>-1));
