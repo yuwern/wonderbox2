@@ -30,7 +30,7 @@
 											}
 								?>
 									<li class="t-data">
-										<div class="t-c1"><?php  echo  date("F Y",strtotime($transaction['Transaction']['created']));  ?></div>
+										<div class="t-c1"><?php  echo  date("j F Y",strtotime($transaction['Transaction']['created']));  ?></div>
 										<div class="t-c2"><?php  
 											 if($transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPoint ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ReferralWonderPointAdd || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductSurveryWonderPoint || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ShareExperience ||$transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ProductDamage || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::Refund     || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperiencePhoto || $transaction['Transaction']['transaction_type_id'] == ConstTransactionTypes::ExperienceBlog || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ExperienceVideo || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::BeautyTipAmountPaid  || $transaction['Transaction']['transaction_type_id'] ==  ConstTransactionTypes::ProductRedemptionAmountPaid  ):
  											echo ' -- ';

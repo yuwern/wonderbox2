@@ -29,7 +29,7 @@
 											$class = ' class="altrow"';
 										} ?>
 									<li class="t-data">
-										<div class="t-c1"><?php  echo  date("F Y",strtotime($productRedemptionUser['ProductRedemptionUser']['created']));  ?></div>
+										<div class="t-c1"><?php  echo  date("j F Y",strtotime($productRedemptionUser['ProductRedemptionUser']['created']));  ?></div>
 										<div class="t-c2"><?php  echo  $this->Html->cText($productRedemptionUser['ProductRedemption']['name'],false);  ?></div>
 										<div class="t-c3"><?php  echo  $this->Html->cText($productRedemptionUser['ProductRedemption']['redeem_wonder_point'],false);  ?>	</div>
 										<div class="t-c4"><?php if(!empty($productRedemptionUser['ProductRedemptionUser']['tracking_number'])): 
