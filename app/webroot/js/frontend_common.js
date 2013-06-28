@@ -93,11 +93,13 @@ jQuery(document).ready(function($) {
     });
 	$('#js-retail-click').livequery('click', function() {
 		$(this).hide();
-		$("#js-retail-out").slideDown('slow');
+		$("#js-retail-out").slideDown('5000');
+
     });
 	$('#js-retail-tab').livequery('click', function() {
-		$("#js-retail-out").hide();
-		$("#js-retail-click").slideDown('slow');
+		$("#js-retail-out").slideUp('500');
+		$("#js-retail-click").slideDown('5000');
+
     });
 	$('.js-used-product-yes').livequery('click', function() {
 		$('.js-used-product-no').removeClass('active');
