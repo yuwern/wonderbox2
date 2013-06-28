@@ -2,7 +2,7 @@
 				<!-- Brand Logo Sec  -->
                 <div class="product_redeem">
                		<p><?php echo $this->Html->image('redeem_banner.jpg',array('width'=>'947','height'=>'95')); ?></p>
-                    <h3><?php echo __l('Product Redemptions & Sales'); ?></h3>
+                    <h3><?php echo __l('Welcome to WonderShop'); ?></h3>
 					<?php
 					if (!empty($productRedemptions)):
 					$i = 1;
