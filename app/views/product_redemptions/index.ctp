@@ -52,7 +52,7 @@
 									echo '<p class="no-purchase-option">No longer avialable</p>';
 								endif;
 							 else:?>
-								<p class="no-purchase-option"><?php 	echo __l('No Purchase Option is available'); 	 ?></p>
+								<p class="no-purchase-option"><?php 	echo __l('NOT FOR SALE'); 	 ?></p>
 							<?php 
 							 endif;
 								?>
