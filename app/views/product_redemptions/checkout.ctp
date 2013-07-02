@@ -5,10 +5,12 @@
                         	<h1><?php echo Configure::read('site.name');?> <?php echo __l('Product Redemption Checkout'); ?></h1>
                         </div>
 						<div class="step-bor end2">
+						<?php if(!empty($productRedemption['ProductRedemption']['is_delivery'])): ?>
                         	<ul>
                                 <li class="off1">SHIPPING DETAIL </li>
                                 <li class="select">CHECK OUT</li>
                             </ul>
+							<?php endif; ?>
                         </div>
                         <div class="shipp-left">
                         	<div class="shipp-box">

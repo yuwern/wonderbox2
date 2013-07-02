@@ -505,6 +505,11 @@ class AppController extends Controller
 			'beauty_tips/index',
 			'brands/listing',
 			'brands/benefits',
+			'brands/benefits',
+			'packages/processpayment',
+			'gift_users/processpayment',
+			'beauty_tips/processpayment',
+			'product_redemptions/processpayment',
 			//'beauty_tips/view',
         );
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];
@@ -760,6 +765,16 @@ class AppController extends Controller
         @rmdir($dir);
         return true;
     }
+	public function generateCouponCode($length = 7) {
+	  $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	  $chars .= time();
+	  $ret = '';
+	  for($i = 0; $i < $length; ++$i) {
+		$random = str_shuffle($chars);
+		$ret .= $random[0];
+	  }
+	  return $ret;
+	}
 	public function admin_update()
     {
         $this->autoRender = false;

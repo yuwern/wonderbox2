@@ -242,12 +242,14 @@ endif;
 				<?php $active_class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'add' ) ?  'active': null; ?>
 				<?php echo $this->Html->link(__l('GIFT A WONDERBOX'), array('controller' => 'gift_users', 'action' => 'add', 'admin' => false), array('title' =>__l('GIFT A WONDERBOX'),'class'=> 'gift '.$active_class));?></p>
                 <h3><?php echo __l('Partners'); ?></h3>
+				<ul>
 			   <li><?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'ContentContributorPartners') ?  'active': null; ?>
                           <?php echo $this->Html->link(__l('Content Contributor Partners'), array('controller' => 'pages', 'action' => 'view', 'ContentContributorPartners', 'admin' => false), array('title' => __l('Content Contributor Partners'),'class'=>$active_class));?></li>
                            <li><?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'affiliatepartners') ?  'active': null; ?>
                            <?php echo $this->Html->link(__l('Affiliate Partners'), array('controller' => 'pages', 'action' => 'view', 'affiliatepartners', 'admin' => false), array('title' => __l('Affiliate Partners'),'class'=>$active_class));?></li>
                            <li><?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'listing' ) ?  'active': null; ?>
                            <?php echo $this->Html->link(__l('Brand Partners'), array('controller' => 'brands', 'action' => 'listing', 'admin' => false), array('title' => __l('Brand Partners'),'class'=>$active_class));?></li>
+						   </ul>
 
             </div>
             <div class="f-c3">

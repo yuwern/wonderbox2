@@ -17,6 +17,9 @@ class WonderTreatsController extends AppController
 					'BeautyTip.redemption_end_date',
 					'BeautyTip.purchase_amount',
 					'WonderTreat.purchase_date',
+				),
+				'order' => array(
+					'WonderTreat.id'=>'desc'
 				)
 		);
         $this->set('wonderTreats', $this->paginate());
@@ -34,6 +37,9 @@ class WonderTreatsController extends AppController
 					'BeautyTip.purchase_amount',
 					'WonderTreat.purchase_date',
 					'User.email',
+				),
+				'order' => array(
+					'WonderTreat.id'=>'desc'
 				)
 		);
         $this->set('wonderTreats', $this->paginate());

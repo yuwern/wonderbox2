@@ -13,6 +13,7 @@
 		echo $this->Form->input('quantity');
 		echo $this->Form->input('redeem_wonder_point');
 		echo $this->Form->input('is_purchase');
+		echo $this->Form->input('is_delivery',array('label'=>__l('Delivery')));
 		echo $this->Form->input('purchase_amount',array('label'=>__l('Purchase price')));
 		echo $this->Form->input('is_active');
 	?>

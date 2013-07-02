@@ -19,7 +19,7 @@
 		echo $this->Form->input('team_description', array('label' => __l('Terms and Condition'),'type' =>'textarea', 'class' => 'js-editor','div'=>'input text'));
 		echo $this->Form->input('is_purchase');
 		echo $this->Form->input('purchase_amount',array('label'=>__l('Price')));
-		echo $this->Form->input('voucher_code',array('label'=>__l('Voucher Code')));
+		echo $this->Form->input('is_delivery',array('label'=>__l('Delivery')));
 		echo $this->Form->input('quantity',array('label'=>__l('Quantity')));
 		echo $this->Form->input('redemption_start_date',array('label'=>__l('Redemption Start Date')));
 		echo $this->Form->input('redemption_end_date',array('label'=>__l('Redemption End Date')));

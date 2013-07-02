@@ -164,6 +164,7 @@ class BeautyTipsController extends AppController
                 'BeautyTip.name',
                 'BeautyTip.slug',
 				'BeautyTip.purchase_amount',
+				'BeautyTip.is_delivery',
 				'BeautyTip.quantity',
 				'BeautyTip.redemption_start_date',
 				'BeautyTip.redemption_end_date',
@@ -190,6 +191,70 @@ class BeautyTipsController extends AppController
 										'admin' => false
 							));
 
+		}
+		/* If check box not check – do not need to show shipping address page in the payment work */
+		if(empty($beautyTip['BeautyTip']['is_delivery'])){
+		  	$this->loadModel('PaymentGateway');
+				$paymentGateway = $this->PaymentGateway->find('first',array(
+						'conditions'=> array(
+							'PaymentGateway.id'=> ConstPaymentGateways::MOLPay
+						)
+				));
+				if (empty($paymentGateway)) {
+					 throw new NotFoundException(__l('Invalid request'));
+				}
+				$this->pageTitle.= sprintf(__l('Buy %s Subcribed') , $beautyTip['BeautyTip']['name']);
+				$action = strtolower(str_replace(' ', '', $paymentGateway['PaymentGateway']['name']));
+				 if ($paymentGateway['PaymentGateway']['name'] == 'MolPAY') {
+					 Configure::write('molpay.is_testmode', $paymentGateway['PaymentGateway']['is_test_mode']);
+					  if (!empty($paymentGateway['PaymentGatewaySetting'])) {
+								foreach($paymentGateway['PaymentGatewaySetting'] as $paymentGatewaySetting) {
+									if ($paymentGatewaySetting['key'] == 'merchant_id') {
+										Configure::write('molpay.merchant_id', $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value']);
+									}
+									if ($paymentGatewaySetting['key'] == 'verify_key') {
+										Configure::write('molpay.verify_key', $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value']);
+									}
+								}
+					  }
+		    	 }
+			 	$orderID = $this->Auth->user('id').time();
+				$amount = number_format($beautyTip['BeautyTip']['purchase_amount'],2);
+				$vcode = md5($amount.Configure::read('molpay.merchant_id').$orderID.Configure::read('molpay.verify_key'));
+				$country = 'MY';
+				$gateway_options = array(
+						'is_testmode'=> Configure::read('molpay.is_testmode'),
+						'orderID'=> $orderID,
+						'description'=> $beautyTip['BeautyTip']['name'] ,
+						'amount'=> $amount,
+						'cur'=>'RM',
+						'returnUrl'=>  Router::url(array(
+											'controller' => 'beauty_tips',
+											'action' => 'processpayment','molpay',
+											'city' => $this->request->params['named']['city'],
+											'admin' => false
+										) , true),
+						'country'=> $country,
+						'vcode'=> $vcode
+
+					);
+				$this->loadModel('TempPaymentLog');
+				$transaction_data['TempPaymentLog'] = array(
+								'order_id' => $orderID,
+								'payment_type' => 'BeautyTip',
+								'user_id' => $this->Auth->user('id') ,
+								'beauty_tip_id' => $beautyTip['BeautyTip']['id'],
+								'quantity' => 1,
+								'payment_gateway_id' => ConstPaymentGateways::MOLPay,
+								'ip' => $this->RequestHandler->getClientIP() ,
+								'amount_needed' => $amount,
+								'message' => $beautyTip['BeautyTip']['name'],
+				); 
+				$this->TempPaymentLog->save($transaction_data);
+	            $this->set('gateway_options', $gateway_options);
+				$this->set('beautyTip', $beautyTip);
+				$this->set('action', $action);
+			    $this->render('checkout');
 		}
 		$user_id = $this->Auth->user('id');
 		$this->loadModel('UserShipping');
@@ -244,6 +309,7 @@ class BeautyTipsController extends AppController
 						'BeautyTip.id',
 						'BeautyTip.name',
 						'BeautyTip.slug',
+					 	'BeautyTip.is_delivery',
 						'BeautyTip.purchase_amount',
 						) ,
 					'recursive' => -1,
@@ -427,7 +493,7 @@ class BeautyTipsController extends AppController
 				 $key0 = md5( $tranID.$orderid.$status.$domain.$amount.$currency );
 				 $key1 = md5( $paydate.$domain.$key0.$appcode.$molpay_verify_key );
 				if( $skey != $key1 ) $status= -1; // invalid transaction
-				if($status == -1)
+		    	if($status == -1)
 				{
    				 $this->Session->setFlash(__l('Invalid transaction.') , 'default', null, 'error');
                  $this->redirect(array(
@@ -527,12 +593,12 @@ class BeautyTipsController extends AppController
 										) , true) ,
 									);
 									$file_path = APP . 'media' . DS . 'BeautyContent' . DS . $beautyTip['BeautyTip']['id'] . DS;
-									$Folder =& new Folder($file_path);
-									$Folder->create($file_path);
-									$Folder->chmod($file_path, 0777);
+									App::import('Core', 'Folder');
+									$folder = new Folder($file_path,true,0777);
 									$image_name = md5($beautyTip['BeautyTip']['slug'].$wonder_treat_id.time());
 									$attachments = $image_name . '.pdf';
 									$file_name = $file_path . DS . $attachments;
+									chmod($file_name, 0777);
 									$username =  $user['UserProfile']['first_name'].' '.$user['UserProfile']['last_name'];
 									include APP.DS.'vendors'.DS.'fpdf'.DS.'fpdf.php'; 
 									$fpdf = new PDF();
@@ -651,7 +717,8 @@ class BeautyTipsController extends AppController
             if (!empty($this->request->data['Attachment']['filename']['name'])) {
                   $this->BeautyTip->Attachment->set($this->request->data);
             }
-		    $this->BeautyTip->set($this->request->data);
+			$this->request->data['BeautyTip']['voucher_code'] = $this->generateCouponCode();
+			$this->BeautyTip->set($this->request->data);
 		    $this->BeautyTip->Category->set($this->request->data);
 			 $ini_upload_error = 1;
             if ((!empty($this->request->data['Attachment']['filename']) && $this->request->data['Attachment']['filename']['error'] == 1) || (!empty($this->request->data['Attachment1']['filename']) && $this->request->data['Attachment1']['filename']['error'] == 1) ) {
@@ -942,5 +1009,46 @@ class BeautyTipsController extends AppController
             $attachments
         );
 	    $this->Email->send($this->Email->content);
-    }	
+    }
+	public function test1(){
+	 $this->autoRender = false;
+		   $this->loadModel('PaymentGateway');
+       $paymentGateway = $this->PaymentGateway->find('first', array(
+            'conditions' => array(
+                'PaymentGateway.id' => 2
+            ) ,
+            'contain' => array(
+                'PaymentGatewaySetting' => array(
+                    'fields' => array(
+                        'PaymentGatewaySetting.key',
+                        'PaymentGatewaySetting.test_mode_value',
+                        'PaymentGatewaySetting.live_mode_value',
+                    )
+                )
+            ) ,
+            'recursive' => 1
+        ));
+
+				$molpay_is_testmode = $paymentGateway['PaymentGateway']['is_test_mode'];
+				if (!empty($paymentGateway['PaymentGatewaySetting'])) {
+                            foreach($paymentGateway['PaymentGatewaySetting'] as $paymentGatewaySetting) {
+                                if ($paymentGatewaySetting['key'] == 'merchant_id') {
+                                    $molpay_merchant_id  =  $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value'];
+                                }
+                                if ($paymentGatewaySetting['key'] == 'verify_key') {
+                                    $molpay_verify_key = $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value'];
+                                }
+                            }
+                  }
+			 $orderid = 1364219760;
+			 echo $molpay_merchant_id;
+			 echo "<br/>";
+			 $skey = md5( $orderid.$molpay_merchant_id.$molpay_verify_key );
+			 echo $skey;
+			 echo "<br/>";
+			 echo "https://www.onlinepayment.com.my/MOLPay/q_by_tid.php?amount=3899&txID=1372220620&domain=shopA&skey= e1c4c60c99116fffc3ce77bd5fd0f7b1";
+			 echo "https://www.onlinepayment.com.my/MOLPay/query/q_oid_batch.php?oID=$orderid&domain=$molpay_merchant_id&skey=$skey";
+	echo "tesT";
+	exit;
+	}
 }

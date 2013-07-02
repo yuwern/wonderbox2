@@ -98,12 +98,95 @@ class ProductRedemptionsController extends AppController
                 'ProductRedemption.name',
                 'ProductRedemption.slug',
 				'ProductRedemption.purchase_amount',
+				'ProductRedemption.quantity',
+				'ProductRedemption.is_delivery',
 				) ,
             'recursive' => -1,
         ));
-		 if (empty($productRedemption)) {
+		$productRedemptionUserCount = $this->ProductRedemption->ProductRedemptionUser->find('count', array(
+								'conditions' => array(
+									'ProductRedemptionUser.product_redemption_id'=> $productRedemption['ProductRedemption']['id']
+								),
+								'recursive' => -1
+					));
+		$remaining_quantity = $productRedemption['ProductRedemption']['quantity'] - $productRedemptionUserCount;
+		if($remaining_quantity <= 0 )
+		{
+			 $this->Session->setFlash( __l('Beautiy Tips is not avialable'), 'default', null, 'error');
+			 $this->redirect(array(
+										'controller' => 'beauty_tips',
+										'action' => 'index',
+										'admin' => false
+							));
+
+		}
+		if (empty($productRedemption)) {
             throw new NotFoundException(__l('Invalid request'));
         }
+		/* If check box not check – do not need to show shipping address page in the payment work */
+		if(empty($productRedemption['ProductRedemption']['is_delivery'])){
+	        	$this->loadModel('PaymentGateway');
+				$paymentGateway = $this->PaymentGateway->find('first',array(
+						'conditions'=> array(
+							'PaymentGateway.id'=> ConstPaymentGateways::MOLPay
+						)
+				));
+				if (empty($paymentGateway)) {
+					 throw new NotFoundException(__l('Invalid request'));
+				}
+				$this->pageTitle.= sprintf(__l('Buy %s Subcribed') , $productRedemption['ProductRedemption']['name']);
+				$action = strtolower(str_replace(' ', '', $paymentGateway['PaymentGateway']['name']));
+				 if ($paymentGateway['PaymentGateway']['name'] == 'MolPAY') {
+					 Configure::write('molpay.is_testmode', $paymentGateway['PaymentGateway']['is_test_mode']);
+					  if (!empty($paymentGateway['PaymentGatewaySetting'])) {
+								foreach($paymentGateway['PaymentGatewaySetting'] as $paymentGatewaySetting) {
+									if ($paymentGatewaySetting['key'] == 'merchant_id') {
+										Configure::write('molpay.merchant_id', $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value']);
+									}
+									if ($paymentGatewaySetting['key'] == 'verify_key') {
+										Configure::write('molpay.verify_key', $paymentGateway['PaymentGateway']['is_test_mode'] ? $paymentGatewaySetting['test_mode_value'] : $paymentGatewaySetting['live_mode_value']);
+									}
+								}
+					  }
+		    	 }
+			 	$orderID = $this->Auth->user('id').time();
+				$amount = number_format($productRedemption['ProductRedemption']['purchase_amount'],2);
+				$vcode = md5($amount.Configure::read('molpay.merchant_id').$orderID.Configure::read('molpay.verify_key'));
+				$country = 'MY';
+				$gateway_options = array(
+						'is_testmode'=> Configure::read('molpay.is_testmode'),
+						'orderID'=> $orderID,
+						'description'=> $productRedemption['ProductRedemption']['name'] ,
+						'amount'=> $amount,
+						'cur'=>'RM',
+						'returnUrl'=>  Router::url(array(
+											'controller' => 'product_redemptions',
+											'action' => 'processpayment','molpay',
+											'city' => $this->request->params['named']['city'],
+											'admin' => false
+										) , true),
+						'country'=> $country,
+						'vcode'=> $vcode
+
+					);
+				$this->loadModel('TempPaymentLog');
+				$transaction_data['TempPaymentLog'] = array(
+								'order_id' => $orderID,
+								'payment_type' => 'ProductRedemption',
+								'user_id' => $this->Auth->user('id') ,
+								'product_redemption_id' => $productRedemption['ProductRedemption']['id'],
+								'quantity' => 1,
+								'payment_gateway_id' => ConstPaymentGateways::MOLPay,
+								'ip' => $this->RequestHandler->getClientIP() ,
+								'amount_needed' => $amount,
+								'message' => $productRedemption['ProductRedemption']['name'],
+				); 
+				$this->TempPaymentLog->save($transaction_data);
+	            $this->set('gateway_options', $gateway_options);
+				$this->set('productRedemption', $productRedemption);
+				$this->set('action', $action);
+				$this->render('checkout');
+		}
 		$user_id = $this->Auth->user('id');
 		$this->loadModel('UserShipping');
 		$usershipping = $this->UserShipping->find('first',array(
