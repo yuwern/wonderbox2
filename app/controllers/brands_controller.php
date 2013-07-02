@@ -159,7 +159,8 @@ class BrandsController extends AppController
 			 if ($this->request->data['Attachment']['filename']['error'] == 4) {
 					$ini_upload_error = 0;
   			 }
-			   $is_brand_valid = true;
+			 $this->request->data['Brand']['user_id'] = $this->Auth->user('id');
+			 $is_brand_valid = true;
 			 if(!empty($this->request->data['BrandAddress'])){
 					 foreach($this->request->data['BrandAddress'] as $key => $brandAddress) {
 						 if (!empty($brandAddress)) {
