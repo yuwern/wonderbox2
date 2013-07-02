@@ -140,6 +140,7 @@ endif;
                     	<ul>
 						    <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home' ) ?  'class="active"': null; ?>
                         	<li <?php echo $active_class; ?>> <?php echo $this->Html->link(__l('Home'), array('controller' => 'pages', 'action' => 'home', 'admin' => false), array('title' => __l('Home'),'class'=> 'home')); ?></li>
+
 							<?php if (!$this->Auth->sessionValid()): ?>
                         	<?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'register' ) ?  'class="active"': null; ?>
 							<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?></li>
@@ -281,10 +282,10 @@ endif;
   </script>
   <div class="hide">
 	<div class="beauty-popup" id="beauty-pop" >
-		<div class="head"><h1>New title</h1></div>
-		<div class="descripition" style="padding:10px"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+		<div class="head"><h1>Update Your Beauty Profile Today </h1></div>
+		<div class="descripition" style="padding:10px"><p>Kindly update your beauty profile today for the best beauty experience with WonderBox Malaysia. </p>
 		<br/>
-		<p><?php echo $this->Html->link(__l('Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile', 'admin' => false), array('title' => __l('Beauty Profile'),'class'=>'btn1'));?></p>
+		<p><?php echo $this->Html->link(__l('Update Beauty Profile'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile', 'admin' => false), array('title' => __l('Beauty Profile'),'class'=>'btn1'));?></p>
 		</div>
 	</div>
   </div>
