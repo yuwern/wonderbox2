@@ -510,6 +510,7 @@ class AppController extends Controller
 			'gift_users/processpayment',
 			'beauty_tips/processpayment',
 			'product_redemptions/processpayment',
+			'packages/recurring_payment',
 			//'beauty_tips/view',
         );
         $cur_page = $this->request->params['controller'] . '/' . $this->request->params['action'];

@@ -631,6 +631,146 @@ class PackagesController extends AppController
 			}
 		}
  	}
+/* Auto Amount will be taken in Recurring payment*/
+  public function recurring_payment(){
+		$this->autoRender = false;
+		$this->layout = false;
+	    $payment_response = $_POST;
+		if(!empty($payment_response) && strtolower($payment_response['txn_type']) == 'recurring_payment' &&  strtolower($payment_response['payment_status']) == 'completed' &&  strtolower($payment_response['payer_status']) == 'verified' ){
+				$this->loadModel('PaypalTransactionLog');
+				$paypalTransactionLog =$this->PaypalTransactionLog->find('first', array(
+								'conditions'=> array(
+									'PaypalTransactionLog.doexpresscheckout_token'=> $payment_response['recurring_payment_id'],
+									
+								),
+							'recursive'=> -1
+							
+						)
+					);
+				
+				$package = $this->Package->find('first',array(
+						'conditions'=> array(
+							'Package.id'=> $paypalTransactionLog['PaypalTransactionLog']['package_user_id']
+						),
+						'recursive'=> -1
+				));
+				if(empty($package)){
+					throw new NotFoundException(__l('Invalid request'));
+				}
+				$user_id =  $paypalTransactionLog['PaypalTransactionLog']['user_id'];
+				$amount = $payment_response['amount'];
+				$data['Transaction']['user_id'] = $user_id;
+				$data['Transaction']['foreign_id'] = $package['Package']['id'];
+				$data['Transaction']['class'] = 'Package';
+				$data['Transaction']['amount'] = $amount ;
+				$data['Transaction']['wonder_points'] = $package['Package']['no_of_wonderpoints'] ;
+				$data['Transaction']['payment_gateway_id'] = ConstPaymentGateways::PayPal;
+				$data['Transaction']['description'] = 'Payment Success';
+				$data['Transaction']['gateway_fees'] = 0;
+				$data['Transaction']['transaction_type_id'] = ConstTransactionTypes::PaidlAmountToCompany;
+				$transaction_id = $this->Transaction->log($data);
+				if (!empty($transaction_id)) {
+						$package=$this->Package->find('first',array(
+								'conditions'=> array(
+									'Package.id'=>  $package['Package']['id']
+								),
+								'contain'=> array(
+									'PackageType'=> array(
+										'fields' => array(
+											'PackageType.no_of_months'
+										)
+									)
+								),
+								'recursive' => 1
+							));
+						//$start_date = date('Y-m-d');
+						$user = $this->Package->PackageUser->User->find('first', array(
+							'conditions'=> array(
+								'User.id'=> $user_id
+							),
+							'contain'=> array(
+								'UserProfile'=> array(
+									'fields'=> array(
+										'UserProfile.first_name'
+									)
+								)
+							),
+							'fields'=> array(
+								'User.id',
+								'User.created',
+								'User.username',
+								'User.referred_by_user_id',
+								'User.email',
+							)
+							)
+						);
+						// Referral friend code 
+						$referred_by_user_id = 0;
+						if (!empty($user['User']['referred_by_user_id'])) { 
+							$packageUser['PackageUser']['referred_by_user_id'] = $user['User']['referred_by_user_id'];
+							$referred_by_user_id = $user['User']['referred_by_user_id'];
+						} else {
+							$cookie_value = $this->Cookie->read('referrer');
+							$refer_id = (!empty($cookie_value)) ? $cookie_value['refer_id'] : null;
+							if (!empty($refer_id)) {
+								$packageUser['PackageUser']['referred_by_user_id']  = $refer_id;
+							
+							}	
+							$referred_by_user_id = $refer_id;
+						}
+						// end Referral friend code 
+						//$dateMonthAdded = strtotime(date("Y-m-d", strtotime($start_date)) . "+".$package['PackageType']['no_of_months']." month");
+						//$end_date = date('Y-m-d', $dateMonthAdded);
+						$duration = $this->getDurationPeriod($package['PackageType']['no_of_months'],$user_id);
+						$start_date = $duration['start_date'];	
+						$end_date =  $duration['end_date'];	
+						$this->Package->PackageUser->savePackageUser($package['PackageType']['no_of_months'],$user_id,$package['Package']['id'],$referred_by_user_id);
+						$this->Package->PackageUser->User->updateAll(array(
+							'User.is_verified_user' => 1,
+							'User.available_wonder_points' => 'User.available_wonder_points + '. $package['Package']['no_of_wonderpoints'],
+							'User.subscription_expire_date' => $end_date,
+						) , array(
+							'User.id' => $user_id
+						));
+			
+						$cookie_value = $this->Cookie->read('referrer');
+						if(!empty($user['User']['referred_by_user_id'])){
+							$this->_pay_to_referrer($user);
+						}	
+						if (!empty($cookie_value)) {
+							$this->Cookie->delete('referrer'); // Delete referer cookie
+							
+						}
+						$this->loadModel('EmailTemplate');
+						$email_message = $this->EmailTemplate->selectTemplate('Subscription Package');
+						$emailFindReplace = array(
+							'##FROM_EMAIL##' => ($email_message['from'] == '##FROM_EMAIL##') ? Configure::read('EmailTemplate.from_email') : $email_message['from'] ,
+							'##SITE_NAME##' => Configure::read('site.name') ,
+							'##USERNAME##' => $user['User']['username'],
+							'##PACKAGE_NAME##' => $package['Package']['name']  ,
+							'##PACKAGE_AMOUNT##' => Configure::read('site.currency') . $amount ,
+							'##SITE_LINK##' => Router::url('/', true) ,
+							'##PURCHASE_ON##' => strftime(Configure::read('site.datetime.format')) ,
+							'##PURCHASE_EXPIRY##' => $end_date ,
+							'##WONDER_POINT##' =>  !empty($package['Package']['no_of_wonderpoints'])? $package['Package']['no_of_wonderpoints']: 'None'  ,
+							'##CONTACT_URL##' => Router::url(array(
+								'controller' => 'contacts',
+								'action' => 'add',
+								'city' => $this->request->params['named']['city'],
+								'admin' => false
+							) , true) ,
+							'##SITE_LOGO##' => Router::url(array(
+								'controller' => 'img',
+								'action' => 'blue-theme',
+								'logo-email.png',
+								'admin' => false
+							) , true) ,
+						);
+			    $this->_sendMail($emailFindReplace, $email_message, $user['User']['email']);
+				}		
+			} 
+		exit;
+ 	}
 	public function payment_cancel()
     {
         $this->pageTitle = __l('Payment Cancel');
