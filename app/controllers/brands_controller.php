@@ -266,7 +266,7 @@ class BrandsController extends AppController
 			$this->Brand->set($this->request->data);
 			if($this->Brand->validates() && $is_brand_valid ) {
 				 if ($this->Brand->save($this->request->data)) {
-				 /*if(!empty($this->request->data['Attachment']['filename']['name'])){
+				 if(!empty($this->request->data['Attachment']['filename']['name'])){
 						$attachment1=$this->Brand->Attachment->find('first', array('conditions'=>array('Attachment.foreign_id'=>$this->request->data['Brand']['id'], 'Attachment.class'=>'Brand'), 'recursive'=>-1));
 						if(!empty($attachment1)){
 							$this->request->data['Attachment']['id'] = $attachment1['Attachment']['id'];
@@ -277,7 +277,7 @@ class BrandsController extends AppController
 						$this->request->data['Attachment']['class'] = 'Brand';
 						$this->Brand->Attachment->save($this->request->data['Attachment']);
 				}
-				if(!empty($this->request->data['BrandAddress'])){
+				/*if(!empty($this->request->data['BrandAddress'])){
 					$this->Brand->BrandAddress->deleteAll(array(
 							'BrandAddress.brand_id' =>  $this->request->data['Brand']['id']
 					));	
