@@ -13,7 +13,7 @@
 							 <?php echo $this->Form->input('question_id1', array('label' => __l('Questions'),'empty'=>'Please select','options'=>$productQuestions)); ?>
 							</div>
 							   <div class="js-answer1s">
-								<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> $answers)); ?>
+								<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answers)?'':$answers)); ?>
 							</div>
 							<div>
 							 <?php echo $this->Form->input('product_id', array('label' => __l('List Product'),'empty'=>'Please select','options'=>$products)); ?>
@@ -38,19 +38,19 @@
 							<?php echo $this->Form->input('question_id', array('label' => __l('Questions'),'empty'=>'Please select','options'=>$beautyQuestions)); ?>
 							</div>
 							<div class="js-answers">
-							<?php echo $this->Form->input('answer', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> $answer2s)); ?>
+							<?php echo $this->Form->input('answer', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answer2s)?'':$answer2s)); ?>
 							</div>
-							<br/>
-							<br/>
-							<br/>
-							<br/>
+							<?php echo $this->Form->input('age_group_id', array('label' => __l('Age Group'), 'empty'=>'Please Select')); ?>
+							<?php echo $this->Form->input('state_id', array('label' => __l('State'), 'empty'=>'Please Select')); ?>
 							<br/><br/>
 							<br/>
 							</div></div>
 							<div class="clear"></div>
 
 							<span class="js-show-statement"> SHOW/HIDE</span>
-<div class="js-sql-query hide js-statment-query">No SQL statement avialable.</div>
+<div class="js-sql-query hide js-statment-query">No SQL statement avialable.
+
+</div>
 <div class="clearfix"></div><?php echo $this->Form->submit(__l('Run Query'),array('class'=>'f-right'));?>
  <?php echo $this->Form->end(); ?>
 </div>
@@ -61,9 +61,9 @@
 <h2> <?php echo __l('Report Section'); ?></h2> 
 <?php if(!empty($userIds)): 
 	  $userIdbase64decode = base64_encode(implode('-',$userIds));?>
-	<div class="clearfix add-block1">      <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing',$userIdbase64decode,'city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
+	<div class="clearfix add-block1">      <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing1',$userIdbase64decode,'city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
 	   <?php
-       echo $this->element('user-listing',array('userIdbase64decode'=>$userIdbase64decode)); ?>
+       echo $this->element('user-listing1',array('userIdbase64decode'=>$userIdbase64decode)); ?>
 <?php else: ?>
 	<p> <?php echo __l('No users avialable'); ?></p>
 <?php endif; ?>

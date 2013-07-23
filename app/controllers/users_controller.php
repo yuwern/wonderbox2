@@ -3186,7 +3186,85 @@ class UsersController extends AppController
    public function test(){
 
    }
-   public function admin_listing($userIdBase64Decode = null) {
+ public function admin_listing($conditions1 = null, $conditions2=null) {
+		 if(!empty($conditions1)){
+			$userCountCondition = base64_decode($conditions1);
+			$userCountConditions = unserialize($userCountCondition);
+		 }	 
+		 if(!empty($conditions2)){
+			$conditions2 = base64_decode($conditions2);
+			$userCount1Conditions = unserialize($conditions2);
+		 }
+			$users = $this->User->BeautyProfile->find('all', array(
+				   'conditions' => $userCountConditions,
+					'fields' => array(
+						'Distinct(BeautyProfile.user_id)'
+					),
+					'recursive' => -1
+				)
+			);
+			$userIds = Set::extract('/BeautyProfile/user_id',$users);
+
+			if(!empty($userCount1Conditions)) {
+				$user1s = $this->User->BeautyProfile->find('all', array(
+					   'conditions' => $userCount1Conditions,
+						'fields' => array(
+							'Distinct(BeautyProfile.user_id)'
+						),
+						'recursive' => -1
+					)
+				);
+				$userId1s = Set::extract('/BeautyProfile/user_id',$user1s);
+				$userIds = array_unique(array_merge($userIds,$userId1s));
+			}	
+	 if ($this->RequestHandler->prefers('csv')) {
+	  $users = $this->User->find('all', array(
+            'conditions' => array(
+				'User.id'=>	$userIds		  
+			),
+			'fields' => array(
+				'User.id',
+				'User.email',
+				'User.created',
+				'User.username',
+			),
+			 'recursive' => -1
+        ));
+			
+        if (!empty($users)) {
+            foreach($users as $user) {
+				$address = $this->User->getShippingAddress($user['User']['id']);
+                $data[]['User'] = array(
+                    __l('Username') => $user['User']['username'],
+                    __l('Email') => $user['User']['email'],
+					__l('Address') => $address,
+                    __l('Created on') => $user['User']['created'],
+                );
+            }
+        }
+        $this->set('data', $data);
+	 } else {
+
+		 $this->paginate = array(
+				'conditions' => array(
+						'User.id'=> $userIds,
+				),
+				'contain' => array(
+					'UserProfile',
+				),
+				'fields' => array(
+					'User.id',
+					'User.email',
+					'User.created',
+					'User.username',
+				),
+				'limit' => 2,
+				'recursive'=> -1
+		);
+		$this->set('users',$this->paginate());
+	 }
+   }
+	public function admin_listing1($userIdBase64Decode = null) {
 	 if(!empty($userIdBase64Decode)){
 		$userIdbase64encode = base64_decode($userIdBase64Decode);
 		$userIds = explode('-',$userIdbase64encode);
@@ -3200,6 +3278,7 @@ class UsersController extends AppController
 			'fields' => array(
 				'User.id',
 				'User.email',
+				'User.username',
 				'User.created',
 			),
 			 'recursive' => -1
@@ -3209,6 +3288,7 @@ class UsersController extends AppController
             foreach($users as $user) {
 				$address = $this->User->getShippingAddress($user['User']['id']);
                 $data[]['User'] = array(
+                    __l('Username') => $user['User']['username'],
                     __l('Email') => $user['User']['email'],
 					__l('Address') => $address,
                     __l('Created on') => $user['User']['created'],
@@ -3227,13 +3307,15 @@ class UsersController extends AppController
 				'fields' => array(
 					'User.id',
 					'User.email',
+					'User.username',
 					'User.created',
 				),
 				'limit' => 10,
 				'recursive'=> -1
 		);
 		$this->set('users',$this->paginate());
+		$this->render('admin_listing');
 	 }
-   }
+   }  
  }
 ?>

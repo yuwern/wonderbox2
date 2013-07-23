@@ -672,6 +672,8 @@ class BeautyTipsController extends AppController
             'q',
 			'year',
 			'month',
+			'active',
+			'user_id',
         ));
 		$conditions = array();
 		date_default_timezone_set('UTC');
@@ -685,6 +687,15 @@ class BeautyTipsController extends AppController
 			$this->request->data['BeautyTip']['month'] = $this->request->params['named']['month'];
 
 		}
+		if(!empty($this->request->params['named']['active'])){
+			$status=($this->request->params['named']['active']=='Active')?1:0;
+			$this->request->data['BeautyTip']['active'] = $this->request->params['named']['active'];
+			$conditions['BeautyTip.is_active = '] = $status;
+		}
+		if(!empty($this->request->params['named']['user_id'])){
+			$this->request->data['BeautyTip']['user_id'] = $this->request->params['named']['user_id'];
+			$conditions['User.id = '] = $this->request->params['named']['user_id'];
+		}
         $this->BeautyTip->recursive = 2;
 		$this->paginate = array(
 				'conditions'=> $conditions,
@@ -693,6 +704,7 @@ class BeautyTipsController extends AppController
 					'User'=> array(
 						'fields' => array(
 							'User.email',
+							'User.id',
 						)
 					)
 				),
@@ -703,6 +715,8 @@ class BeautyTipsController extends AppController
 		$moreActions = $this->BeautyTip->moreActions;
 		if($this->Auth->user('user_type_id') != ConstUserTypes::Admin)
 			unset($moreActions[3]);
+		$users=$this->BeautyTip->User->find('list', array('conditions'=>array('OR'=>array('user_type_id'=>1)), 'recursive'=>-1));
+		$this->set(compact('users')); 
 		$this->set(compact('moreActions')); 
         $this->set('beautyTips', $this->paginate());
     }

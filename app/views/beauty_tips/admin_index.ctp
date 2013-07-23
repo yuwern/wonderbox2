@@ -6,6 +6,8 @@
 			$years = $this->Html->getYearLists();
 			echo $this->Form->input('month', array('options'=>$months,'empty'=>__l('Please select'),'label'=> __l('Month'))); ?>
 			<?php echo $this->Form->input('year', array('label'=> __l('Year'),'empty'=>__l('Please select'),'options'=> $years)); ?>
+			<?php echo $this->Form->input('active', array('label'=> __l('Active'),'empty'=>__l('Please select'),'options'=> array('Active'=>'Active', 'InActive'=>'InActive'))); ?>
+			<?php echo $this->Form->input('user_id', array('label'=> __l('User'),'empty'=>__l('Please Select'),'options'=> $users)); ?>
             <?php echo $this->Form->submit(__l('Search'));?>
             <?php echo $this->Form->end(); ?>
      <div class="add-block">
@@ -87,7 +89,7 @@ endif;
                 <div class="hide">
                     <?php echo $this->Form->submit('Submit');  ?>
                 </div>
-                <?
+                <?php
             endif;
             echo $this->Form->end();
             ?>

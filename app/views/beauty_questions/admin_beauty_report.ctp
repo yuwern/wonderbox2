@@ -13,8 +13,10 @@
 							 <?php echo $this->Form->input('question_id', array('label' => __l('Questions'),'empty'=>'Please select','options'=>$beautyQuestions)); ?>
 							</div>
                            <div class="js-answers">
-							<?php echo $this->Form->input('answer', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> $answers)); ?>
+							<?php echo $this->Form->input('answer', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answers)?'':$answers)); ?>
 							</div>
+							<?php echo $this->Form->input('age_group_id', array('label' => __l('Age Group'), 'empty'=>'Please Select')); ?>
+							<?php echo $this->Form->input('state_id', array('label' => __l('State'), 'empty'=>'Please Select')); ?>
 							</div>
                            
 					
@@ -33,8 +35,12 @@
 							<?php echo $this->Form->input('question_id1', array('label' => __l('Questions'),'empty'=>'Please select','options'=>$beautyQuestion1s)); ?>
 							</div>
 							<div class="js-answer1s">
-							<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> $answer1s)); ?>
+							<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answer1s)?'':$answer1s)); ?>
 							</div>
+							<?php echo $this->Form->input('age_group_id', array('label' => __l('Age Group'), 'empty'=>'Please Select')); ?>
+							<?php echo $this->Form->input('state_id', array('label' => __l('State'), 'empty'=>'Please Select')); ?>
+
+							
 							</div></div>
 							<div class="clear"></div>
 
@@ -52,11 +58,13 @@
 
 <?php if(!empty($this->request->data) && $this->request->data['BeautyQuestion']['list'] == 1 ):?>
 <h2> <?php echo __l('Report Section'); ?></h2> 
-<?php if(!empty($userIds)): 
-	  $userIdbase64decode = base64_encode(implode('-',$userIds));?>
-	<div class="clearfix add-block1">      <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing',$userIdbase64decode,'city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
+<?php if(!empty($userCount1Conditions) && !empty($userCountConditions)): 
+	  $conditions1 = base64_encode(serialize($userCountConditions));
+	  $conditions2 = base64_encode(serialize($userCount1Conditions));
+	  ?>
+	<div class="clearfix add-block1">      <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing',$conditions1, $conditions2,'city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
 	   <?php
-       echo $this->element('user-listing',array('userIdbase64decode'=>$userIdbase64decode)); ?>
+       echo $this->element('user-listing',array('conditions1'=>$conditions1, 'conditions2'=>$conditions2)); ?>
 <?php else: ?>
 	<p> <?php echo __l('No users avialable'); ?></p>
 <?php endif; ?>

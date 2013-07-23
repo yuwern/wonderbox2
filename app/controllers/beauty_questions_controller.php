@@ -481,28 +481,9 @@ class BeautyQuestionsController extends AppController
 					);
 					$this->set('user_count',$user_count);
 				} else {
-					$users = $this->BeautyQuestion->BeautyProfile->find('all', array(
-						   'conditions' => $userCountConditions,
-							'fields' => array(
-								'Distinct(BeautyProfile.user_id)'
-							),
-							'recursive' => -1
-						)
-					);
-					$userIds = Set::extract('/BeautyProfile/user_id',$users);
-					if(!empty( $this->request->data['BeautyQuestion']['question_id1'])) {
-						$user1s = $this->BeautyQuestion->BeautyProfile->find('all', array(
-							   'conditions' => $userCount1Conditions,
-								'fields' => array(
-									'Distinct(BeautyProfile.user_id)'
-								),
-								'recursive' => -1
-							)
-						);
-						$userId1s = Set::extract('/BeautyProfile/user_id',$user1s);
-						$userIds = array_unique(array_merge($userIds,$userId1s));
-					}
-					$this->set('userIds',$userIds);
+
+					$this->set('userCountConditions',$userCountConditions);
+					$this->set('userCount1Conditions',$userCount1Conditions);
 				}
 				$this->set('beautyQuestion',$beautyQuestion);
 		}
@@ -521,6 +502,7 @@ class BeautyQuestionsController extends AppController
 		
 	}
 	public function admin_product_report(){
+		//Configure::write('debug', 2); 
 		if(!empty($this->request->data)){
 			/** Product Survery code **/
 				$productAnswerConditions = array();
@@ -785,6 +767,8 @@ class BeautyQuestionsController extends AppController
 						}
 					}
 					$this->set('beauty_responses',$beauty_responses);
+					//$userIds = array_unique(array_merge($participantUserIds,$productUserIds));
+					$this->set('userIds',$participantUserIds);
 				}
 				$this->set(compact('productAnswers','answers','beautyQuestion','answer2s'));
 			//	$this->set('productanswer_fields',$answer_fields);
@@ -807,6 +791,18 @@ class BeautyQuestionsController extends AppController
 							'Product.id' =>'desc'
 					)
 			)	
+		);		
+		$ageGroups = $this->BeautyQuestion->BeautyProfile->User->UserProfile->AgeGroup->find('list',array(
+						'order' => array(
+							'AgeGroup.name' =>'asc'
+					)
+			)	
+		);		
+		$states = $this->BeautyQuestion->BeautyProfile->User->UserProfile->State->find('list',array(
+						'order' => array(
+							'State.name' =>'asc'
+					)
+			)	
 		);
 		$brands = $this->BeautyQuestion->ProductSurvey->Product->Brand->find('list',array(
 						'order' => array(
@@ -818,6 +814,6 @@ class BeautyQuestionsController extends AppController
 			$this->request->data['BeautyQuestion']['count'] = 1;
 			$this->request->data['BeautyQuestion']['list'] = 0;
 		}
-		$this->set(compact('beautyQuestions','productQuestions','products','brands'));
+		$this->set(compact('beautyQuestions','productQuestions','products','brands','ageGroups','states'));
 	}
 }

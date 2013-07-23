@@ -1,3 +1,3 @@
 <?php
-echo $this->requestAction(array('controller' => 'users', 'action' => 'listing',$userIdbase64decode), array('named'=>array('admin'=>true),'return'));
+echo $this->requestAction(array('controller' => 'users', 'action' => 'listing',$conditions1, $conditions2), array('named'=>array('admin'=>true),'return'));
 ?>
