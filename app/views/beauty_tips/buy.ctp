@@ -2,7 +2,7 @@
                 	<div class="submis-left"><?php echo $this->Html->image('submission_ad.jpg'); ?></div>
                     <div class="submis-right">
                     	<div class="head">
-                        	<h1><?php echo Configure::read('site.name');?> <?php echo __l('Beauty Tip Checkout'); ?></h1>
+                        	<h1><?php echo Configure::read('site.name');?> <?php echo __l('WonderTreats Checkout'); ?></h1>
                         </div>
                        	<div class="step-bor">
                         	<ul>
@@ -14,7 +14,7 @@
                         	<div class="shipp-box">
                             	<h3><?php echo __l('Subscription'); ?></h3>
                                 <ul>
-                                	<li><?php echo __l('Beauty Tip Name');?></li><li class="font-tahoma"> :  <?php echo $beautyTip['BeautyTip']['name'];?></li>
+                                	<li><?php echo __l('WonderTreats Name');?></li><li class="font-tahoma"> :  <?php echo $beautyTip['BeautyTip']['name'];?></li>
                                 	                               
                                 </ul>
 								<br/>
