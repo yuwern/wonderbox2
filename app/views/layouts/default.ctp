@@ -93,7 +93,7 @@ endif;
 							<li><?php echo $this->Html->link(__l('MY ACCOUNT'), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => __l('MY ACCOUNT')));?></li>
 							<li><?php echo $this->Html->link(__l('SHIPPING INFO'), array('controller' => 'user_shippings', 'action' => 'index'),array('title' => __l('SHIPPING INFO'))); ?></li>
 						    <li><?php echo $this->Html->link(__l('PROFILE IMAGE'), array('controller' => 'users', 'action' => 'profile_image', $this->Auth->user('id')), array('title' => 'My Profile Image')); ?></li>
-				             <li><?php echo $this->Html->link(__l('CHANGE PASSWORD'), array('controller' => 'users', 'action' => 'change_password'), array('title' => __l('CHANGE PASSWORD')));?></li>
+				                    <li><?php echo $this->Html->link(__l('CHANGE PASSWORD'), array('controller' => 'users', 'action' => 'change_password'), array('title' => __l('CHANGE PASSWORD')));?></li>
 							 <li><?php echo $this->Html->link(__l('MY SUBSCRIPTION'), array('controller' => 'package_users', 'action' => 'index'), array('title' => __l('MY SUBSCRIPTION')));?></li>
 							 <li><?php echo $this->Html->link(__l('MY GIFT SUBSCRIPTION'), array('controller' => 'gift_users', 'action' => 'mygift'), array('title' => __l('MY GIFT SUBSCRIPTION')));?></li>
 							 <li><?php echo $this->Html->link(__l('MY TRANSACTION'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('MY TRANSACTION')));?></li>
@@ -102,9 +102,10 @@ endif;
 							<?php endif; ?>
 							<li><?php echo $this->Html->link(__l('MY WONDERPOINTS'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('MY WONDERPOINTS')));?></li>
 							<li><?php echo $this->Html->link(__l('MY BEAUTY PROFILE'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('MY BEAUTY PROFILE')));?></li>
-							<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
-							<li><?php echo $this->Html->link(__l('MY PRODUCT SURVEY'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('MY PRODUCT SURVEY')));?></li>
-							<?php endif; ?>
+							<!-- <?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
+							<li><?php echo $this->Html->link(__l('MY PRODUCT SURVEYS'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('MY PRODUCT SURVEY')));?></li>
+							<!-- <?php endif; ?> -->
+							<li><?php echo $this->Html->link(__l('MY PRODUCT SURVEYS'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('MY PRODUCT SURVEY')));?></li>
 							<li><?php echo $this->Html->link(__l('WONDERSHOP'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('WONDERSHOP')));?></li>
 							<li><?php echo $this->Html->link(__l('WONDERSHOP PURCHASED LIST'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('WONDERSHOP PURCHASED LIST')));?></li>
 							<li><?php echo $this->Html->link(__l('MY WONDERTREATS'), array('controller' => 'wonder_treats', 'action' => 'index'), array('title' => __l('MY WONDERTREATS')));?></li>
@@ -159,7 +160,7 @@ endif;
                     </div>
               </div>
             </div>
-			<!-- Start Main Div -->  
+			<!-- Start Main Div -->
             <div class="body"  id="<?php echo $this->Html->getUniquePageId();?>">		
 			<?php
 					if ($this->Session->check('Message.error')):

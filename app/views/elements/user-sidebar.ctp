@@ -35,10 +35,11 @@
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('MY WONDERPOINTS'), array('controller' => 'users', 'action' => 'referral_points'), array('title' => __l('MY WONDERPOINTS')));?></li>
 						 <?php $class = ($this->request->params['controller'] == 'beauty_profiles' && $this->request->params['action'] == 'my_beauty_profile') ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('MY BEAUTY PROFILE'), array('controller' => 'beauty_profiles', 'action' => 'my_beauty_profile'), array('title' => __l('MY BEAUTY PROFILE')));?></li>
-						<?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>			
+						<!-- <?php if($this->Html->checkUserActive($this->Auth->user('id'))): ?>
 						 <?php $class = ($this->request->params['controller'] == 'products' && ($this->request->params['action'] == 'survey' || $this->request->params['action'] == 'quiz')) ? ' class="active"' : null; ?>
                         <li <?php echo $class;?>><?php echo $this->Html->link(__l('MY PRODUCT SURVEY'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('MY PRODUCT SURVEY')));?></li>
-						<?php endif; ?>
+						<?php endif; ?>  -->
+                        <li <?php echo $class;?>><?php echo $this->Html->link(__l('MY PRODUCT SURVEY'), array('controller' => 'products', 'action' => 'survey'), array('title' => __l('MY PRODUCT SURVEY')));?></li>
 						<?php $class = ($this->request->params['controller'] == 'product_redemptions' && ($this->request->params['action'] == 'index')) ? ' class="active"' : null; ?>
 					    <li <?php echo $class;?>><?php echo $this->Html->link(__l('WONDERSHOP'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('WONDERSHOP')));?></li>
 						<?php $class = ($this->request->params['controller'] == 'product_redemption_users' && ($this->request->params['action'] == 'index')) ? ' class="active"' : null; ?>
