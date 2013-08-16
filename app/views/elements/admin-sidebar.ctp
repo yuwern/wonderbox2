@@ -68,6 +68,8 @@
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Countries'), array('controller' => 'countries', 'action' => 'index'),array('title' => __l('Countries'))); ?></li>
 			<?php $class = ($this->request->params['controller'] == 'paypal_transaction_logs') ? ' class="active"' : null; ?>
 			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Paypal Transaction logs'), array('controller' => 'paypal_transaction_logs', 'action' => 'index'),array('title' => __l('Paypal Transaction logs'))); ?></li>
+			<?php $class = ($this->request->params['controller'] == 'wonder_sprees') ? ' class="active"' : null; ?>
+			<li <?php echo $class;?>><?php echo $this->Html->link(__l('Wonder Sprees'), array('controller' => 'wonder_sprees', 'action' => 'index'),array('title' => __l('Wonder Sprees'))); ?></li>
 			<?php endif; ?>
         </ul>
 	</li>

@@ -109,6 +109,7 @@ endif;
 							<li><?php echo $this->Html->link(__l('WONDERSHOP'), array('controller' => 'product_redemptions', 'action' => 'index'), array('title' => __l('WONDERSHOP')));?></li>
 							<li><?php echo $this->Html->link(__l('WONDERSHOP PURCHASED LIST'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('WONDERSHOP PURCHASED LIST')));?></li>
 							<li><?php echo $this->Html->link(__l('MY WONDERTREATS'), array('controller' => 'wonder_treats', 'action' => 'index'), array('title' => __l('MY WONDERTREATS')));?></li>
+							<li><?php echo $this->Html->link(__l('MY WONDERSPREES'), array('controller' => 'wonder_sprees', 'action' => 'index'), array('title' => __l('MY WONDERSPREES')));?></li>
 							
 							</ul>
 							<?php endif; ?>

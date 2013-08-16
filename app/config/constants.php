@@ -150,6 +150,8 @@ class ConstTransactionTypes
 	const ExperienceVideo = 86;
 	const BeautyTipAmountPaid = 87;
 	const ProductRedemptionAmountPaid = 88;
+	const ExperienceRetail = 89;
+	
 
 }
 // Setting for privacy setting

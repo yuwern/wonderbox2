@@ -46,5 +46,7 @@
 						<li  <?php echo $class;?>><?php echo $this->Html->link(__l('WONDERSHOP PURCHASED LIST'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('WONDERSHOP PURCHASED LIST')));?></li>
 						<?php $class = ($this->request->params['controller'] == 'wonder_treats' && ($this->request->params['action'] == 'index')) ? ' class="active"' : null; ?>
 						<li  <?php echo $class;?>><?php echo $this->Html->link(__l('MY WONDERTREATS'), array('controller' => 'wonder_treats', 'action' => 'index'), array('title' => __l('MY WONDERTREATS')));?></li>
+						<?php $class = ($this->request->params['controller'] == 'wonder_sprees' && ($this->request->params['action'] == 'index')) ? ' class="active"' : null; ?>
+						<li  <?php echo $class;?>><?php echo $this->Html->link(__l('Wonder Sprees'), array('controller' => 'wonder_sprees', 'action' => 'index'), array('title' => __l('MY WONDER SPREES')));?></li>
 					   </ul>
                   </div>
