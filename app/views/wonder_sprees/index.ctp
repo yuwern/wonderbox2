@@ -4,15 +4,15 @@
                  <?php endif; ?>
                     <div class="acc-right">
                     	<div class="head">
-                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Wonder Sprees'); ?></h1>
-                            <p> <?php // echo __l('Below are the WonderBox Edition You Are Subscribe To'); ?></p>
+                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('WonderSpree'); ?></h1>
+                            <p> <?php echo __l('Below are the WonderSpree Entries That You Have Share With Us. Thanks For Sharing!'); ?></p>
                         </div>
 						
 						<?php	if(empty($this->request->params['isAjax'])): ?>
 						<div class="acc-subscription">
-                        	<h3><?php echo __l('My Wonder Sprees'); ?></h3>
+                        	<h3><?php echo __l('My WonderSpree'); ?></h3>
 							<div class="add-block" style="float:right">
-                           <?php echo $this->Html->link(__l('Add WonderSprees'), array('controller' => 'wonder_sprees', 'action' => 'add'), array('title' => __l('Add WonderSprees')));?>
+                           <?php echo $this->Html->link(__l('Add A WonderSpree'), array('controller' => 'wonder_sprees', 'action' => 'add'), array('title' => __l('Add A WonderSpree')));?>
                         </div>
 						<?php endif; ?>
 
@@ -20,9 +20,9 @@
                         	<div class="table-data">
                          	<ul id="ship-in">
                             	<li class="t-head">
-                                	<div class="t-c1"><?php echo __l('Purchase Amount'); ?></div>
+                                	<div class="t-c1"><?php echo __l('Amount'); ?></div>
                                     <div class="t-c2"><?php echo __l('Type'); ?> </div>
-                                    <div class="t-c3"><?php echo __l('Previous Discount'); ?> </div>
+                                    <div class="t-c3"><?php echo __l('Discount Value'); ?> </div>
                                     <div class="t-c4"><?php echo __l('Location'); ?></div>
                                     <div class="t-c5"><?php echo __l('Purchase Date'); ?></div>
                                     <div class="clear"></div>
@@ -61,7 +61,7 @@
 						endforeach;
 					else:
 					?>
-						<li class="t-data"><div class="t-no-result"><?php echo __l('No Wonder Sprees available');?></div> <div class="clear"></div>
+						<li class="t-data"><div class="t-no-result"><?php echo __l('No WonderSpree available');?></div> <div class="clear"></div>
 						</li>
 					<?php
 					endif;

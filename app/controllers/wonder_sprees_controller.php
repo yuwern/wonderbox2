@@ -23,7 +23,7 @@ class WonderSpreesController extends AppController
 	
 	public function index()
     {
-        $this->pageTitle = __l('wonderSprees');
+        $this->pageTitle = __l('WonderSprees');
         $this->WonderSpree->recursive = 0;
 		$this->paginate = array(
 				'conditions' => array(
@@ -40,10 +40,10 @@ class WonderSpreesController extends AppController
 	
     public function view($id = null)
     {
-        $this->pageTitle = __1('Wonder Spree');
+        $this->pageTitle = __1('Wonderspree');
         $this->WonderSpree->id = $id;
         if (!$this->WonderSpree->exists()) {
-            throw new NotFoundException(__l('Invalid wonder spree'));
+            throw new NotFoundException(__l('Invalid Wonderspree'));
         }
         $wonderSpree = $this->WonderSpree->find('first', array(
             'conditions' => array(
@@ -103,7 +103,7 @@ class WonderSpreesController extends AppController
 						$this->request->data['Attachment']['class'] = 'WonderSpree';
 						$this->WonderSpree->Attachment->save($this->request->data['Attachment']);
 				}
-			    $this->Session->setFlash(__l('wonder spree has been added') , 'default', null, 'success');
+			    $this->Session->setFlash(__l('Wonderspree added') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'add'
                 ));
@@ -111,16 +111,16 @@ class WonderSpreesController extends AppController
 				  // $this->Session->setFlash(__l('wonder spree could not be added. Please, try again.') , 'default', null, 'error');
 				//}
             } else {
-                $this->Session->setFlash(__l('wonder spree could not be added. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Wonderspree could not be added. Please try again.') , 'default', null, 'error');
             }
 			}
 			else{
 			if ($this->request->data['Attachment']['filename']['error'] == 4) {
-					    $this->WonderSpree->Attachment->validationErrors['filename'] = __l('Please upload the image') ;
+					    $this->WonderSpree->Attachment->validationErrors['filename'] = __l('Please upload an image of the receipt') ;
 			}
 		}
 		} else {
-			$this->Session->setFlash(__l('Invalid Image formate or size.') , 'default', null, 'error');
+			$this->Session->setFlash(__l('Invalid image format or size.') , 'default', null, 'error');
 			}
         }
 		$brands = $this->WonderSpree->Brand->find('list');
@@ -132,22 +132,22 @@ class WonderSpreesController extends AppController
 	
 	public function edit($id = null)
     {
-        $this->pageTitle = __1('Edit Wonder Spree');
+        $this->pageTitle = __1('Edit WonderSpree');
         if (is_null($id)) {
             throw new NotFoundException(__l('Invalid request'));
         }
         $this->WonderSpree->id = $id;
         if (!$this->WonderSpree->exists()) {
-            throw new NotFoundException(__l('Invalid wonder spree'));
+            throw new NotFoundException(__l('Invalid Wonderspree'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->WonderSpree->save($this->request->data)) {
-                $this->Session->setFlash(__l('wonder spree has been updated') , 'default', null, 'success');
+                $this->Session->setFlash(__l('Wonderspree has been updated') , 'default', null, 'success');
                 $this->redirect(array(
                     'action' => 'index'
                 ));
             } else {
-                $this->Session->setFlash(__l('wonder spree could not be updated. Please, try again.') , 'default', null, 'error');
+                $this->Session->setFlash(__l('Wonderspree could not be updated. Please try again.') , 'default', null, 'error');
             }
         } else {
             $this->data = $this->WonderSpree->read(null, $id);
@@ -384,15 +384,15 @@ class WonderSpreesController extends AppController
         }
         $this->WonderSpree->id = $id;
         if (!$this->WonderSpree->exists()) {
-            throw new NotFoundException(__l('Invalid wonder spree'));
+            throw new NotFoundException(__l('Invalid Wonderspree'));
         }
         if ($this->WonderSpree->delete()) {
-            $this->Session->setFlash(__l('Wonder spree deleted') , 'default', null, 'success');
+            $this->Session->setFlash(__l('WonderSpree deleted') , 'default', null, 'success');
             $this->redirect(array(
                 'action' => 'index'
             ));
         }
-        $this->Session->setFlash(__l('Wonder spree was not deleted') , 'default', null, 'error');
+        $this->Session->setFlash(__l('WonderSpree was not deleted') , 'default', null, 'error');
         $this->redirect(array(
             'action' => 'index'
         ));
