@@ -143,10 +143,14 @@ endif;
 						    <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home' ) ?  'class="active"': null; ?>
                         	<li <?php echo $active_class; ?>> <?php echo $this->Html->link(__l('Home'), array('controller' => 'pages', 'action' => 'home', 'admin' => false), array('title' => __l('Home'),'class'=> 'home')); ?></li>
 
+                        	<?php $active_class = ($this->request->params['controller'] == 'packages' && $this->request->params['action'] == 'subscribe' ) ?  'class="active"': null; ?>
+                        	<li <?php echo $active_class; ?>> <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('title' => __l('Subscribe'),'class'=> 'subscribe')); ?></li>
+
 							<?php if (!$this->Auth->sessionValid()): ?>
                         	<?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'register' ) ?  'class="active"': null; ?>
 							<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?></li>
 							<?php endif; ?>
+
 							<?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'index' ) ?  'class="active"': null; ?>
 				            <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Brands'), array('controller' => 'brands', 'action' => 'index', 'admin' => false), array('title' => __l('Brands'),'class'=> 'brands'));?></li>
 							<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'class="active"': null; ?>

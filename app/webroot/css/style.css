@@ -33,6 +33,8 @@
 .nav ul li a:hover{ text-decoration:none; color:#f67da9}
 .nav ul li a.home{ background:url(../img/home.jpg) top center no-repeat;}
 .nav ul li a.home:hover{ background:url(../img/home1.jpg) top center no-repeat;}
+.nav ul li a.subscribe{ background:url(../img/subscribe.jpg) top center no-repeat;}
+.nav ul li a.subscribe:hover{ background:url(../img/subscribe1.jpg) top center no-repeat;}
 .nav ul li.active a.home{ background:url(../img/home1.jpg) top center no-repeat;color:#f67da9}
 .nav ul li a.join{ background:url(../img/join.jpg) top center no-repeat;}
 .nav ul li a.join:hover{ background:url(../img/join1.jpg) top center no-repeat;}
