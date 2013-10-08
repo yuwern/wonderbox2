@@ -33,7 +33,7 @@ $( ".datepicker" ).datepicker({maxDate:new Date});
 			<!--<div class="giftw-left"><img src="images/gift_wonder.jpg" alt="img" /></div>-->
 			<div class="giftw-right">
 				<div class="head">
-					<h1><?php echo 'WonderSpree (BETA)'?></h1>
+					<h1><?php echo 'WonderSpree'?></h1>
 					<p><?php echo 'We would like to get to know you better. By sharing your retail history with us, we promise that you will be the first in line for any upcoming event or sales from the brands that you love most. Share and be rewarded, received up to 20% of your purchase amount in WonderPoints for every receipt you choose to share with us.  '?></p>
 				</div>
 			

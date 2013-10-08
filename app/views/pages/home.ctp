@@ -13,9 +13,9 @@ $(document).ready(function(){
                   	  <h3><?php echo __l('Click to learn more about the unique services below:')?></h3>
                       <ul>
 						<li><?php echo $this->Html->link($this->Html->image('wonderbox_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','how_it_works'),array('title' =>'How it Works', 'escape' => false));?></li>
-						<li><?php echo $this->Html->link($this->Html->image('wondersurvey_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'products', 'action' => 'survey'),array('title' =>'How it Works', 'escape' => false));?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wondersurvey_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'products', 'action' => 'survey'),array('title' =>'Share Your Feedback', 'escape' => false));?></li>
      	                                        <li><?php echo $this->Html->link($this->Html->image('wonderpoints_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','earn-wonder-points'),array('title' =>'Ways to earn WonderPoints', 'escape' => false));?></li>
-						<li><?php echo $this->Html->link($this->Html->image('wonderblog_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'beautytips', 'action' => 'index'),array('title' =>'WonderBlog', 'escape' => false));?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wonderblog_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' =>'WonderBlog', 'escape' => false));?></li>
                                                 <li><?php echo $this->Html->link($this->Html->image('wonderspree_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'wonder_sprees', 'action' => 'index'),array('title' =>'WonderSpree', 'escape' => false));?></li>
                                                 <li><?php echo $this->Html->link($this->Html->image('wondershop_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' =>'WonderShop', 'escape' => false));?></li>
 
