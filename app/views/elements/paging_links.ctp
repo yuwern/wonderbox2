@@ -1,4 +1,5 @@
 <div class="paging">
+<h1>
 <?php
 $this->Paginator->options(array(
     'url' => array_merge(array(
@@ -15,6 +16,7 @@ echo $this->Paginator->prev('&laquo; ' . __l('Prev') , array(
     'escape' => false,
     'class' => 'prev'
 )), "\n";
+
 echo $this->Paginator->numbers(array(
     'modulus' => 2,
     'first' => 3,
@@ -25,7 +27,8 @@ echo $this->Paginator->numbers(array(
     'after' => null,
     'escape' => false
 ));
-echo $this->Paginator->next(__l('Next') . ' &raquo;', array(
+
+echo $this->Paginator->next(__l('  Next') . ' &raquo;', array(
     'class' => 'next',
     'escape' => false
 ) , null, array(
@@ -34,4 +37,5 @@ echo $this->Paginator->next(__l('Next') . ' &raquo;', array(
     'class' => 'next'
 )), "\n";
 ?>
+</h1>
 </div>

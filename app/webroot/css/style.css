@@ -1371,6 +1371,14 @@ width: 25px;}
 .beauty-right1 .topic .links ul li{list-style-type:none; padding:6px 0;}
 .beauty-right1 .topic .links ul li a{font-size:14px;font-family:tahoma;}
 
+.beauty-right2{width:340px; height:45; float:right;}
+.beauty-right2 .number{font-size:20px; color:#a0a0a0; font-weight:normal; padding:10px 10px; font-family:tahoma;}
+
+
+paging { width:240px; float:right;}
+paging.h1{font-size:30px; color:#a0a0a0; font-weight:normal; padding:5px 10px; font-family:tahoma;}
+
+
 .beauty-right1 .topic .links ul li a:hover{ color: #C3C3C3; text-decoration:none;}
 
 .beauty-left1 .tips_detail{width:666px; float:left;}
