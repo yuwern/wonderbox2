@@ -10,16 +10,16 @@ $(document).ready(function(){
 </script>
 <!-- Brand Logo Sec  -->
           		<div class="brand_logo <?php if (!$this->Auth->sessionValid()): ?>	js-home-sign-pop-up <?php endif; ?>">
-                  	  <h3><?php echo __l('')?></h3>
+                  	  <h3><?php echo __l('Click to learn more about the unique services below:')?></h3>
                       <ul>
-						<li><?php echo $this->Html->image('b_logo1.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo2.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo3.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo4.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo5.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo6.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo7.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo8.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wonderbox_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','how_it_works'),array('title' =>'How it Works', 'escape' => false));?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wondersurvey_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'products', 'action' => 'survey'),array('title' =>'How it Works', 'escape' => false));?></li>
+     	                                        <li><?php echo $this->Html->link($this->Html->image('wonderpoints_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','earn-wonder-points'),array('title' =>'Ways to earn WonderPoints', 'escape' => false));?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wonderblog_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'beautytips', 'action' => 'index'),array('title' =>'WonderBlog', 'escape' => false));?></li>
+                                                <li><?php echo $this->Html->link($this->Html->image('wonderspree_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'wonder_sprees', 'action' => 'index'),array('title' =>'WonderSpree', 'escape' => false));?></li>
+                                                <li><?php echo $this->Html->link($this->Html->image('wondershop_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' =>'WonderShop', 'escape' => false));?></li>
+
+
 				      </ul>
            		</div>
                 <!-- ADD SEC -->
