@@ -1,4 +1,5 @@
-		<div class="Subscription">
+
+                    <div class="Subscription">
                 	<div class="subs-left"><?php echo $this->Html->image('subscribe_now.jpg'); ?></div>
                     <div class="subs-right">
                     	<div class="head">
@@ -20,7 +21,7 @@
 						$i = 1;
 						foreach($packages as $package):
 						$class = 'm-right18';
-						if($i == 4)
+						if($i == 1)
 							$class = null;
 						?>
                         <div class="pay-box <?php echo $class; ?>">
@@ -44,7 +45,7 @@
 							<?php echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>3,'class'=>'js-payment-options','legend' => false)); ?> 
                         	<div class="pb-left">
 					            <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?> <span class="js-payment-cost"><?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('every'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s)'); ?></p>
-                                <p><?php echo $this->Html->image('paypal.jpg'); ?></p>
+                                <!--<p><?php echo $this->Html->image('paypal.jpg'); ?></p>  -->
                             </div>
                             <div class="pb-right">
                                 <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?><span class="js-payment-cost"> <?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('for'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s) subscription. If you would like to not have the hassle for renewal, kindly select Paypal as your payment option'); ?></p>
