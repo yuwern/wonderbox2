@@ -203,7 +203,7 @@ div.submit{ padding-left: 41%;padding-top: 10px;}
 .subs-left{ width:291px; float:left;}
 .subs-right{ width:635px; float:right;}
 .Subscription h2{ font-size:18px;}
-.step-bor{ background:url(../img/step_end.jpg) right no-repeat; padding-right:19px; width:500px; margin:20px 0 25px 0; }
+.step-bor{ background:url(../img/step_end.jpg) right no-repeat; padding-right:19px; width:0px; margin:20px 0 25px 0; }
 .step-bor ul{ border:1px solid #bebebe; border-right:0; min-height:21px; background:#F5F5F5;}
 .step-bor ul li{ list-style:none; float:left; padding:0 15px; line-height:21px;}
 .step-bor ul li.select{background:url(../img/step_on.jpg) top right no-repeat #f7d4e1; padding-right:30px;}
@@ -239,7 +239,7 @@ div.submit{ padding-left: 41%;padding-top: 10px;}
 .shipp-box{ background:#f5f5f5; padding:10px 25px; overflow:hidden; margin-bottom:15px;}
 .shipp-box h3{ color:#d3557b; font-size:15px; font-family:rawengulkbold; font-weight:bold; padding-bottom:15px;}
 .shipp-box ul{ margin:0 ; padding:0;}
-.shipp-box ul li{ margin:0 ; padding:0;font-family:rawengulkregular; background:none; list-style:none; float:left; font-size:10px; padding-bottom:15px; width:50%;text-transform: uppercase; font-weight:bold;}
+.shipp-box ul li{ margin:0 ; padding:0;font-family:rawengulkregular; background:none; list-style:none; float:left; font-size:12px; padding-bottom:15px; width:50%;text-transform: uppercase; font-weight:bold;}
 .shipp-right{ width:320px; float:left;}
 .shipp-right h3{ color:#d3557b; font-size:15px; font-family:rawengulkbold; font-weight:bold; padding-bottom:5px;}
 

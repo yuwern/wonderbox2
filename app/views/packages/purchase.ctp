@@ -21,7 +21,7 @@
                                 </ul>
 							</div>
 							<div class="shipp-right">
-								<?php $this->Gateway->$action($gateway_options); ?>
+								<h3><?php $this->Gateway->$action($gateway_options); ?>    <h3>
 							</div>
                                                          
                         </div>                        
