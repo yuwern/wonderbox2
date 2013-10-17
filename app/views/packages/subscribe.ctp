@@ -3,8 +3,8 @@
                     <div class="subs-right">
                     	<div class="head">
                         	<h1><?php echo __l('Subscribe now'); ?></h1>
-                            <p><?php echo __l('Don\'t miss out! Only limited boxes available every month. Every subscription entitles you to receive your very own WonderBox that will be delivered to you via courier every month.'); ?></p>
-<p><?php echo __l('As only a limited number of WonderBoxes will be produced every month, WonderBoxes will be allocated on a first come first serve basis. Members who have pre-booked their monthly WonderBoxes with quarterly, bi-annual or annual subscriptions will be the first in line to receive these limited edition WonderBoxes.'); ?></p>
+                            <p><?php echo __l('Don\'t miss out! Only limited boxes available every month. Please subscribe to our Facebook page to be notified when we launch a new WonderBox edition.'); ?></p>
+<p><?php echo __l('As only a limited number of WonderBoxes will be produced every month, WonderBoxes will be allocated on a first come first serve basis.'); ?></p>
                         </div>
                        	<div class="step-bor">
                         	<ul>
@@ -38,7 +38,7 @@
 						<?php $i++;
 						endforeach; 
 						endif;
-						?> 
+						?>
                        <h2><?php echo __l('2. Select your payment method'); ?></h2>
 						<?php echo $this->Form->create('Package', array('action'=>'paypal','class' => 'normal-form'));?>	
 						 <div class="paypal-box">
