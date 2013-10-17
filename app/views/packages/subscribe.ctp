@@ -20,7 +20,7 @@
 						$i = 1;
 						foreach($packages as $package):
 						$class = 'm-right18';
-						if($i == 4)
+						if($i == 2)
 							$class = null;
 						?>
                         <div class="pay-box <?php echo $class; ?>">
@@ -29,24 +29,25 @@
                           <span><?php echo __l('for'); ?> <?php echo $package['PackageType']['no_of_months']; ?> <?php echo __l('month'); ?></span>
                           <p><?php echo __l('WonderPoints earned:'); ?> <?php echo $package['Package']['no_of_wonderpoints']; ?></p>
 						 <?php if($i== 1): ?>
-							 <p class="align-Center"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.$package['Package']['cost'].'||'.$package['PackageType']['no_of_months']; ?>" class="js-payment-plan select-on" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Selected'); ?></a></p>
+							 <p class="align-left"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.$package['Package']['cost'].'||'.$package['PackageType']['no_of_months']; ?>" class="js-payment-plan select-on" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Selected'); ?></a></p>
 							 <?php else: ?>
-							 <p class="align-Center"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.$package['Package']['cost'].'||'.$package['PackageType']['no_of_months']; ?>" class="js-payment-plan select-off" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Select'); ?></a></p>
+							 <p class="align-left"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.$package['Package']['cost'].'||'.$package['PackageType']['no_of_months']; ?>" class="js-payment-plan select-off" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Select'); ?></a></p>
 							 <?php endif; ?>
+
                         </div>
 						<?php $i++;
 						endforeach; 
 						endif;
-						?>
-                        <h2><?php echo __l('2. Select your payment method'); ?></h2>
+						?> 
+                       <h2><?php echo __l('2. Select your payment method'); ?></h2>
 						<?php echo $this->Form->create('Package', array('action'=>'paypal','class' => 'normal-form'));?>	
 						 <div class="paypal-box">
 							<?php echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>3,'class'=>'js-payment-options','legend' => false)); ?> 
-                        	<div class="pb-left">
+<!--		<div class="pb-left">
 					            <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?> <span class="js-payment-cost"><?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('every'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s)'); ?></p>
                                 <p><?php echo $this->Html->image('paypal.jpg'); ?></p>
-                            </div>
-                            <div class="pb-right">
+                            </div> -->
+                            <div class="paypal-box">
                                 <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?><span class="js-payment-cost"> <?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('for'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s) subscription. If you would like to not have the hassle for renewal, kindly select Paypal as your payment option'); ?></p>
                                 <p><?php echo $this->Html->image('visa.jpg'); ?></p>
                             </div>

@@ -211,8 +211,8 @@ div.submit{ padding-left: 41%;padding-top: 10px;}
 .step-bor ul li.off1{background:url(../img/step_on2.jpg) top right no-repeat #f5f5f5; padding-right:30px;}
 
 
-.pay-box{ width:145px; height:189px; margin-top:10px; margin-bottom:40px; float:left; background:url(../img/pay_box.jpg) no-repeat;}
-.pay-box h1{ font-size: 18px; color:#e88ea9; font-weight:bold; text-align:center; min-height:32px;   line-height: 28px;}
+.pay-box{ width:635px; height:210px; margin-top:10px; margin-bottom:40px; float:left; background:url(../img/pay_box.jpg) no-repeat;}
+.pay-box h1{ font-size: 18px; color:#e88ea9; font-weight:bold; text-align:center; min-height:32px;line-height:20px;margin-top:10px;}
 .pay-box h2{ font-family:Tahoma, Geneva, sans-serif; font-size:24px; color:#3e3e3e; text-align:center; font-weight:normal; margin-top:20px; margin-bottom:10px;}
 .pay-box span{ display:block; min-height:40px; font-family:Tahoma, Geneva, sans-serif; font-size:10px; color:#585858; text-align:center; font-weight:normal;}
 .pay-box p{ display:block; background:url(../img/pay_point_bg.jpg) center no-repeat; min-height:22px; font-family:Tahoma, Geneva, sans-serif; font-size:9px; color:#d86c8d; text-align:center; font-weight:normal;line-height: 18px; margin-bottom:15px;}
