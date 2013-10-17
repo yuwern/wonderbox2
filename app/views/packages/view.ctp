@@ -3,7 +3,7 @@
                     <div class="submis-right">
                     	<div class="head">
                         	<h1><?php echo Configure::read('site.name');?> <?php echo __l('Subscription Checkout'); ?></h1>
-                            <p><?php echo __l('Submission copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                            <p><?php echo __l('You are one step closer in starting your beauty discovery journey with us!'); ?></p>
                         </div>
                        	<div class="step-bor">
                         	<ul>
