@@ -48,7 +48,7 @@
                                 <p><?php echo $this->Html->image('paypal.jpg'); ?></p>
                             </div> -->
                             <div class="paypal-box">
-                                <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?><span class="js-payment-cost"> <?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('for'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s) subscription.'); ?></p>
+                                <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?><span class="js-payment-cost"> <?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('for'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('WonderBox Edition subscription only.'); ?></p>
                                 <p><?php echo $this->Html->image('visa.jpg'); ?></p>
                             </div>
 						<div class="hide"><?php echo $this->Form->input('slug',array('value'=>$packages[0]['Package']['slug'],'type'=>'text','id'=>'js-subscription-plan')); ?></div>
