@@ -35,7 +35,7 @@
                             <p><?php echo __l('Earn more WonderPoints with longer subscriptions:'); ?></p>
                                 <ul class="font-tahoma">
                                 	<li><?php echo __l('Be rewarded with WonderPoints with quarterly, bi-annual or annual subscriptions.'); ?></li>
-                                    <li><?php echo __l('Receive your WonderPoints immediately upon completing your subsciription.'); ?></li>
+                                    <li><?php echo __l('Receive your WonderPoints immediately upon completing your subscription.'); ?></li>
                                     <li><?php echo __l('Use WonderPoints to extend your WonderBox subscription by 1 month for 800 WonderPoints.'); ?></li>
                                     <li><?php echo __l('Redeem a WonderBox as a giftbox to your friend by using WonderPoints.'); ?></li>
                                 </ul>
