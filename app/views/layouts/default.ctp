@@ -73,9 +73,15 @@ endif;
 					$duration_month = 1;
 				$months = $this->Html->getMonthLists();
 				?>
-			  	<div class="c1"><strong><?php echo __l('Available units for'); ?> <?php echo $months[Configure::read('header.month')];  ?> :</strong> <span><strong><?php echo
+				<!-- Change When Subscription Is Close-->
+                                <?php if($this->Html->checkPackageAvialable() > 0): ?>
+			  	<!----> <div class="c1"><strong><?php echo __l('Available units for'); ?> <?php echo $months[Configure::read('header.month')];  ?> :</strong> <span><strong><?php echo
 				$this->Html->checkPackageAvialable();?> <?php echo __l('units'); ?></strong></span> <i><?php echo __l('Running out Fast'); ?></i></div>
-				<?php
+                                <?php else: ?>
+                                <!-- Subcription Close Code-->
+				<div class="c1"><strong><?php echo('Subscription is Currently Closed,');?> <a href="https://www.facebook.com/WonderBoxMalaysia" title="FACEBOOK">Click here to learn more.</a> </strong></div>
+                                <?php endif; ?>
+                                <?php
 					if ($this->Auth->sessionValid()):
 						$current_user_details = array(
 								'username' => $this->Auth->user('username'),
@@ -142,10 +148,10 @@ endif;
                     	<ul>
 						    <?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home' ) ?  'class="active"': null; ?>
                         	<li <?php echo $active_class; ?>> <?php echo $this->Html->link(__l('Home'), array('controller' => 'pages', 'action' => 'home', 'admin' => false), array('title' => __l('Home'),'class'=> 'home')); ?></li>
-
+                                                               <?php if($this->Html->checkPackageAvialable() > 0): ?>
                         	<?php $active_class = ($this->request->params['controller'] == 'packages' && $this->request->params['action'] == 'subscribe' ) ?  'class="active"': null; ?>
                         	<li <?php echo $active_class; ?>> <?php echo $this->Html->link(__l('Subscribe'), array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('title' => __l('Subscribe'),'class'=> 'subscribe')); ?></li>
-
+                                                              <?php endif; ?>
 							<?php if (!$this->Auth->sessionValid()): ?>
                         	<?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'register' ) ?  'class="active"': null; ?>
 							<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?></li>
@@ -159,8 +165,10 @@ endif;
 							 <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'class="active"' : null; ?> 
 							<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Refer a Friend'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('class'=>'refer_icon','title' => __l('Refer a Friend')));?></li>
 							<?php endif; ?>
-							<?php $active_class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'add' ) ?  'class="active"': null; ?>
+							 <?php if($this->Html->checkPackageAvialable() > 0): ?>
+                                                        <?php $active_class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'add' ) ?  'class="active"': null; ?>
 				            <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Gift'), array('controller' => 'gift_users', 'action' => 'add', 'admin' => false), array('title' =>__l('Gift'),'class'=> 'gift'));?></li>
+                        <?php endif; ?>
                         </ul>
                     </div>
               </div>
