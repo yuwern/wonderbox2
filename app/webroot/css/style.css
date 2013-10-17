@@ -35,7 +35,7 @@
 .nav ul li a.home:hover{ background:url(../img/home1.jpg) top center no-repeat;}
 .nav ul li a.subscribe{ background:url(../img/subscribe.jpg) top center no-repeat;}
 .nav ul li a.subscribe:hover{ background:url(../img/subscribe1.jpg) top center no-repeat;color:#f67da9}
-.nav ul li.active a:subscrube{ background:url(../img/subscribe1.jpg) top center no-repeat;}
+.nav ul li.active a.subscribe{ background:url(../img/subscribe1.jpg) top center no-repeat;}
 .nav ul li.active a.home{ background:url(../img/home1.jpg) top center no-repeat;color:#f67da9}
 .nav ul li a.join{ background:url(../img/join.jpg) top center no-repeat;}
 .nav ul li a.join:hover{ background:url(../img/join1.jpg) top center no-repeat;}
@@ -232,14 +232,14 @@ div.submit{ padding-left: 41%;padding-top: 10px;}
 .submission{ overflow:hidden;padding-top:30px;}
 .submis-left{ width:230px; float:left;}
 .submis-right{ width:690px; float:right;}
-.shipp-left{ width:600px; padding-right:60px; float:left;}
-.shipp-left p{ font-family:Tahoma, Geneva, sans-serif; font-size:12px; font-weight:bold; color:#cd6584;}
+.shipp-left{ width:260px; padding-right:60px; float:left;}
+.shipp-left p{ font-family:Tahoma, Geneva, sans-serif; font-size:10px; font-weight:bold; color:#cd6584;}
 .shipp-left ul{ margin:0 ; padding:0;}
-.shipp-left ul li{ margin:0 ; padding:0; list-style:none; background:url(../img/bullet.jpg) left 8px no-repeat; padding:2px 0 2px 18px;font-size:12px;font-family:Tahoma, Geneva, sans-serif; color:#585858;  }
+.shipp-left ul li{ margin:0 ; padding:0; list-style:none; background:url(../img/bullet.jpg) left 8px no-repeat; padding:2px 0 2px 18px;font-size:10px;font-family:Tahoma, Geneva, sans-serif; color:#585858;  }
 .shipp-box{ background:#f5f5f5; padding:10px 25px; overflow:hidden; margin-bottom:15px;}
 .shipp-box h3{ color:#d3557b; font-size:15px; font-family:rawengulkbold; font-weight:bold; padding-bottom:15px;}
 .shipp-box ul{ margin:0 ; padding:0;}
-.shipp-box ul li{ margin:0 ; padding:0;font-family:rawengulkregular; background:none; list-style:none; float:left; font-size:12px; padding-bottom:15px; width:50%;text-transform: uppercase; font-weight:bold;}
+.shipp-box ul li{ margin:0 ; padding:0;font-family:rawengulkregular; background:none; list-style:none; float:left; font-size:10px; padding-bottom:15px; width:50%;text-transform: uppercase; font-weight:bold;}
 .shipp-right{ width:320px; float:left;}
 .shipp-right h3{ color:#d3557b; font-size:15px; font-family:rawengulkbold; font-weight:bold; padding-bottom:5px;}
 
