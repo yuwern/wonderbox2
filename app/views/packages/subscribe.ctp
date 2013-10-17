@@ -2,7 +2,7 @@
                 	<div class="subs-left"><?php echo $this->Html->image('subscribe_now.jpg'); ?></div>
                     <div class="subs-right">
                     	<div class="head">
-                        	<h1><?php echo __l('Subscribe now'); ?></h1>
+                        	<h1><?php echo __l('Subscribe now!'); ?></h1>
                             <p><?php echo __l('Don\'t miss out! Only limited boxes available every month. Please subscribe to our Facebook page to be notified when we launch a new WonderBox edition.'); ?></p>
 <p><?php echo __l('As only a limited number of WonderBoxes will be produced every month, WonderBoxes will be allocated on a first come first serve basis.'); ?></p>
                         </div>
@@ -48,7 +48,7 @@
                                 <p><?php echo $this->Html->image('paypal.jpg'); ?></p>
                             </div> -->
                             <div class="paypal-box">
-                                <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?><span class="js-payment-cost"> <?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('for'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s) subscription. If you would like to not have the hassle for renewal, kindly select Paypal as your payment option'); ?></p>
+                                <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?><span class="js-payment-cost"> <?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('for'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s) subscription.'); ?></p>
                                 <p><?php echo $this->Html->image('visa.jpg'); ?></p>
                             </div>
 						<div class="hide"><?php echo $this->Form->input('slug',array('value'=>$packages[0]['Package']['slug'],'type'=>'text','id'=>'js-subscription-plan')); ?></div>
