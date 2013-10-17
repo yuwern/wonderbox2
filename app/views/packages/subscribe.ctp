@@ -40,7 +40,7 @@
 						endif;
 						?> -->
 
-                        
+
 					<!--	<?php echo $this->Form->create('Package', array('action'=>'paypal','class' => 'normal-form'));?>
 						 <div class="paypal-box">
 							<?php echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>3,'class'=>'js-payment-options','legend' => false)); ?> 
@@ -50,6 +50,7 @@
                             </div>
                             <div class="paypal-box">
                             <h2><?php echo __l('2. Select your payment method'); ?></h2>
+                            	<?php echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>3,'class'=>'js-payment-options','legend' => false)); ?>
                                 <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?><span class="js-payment-cost"> <?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('for'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s) subscription. If you would like to not have the hassle for renewal, kindly select Paypal as your payment option'); ?></p>
                                 <p><?php echo $this->Html->image('visa.jpg'); ?></p>
                             </div>
