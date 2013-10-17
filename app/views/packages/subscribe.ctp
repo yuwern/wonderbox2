@@ -39,6 +39,7 @@
 						endforeach; 
 						endif;
 						?> -->
+						<p>/</p>
                         <h2><?php echo __l('2. Select your payment method'); ?></h2>
 						<?php echo $this->Form->create('Package', array('action'=>'paypal','class' => 'normal-form'));?>	
 						 <!--<div class="paypal-box">
