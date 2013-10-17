@@ -5,7 +5,7 @@
                         	<h1><?php echo Configure::read('site.name');?> <?php echo __l('Subscription Checkout'); ?></h1>
                             <p><?php echo __l('Submission copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
                         </div>
-						<div class="step-bor end2">
+                        <div class="step-bor">
                         	<ul>
                             	<li class="off">PLAN &amp; PAYMENT METHOD</li>
                                 <li class="off1">SHIPPING DETAIL </li>
