@@ -27,10 +27,10 @@
 							 <?php endif; ?>
 						  
 							</div>
-						<?php $i++;
+						<!--<?php $i++;
 						endforeach; 
 						endif;
-						?>
+						?> -->
                         <div class="clear"></div>
                         <h2><?php echo __l('2. Your Message & Receiver Details'); ?></h2>
 						<?php echo $this->Form->create('GiftUser', array('action'=>'add','class' => 'normal'));?>
