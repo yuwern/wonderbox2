@@ -26,7 +26,7 @@
                         <div class="pay-box <?php echo $class; ?>">
                        	  <h1><?php echo $package['PackageType']['name']; ?></h1>
                           <h2><?php echo  configure::read('site.currency'); ?><?php echo $package['Package']['cost']; ?></h2>
-                          <span><?php echo __l('for'); ?> <?php echo $package['PackageType']['no_of_months']; ?> <?php echo __l('month'); ?></span>
+                          <span><?php echo __l('for'); ?> <?php echo $package['PackageType']['no_of_months']; ?> <?php echo __l('WonderBox Edition'); ?></span>
                           <p><?php echo __l('WonderPoints earned:'); ?> <?php echo $package['Package']['no_of_wonderpoints']; ?></p>
 						 <?php if($i== 1): ?>
 							 <p class="align-left"><a title="Selected" rel="<?php echo $package['Package']['slug'].'||'.$package['Package']['cost'].'||'.$package['PackageType']['no_of_months']; ?>" class="js-payment-plan select-on" id="js-plan-<?php echo $package['Package']['id']; ?>"><?php echo __l('Selected'); ?></a></p>
@@ -42,7 +42,7 @@
                        <h2><?php echo __l('2. Select your payment method'); ?></h2>
 						<?php echo $this->Form->create('Package', array('action'=>'paypal','class' => 'normal-form'));?>	
 						 <div class="paypal-box">
-							<?php echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>3,'class'=>'js-payment-options','legend' => false)); ?> 
+							<?php echo $this->Form->input('package_type_id',array('options'=>$paymentgateways,'type'=>'radio','default'=>2,'class'=>'js-payment-options','legend' => false)); ?> 
 <!--		<div class="pb-left">
 					            <p><?php echo __l('You will be billed'); ?>  <?php echo Configure::read('site.currency'); ?> <span class="js-payment-cost"><?php echo($packages[0]['Package']['cost']); ?></span> <?php echo __l('every'); ?> <span class="js-payment-month"><?php echo($packages[0]['PackageType']['no_of_months']); ?></span> <?php echo __l('month(s)'); ?></p>
                                 <p><?php echo $this->Html->image('paypal.jpg'); ?></p>
