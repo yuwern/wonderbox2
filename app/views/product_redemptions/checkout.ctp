@@ -2,7 +2,7 @@
                 	<div class="submis-left"><?php echo $this->Html->image('submission_ad.jpg'); ?></div>
                     <div class="submis-right">
                     	<div class="head">
-                        	<h1><?php echo Configure::read('site.name');?> <?php echo __l('Product Redemption Checkout'); ?></h1>
+                        	<h1><?php echo __l('WonderShop Checkout'); ?></h1>
                         </div>
 						<div class="step-bor end2">
 						<?php if(!empty($productRedemption['ProductRedemption']['is_delivery'])): ?>
