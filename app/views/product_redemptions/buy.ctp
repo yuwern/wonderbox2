@@ -1,8 +1,8 @@
              		<div class="submission">
-                	<div class="submis-left"><?php echo $this->Html->image('submission_ad.jpg'); ?></div>
+                	<div class="submis-left"><?php echo $this->Html->image('wondershop_checkout.jpg'); ?></div>
                     <div class="submis-right">
                     	<div class="head">
-                        	<h1><?php echo Configure::read('site.name');?> <?php echo __l('Product Redemption Checkout'); ?></h1>
+                        	<h1><?php echo __l('WonderShop Checkout'); ?></h1>
                         </div>
                        	<div class="step-bor">
                         	<ul>
@@ -24,12 +24,11 @@
                                     <li><?php echo __l('AMOUNT'); ?></li><li class="font-tahoma"><?php echo Configure::read('site.currency'). '  '. $productRedemption['ProductRedemption']['purchase_amount'];?></li>
                                 </ul>
                             </div>
-                            <p><?php echo __l('Lorem Ipsum is simply dummy text of the printing and typesetting industry.:'); ?></p>
+                            <p><?php echo __l('Thank You For Shopping At WonderShop and We Look Forward In Serving You Again'); ?></p>
                                 <ul class="font-tahoma">
-                                	<li><?php echo __l('Lorem Ipsum is simply dummy text of the printing and typesetting industry.'); ?></li>
-                                    <li><?php echo __l('Lorem Ipsum is simply dummy text of the printing and typesetting industry.'); ?></li>
-                                    <li><?php echo __l('Lorem Ipsum is simply dummy text of the printing and typesetting industry.'); ?></li>
-                                    <li><?php echo __l('Lorem Ipsum is simply dummy text of the printing and typesetting industry.'); ?></li>
+                                	<li><?php echo __l('Your lovely purchase will be delivered to you within the next 7 working days'); ?></li>
+                                    <li><?php echo __l('Once the parcel has been send out, your parcel\'s tacking number will be shown next to this purchase in your account.'); ?></li>
+
                                 </ul>
                         </div>
                         <div class="shipp-right">

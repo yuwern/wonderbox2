@@ -78,6 +78,7 @@ class ProductRedemptionsController extends AppController
 						'ProductRedemption.short_description',
 						'ProductRedemption.description',
 						'ProductRedemption.slug',
+                                                'ProductRedemption.is_purchase',
 				),
 				'recursive' => 2,
 			));
@@ -160,7 +161,7 @@ class ProductRedemptionsController extends AppController
 						'amount'=> $amount,
 						'cur'=>'RM',
 						'returnUrl'=>  Router::url(array(
-											'controller' => 'product_redemptions',
+											'controller' => 'little_black_boxs',
 											'action' => 'processpayment','molpay',
 											'city' => $this->request->params['named']['city'],
 											'admin' => false
@@ -287,7 +288,7 @@ class ProductRedemptionsController extends AppController
 						'amount'=> $amount,
 						'cur'=>'RM',
 						'returnUrl'=>  Router::url(array(
-											'controller' => 'product_redemptions',
+											'controller' => 'little_black_boxs',
 											'action' => 'processpayment','molpay',
 											'city' => $this->request->params['named']['city'],
 											'admin' => false
@@ -370,7 +371,7 @@ class ProductRedemptionsController extends AppController
 				$err_message  .=  "</div>";
 				$this->Session->setFlash( $err_message, 'default', null, 'error');
 				$this->redirect(array(
-							'controller' => 'product_redemptions',
+							'controller' => 'little_black_boxs',
 							'action' => 'buy',
 							$this->request->data['ProductRedemption']['slug'],
 				));
@@ -654,7 +655,7 @@ class ProductRedemptionsController extends AppController
 			}
 		}
 		$this->redirect(array(
-				'controller' => 'product_redemptions',
+				'controller' => 'little_black_boxs',
 				'action' => 'index'
 		));
 	}
