@@ -15,7 +15,7 @@
                            <?php if(!empty($productRedemption['ProductRedemption']['is_purchase'])): ?>
       	                   <?php echo $this->Html->link(__l('Buy Now'), array('controller' => 'product_redemptions', 'action' => 'buy', $productRedemption['ProductRedemption']['slug']),array('title' =>__l('Buy Now'),'class'=> 'btn1 d-block', 'escape' => false));?>
                                  <?php else: ?>
-                           <p><?php echo __l('NOT FOR SALE');?></p>
+                           <p><?php echo __l('');?></p>
                                  <?php endif; ?>
                          </div>
 

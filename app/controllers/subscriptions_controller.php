@@ -98,9 +98,7 @@ class SubscriptionsController extends AppController
             }
         } 
     }
-	public function thanks(){
 
-	}
  
     public function admin_index()
     {
@@ -250,7 +248,12 @@ class SubscriptionsController extends AppController
             throw new NotFoundException(__l('Invalid request'));
         }
     }
-    
-    
+    public function how_it_work(){
+        $this->layout='littleblackbox';
+    }
+    public function littleblackbox(){
+        $this->layout='littleblackbox';
+        
+    }
 }
 ?>

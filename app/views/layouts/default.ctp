@@ -88,13 +88,13 @@ endif;
 								'user_type_id' =>  $this->Auth->user('user_type_id'),
 								'id' =>  $this->Auth->user('id'),
 								'fb_user_id' =>  $this->Auth->user('fb_user_id')
-							);                         
+							);
                     		$current_user_details['UserAvatar'] = $this->Html->getUserAvatar($this->Auth->user('id'));
     				?>
 					<div class="c2">&nbsp;<fb:like href="<?php echo Router::url('/', true);?>" layout="button_count" font="tahoma"></fb:like></div>
                    <div class="c3" id="chromemenu"><span class="f-left"><strong><?php echo __l('Hi'); ?></strong> </span><span class="f-left"><?php echo $this->Html->getUserAvatarLink($current_user_details, 'micro_thumb'); ?></span> <span class="f-left"><?php echo $this->Html->getUserLink($current_user_details,true); ?>&nbsp;| &nbsp; <?php echo $this->Html->link('<strong>'.__l('Logout').'</strong>', array('controller' => 'users', 'action' => 'logout'), array( 'title' => __l('Logout'),'escape'=>false)); ?>   </span>
 					<div id="dropmenu1" class="dropmenudiv">
-					
+
 						  <?php if ($this->Auth->sessionValid()): ?>	<ul>
 							<li><?php echo $this->Html->link(__l('MY ACCOUNT'), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => __l('MY ACCOUNT')));?></li>
 							<li><?php echo $this->Html->link(__l('SHIPPING INFO'), array('controller' => 'user_shippings', 'action' => 'index'),array('title' => __l('SHIPPING INFO'))); ?></li>
@@ -116,21 +116,21 @@ endif;
 							<li><?php echo $this->Html->link(__l('WONDERSHOP PURCHASED LIST'), array('controller' => 'product_redemption_users', 'action' => 'index'), array('title' => __l('WONDERSHOP PURCHASED LIST')));?></li>
 							<li><?php echo $this->Html->link(__l('MY WONDERTREATS'), array('controller' => 'wonder_treats', 'action' => 'index'), array('title' => __l('MY WONDERTREATS')));?></li>
 							<li><?php echo $this->Html->link(__l('MY WONDERSPREE'), array('controller' => 'wonder_sprees', 'action' => 'index'), array('title' => __l('MY WONDERSPREE')));?></li>
-							
+
 							</ul>
 							<?php endif; ?>
 						</div>
-						<?php if ($this->Auth->sessionValid()): ?>	
+						<?php if ($this->Auth->sessionValid()): ?>
                         <script type="text/javascript">cssdropdown.startchrome("chromemenu")</script>
 						<?php endif; ?>
                     </div>
-					<div class="c4"> 
+					<div class="c4">
 					<?php echo __l('WonderPoints :'); ?> <span><?php echo $this->Html->getWonderPointAvialable($current_user_details['id']);?></span></div>
 					<?php if($this->Auth->sessionValid() && $this->Auth->user('user_type_id') == ConstUserTypes::Admin): ?>
 					<div class="c5"><?php echo $this->Html->link(__l('Admin panel'), array('controller' => 'users' , 'action' => 'stats' , 'admin' => true), array('title' => __l('Admin panel'), 'escape' => false)); ?></div>
 					<?php endif; ?>
 					<?php if($this->Auth->sessionValid() && $this->Auth->user('user_type_id') == ConstUserTypes::ContentAdmin): ?>
-					<div class="c5"><?php echo $this->Html->link(__l('Admin panel'), array('controller' => 'brands' , 'action' => 'index' , 'admin' => true), array('title' => __l('Admin panel'), 'escape' => false)); ?></div> 
+					<div class="c5"><?php echo $this->Html->link(__l('Admin panel'), array('controller' => 'brands' , 'action' => 'index' , 'admin' => true), array('title' => __l('Admin panel'), 'escape' => false)); ?></div>
 					<?php endif; ?>
 					<?php else: ?>
 					<div class="c2">&nbsp;<fb:like href="<?php echo Router::url('/', true);?>" layout="button_count" font="tahoma"></fb:like></div>
@@ -141,7 +141,7 @@ endif;
 
                 <!-- Logo & Nav Sec  -->
    		    	<div class="logo_sec">
-				<div class="logo">	
+				<div class="logo">
 					<?php echo $this->Html->link($this->Html->image('logo.jpg'), array('controller' => 'pages', 'action' => 'home', 'admin' => false), array('title' => Configure::read('site.name'),'escape'=>false)); ?>
 					</div>
 			      <div class="nav">
@@ -162,7 +162,7 @@ endif;
 							<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'class="active"': null; ?>
                             <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('How it Works'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('How it Works'),'class'=> 'howit'));?></li>
 							<?php if ($this->Auth->sessionValid()): ?>
-							 <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'class="active"' : null; ?> 
+							 <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'class="active"' : null; ?>
 							<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Refer a Friend'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('class'=>'refer_icon','title' => __l('Refer a Friend')));?></li>
 							<?php endif; ?>
 							 <?php if($this->Html->checkPackageAvialable() > 0): ?>
@@ -174,7 +174,7 @@ endif;
               </div>
             </div>
 			<!-- Start Main Div -->
-            <div class="body"  id="<?php echo $this->Html->getUniquePageId();?>">		
+            <div class="body"  id="<?php echo $this->Html->getUniquePageId();?>">
 			<?php
 					if ($this->Session->check('Message.error')):
 							echo $this->Session->flash('error');
@@ -196,7 +196,7 @@ endif;
 			<?php if ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home' ): ?>
             <div class="showcase" id="slides">
 			 	  <?php if($this->Html->checkPackageAvialable() > 0): ?>
-                	 <div class="banner_sub"> 
+                	 <div class="banner_sub">
 					 <?php echo $this->Html->link(' ', array('controller' => 'packages', 'action' => 'subscribe', 'admin' => false), array('escape'=>false,'title' =>__l('Subscribe'),'class'=>'banner-sub-now')); ?>
 					 </div>
 					 <?php endif; ?>
@@ -205,13 +205,13 @@ endif;
 					</div>
                 </div>
 			<?php endif; ?>
-			
+
 					<?php echo $content_for_layout;?>
 			</div>
         </div>
     </div>
 	<!-- End Main Div -->
-    
+
     <!-- Footer Div -->
     <div id="footer">
     	<div class="footer">
@@ -219,12 +219,12 @@ endif;
             	<h3><?php echo __l('BeauTy Tips'); ?></h3>
 				<?php $beautyTips = $this->Html->getBeautyTips(); ?>
 				<ul>
-				 <?php if(!empty($beautyTips)): 
+				 <?php if(!empty($beautyTips)):
 				 		 foreach($beautyTips as $beautyTip): ?>
 							<?php $active_class = ($this->request->params['controller'] == 'beauty_tips' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == $beautyTip['BeautyTip']['slug'] ) ?  'active': null; ?>
 						   <li><?php echo $this->Html->link($beautyTip['BeautyTip']['name'], array('controller' => 'beauty_tips', 'action' => 'view', $beautyTip['BeautyTip']['slug'], 'admin' => false), array('title' =>$beautyTip['BeautyTip']['name'],'class'=>$active_class));?></li>
-					<?php 
-						  endforeach; 	
+					<?php
+						  endforeach;
 					   else: ?>
 					   <li><?php echo __l('No Beauty Tips is avialable'); ?></li>
 					<?php endif?>
@@ -232,7 +232,7 @@ endif;
             </div>
             <div class="f-c2">
             	<h3><?php echo __l('Customer Service'); ?></h3>
-                <ul>	
+                <ul>
 
 					<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'help_faq') ?  'active': null; ?>
                     <li><?php echo $this->Html->link(__l('Help / FAQ'), array('controller' => 'pages', 'action' => 'view', 'help_faq', 'admin' => false), array('title' => __l('Help / FAQ'),'class'=>$active_class));?></li>
@@ -249,11 +249,11 @@ endif;
                  </ul>
                 <h3><?php echo __l('Browse'); ?></h3>
                 <p><?php if (!$this->Auth->sessionValid()): echo $this->Html->link(__l('Join'), array('controller' => 'users', 'action' => 'register', 'admin' => false), array('title' => __l('Join'),'class'=>'join'));?> /
-				<?php endif; ?>		
+				<?php endif; ?>
 				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'about') ?  'active': null; ?>
 				<?php echo $this->Html->link(__l('ABOUT'), array('controller' => 'pages', 'action' => 'view', 'about', 'admin' => false), array('title' =>__l('ABOUT'),'class'=>$active_class));?> /
 				<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'active': null; ?>
-				<?php echo $this->Html->link(__l('HOW IT WORKS'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('HOW IT WORKS'),'class'=> 'howit '.$active_class));?> / 
+				<?php echo $this->Html->link(__l('HOW IT WORKS'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('HOW IT WORKS'),'class'=> 'howit '.$active_class));?> /
 				<?php $active_class = ($this->request->params['controller'] == 'gift_users' && $this->request->params['action'] == 'add' ) ?  'active': null; ?>
 				<?php echo $this->Html->link(__l('GIFT A WONDERBOX'), array('controller' => 'gift_users', 'action' => 'add', 'admin' => false), array('title' =>__l('GIFT A WONDERBOX'),'class'=> 'gift '.$active_class));?></p>
                 <h3><?php echo __l('Partners'); ?></h3>
@@ -277,17 +277,17 @@ endif;
                 	<li><a href="https://www.facebook.com/WonderBoxMalaysia?ref=hl" title="Facebook" target="_blank"><?php echo $this->Html->image('f.jpg',array('width'=>'28','height'=>'31')); ?></a></li>
                     <li><a href="https://www.youtube.com/user/wonderboxmy" title="Youtube" target="_blank"><?php echo $this->Html->image('y.jpg',array('width'=>'28','height'=>'31')); ?></a></li>
                     <li><a href="http://wonderboxmalaysia.tumblr.com/" title="Tumbler" target="_blank"><?php echo $this->Html->image('t.jpg',array('width'=>'28','height'=>'31')); ?></a></li>
-					
+
                 </ul>
             </div>
 			<div class="clear"></div>
-            <div class="copy"><?php echo __l('Copyright'); ?> &copy <?php echo date('Y'); ?>  <?php echo Configure::read('site.name'); ?>. <?php echo 
+            <div class="copy"><?php echo __l('Copyright'); ?> &copy <?php echo date('Y'); ?>  <?php echo Configure::read('site.name'); ?>. <?php echo
 			__l('All Rights Reserved'); ?>.</div>
         </div>
     </div>
 	  <!-- FACEBOOK PLUGIN -->
   <div id="fb-root"></div>
-  <?php  if ($this->Auth->sessionValid() && !  $this->Html->checkBeautySurveyComplete($this->Auth->user('id')) && $this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home'): 
+  <?php  if ($this->Auth->sessionValid() && !  $this->Html->checkBeautySurveyComplete($this->Auth->user('id')) && $this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'home'):
   ?>
   <script type="text/javascript">
 	  $(document).ready(function(){
@@ -311,7 +311,7 @@ endif;
     js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=<?php echo Configure::read('facebook.app_id');?>";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
-  <!-- FACEBOOK PLUGIN -->  
+  <!-- FACEBOOK PLUGIN -->
 	<?php echo $this->element('site_tracker', array('cache' => array('config' => 'site_element_cache'), 'plugin' => 'site_tracker')); ?>
 	<?php echo $this->element('sql_dump'); ?>
 
