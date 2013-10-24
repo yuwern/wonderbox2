@@ -52,27 +52,15 @@
 		<!-- ENDS prettyPhoto -->
 
 		<!-- JS -->
-		<script type="text/javascript" src="../js/jquery_1.4.2.js"></script>
-		<script type="text/javascript" src="../js/jqueryui.js"></script>
-		<script type="text/javascript" src="../js/easing.js"></script>
-		<script type="text/javascript" src="../js/jquery.cycle.all.js"></script>
-		<script type="text/javascript" src="../js/tooltip/jquery.tools.min.js"></script>
-		<script type="text/javascript" src="../js/jquery.tabs/jquery.tabs.pack.js"></script>
-		<script type="text/javascript" src="../js/filterable.pack.js"></script>
-		<script type="text/javascript" src="../js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
-		<script type="text/javascript" src="../js/chirp.js"></script>
-		<script type="text/javascript" src="../js/custom.js"></script>
-		<script type="text/javascript" src="../js/jQuery.equalHeights.js"></script>
+
 		<!-- ENDS JS -->
 
 		<!-- superfish -->
-		<link rel="stylesheet" type="text/css" media="screen" href="../css/superfish-custom.css" />
-		<script type="text/javascript" src="../js/superfish-1.4.8/js/hoverIntent.js"></script>
-		<script type="text/javascript" src="../js/superfish-1.4.8/js/superfish.js"></script>
+
 		<!-- ENDS superfish -->
 
 		<!-- tabs -->
-        <link rel="stylesheet" href="../css/jquery.tabs.css" type="text/css" media="print, projection, screen" />
+
         <!-- Additional IE/Win specific style sheet (Conditional Comments) -->
         <!--[if lte IE 7]>
         <link rel="stylesheet" href="../css/jquery.tabs-ie.css" type="text/css" media="projection, screen">
@@ -80,17 +68,94 @@
   		<!-- ENDS tabs -->
 
 		<!-- Cufon -->
-		<script src="../js/cufon-yui.js" type="text/javascript"></script>
-		<script src="../js/bebas_400.font.js" type="text/javascript"></script>
 
+
+<script>
 
 
 </script>
-        <!-- /Cufon -->
 </head>
 
 <body>
+<!-- WRAPPER -->
+	<div id="wrapper">
 
-<?php echo $content_for_layout;?>
+	<!-- TOP -->
+	<!--<div id="top">
+	  <div class="box">
+	  	<div id="latest-tweet"><img src="img/twitter.png" class="twitter-bird" alt="Twitter" /></div>
+	  	<script>Chirp({user:"ansimuz",max:1})</script>
+	  </div>
+	</div>-->
+	<!-- ENDS TOP -->
+
+
+	<!-- CONTENT -->
+	<div id="content">
+
+	<!-- top button -->
+	<!--<div class="open-top">
+		<a href="#" class="open"><img src="../img/top-tab.png" class="twitter-bird" alt="Twitter" /></a>
+	</div>
+	<!-- ENDS top button -->
+ <!-- MAIN -->
+		<div id="main">
+                            <div id="logo">
+			   <?php echo $this->Html->image('lbblogo.jpg');?>
+                              </div>
+
+			<!-- navigation -->
+			<div id="centeredmenu">
+			   <ul class="sf-menu">
+			      <li class="current_page_item">
+                              <li><?php echo $this->Html->link(__l('Home'), array('controller'=> 'subscriptions', 'action'=>'littleblackbox','admin' => false), array('title' => __l('Home')));?></li>
+                               <li><?php echo $this->Html->link(__l('How It Works'), array('controller' => 'subscriptions', 'action' => 'how_it_work', 'admin' => false), array('title' => __l('How It Works'))); ?> </li>
+                                            </li>
+                                            </ul>
+		        </div>
+
+			<!-- ENDS navigation -->
+
+
+
+                    <?php echo $content_for_layout;?>
+
+<!-- FOOTER -->
+	<div id="footer">
+		<div id="footer-wrapper">
+
+				<ul class="footer-cols">
+				<li class="col">
+					<h6>FOLLOW US</h6>
+					<ul>
+
+						<li class="icon facebook">
+						<a href="https://www.facebook.com/littleblackboxMY" title="Facebook" target="_blank"><?php echo $this->Html->image('facebook_32.png',array('width'=>'32','height'=>'32')); ?></a></li>
+
+					</ul>
+				</li>
+
+			</ul>
+			<!-- footer-cols -->
+
+		</div>
+
+		<div class="footer-bottom">
+                        <p class="legal"><?php echo $this->Html->link(__l('Back To WonderBox Home'), array('controller'=>'pages', 'action'=>'home'));?></p>
+			<p class="legal">Muro created by <a href="http://www.luiszuno.com">luiszuno.com</a></p>
+		</div>
+
+	</div>
+	<!-- ENDS FOOTER -->
+
+
+	<!-- start cufon -->
+	<script type="text/javascript"> Cufon.now(); </script>
+	<!-- ENDS start cufon -->
+
+
+	</body>
+</html>
+
 </body>
 </html>
