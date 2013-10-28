@@ -10,16 +10,16 @@ $(document).ready(function(){
 </script>
 <!-- Brand Logo Sec  -->
           		<div class="brand_logo <?php if (!$this->Auth->sessionValid()): ?>	js-home-sign-pop-up <?php endif; ?>">
-                  	  <h3><?php echo __l('')?></h3>
+                  	  <h3><?php echo __l('Click to learn more about the unique services below:')?></h3>
                       <ul>
-						<li><?php echo $this->Html->image('b_logo1.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo2.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo3.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo4.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo5.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo6.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo7.jpg',array('width'=>'114','height'=>'49')); ?></li>
-						<li><?php echo $this->Html->image('b_logo8.jpg',array('width'=>'114','height'=>'49')); ?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wonderbox_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','how_it_works'),array('title' =>'How it Works', 'escape' => false));?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wondersurvey_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'products', 'action' => 'survey'),array('title' =>'Share Your Feedback', 'escape' => false));?></li>
+     	                                        <li><?php echo $this->Html->link($this->Html->image('wonderpoints_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','earn-wonder-points'),array('title' =>'Ways to earn WonderPoints', 'escape' => false));?></li>
+						<li><?php echo $this->Html->link($this->Html->image('wonderblog_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' =>'WonderBlog', 'escape' => false));?></li>
+                                                <li><?php echo $this->Html->link($this->Html->image('wonderspree_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'wonder_sprees', 'action' => 'index'),array('title' =>'WonderSpree', 'escape' => false));?></li>
+                                                <li><?php echo $this->Html->link($this->Html->image('wondershop_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' =>'WonderShop', 'escape' => false));?></li>
+
+
 				      </ul>
            		</div>
                 <!-- ADD SEC -->
@@ -29,6 +29,9 @@ $(document).ready(function(){
                     <div class="ad2"><?php echo $this->Html->link($this->Html->image('ad2.jpg',array('width'=>'210','height'=>'200')), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' =>'Beauty Tips', 'escape' => false));?>
                     <?php echo __l('Keep Up With The Latest Beauty Tips'); ?>    </div>
                     <div class="ad3">
+                    <?php if($this->Html->checkPackageAvialable() > 0): ?>
+
+
                     	<div class="sub_box">
                        	  <div class="s-box-left">
                            	<h2><strong><?php echo __l('NEXT SURPRISE'); ?></strong></h2>
@@ -41,7 +44,7 @@ $(document).ready(function(){
                                     <p><?php echo __l('HOURS'); ?></p>
                                     <p><?php echo __l('MINUTES'); ?></p>
                                 </div>
-                              <div class="rate-row"> 
+                              <div class="rate-row">
                                 	<span class="c1"><?php echo __l('LIMITED UNITS'); ?> <br /><b><?php echo __l('DELIVERY TO YOUR DOORSTEP'); ?></b></span>
                                     <span class="c2"><?php echo  configure::read('site.currency'); ?></span>
 					                 <span class="c3"> <?php $cost = explode('.',$package['Package']['cost']); echo  $cost[0]; ?></span>
@@ -55,6 +58,9 @@ $(document).ready(function(){
                         </div>
                         <?php echo __l('Counting Down To Your Next WonderBox'); ?>
                     </div>
+                    <?php else: ?>
+                    <p><?php echo $this->Html->image('test_sub_closed.jpg',array('width'=>'364','height'=>'196')); ?></p>
+                    <?php endif; ?>
 
                 </div> 
     

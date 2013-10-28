@@ -3,9 +3,9 @@
                     <div class="submis-right">
                     	<div class="head">
                         	<h1><?php echo Configure::read('site.name');?> <?php echo __l('Subscription Checkout'); ?></h1>
-                            <p><?php echo __l('Submission copywriting text, temporary text, layout format, copywriting text, temporary text, layout format.'); ?></p>
+                            <p><?php echo __l('Click the Payment Button Below to Proceed to MOL Payment Website.'); ?></p>
                         </div>
-						<div class="step-bor end2">
+                        <div class="step-bor">
                         	<ul>
                             	<li class="off">PLAN &amp; PAYMENT METHOD</li>
                                 <li class="off1">SHIPPING DETAIL </li>
@@ -21,7 +21,7 @@
                                 </ul>
 							</div>
 							<div class="shipp-right">
-								<?php $this->Gateway->$action($gateway_options); ?>
+								<h3><?php $this->Gateway->$action($gateway_options); ?>    <h3>
 							</div>
                                                          
                         </div>                        

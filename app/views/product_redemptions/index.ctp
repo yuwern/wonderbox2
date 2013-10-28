@@ -53,10 +53,11 @@
 								endif;
 							 else:?>
 								<p class="no-purchase-option"><?php 	echo __l('NOT FOR SALE'); 	 ?></p>
-							<?php 
+							<?php
 							 endif;
 								?>
 						</div>
+
                     </div>
 					<?php
 					$i++;

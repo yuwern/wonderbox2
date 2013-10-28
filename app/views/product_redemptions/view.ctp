@@ -9,9 +9,17 @@
 					</div>
                     <div class="brand-right">
                     	<div class="pro-each-main-left">
-							<?php echo $this->Html->showImage('ProductRedemption',  $productRedemption['Attachment'][0], array('dimension' => 'productredemptionbig_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($productRedemption['ProductRedemption']['name'], false)), 'title' => $this->Html->cText($productRedemption['ProductRedemption']['name'], false)));?>
+				<?php echo $this->Html->showImage('ProductRedemption',  $productRedemption['Attachment'][0], array('dimension' => 'productredemptionbig_thumb', 'alt' => sprintf(__l('[Image: %s]'), $this->Html->cText($productRedemption['ProductRedemption']['name'], false)), 'title' => $this->Html->cText($productRedemption['ProductRedemption']['name'], false)));?>
                         	<?php echo $this->Html->cHtml($productRedemption['ProductRedemption']['description']);?>
-                        </div>
+
+                           <?php if(!empty($productRedemption['ProductRedemption']['is_purchase'])): ?>
+      	                   <?php echo $this->Html->link(__l('Buy Now'), array('controller' => 'product_redemptions', 'action' => 'buy', $productRedemption['ProductRedemption']['slug']),array('title' =>__l('Buy Now'),'class'=> 'btn1 d-block', 'escape' => false));?>
+                                 <?php else: ?>
+                           <p><?php echo __l('');?></p>
+                                 <?php endif; ?>
+                         </div>
+
+
                      	<div class="pro-each-main-right">
 							<?php echo $this->Html->image('whats_head.jpg',array('width'=>'178','height'=>'40')); ?>
 							<?php if(!empty($productRedemption['RelatedProduct'])): ?>
@@ -25,7 +33,9 @@
 						   <ul class="all-products">
 								<li> <?php echo $this->Html->image('no-product.png'); ?></li>
 						   </ul>
-						   <?php endif; ?>
+                                         <?php endif; ?>
+
+
                         </div>
                     </div>
                 </div>

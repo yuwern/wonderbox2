@@ -1,5 +1,19 @@
 <html lang="en">
 <head>
+<script type="text/javascript">
+var fb_param = {};
+fb_param.pixel_id = '6008183028698';
+fb_param.value = '0.00';
+fb_param.currency = 'MYR';
+(function(){
+  var fpw = document.createElement('script');
+  fpw.async = true;
+  fpw.src = '//connect.facebook.net/en_US/fp.js';
+  var ref = document.getElementsByTagName('script')[0];
+  ref.parentNode.insertBefore(fpw, ref);
+})();
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6008183028698&amp;value=0&amp;currency=MYR" /></noscript>
 <meta charset="utf-8" />
 <title>jQuery UI Datepicker - Default functionality</title>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
@@ -20,7 +34,7 @@ $( ".datepicker" ).datepicker({maxDate:new Date});
 			<div class="giftw-right">
 				<div class="head">
 					<h1><?php echo 'WonderSpree'?></h1>
-					<p><?php echo 'Gift a WonderBox copywriting text, temporary text copywriting text copy test temp text temporary tex. temporary text copywriting text copy test temp text temporary tex. temporary text copywriting text copy testrary tex.'?></p>
+					<p><?php echo 'We would like to get to know you better. By sharing your retail history with us, we promise that you will be the first in line for any upcoming event or sales from the brands that you love most. Share and be rewarded, received up to 20% of your purchase amount in WonderPoints for every receipt you choose to share with us.  '?></p>
 				</div>
 			
 				<div class="clear"></div>
@@ -35,8 +49,8 @@ $( ".datepicker" ).datepicker({maxDate:new Date});
 				<div class="input">
 				<?php
 					$options = array(
-					'discount' => 'Discount',
-					'gift' => 'Gift'
+					'discount' => ' Enjoyed a Sale Discount ',
+                                        'retail' => ' No Discount '
 					);
 
 					$attributes = array(
@@ -48,7 +62,7 @@ $( ".datepicker" ).datepicker({maxDate:new Date});
 				?>
 					</div>
 					<div class="input" id="pre_dis" >
-					<?php echo $this->Form->input('previous_discount',array('label' => __l('Previous Discount'))); ?>
+					<?php echo $this->Form->input('previous_discount',array('label' => __l('Discount Percentage'))); ?>
 					</div>
 					<div class="input">
 							
@@ -61,17 +75,17 @@ $( ".datepicker" ).datepicker({maxDate:new Date});
 					</div>
 					<div class="input">
 					
-							<?php echo $this->Form->input('location',array('label' => __l('Location'))); ?>
+							<?php echo $this->Form->input('location',array('label' => __l('Location: (example: Tesco, Watsons, Parkson etc)'))); ?>
 							
 					</div>
 				    <div  class="input">
 							<?php echo $this->Form->input('purchase_date', array('label'=>__('Purchase Date'), 'type'=>'text', 'class'=>'datepicker'));?>
-							<a href="#" class="date-spree" >Date</a> 
+							<!-- <a href="#" class="date-spree" >Date</a>    -->
 				    </div>
 				    <div class="input">
-					     <? echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Receipt'),'class'=>'required','div'=>'input file required','info'=>__('(Image size less then 500kb and format is .jpeg, .png, .jpg)')));?>
-					    <?php // echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Receipt')));?>
-				        <?php // echo $this->Form->input('Attachment',array( 'type' => 'file')); ?>
+					     <? echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Receipt'),'class'=>'required','div'=>'input file required','info'=>__('(Image size should be less then 500kb in the following file format .jpeg, .png, .jpg)')));?>
+					     <?php // echo $this->Form->input('Attachment.filename', array('type' => 'file', 'label' => __l('Upload Receipt')));?>
+                                             <?php // echo $this->Form->input('Attachment',array( 'type' => 'file')); ?>
 					</div>
 					   <?php echo $this->Form->end(__l('Submit'),array('class'=>'btn1'));?>
 				</div>

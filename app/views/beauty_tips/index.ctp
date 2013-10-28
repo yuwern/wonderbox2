@@ -1,4 +1,4 @@
-	<div class="gift-wonder">                
+	<div class="gift-wonder">
                 	<div class="beauty-left1">
 						<?php if(!empty($beautyTipSliders)): ?>
 						<div class="showcase">
@@ -58,12 +58,17 @@
 					<?php
 					endif;
 					?>
+
+					<div class="beauty-right2">
 					<?php if (!empty($beautyTips) && $beautyTipsCount >= 10) { ?>
 						<div>
-								<?php echo $this->element('paging_links'); ?>
+
+								<div class="number"><?php echo $this->element('paging_links'); ?></div>
 						</div>
 					<?php } ?>
 					</div>
+					</div>
+
                     <div class="beauty-right1">
 					<?php echo $this->element('beautytips-siderbar'); ?>
 					</div>

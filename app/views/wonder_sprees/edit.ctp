@@ -2,7 +2,7 @@
 <div class="wonderSprees form">
 <?php echo $this->Form->create('WonderSpree', array('class' => 'normal'));?>
 	<fieldset>
-		<legend><?php echo $this->Html->link(__l('Wonder Sprees'), array('action' => 'index'));?> &raquo; <?php echo __l('Edit Wonder Spree');?></legend>
+		<legend><?php echo $this->Html->link(__l('WonderSpree'), array('action' => 'index'));?> &raquo; <?php echo __l('Edit WonderSpree');?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('purchase_amt');
