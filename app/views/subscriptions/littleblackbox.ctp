@@ -33,7 +33,7 @@
                                         <?php echo $this->Html->image('Hipster.jpg');?>
 						</div>
 						<p class="thumb-text">For subcultural trendsetter girls who love mixing latest trend with their personal style.</p>
-					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'index'));?>
+					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'buy','little-black-box-hipster'));?>
                            </div>
 				</li>
 				<li class="block-2">
@@ -43,7 +43,7 @@
                                         <?php echo $this->Html->image('ClassicChic.jpg');?>
 						</div>
 						<p class="thumb-text">Timeless. Sophisticated. Elegant. Classic chic style remains every girl's favorite for effortless beauty.</p>
-					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'index'));?>
+					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'buy','little-black-box-classic-chic'));?>
 					</div>
 				</li>
 				<li class="block-3">
@@ -53,7 +53,7 @@
 					 <?php echo $this->Html->image('GirlyGirl.jpg');?>
                                                 </div>
 						<p class="thumb-text">Be in touch with your feminine personality. Add some pastels, floral, ribbons and pearl to bring out a softer look. </p>
-                                    <p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'index'));?>
+                                    <p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'buy','little-black-box-girly-girl'));?>
 
                                           
 
