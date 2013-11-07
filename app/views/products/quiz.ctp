@@ -773,7 +773,7 @@
 					<div class="textSlide slide_1">
 				    	<div class="in-wel-pad">
 							<?php echo $this->Html->image('acc-banner_welcome2.png');?>
-                            <p><?php echo __l('Your complete beauty profile helps us to find the best products for you, for your next monthly WonderBox'); ?> </p>
+                            <p><?php echo __l('Your feedback helps us to find the best products for you!'); ?> </p>
                         </div>
                     </div>
 				</li>

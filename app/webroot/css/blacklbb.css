@@ -1,7 +1,7 @@
 /* GENERAL ------------------------------------------------------------*/
 
 body{
-	background: #34444b url(../img/blue/bg.jpg) repeat-x top center;
+	background: #34444b url(../img/black/bg.jpg) repeat-x top center;
 	color: #c2d1d5;
 }
 
@@ -58,7 +58,7 @@ ul#portfolio-filter{
 /* FOOTER ------------------------------------------------------------*/
 
 div#footer{
-	background: url(../img/blue/bg-footer.png) repeat-x;
+	background: url(../img/black/bg-footer.png) repeat-x;
 }
 
 div#footer ul.footer-cols li.col ul li a{

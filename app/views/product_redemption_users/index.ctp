@@ -4,10 +4,10 @@
                  <?php endif; ?>
                     <div class="acc-right">
                     	<div class="head">
-                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('Product Redemption Lists'); ?></h1>
+                        	<h1><?php echo Configure::read('site.name'); ?> <?php echo __l('WonderShop Purchased or Redemption List'); ?></h1>
                         </div>
                        	<div class="acc-trans">
-                        	<h3><?php echo __l('Product Redemption Lists'); ?></h3>
+                        	<h3><?php echo __l('Transaction Records'); ?></h3>
 							<?php echo $this->element('paging_counter');?>
                         	<div class="table-data">
                          	<ul id="ship-in">
