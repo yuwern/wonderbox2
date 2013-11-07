@@ -635,7 +635,8 @@ class PackagesController extends AppController
   public function recurring_payment(){
 		$this->autoRender = false;
 		$this->layout = false;
-	    $payment_response = $_POST;
+	    $payment_response = $_REQUEST;
+		
 		if(!empty($payment_response) && strtolower($payment_response['txn_type']) == 'recurring_payment' &&  strtolower($payment_response['payment_status']) == 'completed' &&  strtolower($payment_response['payer_status']) == 'verified' ){
 				$this->loadModel('PaypalTransactionLog');
 				$paypalTransactionLog =$this->PaypalTransactionLog->find('first', array(
@@ -768,7 +769,10 @@ class PackagesController extends AppController
 						);
 			    $this->_sendMail($emailFindReplace, $email_message, $user['User']['email']);
 				}		
-			} 
+				return true;
+			} else{
+				return false;
+			}
 		exit;
  	}
 	public function payment_cancel()
