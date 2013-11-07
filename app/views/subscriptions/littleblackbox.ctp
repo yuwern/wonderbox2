@@ -8,7 +8,7 @@
     <a href="" id="slideshow-link" ><span></span></a>
 				<ul id="slides">
 
-                 <li><?php echo $this->Html->image('lbb_slide_01.jpg');?></li>
+                 <li><?php echo $this->Html->image('lbb_slide_02.jpg');?></li>
 
 
 	          	</ul>
@@ -19,7 +19,7 @@
 			<div class="headline">
 			MALAYSIA'S FIRST FASHION SUBSCRIPTION BOX<br></br>
 
-                        3 different styles for you
+                        <ul>Our fashionistas at Little Black Box offer you a chance to choose the theme that best reflects your personality and fashion sense. Select the style that best suits you from the 3 different styles below</ul>
                           </div>
 			<!-- ENDS headline -->
 

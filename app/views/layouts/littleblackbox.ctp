@@ -36,7 +36,8 @@
 		<!-- CSS -->
 
                 <?php echo $this->Html->css('stylelbb.css');?>
-                <?php echo $this->Html->css('bluelbb.css');?>
+                <?php echo $this->Html->css('blacklbb.css');?>
+                <link href='http://fonts.googleapis.com/css?family=Radley:400italic' rel='stylesheet' type='text/css'>
 		<!--[if IE 6]>
 			<link rel="stylesheet" type="text/css" media="screen" href="css/ie-hacks.css" />
 			<script type="text/javascript" src="../js/DD_belatedPNG.js"></script>
@@ -103,6 +104,7 @@
                             <div id="logo">
 			   <?php echo $this->Html->image('lbblogo.jpg');?>
                               </div>
+
 
 			<!-- navigation -->
 			<div id="centeredmenu">
