@@ -31,7 +31,7 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 
-		<title>LBB</title>
+		<title>Little Black Box by WonderBox</title>
 
 		<!-- CSS -->
 
