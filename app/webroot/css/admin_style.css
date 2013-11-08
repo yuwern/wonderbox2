@@ -1415,3 +1415,6 @@ form.normal div.select select#BeautyQuestionAnswer,form.normal div.select select
 form.normal div.select select#BeautyQuestionAnswer1 {
     height: 100px;
 }
+form.normal div.select select.age {
+    height: 100px;
+}

@@ -1057,9 +1057,7 @@ class BeautyQuestionsController extends AppController
 						}
 						$productAnswerConditions['BeautyAnswer.id'] = $data;
 				}
-
-				
-				$productAnswers = $this->BeautyQuestion->BeautyAnswer->find('list', array(
+                $productAnswers = $this->BeautyQuestion->BeautyAnswer->find('list', array(
 						   'conditions' => array(
 								'BeautyAnswer.beauty_question_id'=> $this->request->data['BeautyQuestion']['question_id1']
 							),
@@ -1093,14 +1091,21 @@ class BeautyQuestionsController extends AppController
 				$userlist = array();
 				$participants = array();
 				$productUserIds = array();
+				
 				if(!empty($productAnswers) && !empty($data)){
+				
+				//pr($productAnswers);pr($data);exit;
 				foreach($this->request->data['BeautyQuestion']['answer1'] as $ans_field){
+				    //pr($ans_field);exit;
 					$answer_fields[]=$Constfileds[$ans_field];
 					$i=$ans_field;
+					//pr($i);exit;
 				    $productUserIdsConditions = array();
-                     $fields[] = "SUM(ProductSurvey.answer$i) as Answer$i";
+                        $fields[] = "SUM(ProductSurvey.answer$i) as Answer$i";
+						//pr($fields);exit;
 						$productUserIdsConditions['BeautyQuestion.id'] = $this->request->data['BeautyQuestion']['question_id1'];
 						$productUserIdsConditions["ProductSurvey.answer$i"] = 1;
+						//pr($productUserIdsConditions);exit;
 						$productUserIdsConditions['ProductSurvey.question_no'] = $this->request->data['BeautyQuestion']['sub_question_id1'][0];
 						if(!empty($this->request->data['BeautyQuestion']['product_id']))
 						$productUserIdsConditions['ProductSurvey.product_id']= $this->request->data['BeautyQuestion']['product_id'];
@@ -1115,10 +1120,11 @@ class BeautyQuestionsController extends AppController
 								)
 							)	
 						);	
+						//pr($products);exit;
 						if(!empty($products))
 						$productUserIdsConditions['ProductSurvey.product_id']= $products;
 					}
-					
+					//pr($productUserIdsConditions);exit;
 					
 					/*Age and location based*/
 					if(!empty($this->request->data['BeautyQuestion']['age_group_id1']) && empty($this->request->data['BeautyQuestion']['state_id1'])){
@@ -1134,8 +1140,7 @@ class BeautyQuestionsController extends AppController
 					'conditions'=> array('and'=>array('UserProfile.age_group_id'=>$age_group_id, 'UserProfile.state_id'=> $state_ids),
 					  )
 					 );
-					 
-					$some = $this->BeautyQuestion->ProductSurvey->UserProfile->find('all',$user_Ids);
+					 $some = $this->BeautyQuestion->ProductSurvey->UserProfile->find('all',$user_Ids);
 					
 					$data = array();
 						foreach($some as $answer){
@@ -1152,20 +1157,20 @@ class BeautyQuestionsController extends AppController
 						'conditions' => $productUserIdsConditions,
 						'recursive' => 1,
 						));
-						
-						
+						//pr($participants);exit;
 						foreach($participants as $key =>$participant){
 				           $userlist[] = $participant['ProductSurvey']['user_id'];
 				        }
-					   
-						
+					   // pr($userlist);exit;
 						if(!empty($userlist))
 						$productUserIds["answer$i"] = Set::extract('/ProductSurvey/user_id', $userlist);
-					 
-					 $i++;
+					    //pr($productUserIds);exit;
+					// $i++;
 					}
+					//pr($productUserIds);exit;
 				} else {
 				        foreach($productAnswers as $answer) {
+						//pr($answer);exit;
 						$productUserIdsConditions = array();
 						$answer_fields[$i];
 						$fields[] = "SUM(ProductSurvey.answer$i) as Answer$i";
@@ -1193,18 +1198,19 @@ class BeautyQuestionsController extends AppController
 						'conditions' => $productUserIdsConditions,
 						'recursive' => 1,
 						));
-						
+						//pr($participants);exit;
 						foreach($participants as $key =>$participant){
 				           $userlist[] = $participant['ProductSurvey']['user_id'];
 				    }
-						
+						//pr($userlist);exit;
 						if(!empty($userlist))
 						    $productUserIds["answer$i"] = Set::extract('/ProductSurvey/user_id', $userlist);
 						$i++;
+						//pr($productUserIds["answer$i"]);exit;
 					}
 					
 				}
-				
+				//pr($userlist);exit;
 				$_SESSION['userlist']=$userlist;
         		$this->set('userlist',$userlist);
 				
@@ -1226,15 +1232,18 @@ class BeautyQuestionsController extends AppController
 							)
 						)	
 					);
+					//pr($products);exit;
                      if(!empty($products))
 					$productSurveysConditions['ProductSurvey.product_id']= $products;
 				}
+				
 				$productSurveysConditions["ProductSurvey.answer$i"] = 1;
 				$productSurveys = $this->BeautyQuestion->ProductSurvey->find('all',array(
 					'conditions'=> $productSurveysConditions,
 					'fields'=> $fields,
 				));
-               
+				 //pr($productSurveysConditions);exit;
+                 //pr($answer_fields);pr($productSurveys);exit;
 				$productResults = array();
 				if(!empty($productSurveys[0][0])){ 
 					foreach($productSurveys[0][0] as $key => $value){
@@ -1244,8 +1253,8 @@ class BeautyQuestionsController extends AppController
 					  $productResults[$key] = $value;	
 					}
 				}
+				//pr($answer_fields);pr($productResults);exit;
                 $responses = array_combine($answer_fields,$productResults);
-				
 				//$_SESSION['userIds']=$userlist;
 				$this->set('responses',$responses);
 				//$this->set('userIds',$userlist);
@@ -1457,6 +1466,7 @@ class BeautyQuestionsController extends AppController
 								)
 							)	
 						);	
+						 //pr($products);exit;
 						if(!empty($products))
 						$productUserIdsConditions['ProductSurvey.product_id']= $products;
 					   }
@@ -1503,6 +1513,8 @@ class BeautyQuestionsController extends AppController
 						'conditions' => $productUserIdsConditions ,
 						'recursive' => 1,
 						));
+						
+						
 						
 						foreach($participants as $key =>$participant){
 				           $userlist[] = $participant['ProductSurvey']['user_id'];
@@ -1554,7 +1566,7 @@ if($this->request->data['BeautyQuestion']['age_group_id1'] != NULL || $this->req
 					'conditions'=> array('and'=>array('UserProfile.age_group_id'=>$age_group_id, 'UserProfile.state_id'=> $state_ids),
 					  )
 					 );
-					 
+					 //pr($age_group_id);exit;
 					$some = $this->BeautyQuestion->ProductSurvey->UserProfile->find('all',$user_Ids);
 					$data = array();
 						foreach($some as $answer){
@@ -1564,11 +1576,13 @@ if($this->request->data['BeautyQuestion']['age_group_id1'] != NULL || $this->req
 						$productSurveysConditions['UserProfile.user_id'] = $data;
 					}
 				}
+				 // pr($productSurveysConditions);exit;
 					/*Ends here*/
 				$productSurveys = $this->BeautyQuestion->ProductSurvey->find('all',array(
 					'conditions'=> $productSurveysConditions,
 					'fields'=> $fields,
 				));
+				//pr($productSurveys);exit;
 				$productResults = array();
 				if(!empty($productSurveys[0][0])){
 					foreach($productSurveys[0][0] as $key => $value){
@@ -1578,7 +1592,8 @@ if($this->request->data['BeautyQuestion']['age_group_id1'] != NULL || $this->req
 					  $productResults[$key] = $value;	
 
 					}
-				}				
+				}		
+                   
 				$responses = array_combine($answer_fields,$productResults);
 				$this->set('responses',$responses);
 				$this->set('productSurveys',$productSurveys[0]);

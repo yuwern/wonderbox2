@@ -126,6 +126,35 @@ class User extends AppModel
             'finderQuery' => '',
             'counterQuery' => ''
         ) ,
+		
+		'ProductSurvey' => array(
+            'className' => 'ProductSurvey',
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
+		
+		
+		'WonderSpree' => array(
+            'className' => 'WonderSpree',
+            'foreignKey' => 'user_id',
+            'dependent' => true,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ) ,
 	
     );
     public $hasOne = array(
@@ -673,7 +702,7 @@ class User extends AppModel
         $paymentGateway = $this->Transaction->PaymentGateway->getPaymentSettings(ConstPaymentGateways::AuthorizeNet);
         if (!empty($paymentGateway) && !empty($paymentGateway['PaymentGateway']['authorize_net_api_key']) && !empty($paymentGateway['PaymentGateway']['authorize_net_trans_key'])) {
             if ($paymentGateway['PaymentGateway']['is_test_mode']) {
-                $cim = new AuthnetCIM($paymentGateway['PaymentGateway']['authorize_net_api_key'], $paymentGateway['PaymentGateway']['authorize_net_trans_key'], true);
+                $cim = new AuthnetCIM($paymentGateway['PaymentGateway']['authorize_net_api_key'], $paymentGateway['PaymentGateway']['authorize_net_ratns_key'], true);
             } else {
                 $cim = new AuthnetCIM($paymentGateway['PaymentGateway']['authorize_net_api_key'], $paymentGateway['PaymentGateway']['authorize_net_trans_key']);
             }

@@ -1,75 +1,87 @@
 <div class="js-search-response">	  <?php echo $this->Form->create('BeautyQuestion', array('type' => 'post', 'class' => 'normal', 'action'=>'product_report')); ?>
 <h2 class="bor-bot pad-none">SQL Statement</h2>
 <div class="search-box-left">
-
-							
-							<?php echo $this->Form->input('count', array('type'=>'checkbox'));
+<?php echo $this->Form->input('count', array('type'=>'checkbox'));
 								?>
 							<?php  echo $this->Form->input('list', array('type'=>'checkbox')); ?>
 							<div class="clear"></div>
 							<div class="search-bg-box">
 							<h1 class="lig-hei">Product Survey</h1>
+							<?php //pr($productQuestions);?>
 							<div class="js-prodquestions">
 							 <?php echo $this->Form->input('question_id1', array('label' => __l('Questions'),'empty'=>'Please select','options'=>$productQuestions)); ?>
 							</div>
-							   <div class="js-answer1s">
-								<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answers)?'':$answers)); ?>
+
+							<div id= "subquestion" class="js-prodquestions" style="display:none;">
+							 <?php echo $this->Form->input('sub_question_id1', array('label' => __l('Sub Questions'),'type'=>'select','options'=>$answers)); ?>
 							</div>
+							<?php if(!empty($this->request->data['BeautyQuestion']['sub_question_id1']) && $this->request->data['BeautyQuestion']['question_id1'] == 20):?>
+							<div id= "subquestion" class="js-prodquestions1">
+							 <?php echo $this->Form->input('sub_question_id1', array('label' => __l('Sub Questions'),'type'=>'select','options'=>$answers, 'selected'=>$this->request->data['BeautyQuestion']['sub_question_id1'])); ?>
+							</div>
+							<div class="js-answer1s">
+							   <?php //pr($answers);?>
+								<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple'=>true,'options'=> $Constfileds)); ?>
+							</div>
+							<?php else: ?>
+						<div class="js-answer1s">
+							   <?php //pr($answers);?>
+								<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple'=>true,'options'=> $answers)); ?>
+							</div>							
+							<?php endif?>
 							<div>
 							 <?php echo $this->Form->input('product_id', array('label' => __l('List Product'),'empty'=>'Please select','options'=>$products)); ?>
 							</div>
 							<div>
 							 <?php echo $this->Form->input('brand_id', array('label' => __l('List Brand'),'empty'=>'Please select','options'=>$brands)); ?>
 							</div>
-
-							</div>
-                           
-					
-          
+							<?php echo $this->Form->input('age_group_id1', array('label' => __l('Age Group'), 'class'=>'age','multiple'=>true,'type'=>'select','options'=>$ageGroups)); ?>
+							<?php echo $this->Form->input('state_id1', array('label' => __l('State'), 'type'=>'select','class'=>'age','multiple'=>true,'options'=>$states )); ?>
+							
+							
+	</div>
 </div>
-
 <div class="search-box-right">
 							<br/>
 							<br/>
-							<div class="clear"></div>
+							<div class="clear"> </div>
 <div class="search-bg-box">
 <h1 class="lig-hei">Beauty Survey</h1>
 							<div class="js-questions">
 							<?php echo $this->Form->input('question_id', array('label' => __l('Questions'),'empty'=>'Please select','options'=>$beautyQuestions)); ?>
 							</div>
 							<div class="js-answers">
-							<?php echo $this->Form->input('answer', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answer2s)?'':$answer2s)); ?>
+							<?php echo $this->Form->input('answer', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> $answer2s)); ?>
 							</div>
-							<?php echo $this->Form->input('age_group_id', array('label' => __l('Age Group'), 'empty'=>'Please Select')); ?>
-							<?php echo $this->Form->input('state_id', array('label' => __l('State'), 'empty'=>'Please Select')); ?>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
 							<br/><br/>
 							<br/>
 							</div></div>
 							<div class="clear"></div>
-
 							<span class="js-show-statement"> SHOW/HIDE</span>
-<div class="js-sql-query hide js-statment-query">No SQL statement avialable.
-
-</div>
+<div class="js-sql-query hide js-statment-query">No SQL statement available.</div>
 <div class="clearfix"></div><?php echo $this->Form->submit(__l('Run Query'),array('class'=>'f-right'));?>
  <?php echo $this->Form->end(); ?>
 </div>
-     
 <div class="clearfix"></div>
-
 <?php if(!empty($this->request->data) && $this->request->data['BeautyQuestion']['list'] == 1 ):?>
 <h2> <?php echo __l('Report Section'); ?></h2> 
-<?php if(!empty($userIds)): 
-	  $userIdbase64decode = base64_encode(implode('-',$userIds));?>
-	<div class="clearfix add-block1">      <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing1',$userIdbase64decode,'city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
-	   <?php
-       echo $this->element('user-listing1',array('userIdbase64decode'=>$userIdbase64decode)); ?>
-<?php else: ?>
-	<p> <?php echo __l('No users avialable'); ?></p>
-<?php endif; ?>
 
+<?php if(!empty($userlist)): ?>
+	
+	
+	<div class="clearfix add-block1"> <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing1','userlist','city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
+	   <?php
+       echo $this->element('user-listing1', array('conditions1'=>'userlist')); ?>
+            <?php else: ?>
+	<p> <?php echo __l('No users avialable'); ?> </p>
+<?php endif; ?>
 <?php endif; ?>
 <?php if(!empty($this->request->data) && $this->request->data['BeautyQuestion']['count'] == 1 ): ?>
+
 <h2 class="pad-none bor-bot"> <?php echo __l('Report Section'); ?></h2> 
 <script  type="text/javascript">
 Highcharts.theme = {
@@ -137,7 +149,6 @@ Highcharts.theme = {
       itemStyle: {
          font: '9pt Trebuchet MS, Verdana, sans-serif',
          color: 'black'
-
       },
       itemHoverStyle: {
          color: '#039'
@@ -156,7 +167,7 @@ Highcharts.theme = {
 // Apply the theme
 var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 </script>
-<?php  if(!empty($productSurveys) ): 
+<?php  if(!empty($productSurveys)): 
 ?>
 <br/><button id="js-print-button">Print All</button>
 <button id="export">Download Image</button>
@@ -208,6 +219,7 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
                 name: 'Browser share',
                 data: [
 					<?php 
+					
 					if(!empty($responses)):
 						$bk = 1;
 						foreach($responses as $key => $Answer):

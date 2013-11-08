@@ -28,7 +28,15 @@ class ProductSurvey extends AppModel
             'fields' => '',
             'order' => '',
             'counterCache' => false
-        )
+        ),
+        'UserProfile' => array(
+            'className' => 'UserProfile',
+            'foreignKey' => false,
+            'conditions' => 'ProductSurvey.user_id = UserProfile.user_id',
+            'fields' => '',
+            'order' => '',
+            'counterCache' => false
+        ),
     );
     function __construct($id = false, $table = null, $ds = null)
     {

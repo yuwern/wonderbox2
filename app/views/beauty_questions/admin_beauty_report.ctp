@@ -1,10 +1,7 @@
 <div class="js-search-response">	  <?php echo $this->Form->create('BeautyQuestion', array('type' => 'post', 'class' => 'normal', 'action'=>'beauty_report')); ?>
 <h2 class="bor-bot pad-none">SQL Statement</h2>
 <div class="search-box-left">
-
-							
-							<?php echo $this->Form->input('count', array('type'=>'checkbox'));
-								?>
+							<?php echo $this->Form->input('count', array('type'=>'checkbox'));?>
 							<?php  echo $this->Form->input('list', array('type'=>'checkbox')); ?>
 							<div class="clear"></div>
 							<div class="search-bg-box">
@@ -15,16 +12,13 @@
                            <div class="js-answers">
 							<?php echo $this->Form->input('answer', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answers)?'':$answers)); ?>
 							</div>
-							<?php echo $this->Form->input('age_group_id', array('label' => __l('Age Group'), 'empty'=>'Please Select')); ?>
-							<?php echo $this->Form->input('state_id', array('label' => __l('State'), 'empty'=>'Please Select')); ?>
+							<?php echo $this->Form->input('age_group_id', array('label' => __l('Age Group'),'class'=>'age','multiple'=>true,'empty'=>'Please Select')); ?>
+							<?php echo $this->Form->input('state_id', array('label' => __l('State'), 'multiple'=>true,'class'=>'age','empty'=>'Please Select')); ?>
 							</div>
-                           
-					
-          
-</div>
+                          </div>
 
-<div class="search-box-right">
-					<?php //echo $this->Form->input('and', array('type'=>'checkbox','label'=>__l('AND')));?>
+                            <div class="search-box-right">
+					        <?php //echo $this->Form->input('and', array('type'=>'checkbox','label'=>__l('AND')));?>
 							<?php  //echo $this->Form->input('or', array('type'=>'checkbox','label'=>__l('OR'))); ?>
 							<br/>
 							<br/>
@@ -37,16 +31,13 @@
 							<div class="js-answer1s">
 							<?php echo $this->Form->input('answer1', array('label' => __l('Answers'),'type'=>'select','multiple' => true,'options'=> empty($answer1s)?'':$answer1s)); ?>
 							</div>
-							<?php echo $this->Form->input('age_group_id', array('label' => __l('Age Group'), 'empty'=>'Please Select')); ?>
-							<?php echo $this->Form->input('state_id', array('label' => __l('State'), 'empty'=>'Please Select')); ?>
-
-							
-							</div></div>
+							<?php echo $this->Form->input('age_group_id1', array('label' => __l('Age Group'), 'class'=>'age','multiple'=>true,'type'=>'select','options'=>$ageGroups, 'empty'=>'Please Select')); ?>
+							<?php echo $this->Form->input('state_id1', array('label' => __l('State'), 'type'=>'select','class'=>'age','multiple'=>true,'options'=>$states ,'empty'=>'Please Select')); ?>
+                            </div></div>
 							<div class="clear"></div>
-
-							<span class="js-show-statement"> SHOW/HIDE</span>
+                            <span class="js-show-statement"> SHOW/HIDE</span>
 <div class="hide js-statment-query">
-<div class="js-sql-query">No SQL statement avialable.
+<div class="js-sql-query">No SQL statement avaialable.
 </div>
 <div id="js-sql-query1"></div>
 </div>
@@ -55,20 +46,27 @@
 </div>
      
 <div class="clearfix"></div>
-
 <?php if(!empty($this->request->data) && $this->request->data['BeautyQuestion']['list'] == 1 ):?>
 <h2> <?php echo __l('Report Section'); ?></h2> 
-<?php if(!empty($userCount1Conditions) && !empty($userCountConditions)): 
-	  $conditions1 = base64_encode(serialize($userCountConditions));
-	  $conditions2 = base64_encode(serialize($userCount1Conditions));
+        <?php if(!empty($userCountConditions)): 
+	 
 	  ?>
-	<div class="clearfix add-block1">      <?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing',$conditions1, $conditions2,'city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
+	<div class="clearfix add-block1"><?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing','userCountConditions','city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
 	   <?php
-       echo $this->element('user-listing',array('conditions1'=>$conditions1, 'conditions2'=>$conditions2)); ?>
-<?php else: ?>
+       echo $this->element('user-listing',array('conditions1'=>'userCountConditions')); ?>
+	<?php else: ?>
 	<p> <?php echo __l('No users avialable'); ?></p>
-<?php endif; ?>
+	<?php endif; ?>
+	<?php if(!empty($userCount1Conditions)): 
 
+	 ?>
+
+	<div class="clearfix add-block1"><?php echo $this->Html->link(__l('CSV'), array_merge(array('controller' => 'users', 'action' => 'listing','userCount1Conditions', 'city' => 'malaysia', 'ext' => 'csv', 'admin' => true), $this->request->params['named']), array('title' => __l('CSV'), 'class' => 'export')); ?></div>
+	   <?php
+	   echo $this->element('user-listing',array('conditions1'=>'userCount1Conditions')); ?>
+       <?php else: ?>
+	<p> <?php echo __l('No users avialable'); ?></p>
+	<?php endif; ?>
 <?php endif; ?>
 <?php if(!empty($this->request->data) && $this->request->data['BeautyQuestion']['count'] == 1 ): ?>
 <h2 class="pad-none bor-bot"> <?php echo __l('Report Section'); ?></h2> 
@@ -160,13 +158,14 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 <?php  if(!empty($beautyQuestion['BeautyQuestion']) ): 
 ?>
 <br/><button id="js-print-button">Print All</button>
+<?php //if(!empty($userIds)):?>
 <button id="export">Download Image</button>
 <?php  $chart_arr = array(); 
 				$data = array();
 				if(!empty($answer_no_order)):
-  				$data =  $this->Html->beautyProfileReports($beautyQuestion['BeautyQuestion']['id'],$answer_no_order);
+				$data =  $this->Html->beautyProfileReports($beautyQuestion['BeautyQuestion']['id'],$answer_no_order, $this->request->data['BeautyQuestion']['age_group_id'], $this->request->data['BeautyQuestion']['state_id']);
 				else:
-				$data =  $this->Html->beautyProfileDetails($beautyQuestion['BeautyQuestion']['id']);
+				$data =  $this->Html->beautyProfileDetails($beautyQuestion['BeautyQuestion']['id'],$answer_no_order,$this->request->data['BeautyQuestion']['age_group_id'], $this->request->data['BeautyQuestion']['state_id']);
 				endif;
 				$qkey = 1;
 				?>
@@ -234,16 +233,17 @@ var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
         });
     });
 	</script>
-
+	
 	<div id="container<?php echo $qkey; ?>" style="min-width: 400px; height: 400px; margin: 0 auto" ></div>
 <?php  if(!empty($beautyQuestion1['BeautyQuestion']) ): 
 ?>
 	<?php  //$chart_arr = array(); 
 				$data1 = array();
+				
 				if(!empty($answer_no_order1)):
-  				$data1 =  $this->Html->beautyProfileReports($beautyQuestion1['BeautyQuestion']['id'],$answer_no_order1);
+  				$data1 =  $this->Html->beautyProfileReports($beautyQuestion1['BeautyQuestion']['id'],$answer_no_order1, $this->request->data['BeautyQuestion']['age_group_id1'], $this->request->data['BeautyQuestion']['state_id1']);
 				else:
-				$data1 =  $this->Html->beautyProfileDetails($beautyQuestion1['BeautyQuestion']['id']);
+				$data1 =  $this->Html->beautyProfileDetails($beautyQuestion1['BeautyQuestion']['id'], $answer_no_order1,$this->request->data['BeautyQuestion']['age_group_id1'], $this->request->data['BeautyQuestion']['state_id1']);
 				endif;
 				$qkey1 = 2;
 				?>
