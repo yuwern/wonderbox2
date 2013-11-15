@@ -99,7 +99,7 @@ endif;
 							<li><?php echo $this->Html->link(__l('MY ACCOUNT'), array('controller' => 'user_profiles', 'action' => 'edit',$this->Auth->user('id'), 'admin' => false), array('title' => __l('MY ACCOUNT')));?></li>
 							<li><?php echo $this->Html->link(__l('SHIPPING INFO'), array('controller' => 'user_shippings', 'action' => 'index'),array('title' => __l('SHIPPING INFO'))); ?></li>
 						    <li><?php echo $this->Html->link(__l('PROFILE IMAGE'), array('controller' => 'users', 'action' => 'profile_image', $this->Auth->user('id')), array('title' => 'My Profile Image')); ?></li>
-				                    <!--<li><?php echo $this->Html->link(__l('CHANGE PASSWORD'), array('controller' => 'users', 'action' => 'forgot_password'), array('title' => __l('CHANGE PASSWORD')));?></li> -->
+				                    <li><?php echo $this->Html->link(__l('CHANGE PASSWORD'), array('controller' => 'users', 'action' => 'forgot_password'), array('title' => __l('CHANGE PASSWORD')));?></li>
 							 <li><?php echo $this->Html->link(__l('MY SUBSCRIPTION'), array('controller' => 'package_users', 'action' => 'index'), array('title' => __l('MY SUBSCRIPTION')));?></li>
 							 <li><?php echo $this->Html->link(__l('MY GIFT SUBSCRIPTION'), array('controller' => 'gift_users', 'action' => 'mygift'), array('title' => __l('MY GIFT SUBSCRIPTION')));?></li>
 							 <li><?php echo $this->Html->link(__l('MY TRANSACTION'), array('controller' => 'transactions', 'action' => 'index'), array('title' => __l('MY TRANSACTION')));?></li>

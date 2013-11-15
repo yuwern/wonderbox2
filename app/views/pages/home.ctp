@@ -12,7 +12,8 @@ $(document).ready(function(){
           		<div class="brand_logo <?php if (!$this->Auth->sessionValid()): ?>	js-home-sign-pop-up <?php endif; ?>">
                   	  <h3><?php echo __l('Click to learn more about the unique services below:')?></h3>
                       <ul>
-						<li><?php echo $this->Html->link($this->Html->image('wonderbox_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','how_it_works'),array('title' =>'How it Works', 'escape' => false));?></li>
+
+                                                <li><?php echo $this->Html->link($this->Html->image('wonderbox_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','how_it_works'),array('title' =>'WonderBox', 'escape' => false));?></li>
 						<li><?php echo $this->Html->link($this->Html->image('wondersurvey_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'products', 'action' => 'survey'),array('title' =>'Share Your Feedback', 'escape' => false));?></li>
      	                                        <li><?php echo $this->Html->link($this->Html->image('wonderpoints_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','earn-wonder-points'),array('title' =>'Ways to earn WonderPoints', 'escape' => false));?></li>
 						<li><?php echo $this->Html->link($this->Html->image('wonderblog_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' =>'WonderBlog', 'escape' => false));?></li>
@@ -59,7 +60,8 @@ $(document).ready(function(){
                         <?php echo __l('Counting Down To Your Next WonderBox'); ?>
                     </div>
                     <?php else: ?>
-                    <p><?php echo $this->Html->image('test_sub_closed.jpg',array('width'=>'364','height'=>'196')); ?></p>
+                    <p><?php echo $this->Html->image('sub_closed.jpg',array('width'=>'364','height'=>'196')); ?></p>
+                    <?php echo __l('Subscription for Our Next WonderBox Edition Will Be Open Soon'); ?>
                     <?php endif; ?>
 
                 </div> 

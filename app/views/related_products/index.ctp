@@ -7,7 +7,7 @@
 					</div>
                     <div class="brand-right">
                     	<div class="all-pro">
-                        	<p class="back-link f-right"><?php echo $this->Html->link('&raquo;'.__l('Back To Brand Page'), array('controller' => 'product_redemptions', 'action' => 'view',$productRedemption['ProductRedemption']['slug']),array('title' =>__l('Back To Brand Page'), 'escape' => false)); ?></p>
+                        	<p class="back-link f-right"><?php echo $this->Html->link('&raquo;'.__l('Back'), array('controller' => 'product_redemptions', 'action' => 'view',$productRedemption['ProductRedemption']['slug']),array('title' =>__l('Back To Brand Page'), 'escape' => false)); ?></p>
                         	<h1><?php echo $this->Html->cText(ucfirst($productRedemption['ProductRedemption']['name']),false); ?> <?php echo __l('(All Products)'); ?></h1>
                             <div class="clear"></div>
                     		<ul class="all-products">
