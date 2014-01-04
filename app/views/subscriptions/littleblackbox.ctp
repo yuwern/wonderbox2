@@ -45,33 +45,33 @@ fb_param.currency = 'MYR';
 			<ul class="blocks-holder">
 
                             <li class="block-1">
-					<p class="block-title custom">The Hipster</p>
+					<p class="block-title custom">The Great Gatsby </p>
 					<div class="thumb-holder">
 						<div class="img-holder">
-                                        <?php echo $this->Html->image('Hipster.jpg');?>
+                                        <?php echo $this->Html->image('gatsby.jpg');?>
 						</div>
-						<p class="thumb-text">For subcultural trendsetter girls who love mixing latest trend with their personal style.</p>
-					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'view','little-black-box-hipster'));?>
+						<p class="thumb-text">Unconventional, outrageous & flirtatious. Transform yourself into a mysterious and seductive flapper party girl of the 1920s.</p>
+					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'view','little-black-box-the-great-gatsby'));?>
                            </div>
 				</li>
 				<li class="block-2">
-					<p class="block-title custom">Classic Chic</p>
+					<p class="block-title custom">Retro Soul</p>
 					<div class="thumb-holder">
 						<div class="img-holder">
-                                        <?php echo $this->Html->image('ClassicChic.jpg');?>
+                                        <?php echo $this->Html->image('retro.jpg');?>
 						</div>
-						<p class="thumb-text">Timeless. Sophisticated. Elegant. Classic chic style remains every girl's favorite for effortless beauty.</p>
-					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'view','little-black-box-classic-chic'));?>
+						<p class="thumb-text">Think of the retro style, think of Austin Powers, oh Behave :) and reinvent the big hair,polka dot prints and plastic frame sunnies.</p>
+					<p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'view','little-black-box-retro-soul'));?>
 					</div>
 				</li>
 				<li class="block-3">
-					<p class="block-title custom">Girly Girl</p>
+					<p class="block-title custom">Greek Goddess</p>
 					<div class="thumb-holder">
 						<div class="img-holder">
-					 <?php echo $this->Html->image('GirlyGirl.jpg');?>
+					 <?php echo $this->Html->image('greek.jpg');?>
                                                 </div>
-						<p class="thumb-text">Be in touch with your feminine personality. Add some pastels, floral, ribbons and pearl to bring out a softer look. </p>
-                                    <p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'view','little-black-box-girly-girl'));?>
+						<p class="thumb-text">Mimic the eternal beauty of Helen of Troy. Any fan of white toga dresses, gold hammered jewellery and gladiator heels would love this.  </p>
+                                    <p><?php echo $this->Html->link('Buy @ WonderShop',array('controller' => 'product_redemptions', 'action' => 'view','little-black-box-greek-goddess'));?>
 
                                           
 
