@@ -26,8 +26,9 @@
                             </div>
                             <p><?php echo __l('Thank You For Shopping At WonderShop and We Look Forward In Serving You Again'); ?></p>
                                 <ul class="font-tahoma">
-                                	<li><?php echo __l('Your lovely purchase will be delivered to you within the next 7 working days'); ?></li>
-                                    <li><?php echo __l('Once the parcel has been send out, your parcel\'s tacking number will be shown next to this purchase in your account.'); ?></li>
+                               	<li><?php echo __l('Your lovely purchase will be delivered to you within the next 7 working days'); ?></li>
+                               	<li><?php echo __l('If you have purchase a Little Black Box, your Little Black Box will be delivered to you by the 25th of the purchased month. '); ?></li>
+                                <li><?php echo __l('Once the parcel has been send out, your parcel\'s tacking number will be shown next to this purchase in your account.'); ?></li>
 
                                 </ul>
                         </div>
