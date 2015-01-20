@@ -8,8 +8,36 @@ $(document).ready(function(){
 	});
 });
 </script>
+
+<div class="brand_logo">
+
+</div>
+
+<div class="ad_sec">
+
+<div class="ad1">
+<h3><?php echo __l('Complete Your Beauty Profile')?></h3>
+<?php echo __l('Sign-Up for a WonderBox account today and complete your beauty profile')?>
+</div>
+
+<div class="ad2">
+<h3><?php echo __l('Share Your Blog with the Community')?></h3>
+<?php echo __l('Share Your Blog with the Community so that others can read about your new beauty discovery')?>
+</div>
+
+
+<div class="ad3">
+<h3><?php echo __l('Get Rewarded')?></h3>
+<?php echo __l('If you are the lucky member selected during each period, you will receive a complimentary WonderBox fill with beauty samples or be invited to one of our exclusive beauty event.')?>
+</div>
+
+</div>
+
+<div class="brand_logo">
+</div>
+
 <!-- Brand Logo Sec  -->
-          		<div class="brand_logo <?php if (!$this->Auth->sessionValid()): ?>	js-home-sign-pop-up <?php endif; ?>">
+          		<!--<div class="brand_logo <?php if (!$this->Auth->sessionValid()): ?>	js-home-sign-pop-up <?php endif; ?>">
                   	  <h3><?php echo __l('Click to learn more about the unique services below:')?></h3>
                       <ul>
 
@@ -18,13 +46,13 @@ $(document).ready(function(){
      	                                        <li><?php echo $this->Html->link($this->Html->image('wonderpoints_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'pages', 'action' => 'view','earn-wonder-points'),array('title' =>'Ways to earn WonderPoints', 'escape' => false));?></li>
 						<li><?php echo $this->Html->link($this->Html->image('wonderblog_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' =>'WonderBlog', 'escape' => false));?></li>
                                                 <li><?php echo $this->Html->link($this->Html->image('wonderspree_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'wonder_sprees', 'action' => 'index'),array('title' =>'WonderSpree', 'escape' => false));?></li>
-                                                <li><?php echo $this->Html->link($this->Html->image('wondershop_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' =>'WonderShop', 'escape' => false));?></li>
+                                                <li><?php echo $this->Html->link($this->Html->image('wondershop_service.jpg', array('width'=>'152','height'=>'49')), array('controller' => 'product_redemptions', 'action' => 'index'),array('title' =>'WonderShop', 'escape' => false));?></li>-->
 
 
 				      </ul>
            		</div>
                 <!-- ADD SEC -->
-                <div class="ad_sec">
+                <!--<div class="ad_sec">
                 	<div class="ad1"><?php echo $this->element('home-page-organizers-index'); ?>
                 	<?php echo __l('Previous WonderBox Editions'); ?>    </div>
                     <div class="ad2"><?php echo $this->Html->link($this->Html->image('ad2.jpg',array('width'=>'210','height'=>'200')), array('controller' => 'beauty_tips', 'action' => 'index'),array('title' =>'Beauty Tips', 'escape' => false));?>
@@ -62,7 +90,7 @@ $(document).ready(function(){
                     <?php else: ?>
                     <p><?php echo $this->Html->image('sub_closed.jpg',array('width'=>'364','height'=>'196')); ?></p>
                     <?php echo __l('Subscription for Our Next WonderBox Edition Will Be Open Soon'); ?>
-                    <?php endif; ?>
+                    <?php endif; ?>-->
 
                 </div> 
     

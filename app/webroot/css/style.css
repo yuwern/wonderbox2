@@ -4,16 +4,16 @@
 .header{}
 /*  Global link css  */
 .global_link{ background:#ede8dc; border:1px solid #d3c8bd; border-top:1px; padding:1px; /* overflow:hidden; */ font-family:rawengulkregular;}
-.global_link .c1{ float:left;  font-size:14px; font-family:rawengulkregular; color:#302a2b; font-weight:bold; padding-top:5px; padding-left:10px;}
-.global_link .c1 strong{font-family:rawengulkregular; }
-.global_link .c1 span{font-size:14px; font-family:rawengulkregular; color:#e885a8; font-weight:bold;}
+.global_link .c1{ float:left;  font-size:14px; font-family:tahoma; color:#302a2b; font-weight:bold; padding-top:5px; padding-left:10px;}
+.global_link .c1 strong{font-family:tahoma; }
+.global_link .c1 span{font-size:14px; font-family:tahoma; color:#e885a8; font-weight:bold;}
 .global_link .c1 i{ font-size:10px;}
 .global_link .c2{ float:right; /* width:12%;  border-left:1px solid #c6c2bd;*/ text-align:center; padding-top:4px;padding-bottom:4px;}
-.global_link .c3{ float:right; padding-right:5px;font-family:rawengulkregular}
-.global_link .c3 span{ padding:0 5px; line-height:25px;font-family:rawengulkregular}
-.global_link .c3 span strong{ font-family:rawengulkregular; font-weight:normal}
+.global_link .c3{ float:right; padding-right:5px;font-family:tahoma}
+.global_link .c3 span{ padding:0 5px; line-height:25px;font-family:tahoma}
+.global_link .c3 span strong{ font-family:tahoma; font-weight:normal}
 
-.global_link .c3 span a{color:#302a2b;line-height:25px;font-family:rawengulkregular}
+.global_link .c3 span a{color:#302a2b;line-height:25px;font-family:tahoma}
 .global_link .c4{ float:right; width:18%; margin-right:5px; min-height:25px; line-height:25px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px; border:1px solid #aaaaaa; background:#f7d4e1; text-align:center; font-weight:bold; color:#635c5e;}
 .global_link .c4 span { color:#d3557b}
 .global_link .c5{float:right; width:7%; }
@@ -30,7 +30,7 @@
 .nav ul{ list-style:none; float:right;}
 .nav ul li{ list-style:none; float:left;}
 .nav ul li a{ padding-top:43px; display:block; width:85px; text-align:center; font-weight:bold; font-size:13px; text-transform:uppercase;color:#302a2b;font-family:rawengulkregular;}
-.nav ul li a:hover{ text-decoration:none; color:#f67da9}
+.nav ul li a.hover{ text-decoration:none; color:#f67da9}
 .nav ul li a.home{ background:url(../img/home.jpg) top center no-repeat;}
 .nav ul li a.home:hover{ background:url(../img/home1.jpg) top center no-repeat;}
 .nav ul li a.subscribe{ background:url(../img/subscribe.jpg) top center no-repeat;}
@@ -60,7 +60,12 @@
 .brand_logo ul{ margin:0; padding:0;}
 .brand_logo ul li{ margin:0; padding:0 4px 0 0; list-style:none; float:left;; border-right:1px solid #aaaaaa;;border-left:1px solid #aaaaaa; }
 .brand_logo h3{ color:#969595;}
-.brand_logo ul li a:hover {background:#f67da9;}
+
+.brand_logo ul li a.wonderbox { background:url(../img/wonderbox_service.png) no-repeat; width:152px; height:49px;}
+.brand_logo ul li a.wonderbox:hover { background:url(../img/wonderbox_service1.png) no-repeat; width:152px; height:49px;}
+
+
+
 .banner_sub{ position:absolute; right:22px; top:10px; z-index:1000; background:url(../img/banner_sub.png) no-repeat; width:166px; height:333px; text-align:center;}
 .banner-sub-now{ background:url(../img/banner_sub_now.png) no-repeat; width:143px; height:36px; display:inline-block; position:absolute; bottom:10px; left:13px;}
 .banner-sub-now:hover{ background:url(../img/banner_sub_now1.png) no-repeat; width:143px; height:36px; display:inline-block; position:absolute; bottom:10px; left:13px;}
@@ -69,9 +74,10 @@
 .body{}
 /* AD SEC */
 .ad_sec{ overflow:hidden;}
-.ad1{ width:330px; float:left;text-align:center; border-right:1px solid #aaaaaa;text-align:center; padding-top:0px;font-family: 'Linden Hill', serif, arial; font-size:13px;color:#595a5f;}
-.ad2{ width:224px; float:left;text-align:center;border-right:1px solid #aaaaaa;padding-left:15px;font-family: 'Linden Hill', serif, arial; font-size:13px;color:#595a5f;}
-.ad3{ width:375px; float:right; text-align:center;font-family: 'Linden Hill', serif, arial; font-size:13px;color:#595a5f; }
+.ad_sec h3 {text-align:center; padding-top:2px;padding-bottom:10px;font-family: 'Linden Hill', serif, arial; font-size:18px; font-weight:bold; color:#f67da9; }
+.ad1{ width:300px;height:100px; float:left;text-align:center; border-right:1px solid #aaaaaa;text-align:center; padding-top:0px;font-family: Linden Hill, serif, arial; font-size:15px;color:#595a5f;}
+.ad2{ width:330px;height:100px; float:left;text-align:center;border-right:1px solid #aaaaaa;padding-left:5px;padding-right:5px;font-family: 'Linden Hill', serif, arial; font-size:15px;color:#595a5f;}
+.ad3{ width:300px;height:100px; float:right; text-align:center;padding-left:5px;font-family: 'Linden Hill', serif, arial; font-size:15px;color:#595a5f; }
 .sub_box{ width:362px; height:194px; float:right; background:#e6ddd3; border:1px solid #c1b2a1; overflow:hidden;}
 .s-box-left{ float:left; width:33%; margin-right:2%;}
 .s-box-left h2{ padding:20px 0 0 0; text-align:right; font-size:23px; line-height:24px; font-weight:bold;}

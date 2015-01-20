@@ -391,5 +391,6 @@ if (Cache::read('site.city_url', 'long') == 'subdomain') {
         'action' => 'index',
 		'type' => 'geocity'
     ));
+    
 }
 ?>
