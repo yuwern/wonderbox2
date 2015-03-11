@@ -178,9 +178,11 @@ endif;
 							<?php $active_class = ($this->request->params['controller'] == 'brands' && $this->request->params['action'] == 'index' ) ?  'class="active"': null; ?>
 				            <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Brands'), array('controller' => 'brands', 'action' => 'index', 'admin' => false), array('title' => __l('Brands'),'class'=> 'brands'));?></li>
 							<?php $active_class = ($this->request->params['controller'] == 'pages' && $this->request->params['action'] == 'view'  && $this->request->params['pass'][0] == 'how_it_works') ?  'class="active"': null; ?>
-                            <li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('How it Works'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('How it Works'),'class'=> 'howit'));?></li>
+                            <!--<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('How it Works'), array('controller' => 'pages', 'action' => 'view', 'how_it_works', 'admin' => false), array('title' => __l('How it Works'),'class'=> 'howit'));?></li>-->
+
 							<?php if ($this->Auth->sessionValid()): ?>
 							 <?php $active_class = ($this->request->params['controller'] == 'users' && $this->request->params['action'] == 'share_friend') ? 'class="active"' : null; ?>
+
 
 							<!--<li <?php echo $active_class; ?>><?php echo $this->Html->link(__l('Refer a Friend'), array('controller' => 'users', 'action' => 'share_friend', 'admin' => false), array('class'=>'refer_icon','title' => __l('Refer a Friend')));?></li>
 							-->

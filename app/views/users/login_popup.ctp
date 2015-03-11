@@ -66,8 +66,8 @@
 						<?php echo $this->Html->image('pop1.jpg'); ?>
 						<?php echo $this->Html->image('pop2.jpg'); ?>
 						<h4>Member's Update</h4>
-                                                         <p><?php echo __l('Kindly check your email for updates on your September subscription status. Thanks!');  ?> </p>
-						         <p><?php echo __l('Love to earn more Wonderpoints ? Complete your product survey or share your purchase history on Wonderspree!');?> </p>
+                                 <p><?php echo __l('Welcome back to the new WonderBox');  ?> </p>
+						         <p><?php echo __l('');?> </p>
 					 </div>
 <?php if(empty($this->request->data['User']['is_requested'])):?>
 </div>
